@@ -1,8 +1,16 @@
+import {BrowserRouter, Route} from 'react-router-dom';
+import {Routes} from 'react-router-dom';
+import Home from './components/Home';
+
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <h1>App</h1>
+      <Routes>
+      <Route exact path= '/home' component= {Home}/>
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
