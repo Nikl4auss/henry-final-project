@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../actions";
+import { getProducts } from "../../actions";
 import { NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
