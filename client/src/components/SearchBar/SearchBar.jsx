@@ -10,19 +10,19 @@ export default function SearchBar (){
     function handleInputChange(e){ 
         e.preventDefault()
         setName(e.target.value) //el value del input toma el value del state
-        console.log(name)
     }
 
     function handleSubmit(e){ 
         e.preventDefault()
         dispatch(getProductsName(name)) //name es mi estado local que lo estan pasando en la search bar
-        console.log(name)
+        setName(name='')
     }
 
     return (
         <div>
             <input
             type = 'text'
+            value= {name}
             placeholder = "Buscar..."
             onChange = {(e) => handleInputChange(e)}
             />
