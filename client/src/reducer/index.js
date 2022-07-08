@@ -1,4 +1,4 @@
-import {GET_PRODUCTS} from '../actions'
+import {GET_PRODUCTS, GET_PRODUCTS_NAME} from '../actions'
 
 const initialState = {
     products: []
@@ -11,6 +11,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 products: action.payload
             }
+            case GET_PRODUCTS_NAME:
+                return{
+                    ...state,
+                    products: action.payload //pq estoy renderizando ese arreglo
+                }
             default: return state;
     }
 }
