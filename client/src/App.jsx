@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <Routes>
-      <Route exact path= '/home' component= {Home}/>
+      <Route exact path= '/home' element= {<Home />}/>
       </Routes>
     </div>
     </BrowserRouter>
