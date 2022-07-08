@@ -26,10 +26,13 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Product, Category, Brand } = sequelize.models
+const { Product, Category, Brand, Image_Product } = sequelize.models
 
 Brand.hasMany(Product)
 Product.belongsTo(Brand)
+
+Product.hasMany(Image_Product);
+Image_Product.belongsTo(Product);
 
 Category.belongsToMany(Product, { through: 'Category_Products'})
 Product.belongsToMany(Category, { through: 'Category_Products'})
