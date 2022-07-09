@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BRANDS, CATEGORIES } from '../Variables Auxiliares/Auxiliar';
+import { BRANDS, CATEGORIES } from '../AuxiliaryVariables/Auxiliar';
 import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS } from './actions_types';
 
 export function getProducts(filters = {}){
