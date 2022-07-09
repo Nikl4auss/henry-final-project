@@ -40,9 +40,18 @@ const getDbInfo = async () => {
 };
 
 router.get('/', async (req, res, next)=>{
+    const name = req.query.name;
     try{
         let totalProducts = await getDbInfo();
+        if (name) {
+            let productName = await totalProducts.filter(t => t.name.toLowerCase().includes(name.toLowerCase()))
+            productName.length ?
+            res.status(200).send(productName) :
+             res.status(404).send('unfinded')
+     } 
+     else{
         res.status(200).send(totalProducts)
+     }
     } catch (error){
         next(error)
     } 
