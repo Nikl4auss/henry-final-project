@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const axios = require('axios');
 const {Product, Brand, Category, Image_Product} = require("../db")
 
 const router = Router();
