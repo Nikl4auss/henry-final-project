@@ -11,10 +11,8 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
-        },
-        description: {
-            type: DataTypes.TEXT,
-            allowNull: false,
         }
-    })
+    }
+    ,
+    { timestamps: false })
 }
