@@ -2,22 +2,17 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Brand",
-    {
+    "Stock",
+    { 
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
-        type: DataTypes.STRING,
+      stock_product: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
-      },
-      image_logo: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
+      }
     },
     { timestamps: false }
   );
