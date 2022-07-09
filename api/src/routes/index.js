@@ -8,5 +8,6 @@ const router = Router();
 router.use('/products', productsRoute);
 router.use('/product', productRoute);
 router.use('/categories', categoriesRoute);
+router.use('/brands', brandsRoute);
 
 module.exports = router;
