@@ -6,6 +6,7 @@ import { BrandsComponent, CategoriesComponent } from "./FiltersComponents"
 
 
 export default function Filters () {
+    let nameState = useSelector(state => state.name)
     let brands = useSelector(state => state.brands)
     let categories = useSelector(state => state.categories)
     let filtersSelected = useSelector(state => state.filtersSelected)
@@ -15,10 +16,10 @@ export default function Filters () {
     const [filtersSelectedToRender, setFiltersSelectedToRender ] = useState([])
 
     useEffect(() => {
-        dispatch(getProducts(filtersToApply))
+        dispatch(getProducts(filtersToApply, nameState))
         dispatch(getBrands())
         dispatch(getCategories())
-    }, [dispatch, filtersToApply])
+    }, [dispatch, filtersToApply, nameState])
 
     function handleSelectCategory (e) {
         e.preventDefault()

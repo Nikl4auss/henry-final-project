@@ -2,8 +2,8 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Brand",
-    {
+    "Gender",
+    { 
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -12,11 +12,6 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
-      },
-      image_logo: {
-        type: DataTypes.STRING,
-        allowNull: true,
       },
     },
     { timestamps: false }
