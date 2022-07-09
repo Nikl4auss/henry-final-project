@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getBrands, getCategories, getProducts } from "../../actions"
 import { BrandsComponent, CategoriesComponent } from "./FiltersComponents"
-
+import styles from './filters.module.css'
 
 
 export default function Filters () {
@@ -55,7 +55,7 @@ export default function Filters () {
         }
 
     return(
-        <div>
+        <div className={styles.divFilters}>
             <div>
                 {filtersSelectedToRender.length > 0 ? 
                 filtersSelectedToRender.map((filter, index) => {
