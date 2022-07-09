@@ -1,11 +1,14 @@
 import React from 'react';
+import { useEffect } from 'react';
 import {useState} from 'react';
-import { useDispatch } from 'react-redux';
-import { getProductsName } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../../actions';
 
 export default function SearchBar (){
+    
     const dispatch = useDispatch()
     const [name, setName] = useState("")//seteo un estado local
+
 
     function handleInputChange(e){ 
         e.preventDefault()
@@ -14,8 +17,8 @@ export default function SearchBar (){
 
     function handleSubmit(e){ 
         e.preventDefault()
-        dispatch(getProductsName(name)) //name es mi estado local que lo estan pasando en la search bar
-        setName(name='')
+        dispatch(getProducts({}, name)) //name es mi estado local que lo estan pasando en la search bar
+        setName('')
     }
 
     return (
