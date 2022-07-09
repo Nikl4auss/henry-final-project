@@ -1,7 +1,13 @@
-import {GET_PRODUCTS} from '../actions'
+import {GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS} from '../actions/actions_types'
 
 const initialState = {
-    products: []
+    products: [],
+    brands: [],
+    categories: [],
+    filtersSelected: {
+        category: [],
+        brand: []
+    }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -9,9 +15,20 @@ const rootReducer = (state = initialState, action) => {
         case GET_PRODUCTS:
             return{
                 ...state,
-                products: action.payload
+                products: action.payload,
+                filtersSelected: action.filters
             }
-            default: return state;
+        case GET_BRANDS: 
+            return {
+                ...state,
+                brands: action.payload
+            }
+        case GET_CATEGORIES: 
+            return {
+                ...state,
+                categories: action.payload
+            }
+        default: return state;
     }
 }
 
