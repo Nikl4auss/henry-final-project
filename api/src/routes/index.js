@@ -6,6 +6,7 @@ const categories = require('./category')
 const brands = require('./brands')
 const genders = require('./genders')
 const sizes = require('./sizes')
+const stock = require('./stocks')
 
 const router = Router();
 
