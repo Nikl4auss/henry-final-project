@@ -6,16 +6,38 @@ const router = Router();
 router.get('/', async(req, res, next) => {
     const idProduct = req.query.id;
     try{
-        let productTotal = await totalProducts();
-        if(idProduct){
-        let productById = productTotal.filter(r=> r.id == idProduct)
-        productById.length ?
-        res.status(200).send(productById) :
-        res.status(404).send('No se encontró ese producto')
-        }
-    }catch(err){
-        next (err)
-}
+        let productById= await Product.findOne({
+            where: {
+                id : idProduct
+            },
+            include:{
+                model: Category,
+                attributes: ['name'],
+                model: Brand,
+                attributes: ['name'],
+                model: image_Product,
+                attributes: ['image'],
+                model: Gender,
+                attributes: ['name'],
+                model: MainColor,
+                attributes: ['name'],
+                model: Size,
+                attributes: ['name'],
+                model: User,
+                attributes: ['name'],
+                model: Stock,
+                attributes: ['stock_product'],
+                model: Store,
+                attributes: ['name'], 
+                model: Address,
+                attributes: ['name_street']             
+            }
+        })
+        res.status(200).send(productById) 
+
+    } catch (error){
+    next(error)
+    }
 });
 
 router.post('/', async (req, res, next)=>{
