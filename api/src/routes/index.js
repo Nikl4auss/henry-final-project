@@ -15,5 +15,6 @@ router.use('/categories', categories);
 router.use('/brands', brands);
 router.use('/genders', genders)
 router.use('/sizes', sizes)
+router.use('/stock', stock)
 
 module.exports = router;
