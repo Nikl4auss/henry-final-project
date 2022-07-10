@@ -74,3 +74,19 @@ export const PRODUCTS = [
 
     },
 ]
+
+export const PRODUCT = {
+    name: 'Celular',
+    description: 'Celular de alto rendimiento',
+    price: 50000.00,
+    model: '111TX',
+    categories: ['Celulares', 'Tecnología'],
+    brand: 'Samsung',
+    mainColor: 'gray',
+    images: [
+        {
+            image: 'https://images.fravega.com/f300/6378ae4aa084513db8be004cc70dc660.jpg.webp',
+            main: true
+        }
+    ]
+}
