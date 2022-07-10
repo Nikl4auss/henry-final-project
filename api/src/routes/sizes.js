@@ -1,5 +1,5 @@
 const { Router } = require ('express')
-const {Size} = require("../db.js")
+const {Size, Stock} = require("../db.js")
 
 const router = Router();
 
