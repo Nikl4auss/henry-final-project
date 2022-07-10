@@ -14,16 +14,15 @@ export default function NavBar(){
                 <p>Envío gratis en 24hs a partir de $10.000</p>
             </div>
             <ul>
-                <li><a href='styles'>Categorías</a></li>
-                <li><a href='styles'>Género</a></li>
-                <li><a href='styles'>Marcas</a></li>
+                <li><button>Categorías</button></li>
+                <li><button>Género</button></li>
+                <li><button>Marcas</button></li>
             </ul>
             <ul>
-                <li><a href='styles'>Creá tu cuenta</a></li>
-                <li><a href='styles'>Iniciar sesión</a></li>
-                <li><a href='styles'>Favoritos</a></li>
-                <li><a href='styles'>Carrito</a></li>
-                {/*<li><button><i class="fas fa-bell"></i></button></li>*/}
+                <li><button>Creá tu cuenta</button></li>
+                <li><button>Iniciar sesión</button></li>
+                <li><button>Favoritos</button></li>
+                <li><button>Carrito</button></li>
             </ul>
         </nav>
     )
