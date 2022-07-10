@@ -13,4 +13,20 @@ router.get('/', async(req, res, next) => {
     }
 });
 
+
+router.get('/', async(req, res, next) => {
+    const idSizeProduct = req.query.id;
+    try{
+        let sizeById= await Stock.findOne({
+            where: {
+                id : idSizeProduct
+            }           
+        })
+        res.status(200).send(sizeById) 
+
+    } catch (error){
+    next(error)
+    }
+});
+
 module.exports = router;
