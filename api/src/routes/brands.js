@@ -4,9 +4,8 @@ const {Brand} = require("../db")
 const router = Router();
 
 router.get('/', async(req, res, next) => {
-    const name = req.query.name;
     try{
-        const brandName= await Brand.filter(d=>d.name.toLowerCase().includes(name.toLowerCase()))
+        const brandName = await Brand.findAll()
         res.status(200).send(brandName)
     }catch(err){
         next(err)
