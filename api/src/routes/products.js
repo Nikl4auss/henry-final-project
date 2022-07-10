@@ -34,6 +34,7 @@ const router = Router();
     },
     {
         model: Image_Product,
+        as: 'images',
         attributes: ['image']
     }
         ]  

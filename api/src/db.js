@@ -46,8 +46,8 @@ Stock.belongsTo(Product)
 Address.hasOne(Store)
 Store.belongsTo(Address)
 
-Product.hasMany(Image_Product);
-Image_Product.belongsTo(Product);
+Product.hasMany(Image_Product, {as: 'images'});
+Image_Product.belongsTo(Product, {as: 'product'});
 
 Gender.hasMany(Product)
 Product.belongsTo(Gender)
