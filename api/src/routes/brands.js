@@ -6,7 +6,8 @@ const router = Router();
 router.get('/', async(req, res, next) => {
     try{
         const brandName= await Brand.findAll()
-        res.status(200).send(brandName)
+        const brands = brandName.map(b => b.name)
+        res.status(200).send(brands)
     }catch(err){
         next(err)
     }
