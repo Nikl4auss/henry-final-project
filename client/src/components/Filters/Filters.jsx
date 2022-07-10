@@ -6,20 +6,21 @@ import styles from './filters.module.css'
 
 
 export default function Filters () {
-    let nameState = useSelector(state => state.name)
+    let name = useSelector(state => state.name)
     let brands = useSelector(state => state.brands)
     let categories = useSelector(state => state.categories)
     let filtersSelected = useSelector(state => state.filtersSelected)
     let dispatch = useDispatch()
 
+
     const [filtersToApply, setFiltersToApply ] = useState(filtersSelected)
     const [filtersSelectedToRender, setFiltersSelectedToRender ] = useState([])
 
     useEffect(() => {
-        dispatch(getProducts(filtersToApply, nameState))
         dispatch(getBrands())
         dispatch(getCategories())
-    }, [dispatch, filtersToApply, nameState])
+        dispatch(getProducts(filtersToApply, name))
+    }, [dispatch, filtersToApply])
 
     function handleSelectCategory (e) {
         e.preventDefault()
