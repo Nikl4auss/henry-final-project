@@ -7,6 +7,7 @@ const brands = require('./brands')
 const genders = require('./genders')
 const sizes = require('./sizes')
 const colors = require('./colors')
+const stock = require('./stocks')
 
 const router = Router();
 
@@ -17,5 +18,6 @@ router.use('/brands', brands);
 router.use('/genders', genders);
 router.use('/sizes', sizes);
 router.use('/colors', colors);
+router.use('/stock', stock)
 
 module.exports = router;
