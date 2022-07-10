@@ -20,22 +20,17 @@ const router = Router();
         }
         conditions.where=where
     }
-    console.log(arrayCategories)
-    console.log(where)
     conditions.include = [{
         model: Brand,
-        attributes: ['name']
     },
     {
         model: Category,
         as:"Categories",
-        attributes: ['name'],
         through: {attributes:[]}
     },
     {
         model: Image_Product,
-        as: 'images',
-        attributes: ['image']
+        as: 'images'
     }
         ]  
     let db = await Product.findAll(conditions);
@@ -48,9 +43,9 @@ const router = Router();
             price: d.price,
             creationDate: d.creationDate,
             updateDate: d.updateDate,
-            brand: d.Brands,
-            category: d.Categories,
-            image: d.Image_Products,
+            brand: d.Brand.name,
+            category: d.Categories.map(ct => ct.name),
+            image: d.images.map(im => im.image),
             user: d.Users
         }
     })
