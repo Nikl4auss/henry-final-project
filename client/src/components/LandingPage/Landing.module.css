@@ -1,0 +1,32 @@
+.landingImg{
+    background-image: url("https://img.freepik.com/foto-gratis/joven-corredor-atar-cordones_1421-46.jpg?t=st=1657513287~exp=1657513887~hmac=8a3c7b581dbb01ad24482c38040c7f23f6b41f9daf71a8370624c119f7ecea36&w=1480");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.logo{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 3rem;
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 5px 14px black;
+    text-align: right;
+    margin: 20px;
+}
+
+.navHome {
+    padding: 0.6em 2em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255);
+    background: rgb(29, 29, 29);
+    cursor: pointer;
+    border-radius: 10px;
+    position: absolute;
+    top: 70%;
+    left: 85%;
+}
