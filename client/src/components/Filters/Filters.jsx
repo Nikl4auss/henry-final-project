@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getBrands, getCategories, getProducts } from "../../actions"
 import { BrandsComponent, CategoriesComponent } from "./FiltersComponents"
 import styles from './filters.module.css'
 
 
-export default function Filters () {
+function Filters () {
     let name = useSelector(state => state.name)
     let brands = useSelector(state => state.brands)
     let categories = useSelector(state => state.categories)
     let filtersSelected = useSelector(state => state.filtersSelected)
     let dispatch = useDispatch()
 
-
     const [filtersToApply, setFiltersToApply ] = useState(filtersSelected)
-    const [filtersSelectedToRender, setFiltersSelectedToRender ] = useState([])
+    const [filtersSelectedToRender, setFiltersSelectedToRender ] = useState(filtersSelected.category?.concat(filtersSelected.brand))
 
+    
     useEffect(() => {
+        if(brands.length !== 0 && categories.length !== 0) return
         dispatch(getBrands())
         dispatch(getCategories())
         dispatch(getProducts(filtersToApply, name))
@@ -86,3 +87,5 @@ export default function Filters () {
         </div>
     )
 }
+
+export default React.memo(Filters)
