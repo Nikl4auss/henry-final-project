@@ -13,11 +13,10 @@ function Filters () {
     let dispatch = useDispatch()
 
     const [filtersToApply, setFiltersToApply ] = useState(filtersSelected)
-    const [filtersSelectedToRender, setFiltersSelectedToRender ] = useState(filtersSelected.category?.concat(filtersSelected.brand))
+    const [filtersSelectedToRender, setFiltersSelectedToRender ] = useState([])
 
     
     useEffect(() => {
-        if(brands.length !== 0 && categories.length !== 0) return
         dispatch(getBrands())
         dispatch(getCategories())
         dispatch(getProducts(filtersToApply, name))

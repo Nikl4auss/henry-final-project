@@ -20,7 +20,7 @@ export function CategoriesComponent ({ categories, filtersSelectedToRender, hand
         <div>
             <span>Categoría</span>
             {categories.map((category) => {
-                if(filtersSelectedToRender.includes(category)) return <div></div>
+                if(filtersSelectedToRender.includes(category.name)) return undefined
                 return (
                     <button 
                     key={category.id}
