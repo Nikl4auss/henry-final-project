@@ -11,20 +11,52 @@ function ProductDetail() {
     name: '',
     price: 0.00,
     description: '',
-    model: ''
+    model: '',
+    images: []
   })
 
+
+  const mainImage = productDetail.images[0]?.image || ''
   useEffect(() => {
-    getProduct(id).then(res => {
-      setProductDetail(res.data)
+    getProduct(id).then(data => {
+      setProductDetail(data)
     })
   }, [id])
   return (
     <div>
-      <h1>{productDetail.name}</h1>
-      <p>{productDetail.description}</p>
-      <p>{productDetail.model}</p>
-      <p>{productDetail.price}</p>
+      <div>
+        <div>
+          {/* <ul>
+            {productDetail.images?.map(({image, main}, inx) => {
+              return <img key={inx} src={image} alt={productDetail.name} />
+            })}
+          </ul> */}
+          <img src={mainImage} alt="" />
+        </div>        
+      </div>
+
+      <div>
+        <h1>{productDetail.name}</h1>
+        <p>${productDetail.price}</p>
+        <select name="" id="">
+          {productDetail.Stocks?.map(({MainColor}, inx) => {
+            return <option key={inx} value={MainColor.name}><span>{MainColor.code}</span>{MainColor.name}</option>
+          })}
+        </select>
+        <select name="" id="">
+          {productDetail.Stocks?.map(({Size}, inx) => {
+            return <option key={inx} value={Size.name}>{Size.name}</option>
+          })}
+        </select>
+
+        <button type='button'>Comprar</button>
+        <button type='button'>Agregar al Carrito</button>
+      </div>
+      <div>
+        <p>{productDetail.description}</p>
+        <p>{productDetail.model}</p>
+        
+      </div>
     </div>
   )
 }
