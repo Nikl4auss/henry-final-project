@@ -1,7 +1,7 @@
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './NavBar.module.css'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {} from '@fortawesome/free-solid-svg-icons'
+//import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+//import {} from '@fortawesome/free-solid-svg-icons'
 
 
 
