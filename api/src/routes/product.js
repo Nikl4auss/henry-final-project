@@ -10,28 +10,46 @@ router.get('/', async(req, res, next) => {
             where: {
                 id : idProduct
             },
-            include:{
+            include:[{
                 model: Category,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: Brand,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: image_Product,
-                attributes: ['image'],
+                attributes: ['image']
+            },
+            {
                 model: Gender,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: MainColor,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: Size,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: User,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: Stock,
-                attributes: ['stock_product'],
+                attributes: ['stock_product']
+            },
+            {
                 model: Store,
-                attributes: ['name'], 
+                attributes: ['name']
+            },
+            {
                 model: Address,
-                attributes: ['name_street']             
-            }
+                attributes: ['name_street']
+            }]
         })
         res.status(200).send(productById) 
 
