@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../actions";
-import NavBar from "../NavBar/navBar";
+import NavBar from "../NavBar/NavBar";
 import Filters from "../Filters/Filters";
 import Cards from "../Cards/Cards";
 import styles from './Home.module.css'
