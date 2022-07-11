@@ -19,7 +19,8 @@ router.get('/', async(req, res, next) => {
                 attributes: ['name']
             },
             {
-                model: image_Product,
+                model: Image_Product,
+                as: 'images',
                 attributes: ['image']
             },
             {
@@ -27,28 +28,19 @@ router.get('/', async(req, res, next) => {
                 attributes: ['name']
             },
             {
-                model: MainColor,
-                attributes: ['name']
-            },
-            {
-                model: Size,
-                attributes: ['name']
-            },
-            {
-                model: User,
-                attributes: ['name']
-            },
-            {
                 model: Stock,
-                attributes: ['stock_product']
-            },
-            {
-                model: Store,
-                attributes: ['name']
-            },
-            {
-                model: Address,
-                attributes: ['name_street']
+                attributes: ['stock_product'],
+                include: [
+                    {
+                        model: MainColor,
+                        attributes: ['name', 'code']
+                    },
+                    {
+                        model: Size,
+                        attributes: ['name']
+                    },
+
+                ]
             }]
         })
         res.status(200).send(productById) 
