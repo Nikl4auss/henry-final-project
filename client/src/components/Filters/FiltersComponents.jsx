@@ -2,7 +2,7 @@ export function BrandsComponent ( {brands, filtersSelectedToRender, handleSelect
     return (<div>
         <span>Marca</span>
         {brands.map((brand) => {
-            if(filtersSelectedToRender.includes(brand.name)) return <div></div>
+            if(filtersSelectedToRender.includes(brand.name)) return undefined
             return (
                 <button 
                 key={brand.id}
