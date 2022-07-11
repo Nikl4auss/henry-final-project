@@ -15,7 +15,7 @@ export default function NavBar(){
                 <SearchBar/>
                 <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p>
             </div>
-            <div className= {styles.menuGral}>
+            {/* <div className= {styles.menuGral}>
             <ul className= {styles.menu}>
                 <li><button>Categorías</button></li>
                 <li><button>Género</button></li>
@@ -27,7 +27,7 @@ export default function NavBar(){
                 <li><button>Favoritos</button></li>
                 <li><button>Carrito</button></li>
             </ul>
-            </div>
+            </div> */}
         </nav>
     )
 }
