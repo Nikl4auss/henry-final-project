@@ -1,11 +1,5 @@
 .divCards {
-        height: 425px;
-        width: 300px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        float:left;
-        position:inherit;
-        padding:10px;
-        margin-top: 50px;
-        margin-bottom: 10px;
+        position:relative;
+        align-items: center;
+        justify-content: space-around;
 }
