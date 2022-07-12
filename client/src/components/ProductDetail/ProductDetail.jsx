@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import {product} from '../../AuxiliaryVariables/Auxiliar'
 import { getProduct } from '../../services/productsServices'
@@ -22,7 +22,14 @@ function ProductDetail() {
       setProductDetail(data)
     })
   }, [id])
+
+
+
   return (
+    <>
+    {/* <div className='buttonHome' >
+      <Link to='/Home' className='btn'>◀ Volver a Inicio</Link>
+    </div> */}
     <div>
     {productDetail.name ? (
       <div>
@@ -60,6 +67,7 @@ function ProductDetail() {
       </div>
       </div>):<div>Cargando</div>}
     </div>
+    </>
   )
   
 }
