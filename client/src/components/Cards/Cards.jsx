@@ -21,15 +21,17 @@ function Cards () {
 
     return(
         <div className={styles.divCards}>
-            {products.map(product => {
-                return <Card 
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    image={product.image}
-                    price={product.price}
-                />
-            })}
+            <div className={styles.divProducts}>
+                {products.map(product => {
+                    return <Card 
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        image={product.image}
+                        price={product.price}
+                    />
+                })}
+            </div>
         </div>
     )
 }
