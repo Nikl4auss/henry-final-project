@@ -1,5 +1,5 @@
 .navbarContainer{
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(31, 31, 31);
 
     /* height: 100%; */
 
@@ -37,7 +37,7 @@
     justify-self: start;
     /* margin-right: 5px;
     margin-top: 10px; */
-    color: #4E4E4E;
+    color: #ffffff;
 }
 
 .menuGral{
@@ -77,14 +77,14 @@
     margin: 0;
 }
 
-button{
-    color: #4E4E4E;
+.btnNav{
+    color: #ffffff;
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
 
-button:hover{
-    background-color: #ffffff;
+.btnNav:hover{
+    background-color: #b0b0b0;
     border-radius: 4px;
     transition: all 0.2s ease-out
 }
