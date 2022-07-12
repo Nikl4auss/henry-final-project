@@ -57,11 +57,14 @@ function Filters () {
 
     return(
         <div className={styles.divFilters}>
-            <div>
+        <div>Filtrar por:</div>
+        <div >
+            <div className={styles.filterSelected}>
                 {filtersSelectedToRender.length > 0 ? 
                 filtersSelectedToRender.map((filter, index) => {
                     return (
-                        <div key={index}>
+                        <div className={styles.buttonsSelected}
+                        key={index}>
                             <button 
                             value={filter}
                             onClick={handleDeleteFilter}>{filter} x</button>
@@ -83,6 +86,7 @@ function Filters () {
                 categories = {categories}
                 filtersSelectedToRender = {filtersSelectedToRender}
             />
+        </div>
         </div>
     )
 }
