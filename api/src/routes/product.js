@@ -15,7 +15,7 @@ router.get('/', async(req, res, next) => {
                 attributes: ['name'],
                 model: Brand,
                 attributes: ['name'],
-                model: image_Product,
+                model: Image_Product,
                 attributes: ['image'],
                 model: Gender,
                 attributes: ['name'],
@@ -76,7 +76,7 @@ if(image){
     const [dbImage] = await Image_Product.findOrCreate({
         where: {image: image[i]}
     })
-    newProduct.addImage_Product(dbImage)
+    newProduct.addImages(dbImage)
     }
 }
 
