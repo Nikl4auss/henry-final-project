@@ -2,14 +2,30 @@
     grid-column: 1/2;
     grid-row: 2/3;
     position: fixed;
+    width: 20vw;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #4E4E4E;
 }
 
-.filtersEach{
+.filterSelected{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.buttonsSelected{
+    margin: 0 5px 0 5px;
+    box-shadow: 0 2px 5px rgb(0 0 0 /10%);
+    border-color:rgb(0,0, 0, 80%);
+    border-radius: 2px;
+}
+
+/* .filtersEach{
     display: flex;
     flex-direction: column;
-    overflow: scroll;
-    height: 30vh;
-}
+    /* overflow: scroll; */
+    /* height: 30vh;
+} */ 
 
 .filtersEach{
     display: flex;
