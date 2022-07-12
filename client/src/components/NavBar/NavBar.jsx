@@ -1,12 +1,20 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './NavBar.module.css'
+
+
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 //import {} from '@fortawesome/free-solid-svg-icons'
 
 
 
+
 export default function NavBar(){
+    const navigate = useNavigate();
+
+    function onClickbutton(){
+       navigate('/nuevoProducto')
+    }
     return(
         <div>
         <nav className={styles.navbarContainer}>
@@ -15,8 +23,8 @@ export default function NavBar(){
                     <h4>Davo Shoes</h4>
                 </div>
                 <SearchBar/>
-                <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p>
-            <button className={styles.btnNav}>Cargar Productos</button>
+                {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
+            <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>
             </div>
             {/* <div className= {styles.menuGral}>
             <ul className= {styles.menu}>
