@@ -8,6 +8,7 @@ const router = Router();
     async function getDbInfo(name, arrayCategories = [], arrayBrands = []){
     let where={}
     let conditions={}
+    let opand = []
 
     if (name){
         where.name = {
@@ -17,19 +18,28 @@ const router = Router();
     }
 
     if(arrayCategories.length > 0){
-        where["$Categories.name$"]={
+        opand.push({
+            "$Categories.name$": {
             [Op.like]: {
                 [Op.any]: arrayCategories
             }
-        }
-        conditions.where = where
+        }})
     }
 
     if(arrayBrands.length > 0){
-        where["$Brand.name$"]={
-            [Op.like]: {
-                [Op.any]: arrayBrands
-            }
+        opand.push(
+            {
+                "$Brand.name$": {
+                    [Op.like]: {
+                        [Op.any]: arrayBrands
+                    }
+                }
+            }    
+        )
+    }
+    if(opand.length > 0) {
+        where = {
+            [Op.and]: opand
         }
         conditions.where = where
     }
@@ -48,6 +58,7 @@ const router = Router();
         }
     ]  
     let db = await Product.findAll(conditions);
+    if(db.length === 0) throw new Error('No se encontraron zapatillas con esos datos')
     const finalDb = db.map(d => {
         return {
             id: d.id,
@@ -57,7 +68,7 @@ const router = Router();
             price: d.price,
             creationDate: d.creationDate,
             updateDate: d.updateDate,
-            // brand: d.Brand.name,
+            brand: d.Brand.name,
             category: d.Categories.map(ct => ct.name),
             image: d.images.map(im => im.image),
             user: d.Users
@@ -68,11 +79,12 @@ const router = Router();
 
 router.get('/', async (req, res, next)=>{
     const {name, categories, brands} = req.query;
+    console.log(brands)
     if(categories){
-        var arrayCategories = categories.split(" ")
+        var arrayCategories = categories.split("-")
     }
     if (brands) {
-        var arrayBrands = brands.split(" ")
+        var arrayBrands = brands.split("-")
     }
     try{
         let totalProducts = await getDbInfo(name, arrayCategories, arrayBrands);
