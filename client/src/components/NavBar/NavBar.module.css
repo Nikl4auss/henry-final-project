@@ -6,6 +6,7 @@
     float: left;
     padding: 10px;
     /* display: flex; */
+    z-index: 1;
 }
 
 .divTop{
