@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBrands, getCategories } from '../../actions';
 import axios from 'axios';
+import swal from 'sweetalert';
+
 
 function postProduct(payload) {
     return async function (dispatch) {
@@ -27,17 +29,14 @@ function validate(input) {
     } 
     if (!input.model) {
         errors.modelo = "Se necesita definir el modelo.";
-    } 
-    if (!input.image[0]) {
-        errors.imagen = "Se requiere la URL de la imagen del producto.";
-    } 
+    }  
     if (!/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/.test(input.image)) {
         errors.imagen = "La URL es inválida.";
     } 
-    if (input.brands !== "") {
+    if (input.brand === "") {
         errors.marca = "Se requiere la marca del producto.";
     } 
-    if (!input.categories[0]) {
+    if (!input.category[0]) {
         errors.categorías = "Una categoría es requerida.";
     }
     return errors;
@@ -54,11 +53,29 @@ export default function NewProduct() {
         price: "",
         model: "",
         image: [],
-        brands: "",
-        categories: []
+        brand: "",
+        category: []
     })
 
-    function handleChange(e) {
+    async function handleChange(e) {
+        if (e.target.value === "Otra"){
+           var value = await swal({
+            title:"Otra marca", 
+            text:"Escribe un nombre para tu marca.", 
+            icon:"success", 
+            content:{element: "input", attributes:{type:"text", placeholder:"Escribí la marca"}}})
+            if (value !== null){
+                setInput({
+                    ...input,
+                    [e.target.name]: value
+                })
+                setErrors(validate({
+                    ...input,
+                    [e.target.name]: value
+                }))
+            }
+            return
+        } 
         setInput({
             ...input,
             [e.target.name]: e.target.value
@@ -69,32 +86,60 @@ export default function NewProduct() {
         }))
     }
 
-    function handleSelect(e) {
-        setInput({
-            ...input,
-            image: [e.target.value],
-        })
-        setErrors(validate({
-            ...input,
-            image: [e.target.value],
-        }))
-    }
+    async function handleSelect(e) {
+        e.preventDefault()
+        if (e.target.value === "Image"){
+            var value = await swal({
+             title:"Agregar imagen", 
+             text:"Copia la URL de la imagen", 
+             icon:"success", 
+             content:{element: "input", attributes:{type:"text", placeholder:"URL"}}})
+             if (value !== null){
+                 setInput({
+                     ...input,
+                     image: [...input.image, value]
+                 })
+                 setErrors(validate({
+                     ...input,
+                     image: [...input.image, value]
+                 }))
+             }
+             return
+         }}
 
-    function handleSelect2(e) {
-        setInput({
-            ...input,
-            categories: [...input.categories, e.target.value]
-        })
-        setErrors(validate({
-            ...input,
-            categories: [...input.categories, e.target.value]
-        }))
-    }
+         async function handleSelect2(e) {
+            if (e.target.value === "Otra"){
+               var value = await swal({
+                title:"Otra categoría", 
+                text:"Escribe un nombre para la categoría.", 
+                icon:"success", 
+                content:{element: "input", attributes:{type:"text", placeholder:"Escribí la categoría"}}})
+                if (value !== null){
+                    setInput({
+                        ...input,
+                        category: [...input.category, value]
+                    })
+                    setErrors(validate({
+                        ...input,
+                        category: [...input.category, value]
+                    }))
+                }
+                return
+            } 
+            setInput({
+                ...input,
+                category: [...input.category, e.target.value]
+            })
+            setErrors(validate({
+                ...input,
+                category: [...input.category, e.target.value]
+            }))
+        }
 
     function handleDelete2(e) {
         setInput({
             ...input,
-            categories: input.categories.filter(c => c !== e)
+            category: input.category.filter(c => c !== e)
         })
     }
 
@@ -115,8 +160,8 @@ export default function NewProduct() {
                 price: "",
                 model: "",
                 image: [],
-                brands: "",
-                categories: []
+                brand: "",
+                category: []
             })
             return alert("Producto creado!")
         }
@@ -172,31 +217,32 @@ export default function NewProduct() {
                     </div>
                     <div>
                         <label>Imagen:</label>
-                        <input
-                            type='text'
-                            value={input.image}
+                        <button
+                            value={"Image"}
                             name='image'
-                            onChange={(e) => handleSelect(e)}
-                        ></input>
+                            onClick={(e) => handleSelect(e)}
+                        >Agregar</button>
                     </div>
                     <div>Marca:
-                        <select onChange={(e) => handleChange(e)}>
+                        <select name='brand' onChange={(e) => handleChange(e)}>
                             <option value="" selected disabled hidden>Seleccione aquí:</option>
                             {brands.map((m) => (
                                 <option key={m} value={m}>{m}</option>
                             ))}
+                            <option value="Otra">Otra</option>
                         </select>
                     </div>
                     <div>Categoría:
                         <select onChange={(e) => handleSelect2(e)}>
-                            <option value="" selected disabled hidden>Seleccione aquí:</option>
+                            <option value={input.category} selected disabled hidden>Seleccione aquí:</option>
                             {categories.map((c) => (
                                 <option key={c} value={c}>{c}</option>
                             ))}
+                            <option value="Otra">Otra</option>
                         </select>
                     </div>
                     <div>
-                {input.categories.map(d =>
+                {input.category.map(d =>
                     <div key={d}>
                         <p>{d}</p>
                         <button onClick={() => handleDelete2(d)}>x</button>
