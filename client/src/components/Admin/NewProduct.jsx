@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBrands, getCategories } from '../../actions';
 import axios from 'axios';
 import swal from 'sweetalert';
+import styles from './NewProduct.module.css'
 
 
 function postProduct(payload) {
@@ -33,7 +34,7 @@ function validate(input) {
     if (!/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/.test(input.image)) {
         errors.imagen = "La URL es inválida.";
     } 
-    if (input.brand === "") {
+    if (input.brand === "empty") {
         errors.marca = "Se requiere la marca del producto.";
     } 
     if (!input.category[0]) {
@@ -170,15 +171,18 @@ export default function NewProduct() {
 
     useEffect(() => {
         dispatch(getBrands())
-        dispatch(getCategories())
+       dispatch(getCategories())
     }, [dispatch]);
 
-
+    
     return (
+        
+        
         <div>
-            <div>
+                <div >
                 <h1>Crear producto</h1>
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
+
                     <div>
                         <label>Nombre:</label>
                         <input
@@ -224,19 +228,19 @@ export default function NewProduct() {
                         >Agregar</button>
                     </div>
                     <div>Marca:
-                        <select name='brand' onChange={(e) => handleChange(e)}>
-                            <option value="" selected disabled hidden>Seleccione aquí:</option>
-                            {brands.map((m) => (
-                                <option key={m} value={m}>{m}</option>
+                        <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
+                            <option value="empty" disabled hidden>Seleccione aquí:</option>
+                            {brands.map((m, i) => (
+                                <option key={i} value={m.name}>{m.name}</option>
                             ))}
                             <option value="Otra">Otra</option>
                         </select>
                     </div>
                     <div>Categoría:
-                        <select onChange={(e) => handleSelect2(e)}>
-                            <option value={input.category} selected disabled hidden>Seleccione aquí:</option>
-                            {categories.map((c) => (
-                                <option key={c} value={c}>{c}</option>
+                        <select defaultValue="empty" onChange={(e) => handleSelect2(e)}>
+                            <option value="empty" disabled hidden>Seleccione aquí:</option>
+                            {categories?.map((c, i) => (
+                                <option key={i} value={c.name}>{c.name}</option>
                             ))}
                             <option value="Otra">Otra</option>
                         </select>
