@@ -1,3 +1,25 @@
 .divFilters {
     grid-column: 1/2;
+    grid-row: 2/3;
+    position: fixed;
+}
+
+.filtersEach{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: 30vh;
+}
+
+.title{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight:normal;
+    color: #4E4E4E;
+}
+
+.btnFilters{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight:lighter;
+    color: #4E4E4E;
 }
