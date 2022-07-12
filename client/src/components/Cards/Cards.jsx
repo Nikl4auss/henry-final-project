@@ -9,6 +9,7 @@ function Cards () {
     const products = useSelector(state => state.products)
     const filters = useSelector(state => state.filters)
     const name = useSelector(state => state.name)
+    const error = useSelector(state => state.error)
     let dispatch = useDispatch()
 
     useEffect(() => {
@@ -16,20 +17,20 @@ function Cards () {
         else dispatch(getProducts(filters, name))
     }, [dispatch, filters, name, products])
 
-    
-
-
     return(
         <div className={styles.divCards}>
-            {products.map(product => {
-                return <Card 
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    image={product.image}
-                    price={product.price}
-                />
-            })}
+            {error.length ? <div>{error}</div> : undefined}
+            <div className={styles.divProducts}>
+                {products?.map(product => {
+                    return <Card 
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        image={product.image}
+                        price={product.price}
+                    />
+                })}
+            </div>
         </div>
     )
 }

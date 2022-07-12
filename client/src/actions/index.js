@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BRANDS, CATEGORIES } from '../AuxiliaryVariables/Auxiliar';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS  } from './actions_types';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR  } from './actions_types';
 
 export function getProducts(filters = {}, name){
     let queryName = ''
@@ -13,23 +13,32 @@ export function getProducts(filters = {}, name){
     if (filters.category || filters.brand){
         if(filters.category.length > 0) {
             queryFilter.length === 0 && queryName.length === 0 ? queryFilter = '?' : queryFilter = queryFilter + '&'
-            queryFilter = queryFilter + 'categories=' + filters.category.join('+')
+            queryFilter = queryFilter + 'categories=' + filters.category.join('-')
         }
         if(filters.brand.length > 0) {
             queryFilter.length === 0 && queryName.length === 0 ? queryFilter = '?' : queryFilter = queryFilter + '&'
-            queryFilter = queryFilter + 'brands=' + filters.brand.join('+')
+            queryFilter = queryFilter + 'brands=' + filters.brand.join('-')
         }
     }
 
     
     return async function(dispatch){
-        const response = await axios.get(`http://localhost:3001/products${queryName}${queryFilter}`) 
-        dispatch({
-            type: GET_PRODUCTS,
-            payload: response.data,
-            filters: filters,
-            name: name
-        })
+        try {
+            const response = await axios.get(`http://localhost:3001/products${queryName}${queryFilter}`) 
+            console.log(response.data)
+            dispatch({
+                type: GET_PRODUCTS,
+                payload: response.data,
+                filters: filters,
+                name: name
+            })
+            
+        } catch (error) {
+            dispatch( {
+                type: ERROR,
+                MessageError: error
+            })
+        }
     }
 }
 
