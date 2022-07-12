@@ -16,7 +16,7 @@ export default function Home(){
 
     return (
         <div className={styles.homeGrid}>
-            <div>
+            <div className={styles.navHome}>
             <NavBar/>
             </div>
             <div className={styles.filtersContainer}>
