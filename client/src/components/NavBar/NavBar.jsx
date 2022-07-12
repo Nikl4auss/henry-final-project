@@ -16,6 +16,7 @@ export default function NavBar(){
                 </div>
                 <SearchBar/>
                 <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p>
+            <button className={styles.btnNav}>Cargar Productos</button>
             </div>
             {/* <div className= {styles.menuGral}>
             <ul className= {styles.menu}>

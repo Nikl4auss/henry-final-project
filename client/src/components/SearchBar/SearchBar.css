@@ -1,0 +1,11 @@
+.btnSearch{
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.btnSearch:hover{
+    background-color: #b0b0b0;
+    border-radius: 4px;
+    transition: all 0.2s ease-out
+}
