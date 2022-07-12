@@ -42,12 +42,18 @@ function ProductDetail() {
         <p>${productDetail.price}</p>
         <select name="" id="">
           {productDetail.Stocks?.map(({MainColor}, inx) => {
-            return <option key={inx} value={MainColor.name}>{MainColor.code}{MainColor.name}</option>
+            if(MainColor?.name){
+              return <option key={inx} value={MainColor.name}>{MainColor.code}{MainColor.name}</option>
+            }
+            return null
           })}
         </select>
         <select name="" id="">
           {productDetail.Stocks?.map(({Size}, inx) => {
-            return <option key={inx} value={Size.name}>{Size.name}</option>
+            if(Size?.name){
+              return <option key={inx} value={Size.name}>{Size.name}</option>
+            }
+            return null
           })}
         </select>
 
