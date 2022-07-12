@@ -81,13 +81,12 @@ router.post('/', async (req, res, next)=>{
         }
     }
 
-    if(image){
-        for(i=0; i < image.length; i++){
-            const [dbImage] = await Image_Product.findOrCreate({
-                where: {image: image[i]}
-            })
-            newProduct.addImage_Product(dbImage)
-        }
+if(image){
+    for(i=0; i < image.length; i++){
+    const [dbImage] = await Image_Product.findOrCreate({
+        where: {image: image[i]}
+    })
+    newProduct.addImages(dbImage)
     }
 
     res.send(newProduct)
