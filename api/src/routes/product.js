@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {Product, Brand, Category, Image_Product} = require("../db")
+const {Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Address} = require("../db")
 
 const router = Router();
 
@@ -10,28 +10,38 @@ router.get('/', async(req, res, next) => {
             where: {
                 id : idProduct
             },
-            include:{
+            include:[{
                 model: Category,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: Brand,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: Image_Product,
-                attributes: ['image'],
+                as: 'images',
+                attributes: ['image']
+            },
+            {
                 model: Gender,
-                attributes: ['name'],
-                model: MainColor,
-                attributes: ['name'],
-                model: Size,
-                attributes: ['name'],
-                model: User,
-                attributes: ['name'],
+                attributes: ['name']
+            },
+            {
                 model: Stock,
                 attributes: ['stock_product'],
-                model: Store,
-                attributes: ['name'], 
-                model: Address,
-                attributes: ['name_street']             
-            }
+                include: [
+                    {
+                        model: MainColor,
+                        attributes: ['name', 'code']
+                    },
+                    {
+                        model: Size,
+                        attributes: ['name']
+                    },
+
+                ]
+            }]
         })
         res.status(200).send(productById) 
 
@@ -42,34 +52,34 @@ router.get('/', async(req, res, next) => {
 
 router.post('/', async (req, res, next)=>{
     try{
-    const {
-       name,
-       description,
-       model,
-       price,
-       brand,
-       category,
-       image
-           } = req.body
-     const newProduct = await Product.create({     
+        const {
+            name,
+            description,
+            model,
+            price,
+            brand,
+            category,
+            image
+        } = req.body
+    const newProduct = await Product.create({     
         name,
         description,
         model,
         price
-       })
-const [dbBrand] = await Brand.findOrCreate({
-    where: {name: brand}
-})
-dbBrand.addProduct(newProduct)
-
-if(category){
-    for(i=0; i < category.length; i++){
-    const [dbCategory] = await Category.findOrCreate({
-        where: {name: category[i]}
     })
-    newProduct.addCategory(dbCategory)
+    const [dbBrand] = await Brand.findOrCreate({
+        where: {name: brand}
+    })
+    dbBrand.addProduct(newProduct)
+
+    if(category){
+        for(i=0; i < category.length; i++){
+            const [dbCategory] = await Category.findOrCreate({
+                where: {name: category[i]}
+            })
+            newProduct.addCategory(dbCategory)
+        }
     }
-}
 
 if(image){
     for(i=0; i < image.length; i++){
@@ -78,7 +88,6 @@ if(image){
     })
     newProduct.addImages(dbImage)
     }
-}
 
     res.send(newProduct)
     } catch (error){

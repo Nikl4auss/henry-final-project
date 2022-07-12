@@ -1,3 +1,59 @@
 .divFilters {
     grid-column: 1/2;
+    grid-row: 2/3;
+    position: fixed;
+}
+
+.filtersEach{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: 30vh;
+}
+
+.filtersEach{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 30vh;
+}
+
+.filtersEach::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.filtersEach::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.filtersEach::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.filtersEach::-webkit-scrollbar:horizontal {
+    height: 5px;
+}
+
+.filtersEach::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 10px;
+    border: 2px solid #f1f2f3;
+}
+
+.filtersEach::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
+
+.title{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight:normal;
+    color: #4E4E4E;
+}
+
+.btnFilters{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight:lighter;
+    color: #4E4E4E;
 }
