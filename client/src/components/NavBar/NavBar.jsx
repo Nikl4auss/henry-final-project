@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './NavBar.module.css'
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -7,6 +8,7 @@ import styles from './NavBar.module.css'
 
 export default function NavBar(){
     return(
+        <div>
         <nav className={styles.navbarContainer}>
             <div className={styles.divTop}>
                 <div className={styles.logo}>
@@ -29,5 +31,7 @@ export default function NavBar(){
             </ul>
             </div>
         </nav>
+        <Outlet/>
+    </div>
     )
 }
