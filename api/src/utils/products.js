@@ -7,6 +7,7 @@ const {
   Size,
   MainColor,
   Store,
+  Gender,
 } = require("../db");
 
 const { ARRAYPRODUCT } = require("./arrayProduct");
@@ -164,7 +165,7 @@ async function createStock(data) {
 }
 
 async function createProduct(data) {
-  const { name, description, images, price, brand, model, categories } = data;
+  const { name, description, images, price, gender, brand, model, categories } = data;
   try {
     const newProduct = await Product.create({
       name,
@@ -172,7 +173,12 @@ async function createProduct(data) {
       price,
       model,
     });
-
+    if(gender){
+      const dbGender = await Gender.findOne({
+        where: { name: gender}
+      })
+      newProduct.setGender(dbGender)
+    }
     if (brand) {
       const [dbBrand] = await Brand.findOrCreate({
         where: { name: brand },
@@ -232,6 +238,7 @@ async function populateProductsDos() {
           price: product.price ? product.price : 10000,
           brand: product.brand,
           model: product.model,
+          gender: product.gender[0],
           categories: [...product.categories],
         });
       })
@@ -239,15 +246,22 @@ async function populateProductsDos() {
 
     await Promise.allSettled(
       ARRAYPRODUCT.map(async (product) => {
-        for (let index = 0; index < product.size.length; index + 3) {
-          await createStock({
+        [2,4,5,8,7,10,12,15].forEach(a =>{
+          createStock({
             stock_product: 5,
-            size: product.size[index],
+            size: product.size[a],
             mainColor: product.mainColor,
             store: "Default",
             product: product.name,
           });
-        }
+          createStock({
+            stock_product: 3,
+            size: product.size[a],
+            mainColor: a%2===0?'Azul Marino': 'Rojo',
+            store: "Default",
+            product: product.name,
+          });
+      })
       })
     );
   } catch (err) {
