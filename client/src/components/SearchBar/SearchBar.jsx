@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../actions';
-import styles from './SearchBar.css'
+
+import styles from './SearchBar.module.css'
 
 export default function SearchBar (){
     
@@ -23,7 +24,8 @@ export default function SearchBar (){
     }
 
     return (
-        <div>
+        <>
+        <div className={styles.busqueda}>
             <input
             type = 'text'
             value= {name}
@@ -32,5 +34,9 @@ export default function SearchBar (){
             />
             <button className={styles.btnSearch} type='submit' onClick = {(e) => handleSubmit(e)}>Buscar</button>
         </div>
+         {/* <div>
+            <Link to='/producto' className='crear nuevo producto'>Crear nuevo producto</Link>
+         </div> */}
+         </>
     )
 }
