@@ -24,6 +24,8 @@ function ProductDetail() {
   }, [id])
   return (
     <div>
+    {productDetail.name ? (
+      <div>
       <div>
         <div>
           {/* <ul>
@@ -40,7 +42,7 @@ function ProductDetail() {
         <p>${productDetail.price}</p>
         <select name="" id="">
           {productDetail.Stocks?.map(({MainColor}, inx) => {
-            return <option key={inx} value={MainColor.name}><span>{MainColor.code}</span>{MainColor.name}</option>
+            return <option key={inx} value={MainColor.name}>{MainColor.code}{MainColor.name}</option>
           })}
         </select>
         <select name="" id="">
@@ -55,10 +57,11 @@ function ProductDetail() {
       <div>
         <p>{productDetail.description}</p>
         <p>{productDetail.model}</p>
-        
       </div>
+      </div>):<div>Cargando</div>}
     </div>
   )
+  
 }
 
 export default ProductDetail
