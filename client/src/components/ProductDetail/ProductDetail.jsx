@@ -24,6 +24,8 @@ function ProductDetail() {
   }, [id])
   return (
     <div>
+    {productDetail.name ? (
+      <div>
       <div>
         <div>
           {/* <ul>
@@ -55,10 +57,11 @@ function ProductDetail() {
       <div>
         <p>{productDetail.description}</p>
         <p>{productDetail.model}</p>
-        
       </div>
+      </div>):<div>Cargando</div>}
     </div>
   )
+  
 }
 
 export default ProductDetail
