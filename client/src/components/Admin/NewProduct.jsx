@@ -105,7 +105,7 @@ export default function NewProduct() {
             for (const key in errors) {
                 sendErrors.push(`${key[0].toUpperCase() + key.slice(1)}: ${errors[key]}`)
             }
-            return alert(sendErrors)
+            return alert(sendErrors.join(" "))
         }
         else if (input.name) {
             dispatch(postProduct(input))
