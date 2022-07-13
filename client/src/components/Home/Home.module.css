@@ -24,7 +24,6 @@
 .filtersContainer{
     display: flex;
     flex-direction: column;
-    margin-top: 5rem;
     margin-left: 10px;
     height: 60vh;
 }
