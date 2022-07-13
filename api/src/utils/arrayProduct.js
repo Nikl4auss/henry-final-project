@@ -2737,7 +2737,7 @@
     },
     {
       box_condition: "no_original_box",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: ["yeezy-1"],
       mainColor: "Negro",
@@ -2772,12 +2772,12 @@
       slug: "yeezy-boost-350-v2-black-yzy-350-v2-blk",
       status: "active",
       story_html:
-        "<p>The adidas Yeezy Boost 350 V2 lives up to its cult appeal through evolved design elements and advanced technology. Released June 2019, this ‘Black Non-Reflective&#39; edition&#39;s re-engineered Primeknit bootie sees futuristic updates including a translucent side stripe and bold stitching on the heel pull. Integrated lacing customizes the fit while a translucent black Boost-equipped midsole complements the covert feel.</p>\n",
+        "<p>The Adidas Yeezy Boost 350 V2 lives up to its cult appeal through evolved design elements and advanced technology. Released June 2019, this ‘Black Non-Reflective&#39; edition&#39;s re-engineered Primeknit bootie sees futuristic updates including a translucent side stripe and bold stitching on the heel pull. Integrated lacing customizes the fit while a translucent black Boost-equipped midsole complements the covert feel.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "no_original_box",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: ["yeezy-1"],
       mainColor: "Negro",
@@ -2816,11 +2816,11 @@
     },
     {
       box_condition: "no_original_box",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
-        "adidas-boost",
-        "adidas-boost-1",
+        "Adidas-boost",
+        "Adidas-boost-1",
         "goat-clean",
         "kanye-west",
         "yeezy",
@@ -2863,7 +2863,7 @@
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [],
       mainColor: "Azul",
@@ -2902,10 +2902,10 @@
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
-        "adidas-boost-1",
+        "Adidas-boost-1",
         "belly",
         "brokenrecord",
         "bs",
@@ -2970,7 +2970,7 @@
     },
     {
       box_condition: "no_original_box",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "belly",
@@ -3029,12 +3029,12 @@
       slug: "yeezy-350-v2-glow-in-the-dark-eh5360",
       status: "active",
       story_html:
-        "<p>Regarded as a cultural phenomenon, the adidas Yeezy Boost 350 silhouette generated a cult following when it was initially released in 2015. This ‘Glow’ makeover—released in May 2019—equips the Primeknit upper with a high-visibility treatment and a translucent stripe to the lateral profile. Integrated lacing and a coordinating heel pull provide easy on/off. Underfoot, the signature full-length Boost midsole looks to the future with a bright glow in the dark finish.</p>\n",
+        "<p>Regarded as a cultural phenomenon, the Adidas Yeezy Boost 350 silhouette generated a cult following when it was initially released in 2015. This ‘Glow’ makeover—released in May 2019—equips the Primeknit upper with a high-visibility treatment and a translucent stripe to the lateral profile. Integrated lacing and a coordinating heel pull provide easy on/off. Underfoot, the signature full-length Boost midsole looks to the future with a bright glow in the dark finish.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "goat-clean",
@@ -3080,7 +3080,7 @@
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "coachella",
@@ -3122,12 +3122,12 @@
       slug: "yeezy-boost-700-inertia-yeezy-boost-700-inertia",
       status: "active",
       story_html:
-        "<p>The adidas Yeezy Boost 700 ‘Inertia’ is part of the Yeezy Season 8 lineup that launched March 2019. The ‘Inertia’ colorway showcases the original 700 upper, with a heavily paneled construction made with premium suede, mesh and smooth leather sections. Cast primarily in cool grey tones, the sneaker includes hits of Marrongerine for contrast. The shoe’s signature chunky midsole is equipped with full-length Boost cushioning for responsive comfort.</p>\n",
+        "<p>The Adidas Yeezy Boost 700 ‘Inertia’ is part of the Yeezy Season 8 lineup that launched March 2019. The ‘Inertia’ colorway showcases the original 700 upper, with a heavily paneled construction made with premium suede, mesh and smooth leather sections. Cast primarily in cool grey tones, the sneaker includes hits of Marrongerine for contrast. The shoe’s signature chunky midsole is equipped with full-length Boost cushioning for responsive comfort.</p>\n",
       upper_material: "",
     },
     {
       box_condition: "no_original_box",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: ["goat-clean", "kanye-west", "yeezy", "yeezy-1"],
       mainColor: "Gris",
@@ -3167,11 +3167,11 @@
     },
     {
       box_condition: "badly_damaged",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
-        "adidas-boost",
-        "adidas-boost-1",
+        "Adidas-boost",
+        "Adidas-boost-1",
         "hypefest",
         "kanye-west",
         "new-york-fashion-week-fall-2019",
@@ -3217,7 +3217,7 @@
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "goat-clean",
@@ -3261,16 +3261,16 @@
       slug: "yeezy-boost-350-v2-static-ef2905",
       status: "active",
       story_html:
-        "<p>The Yeezy Boost 350 V2 ‘Static Non-Reflective’ is designed to sMarrond out, thanks to the addition of never-before-seen features. They include a translucent side stripe and 3M reflective detailing on the shoe’s rope laces, Primeknit upper and Three-Stripes branding on the interior heel. The midsole makes use of ridged TPU sidewalls with semi-translucent properties, revealing full-length adidas Boost cushioning within.</p>\n",
+        "<p>The Yeezy Boost 350 V2 ‘Static Non-Reflective’ is designed to sMarrond out, thanks to the addition of never-before-seen features. They include a translucent side stripe and 3M reflective detailing on the shoe’s rope laces, Primeknit upper and Three-Stripes branding on the interior heel. The midsole makes use of ridged TPU sidewalls with semi-translucent properties, revealing full-length Adidas Boost cushioning within.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "badly_damaged",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "cny-2018",
-        "pharrell-human-race-adidas",
+        "pharrell-human-race-Adidas",
         "quarterly-sneaker-trends",
         "under-retail-10",
       ],
@@ -3311,7 +3311,7 @@
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "belly",
@@ -3374,12 +3374,12 @@
       slug: "yeezy-boost-350-v2-clay-yzy-350-v2-clay",
       status: "active",
       story_html:
-        "<p>The adidas Yeezy Boost 350 V2 ‘Clay’ updates the silhouette with a warm palette and semi-translucent, three-tone vent at the side. This ‘Clay’ colorway retains the sMarrond-out features of the original 350 V2 shoe, first seen in September 2016, including a flexible Primeknit upper and full-length Boost cushioning. This shoe released March 2019 exclusively in select cities in North America and Latin America.</p>\n",
+        "<p>The Adidas Yeezy Boost 350 V2 ‘Clay’ updates the silhouette with a warm palette and semi-translucent, three-tone vent at the side. This ‘Clay’ colorway retains the sMarrond-out features of the original 350 V2 shoe, first seen in September 2016, including a flexible Primeknit upper and full-length Boost cushioning. This shoe released March 2019 exclusively in select cities in North America and Latin America.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "no_original_box",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "coachella",
@@ -3426,12 +3426,12 @@
       slug: "yeezy-boost-350-v2-cream-white-cp9366",
       status: "active",
       story_html:
-        "<p>First released on April 29, 2017, the Yeezy Boost 350 V2 ‘Cream White’ combines a cream Primeknit upper with tonal cream SPLY 350 branding, and a translucent white midsole housing full-length Boost. Released again in October 2018, this retro helped fulfill Kanye West’s oft-repeated ‘YEEZYs for everyone’ Twitter mantra, as adidas organized the biggest drop in Yeezy history by promising pre-sale to anyone who signed up on the website. Similar to the first release, the ‘Triple White’ 2018 model features a Primeknit upper, a Boost midsole and custom adidas and Yeezy co-branding on the insole.</p>\n",
+        "<p>First released on April 29, 2017, the Yeezy Boost 350 V2 ‘Cream White’ combines a cream Primeknit upper with tonal cream SPLY 350 branding, and a translucent white midsole housing full-length Boost. Released again in October 2018, this retro helped fulfill Kanye West’s oft-repeated ‘YEEZYs for everyone’ Twitter mantra, as Adidas organized the biggest drop in Yeezy history by promising pre-sale to anyone who signed up on the website. Similar to the first release, the ‘Triple White’ 2018 model features a Primeknit upper, a Boost midsole and custom Adidas and Yeezy co-branding on the insole.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "quarterly-sneaker-trends",
@@ -3476,7 +3476,7 @@
     },
     {
       box_condition: "badly_damaged",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "goat-clean",
@@ -3517,12 +3517,12 @@
       slug: "yeezy-boost-350-v2-zebra-cp9654",
       status: "active",
       story_html:
-        "<p>Released on February 25, 2017, the Yeezy Boost 350 V2 ‘Zebra’ combines a white/core black Primeknit upper with red SPLY 350 branding and a translucent white midsole housing full-length Boost. Sold exclusively at adidas.com, Yeezy Supply, and select adidas flagship stores, the ‘Zebra’ sold out insMarrontly but was restocked on June 24th, 2017. Another restock of the ‘Zebra’ arrived November 16, 2018, with more pairs hitting the marketplace and delivering on Kanye’s promise of Yeezy’s being more accessible to anyone that wanted them.</p>\n",
+        "<p>Released on February 25, 2017, the Yeezy Boost 350 V2 ‘Zebra’ combines a white/core black Primeknit upper with red SPLY 350 branding and a translucent white midsole housing full-length Boost. Sold exclusively at Adidas.com, Yeezy Supply, and select Adidas flagship stores, the ‘Zebra’ sold out insMarrontly but was restocked on June 24th, 2017. Another restock of the ‘Zebra’ arrived November 16, 2018, with more pairs hitting the marketplace and delivering on Kanye’s promise of Yeezy’s being more accessible to anyone that wanted them.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [],
       mainColor: "Blanco",
@@ -3561,7 +3561,7 @@
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: [
         "diy",
@@ -3604,12 +3604,12 @@
       slug: "yeezy-boost-350-v2-ice-yellow-f36980",
       status: "active",
       story_html:
-        "<p>Kanye West and adidas continued their partnership with the Yeezy Boost 350 V2 ‘Butter,’ which hit stores in June 2018. The minimalist silhouette features distinct center stitching on a reverse Primeknit upper, with the signature ‘SPLY-350’ inscription now printed on the interior side. The heel tab remains, finished in a bright yellow hue that matches the knitted upper, rope laces, and Boost-infused midsole.</p>\n",
+        "<p>Kanye West and Adidas continued their partnership with the Yeezy Boost 350 V2 ‘Butter,’ which hit stores in June 2018. The minimalist silhouette features distinct center stitching on a reverse Primeknit upper, with the signature ‘SPLY-350’ inscription now printed on the interior side. The heel tab remains, finished in a bright yellow hue that matches the knitted upper, rope laces, and Boost-infused midsole.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["lifestyle"],
       collection_slugs: ["kanye-west", "neon", "neon-1", "yeezy", "yeezy-1"],
       mainColor: "Amarillo",
@@ -3644,12 +3644,12 @@
       slug: "yeezy-boost-350-v2-b37572",
       status: "active",
       story_html:
-        "<p>Kanye West’s Yeezy Boost 350 V2 in Semi Frozen Yellow first hit stores in November 2017, with a restock that released on December 14, 2018. Dressed in adidas’ signature Primeknit upper, the lifestyle runner is finished in an energetic bright yellow hue, one that extends to the laces, heel tab, and Boost-infused ribbed rubber midsole. Zebra-like black stripes add another design dimension to the upper, along with a tonal side stripe emblazoned with ‘SPLY 350’ in reverse red print. A gum rubber outsole adds grippy traction to the eye-catching design.</p>\n",
+        "<p>Kanye West’s Yeezy Boost 350 V2 in Semi Frozen Yellow first hit stores in November 2017, with a restock that released on December 14, 2018. Dressed in Adidas’ signature Primeknit upper, the lifestyle runner is finished in an energetic bright yellow hue, one that extends to the laces, heel tab, and Boost-infused ribbed rubber midsole. Zebra-like black stripes add another design dimension to the upper, along with a tonal side stripe emblazoned with ‘SPLY 350’ in reverse red print. A gum rubber outsole adds grippy traction to the eye-catching design.</p>\n",
       upper_material: "Primeknit",
     },
     {
       box_condition: "good_condition",
-      brand: "adidas",
+      brand: "Adidas",
       categories: ["running"],
       collection_slugs: ["under-retail-10"],
       mainColor: "Blanco",
@@ -3684,7 +3684,7 @@
       slug: "nmd_r1-blizzard-b79759",
       status: "active",
       story_html:
-        "<p>adidas dropped the NMD_R1 &#39;Blizzard&#39; colorway in January 2018. It features a stretch mesh upper made from twisted two-tone yarn for a unique textured effect reminiscent of medieval chainmail armor. It also comes with a Carbon tongue patch with a Trefoil, Welded Core Black Three-Stripes on the side panel, and a molded matte black heel patch. Underfoot, the shoe boasts a white Boost midsole with Carbon EVA midsole bumpers and an all-black rubber outsole.</p>\n",
+        "<p>Adidas dropped the NMD_R1 &#39;Blizzard&#39; colorway in January 2018. It features a stretch mesh upper made from twisted two-tone yarn for a unique textured effect reminiscent of medieval chainmail armor. It also comes with a Carbon tongue patch with a Trefoil, Welded Core Black Three-Stripes on the side panel, and a molded matte black heel patch. Underfoot, the shoe boasts a white Boost midsole with Carbon EVA midsole bumpers and an all-black rubber outsole.</p>\n",
       upper_material: "",
     }
   ]
