@@ -1,16 +1,16 @@
 const { Router } = require('express');
-const {Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Address} = require("../db")
+const { Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Address } = require("../db")
 
 const router = Router();
 
-router.get('/', async(req, res, next) => {
+router.get('/', async (req, res, next) => {
     const idProduct = req.query.id;
-    try{
-        let productById= await Product.findOne({
+    try {
+        let productById = await Product.findOne({
             where: {
-                id : idProduct
+                id: idProduct
             },
-            include:[{
+            include: [{
                 model: Category,
                 attributes: ['name']
             },
@@ -43,15 +43,15 @@ router.get('/', async(req, res, next) => {
                 ]
             }]
         })
-        res.status(200).send(productById) 
+        res.status(200).send(productById)
 
-    } catch (error){
-    next(error)
+    } catch (error) {
+        next(error)
     }
 });
 
-router.post('/', async (req, res, next)=>{
-    try{
+router.post('/', async (req, res, next) => {
+    try {
         const {
             name,
             description,
@@ -61,37 +61,37 @@ router.post('/', async (req, res, next)=>{
             category,
             image
         } = req.body
-    const newProduct = await Product.create({     
-        name,
-        description,
-        model,
-        price
-    })
-    const [dbBrand] = await Brand.findOrCreate({
-        where: {name: brand}
-    })
-    dbBrand.addProduct(newProduct)
+        const newProduct = await Product.create({
+            name,
+            description,
+            model,
+            price
+        })
+        const [dbBrand] = await Brand.findOrCreate({
+            where: { name: brand }
+        })
+        dbBrand.addProduct(newProduct)
 
-    if(category){
-        for(i=0; i < category.length; i++){
-            const [dbCategory] = await Category.findOrCreate({
-                where: {name: category[i]}
-            })
-            newProduct.addCategory(dbCategory)
+        if (category) {
+            for (i = 0; i < category.length; i++) {
+                const [dbCategory] = await Category.findOrCreate({
+                    where: { name: category[i] }
+                })
+                newProduct.addCategory(dbCategory)
+            }
         }
-    }
 
-    if(image){
-        for(i=0; i < image.length; i++){
-            const [dbImage] = await Image_Product.findOrCreate({
-                where: {image: image[i]}
-            })
-            newProduct.addImage_Product(dbImage)
+        if (image) {
+            for (i = 0; i < image.length; i++) {
+                const [dbImage] = await Image_Product.findOrCreate({
+                    where: { image: image[i] }
+                })
+                newProduct.addImages(dbImage)
+            }
+
+            res.send(newProduct)
         }
-    }
-
-    res.send(newProduct)
-    } catch (error){
+    } catch (error) {
         next(error)
     }
 })

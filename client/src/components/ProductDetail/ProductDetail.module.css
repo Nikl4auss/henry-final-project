@@ -1,0 +1,47 @@
+.button{
+    margin-top: 5rem;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    left: 2rem;
+    position: fixed;
+    padding: 5px;
+}
+
+.divContainer{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /* display: grid;
+    height: 100px;
+    grid-template-columns: [x0] 15% [x1] 50% [x2] 35% [x3];
+    grid-template-rows: [y0] 20% [y1] 30% [y2] 30% [y3] 20% [y4]; */
+}
+
+.general{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #5a5a5a;
+}
+.name{
+    font-size: 2.5rem;
+}
+
+.price{
+    font-size: 2rem;
+}
+
+.stock{
+    margin: 5px;
+}
+
+
+
+
+
+
+

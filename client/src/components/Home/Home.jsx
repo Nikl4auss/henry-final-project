@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import Filters from "../Filters/Filters";
 import Cards from "../Cards/Cards";
 import styles from './Home.module.css';
+import { Outlet } from "react-router-dom";
 
 export default function Home(){
     const dispatch = useDispatch();
@@ -16,9 +17,7 @@ export default function Home(){
 
     return (
         <div className={styles.homeGrid}>
-            <div>
-            <NavBar/>
-            </div>
+
             <div className={styles.filtersContainer}>
             <Filters />
             </div>
