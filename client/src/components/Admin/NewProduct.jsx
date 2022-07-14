@@ -179,8 +179,11 @@ export default function NewProduct() {
         
         
         <div>
-                <div >
-                <h1>Crear producto</h1>
+            <fieldset>
+                <div className={styles.formcontainer}>
+                    <legend>
+                        <h1>Crear producto</h1>
+                    </legend>
                 <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
 
                     <div>
@@ -220,14 +223,15 @@ export default function NewProduct() {
                         ></input>
                     </div>
                     <div>
-                        <label>Imagen:</label>
-                        <button
+                    <label htmlFor="image">URL image:</label>
+                    <input type="url" name="image" value={input.image} onChange={(e) => handleChange(e)} />
+                        {/* <button
                             value={"Image"}
                             name='image'
                             onClick={(e) => handleSelect(e)}
-                        >Agregar</button>
+                        >Agregar</button> */}
                     </div>
-                    <div>Marca:
+                    <label>Marca:</label>
                         <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
                             <option value="empty" disabled hidden>Seleccione aquí:</option>
                             {brands.map((m, i) => (
@@ -235,8 +239,7 @@ export default function NewProduct() {
                             ))}
                             <option value="Otra">Otra</option>
                         </select>
-                    </div>
-                    <div>Categoría:
+                    <label>Categoría:</label>
                         <select defaultValue="empty" onChange={(e) => handleSelect2(e)}>
                             <option value="empty" disabled hidden>Seleccione aquí:</option>
                             {categories?.map((c, i) => (
@@ -244,7 +247,6 @@ export default function NewProduct() {
                             ))}
                             <option value="Otra">Otra</option>
                         </select>
-                    </div>
                     <div>
                 {input.category.map(d =>
                     <div key={d}>
@@ -253,10 +255,13 @@ export default function NewProduct() {
                     </div>
                 )}
             </div>
-                    <button type='submit'>Crear</button>
+                    {/* <button type='submit'>Crear</button> */}
+                    <input className='submitbtn' type="submit" value="Crear" />
+                   
                 </form>
             </div>
-            <Link to='/home'><button>Volver</button></Link>
+            <Link to='/Home' className={styles.btn}>◀ Volver</Link>
+        </fieldset>
         </div>
     )
 }
