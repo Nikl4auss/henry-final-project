@@ -3,13 +3,14 @@ import { useEffect } from 'react';
 import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../actions';
+import { useSessionStorage } from '../../services/useStorage';
 
 import styles from './SearchBar.module.css'
 
 export default function SearchBar (){
     
     const dispatch = useDispatch()
-    const [name, setName] = useState("")//seteo un estado local
+    const [name, setName] = useSessionStorage("name", '')//seteo un estado local
 
 
     function handleInputChange(e){ 
