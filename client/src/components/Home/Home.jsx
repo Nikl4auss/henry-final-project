@@ -10,24 +10,15 @@ import { Outlet } from "react-router-dom";
 import { useSessionStorage } from "../../services/useStorage";
 
 export default function Home(){
-    let nameSearched = useSelector(state => state.name)
-    let filtersSelected = useSelector(state => state.filtersSelected)
-    const dispatch = useDispatch();
-
-    const [filtersToApply] = useSessionStorage('filtersSelected', filtersSelected)
-    const [ name ] = useSessionStorage('filtersSelected', nameSearched)
-
-    useEffect(()=> {
-        dispatch(getProducts(filtersToApply, name))
-    }, [dispatch])
-
+    let products = useSelector(state => state.products)
+    
     return (
         <div className={styles.homeGrid}>
             <div className={styles.filtersContainer}>
             <Filters />
             </div>
             <div className={styles.cardsContainer}>
-            <Cards />
+            {products.length === 0 ? 'Cargando...' : <Cards />}
             </div>
         </div>
     )
