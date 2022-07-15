@@ -8,7 +8,7 @@ export default function Card({ id, name, price, image, brand }) {
         <div className={`${styles.card__header} ${styles.card__header19}`}>
           <div
             className={styles.card__watermark}
-            data-watermark={brand.split(" ")[0]}
+            data-watermark={brand?.split(" ")[0]}
           ></div>
           <span className={`${styles.card__price} ${styles.card__willAnimate}`}>
             $ {price}
