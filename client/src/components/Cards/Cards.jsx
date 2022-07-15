@@ -28,6 +28,7 @@ function Cards () {
                         name={product.name}
                         image={product.image}
                         price={product.price}
+                        brand={product.brand}
                     />
                 })}
             </div>
