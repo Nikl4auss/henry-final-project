@@ -40,8 +40,8 @@ Stock.belongsTo(MainColor)
 Store.hasMany(Stock)
 Stock.belongsTo(Store)
 
-Product.hasMany(Stock)
-Stock.belongsTo(Product)
+Product.belongsToMany(Stock,{through: "Product_Stock"})
+Stock.belongsToMany(Product,{through: "Product_Stock"})
 
 Address.hasOne(Store)
 Store.belongsTo(Address)
