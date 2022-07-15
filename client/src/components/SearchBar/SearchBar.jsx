@@ -1,16 +1,15 @@
 import React from 'react';
-import { useEffect } from 'react';
 import {useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getProducts } from '../../actions';
-import { useSessionStorage } from '../../services/useStorage';
+
 
 import styles from './SearchBar.module.css'
 
 export default function SearchBar (){
     
     const dispatch = useDispatch()
-    const [name, setName] = useSessionStorage("name", '')//seteo un estado local
+    const [name, setName] = useState('')//seteo un estado local
 
 
     function handleInputChange(e){ 
@@ -25,7 +24,6 @@ export default function SearchBar (){
     }
 
     return (
-        <>
         <div className={styles.busqueda}>
             <input
             type = 'text'
@@ -35,9 +33,5 @@ export default function SearchBar (){
             />
             <button className={styles.btnSearch} type='submit' onClick = {(e) => handleSubmit(e)}>Buscar</button>
         </div>
-         {/* <div>
-            <Link to='/producto' className='crear nuevo producto'>Crear nuevo producto</Link>
-         </div> */}
-         </>
     )
 }
