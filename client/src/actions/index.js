@@ -6,8 +6,8 @@ export function getProducts(filters = {}, name){
     let queryName = ''
     let queryFilter = ''
 
-    if(name) {
-        queryName = `?name=${name}`
+    if(name.length) {
+        queryName = '?name=' + name
     }
 
     if (filters.category || filters.brand){
