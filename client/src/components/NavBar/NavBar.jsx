@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
+import { ShopingCart } from '../ShopingCart/ShopingCart';
 import styles from './NavBar.module.css'
-
 
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 //import {} from '@fortawesome/free-solid-svg-icons'
@@ -15,14 +15,23 @@ export default function NavBar(){
     function onClickbutton(){
        navigate('/nuevoProducto')
     }
+
+    function clickToShopingCart () {
+        navigate("/carrito")
+    }
+
+    function clickToHome () {
+        navigate("/home")
+    }
     return(
         <div>
         <nav className={styles.navbarContainer}>
             <div className={styles.divTop}>
                 <div className={styles.logo}>
-                    <h4>Davo Shoes</h4>
+                    <button onClick={clickToHome}>Davo Shoes</button>
                 </div>
                 <SearchBar/>
+                <button className={styles.btnNav} onClick={clickToShopingCart}>Mi carrito</button>
                 {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
             <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>
             </div>
