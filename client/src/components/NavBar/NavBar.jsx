@@ -1,7 +1,12 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
 // import { ShopingCart } from '../ShopingCart/ShopingCart';
+
+import LoginButton from '../LoginButton/LoginButton';
 import styles from './NavBar.module.css'
+import { useAuth0 } from '@auth0/auth0-react';
+import LogoutButton from '../LogoutButton/LogoutButton';
+
 
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 //import {} from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +16,7 @@ import styles from './NavBar.module.css'
 
 export default function NavBar(){
     const navigate = useNavigate();
-
+    const { user ,isAuthenticated } = useAuth0();
     function onClickbutton(){
        navigate('/nuevoProducto')
     }
@@ -33,7 +38,17 @@ export default function NavBar(){
                 <SearchBar/>
                 <button className={styles.btnNav} onClick={clickToShopingCart}>Mi carrito</button>
                 {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
-            <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>
+            {isAuthenticated && <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>}
+            {isAuthenticated 
+                ? (
+                    <div>
+                        <img src={user.picture} alt="profile"/>
+                        <p>{user.name}</p>
+                        <LogoutButton />
+                    </div>
+                ) 
+                : <LoginButton />
+            }
             </div>
             {/* <div className= {styles.menuGral}>
             <ul className= {styles.menu}>
@@ -48,6 +63,7 @@ export default function NavBar(){
                 <li><button>Carrito</button></li>
             </ul>
             </div> */}
+            
         </nav>
         <Outlet/>
     </div>
