@@ -26,7 +26,7 @@ export default function NavBar(){
                 </div>
                 <SearchBar/>
                 {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
-            <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>
+            {isAuthenticated && <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>}
             {isAuthenticated 
                 ? (
                     <div>
