@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
-import { ShopingCart } from '../ShopingCart/ShopingCart';
+// import { ShopingCart } from '../ShopingCart/ShopingCart';
 import styles from './NavBar.module.css'
 
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
