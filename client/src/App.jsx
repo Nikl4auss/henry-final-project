@@ -5,7 +5,7 @@ import Landing from './components/LandingPage/Landing';
 import NavBar from './components/NavBar/NavBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import NewProduct from './components/Admin/NewProduct';
-import { ShopingCart } from './components/ShopCart/ShopingCart';
+import { ShopingCart } from './components/ShopingCart/ShopingCart';
 
 function App() {
   return (
