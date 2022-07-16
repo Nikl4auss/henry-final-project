@@ -1,3 +1,91 @@
 .container{
     margin-top: 1rem;
 }
+
+.formcontainer {
+    box-shadow: 1px 1px 4px 2px rgb(0 0 0 / 20%);
+    background: #fff;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+.formcontainer h1 {
+    color: #333;
+    font-size: 33px;
+    margin-top: 1.2rem;
+    display: block
+}
+
+fieldset {
+    margin: 2rem 0;
+    padding: 1rem 1rem;
+    border: none;
+} 
+
+  /* labels */
+
+legend {
+    font-size: 1.25rem;
+    padding: 0 .25rem;
+    color: #999;
+    margin-block: 0.5rem;
+}
+
+label {
+    display: block;
+    margin-block: 1rem .5rem;
+    font-weight: 600;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+  /* Inputs and textarea */
+
+input {
+    padding: .5rem;
+    border: 1px solid #767676;
+    border-radius: 15px;    
+}
+
+filter-row-search > input {
+    border-top: 15x solid #767676;
+    border-left: 15px solid #767676;
+    border-bottom: 15px solid #767676;
+    border-right: none;
+    }
+
+/* Submit button*/
+
+.submitbtn {
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-block: 2rem 1rem;
+    width: 200px;
+}
+
+.submitbtn:hover {
+    background-color: white;
+    color: #333;
+    border: 1px solid #333;
+}
+
+.btn {
+    width: 33px;
+    height: 33px;
+    border: 1px solid #3e3f3f;
+    background: #3e3f3f;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
