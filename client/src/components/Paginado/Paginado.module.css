@@ -1,0 +1,33 @@
+.containerpagination {
+    display: flex;
+    flex-direction: column;
+}
+
+.pagination {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;    
+}
+.pagination  {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    font-family: 'Ubuntu-Bold';
+}
+.pagination :hover{
+    box-shadow: 5px 5px 4px #888888;
+    /* background-color: mediumturquoise; */
+    background-color:rgb(163, 175, 175);
+}
+
+.pagination .active {
+    background-color: #00b4cc;
+    color: white;
+    border: 1px solid #00b4cc;
+    font-weight:bold;
+}

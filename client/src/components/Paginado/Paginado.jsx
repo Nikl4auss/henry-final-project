@@ -1,84 +1,86 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState } from 'react';
 
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { getProducts } from '../../actions';
-import './Paginado.css';
+// import { getProducts } from '../../actions';
+import styles from './Paginado.module.css';
 
 
 
-export function Paginado() {
+function Paginado() {
     // eslint-disable-next-line no-unused-vars
     const [products, setProducts] = useState();
-    const dispatch = useDispatch();
-    const allProducts = useSelector( (state) =>  state.products  );
-    const [currentPage , setCurrentPage] = useState(1);
+    // const dispatch = useDispatch();
+    const allProducts = useSelector((state) => state.products);
+    const [currentPage, setCurrentPage] = useState(1);
     // eslint-disable-next-line no-unused-vars
-    const [productsPerPage , setProductsPerPage] = useState(12);
+    const [productsPerPage, setProductsPerPage] = useState(12);
     const indexOfLastOfProduct = currentPage * productsPerPage;
     const indexOfFirstOfProduct = indexOfLastOfProduct - productsPerPage;
-    const currentProducts  = allProducts.slice(indexOfFirstOfProduct , indexOfLastOfProduct);
+    const currentProducts = allProducts.slice(indexOfFirstOfProduct, indexOfLastOfProduct);
 
     const pageNumbers = [];
     const [active, setActive] = useState(1)
-    let allPage = Math.ceil(allProducts/productsPerPage) 
+    let allPage = Math.ceil(80 / productsPerPage)
 
     for (let i = 1; i <= allPage; i++) {
         pageNumbers.push(i)
-    };   
+    };
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
-    
-	const previous = function (setActive) {
-        if(currentPage > 1){
-        setCurrentPage(currentPage - 1);
-        setActive(currentPage - 1)
-        }  
-	};
+
+    const previous = function (setActive) {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            setActive(currentPage - 1)
+        }
+    };
 
     const next = function (setActive, allPage) {
-        if(currentPage < allPage) {
-        setCurrentPage(currentPage + 1);
-        setActive(currentPage + 1)
+        if (currentPage < allPage) {
+            setCurrentPage(currentPage + 1);
+            setActive(currentPage + 1)
         }
-	}; 
+    };
 
-    useEffect(() => {
-        dispatch(getProducts())      
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {      
+    // // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [allProducts]);
 
     return (
-        <div className= 'container-pagination' >
+        <div className= {styles.containerpagination} >
+            {/* hola
             {currentProducts.length ? 
                 <Paginado
                     productsPerPage={productsPerPage}
                     allProducts={allProducts.length}
-                    paginado={paginado}
+                    // paginado={paginado}
                     previous={previous}
                     next={next}>
                 </Paginado> :
                 <div></div>
-                }
+                } */}
 
-        <div className="pagination">
-        <div className='btn-page' onClick={() => previous(setActive)}>Prev</div>
-            {pageNumbers && pageNumbers.map((number) => (
-        <div className= {number === active? 'active' : ''}
-        
-        onClick={() => {
-            setActive(number)
-            paginado(number)}} key={number} >{number}</div>
-            ))}
-        <div className='btn-page' onClick={() => next(setActive, allPage)}>Next</div> 
-        </div>
-        
-        </div>
-        
+            <div className={styles.pagination}>
+                {console.log(allPage)}
+                <button className={styles.btnpage} onClick={() => previous(setActive)}>Prev</button>
+                {pageNumbers && pageNumbers.map((number) => (
+                    <button className={number === active ? `${styles.active}` : ''}
 
-            )
+                        onClick={() => {
+                            setActive(number)
+                            paginado(number)
+                        }} key={number} >{number}</button>
+                ))}
+                <button className={styles.btnpage} onClick={() => next(setActive, allPage)}>Next</button>
+            </div>
+
+        </div>
+
+
+    )
 }
 
 export default Paginado;

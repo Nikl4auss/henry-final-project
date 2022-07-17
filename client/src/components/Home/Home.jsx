@@ -8,18 +8,22 @@ import Cards from "../Cards/Cards";
 import styles from './Home.module.css';
 import { Outlet } from "react-router-dom";
 import { useSessionStorage } from "../../services/useStorage";
+import Paginado from '../Paginado/Paginado';
 
 export default function Home(){
     let products = useSelector(state => state.products)
     
     return (
         <div className={styles.homeGrid}>
+            <div>
+                <Paginado/>
+            </div>
             <div className={styles.filtersContainer}>
             <Filters />
             </div>
             <div className={styles.cardsContainer}>
             {products.length === 0 ? 'Cargando...' : <Cards />}
-            </div>
+            </div>            
         </div>
     )
 }
