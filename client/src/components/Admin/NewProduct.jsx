@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBrands, getCategories } from '../../actions';
+import { getBrands, getCategories } from '../../redux/actions';
 import axios from 'axios';
 import swal from 'sweetalert';
 import styles from './NewProduct.module.css'

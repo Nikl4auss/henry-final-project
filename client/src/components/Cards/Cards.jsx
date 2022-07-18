@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../actions";
+import { getProducts } from "../../redux/actions";
 import Card from "../Card/Card";
 import styles from './cards.module.css'
 

@@ -1,9 +1,9 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
 // import { ShopingCart } from '../ShopingCart/ShopingCart';
-
 import LoginButton from '../LoginButton/LoginButton';
 import styles from './NavBar.module.css'
+import LoginButton from '../LoginButton/LoginButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import LogoutButton from '../LogoutButton/LogoutButton';
 
@@ -14,11 +14,15 @@ import LogoutButton from '../LogoutButton/LogoutButton';
 
 
 
-export default function NavBar(){
+export default function NavBar() {
     const navigate = useNavigate();
-    const { user ,isAuthenticated } = useAuth0();
-    function onClickbutton(){
-       navigate('/nuevoProducto')
+    const { user, isAuthenticated } = useAuth0();
+    function onClickbutton() {
+        navigate('/nuevoProducto')
+    }
+
+    function clickToShopingCart() {
+        navigate("/carrito")
     }
 
     function clickToShopingCart () {
@@ -64,9 +68,9 @@ export default function NavBar(){
                 <li><button>Carrito</button></li>
             </ul>
             </div> */}
-            
-        </nav>
-        <Outlet/>
-    </div>
+
+            </nav>
+            <Outlet />
+        </div>
     )
 }
