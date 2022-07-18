@@ -25,7 +25,7 @@ export function getProducts(filters = {}, name){
     return async function(dispatch){
         try {
             const response = await axios.get(`http://localhost:3001/products${queryName}${queryFilter}`) 
-            console.log(response.data)
+            //console.log(response.data)
             dispatch({
                 type: GET_PRODUCTS,
                 payload: response.data,
