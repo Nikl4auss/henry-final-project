@@ -17,8 +17,10 @@ export default function Home(){
                 <Filters />
             </div>
             <div className={styles.cardsContainer}>
+
                 {products.length === 0 ? 'Cargando...' : <Cards />}
             </div>
+
         </div>
     )
 }
