@@ -30,6 +30,7 @@ function Cards () {
                         image={product.images[0].image}
                         price={product.price}
                         brand={product.brand}
+                        stock={product.Stocks}
                     />
                 })}
             </div>
