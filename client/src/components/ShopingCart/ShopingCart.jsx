@@ -1,3 +1,9 @@
+import { ProductItem } from "./productItem"
+
 export function ShopingCart () {
-    return <div>soy el carrito de compras</div>
+    return (
+        <div>
+            <ProductItem/>
+        </div>
+    )
 }
