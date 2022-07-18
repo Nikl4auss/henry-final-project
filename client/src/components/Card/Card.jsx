@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 import { FiHeart, FaHeart } from 'react-icons/fi'
 import { IoCartOutline, IoCartSharp } from 'react-icons/io5'
-import { useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useLocalStorage } from '../../services/useStorage'
 
 export default function Card({ id, name, price, image, brand, stock }) {
-    const cart = useSelector(state => state.cart)
+    const { isAuthenticated } = useAuth0();
+    const [ cart, setCart ] = useLocalStorage('cart', [])
+
     function productInCart(){
+        if(cart.length === 0) return false
         cart?.forEach(el => {
             stock.forEach(st => {
                 if(st.id === el) return true;
@@ -19,10 +23,14 @@ export default function Card({ id, name, price, image, brand, stock }) {
             <Link to={`/product/${id}`}>
                 <div className={`${styles.card} ${styles.Card19}`} key={id}>
                     <div className={styles.iconContainer}>
+                        { isAuthenticated ? 
                         <button className={styles.divIcon}>
                             <FiHeart/>
                         </button>
-                        <button className={styles.divIcon}>
+                        : undefined}      
+                        <button 
+                        className={styles.divIcon} >
+
                             { productInCart() ? <IoCartSharp/> : <IoCartOutline /> }
                         </button>
                     </div>

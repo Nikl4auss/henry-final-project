@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getBrands, getCategories, getProducts } from "../../actions"
+import { getBrands, getCategories, getProducts } from "../../redux/actions"
 import { BrandsComponent, CategoriesComponent } from "./FiltersComponents"
 import styles from './filters.module.css'
 import { useSessionStorage } from "../../services/useStorage"
