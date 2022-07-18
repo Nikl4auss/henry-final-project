@@ -98,7 +98,6 @@ export default function NewProduct() {
             var value = await swal({
                 title: "Agregar imagen",
                 text: "Copia la URL de la imagen",
-                icon: "info",
                 content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
             })
             if (value !== null) {
