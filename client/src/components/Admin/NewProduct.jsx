@@ -181,7 +181,6 @@ export default function NewProduct() {
         dispatch(getCategories())
     }, [dispatch]);
 
-
         return (
             isAuthenticated ? (
 

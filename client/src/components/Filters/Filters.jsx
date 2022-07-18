@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getBrands, getCategories, getProducts } from "../../actions"
 import { BrandsComponent, CategoriesComponent } from "./FiltersComponents"
 import styles from './filters.module.css'
+import { useSessionStorage } from "../../services/useStorage"
 
 
 function Filters () {
@@ -12,8 +13,8 @@ function Filters () {
     let filtersSelected = useSelector(state => state.filtersSelected)
     let dispatch = useDispatch()
 
-    const [filtersToApply, setFiltersToApply ] = useState(filtersSelected)
-    const [filtersSelectedToRender, setFiltersSelectedToRender ] = useState([])
+    const [filtersToApply, setFiltersToApply ] = useSessionStorage('filtersSelected', filtersSelected)
+    const [filtersSelectedToRender, setFiltersSelectedToRender ] = useSessionStorage('filter', '')
 
     
     useEffect(() => {
