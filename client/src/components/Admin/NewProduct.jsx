@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBrands, getCategories } from '../../actions';
+import { getBrands, getCategories } from '../../redux/actions';
 import axios from 'axios';
 import swal from 'sweetalert';
 import styles from './NewProduct.module.css'
@@ -98,7 +98,6 @@ export default function NewProduct() {
             var value = await swal({
                 title: "Agregar imagen",
                 text: "Copia la URL de la imagen",
-                icon: "info",
                 content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
             })
             if (value !== null) {
