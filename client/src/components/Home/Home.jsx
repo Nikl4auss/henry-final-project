@@ -13,12 +13,17 @@ export default function Home(){
     
     return (
         <div className={styles.homeGrid}>
+            <div>
+                <Paginado/>
+            </div>
             <div className={styles.filtersContainer}>
                 <Filters />
             </div>
             <div className={styles.cardsContainer}>
+
                 {products.length === 0 ? 'Cargando...' : <Cards />}
             </div>
+
         </div>
     )
 }
