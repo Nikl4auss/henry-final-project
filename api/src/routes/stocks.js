@@ -50,4 +50,16 @@ if(store){
     }
 })
 
+router.get('/', async (req, res, next)=>{
+    try{
+        return await Stock.findAll()
+        .then((stock)=>{
+            res.send(stock)
+        })
+    }
+    catch(error){
+        next(error)
+    }
+})
+
 module.exports = router;
