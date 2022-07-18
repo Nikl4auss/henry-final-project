@@ -22,12 +22,15 @@ function Cards () {
             {error.length ? <div>{error}</div> : undefined}
             <div className={styles.divProducts}>
                 {products?.map(product => {
+                    if(product.Stocks.length === 0) return undefined;
                     return <Card 
                         key={product.id}
                         id={product.id}
                         name={product.name}
-                        image={product.image}
+                        image={product.images[0].image}
                         price={product.price}
+                        brand={product.brand}
+                        stock={product.Stocks}
                     />
                 })}
             </div>
