@@ -98,4 +98,21 @@
     transition: all 0.2s ease-out
 }
 
+.pictureUser{
+    margin-top: 5px;
+    margin-right: 5px;
+    border-radius: 50%;
+    width: 25%;
+}
 
+.userLogin{
+    margin-right: 20px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.userLoginLogout{
+    flex-direction: column;
+}

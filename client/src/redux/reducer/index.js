@@ -10,7 +10,8 @@ const initialState = {
         category: [],
         brand: []
     },
-    name: ''
+    name: '',
+    cart: []
 };
 
 const rootReducer = (state = initialState, action) => {
