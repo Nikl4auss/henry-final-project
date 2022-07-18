@@ -30,6 +30,7 @@ export default function Card({ id, name, price, image, brand, stock }) {
                         : undefined}      
                         <button 
                         className={styles.divIcon} >
+
                             { productInCart() ? <IoCartSharp/> : <IoCartOutline /> }
                         </button>
                     </div>
