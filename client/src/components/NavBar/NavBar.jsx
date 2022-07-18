@@ -1,7 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
 // import { ShopingCart } from '../ShopingCart/ShopingCart';
-import LoginButton from '../LoginButton/LoginButton';
 import styles from './NavBar.module.css'
 import LoginButton from '../LoginButton/LoginButton';
 import { useAuth0 } from '@auth0/auth0-react';
