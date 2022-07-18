@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
 // import { ShopingCart } from '../ShopingCart/ShopingCart';
+import LoginButton from '../LoginButton/LoginButton';
 import styles from './NavBar.module.css'
 import LoginButton from '../LoginButton/LoginButton';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -24,32 +25,22 @@ export default function NavBar() {
         navigate("/carrito")
     }
 
-    function clickToHome() {
+    function clickToShopingCart () {
+        navigate("/carrito")
+    }
+
+    function clickToHome () {
         navigate("/home")
     }
-    return (
+    return(
         <div>
-            <nav className={styles.navbarContainer}>
-                <div className={styles.divTop}>
-                    <div className={styles.logo}>
-                        <button onClick={clickToHome}>Davo Shoes</button>
-                    </div>
-                    <SearchBar />
-                    <button className={styles.btnNav} onClick={clickToShopingCart}>Mi carrito</button>
-                    {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
-                    {isAuthenticated && <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>}
-                    {isAuthenticated
-                        ? (
-                            <div>
-                                <img src={user.picture} alt="profile" />
-                                <p>{user.name}</p>
-                                <LogoutButton />
-                            </div>
-                        )
-                        : <LoginButton />
-                    }
+        <nav className={styles.navbarContainer}>
+            <div className={styles.divTop}>
+                <div className={styles.logo}>
+                    <button onClick={clickToHome}>Davo Shoes</button>
                 </div>
                 <SearchBar/>
+                <button className={styles.btnNav} onClick={clickToShopingCart}>Mi carrito</button>
                 {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
             {isAuthenticated && <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>}
             {isAuthenticated 
