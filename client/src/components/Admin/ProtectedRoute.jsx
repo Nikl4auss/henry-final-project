@@ -3,10 +3,10 @@ import React from "react";
 import { Loader } from "./loader";
 
 export const ProtectedRoute = ({ component }) => {
-  let url = 'http://localhost:3000/nuevoproducto'
+  let url = window.location.pathname
 
   const Component = withAuthenticationRequired(component, {
-    returnTo: 'http://localhost:3000/nuevoproducto',
+    returnTo: url,
     onRedirecting: () => <Loader />,
   });
 
