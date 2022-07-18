@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { getProducts } from '../../actions';
+import { getProducts } from '../../redux/actions';
 
 
 import styles from './SearchBar.module.css'
