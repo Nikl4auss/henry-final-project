@@ -40,13 +40,14 @@ export default function NavBar(){
                 {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
             {isAuthenticated && <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>}
             {isAuthenticated 
-                ? (
-                    <div>
-                        <img src={user.picture} alt="profile"/>
+                ? (<div className={styles.userLoginLogout}>
+                    <div className={styles.userLogin}>
+                        <img src={user.picture} alt="profile" className={styles.pictureUser}/>
                         <p>{user.name}</p>
+                    </div>
                         <LogoutButton />
                     </div>
-                ) 
+                )  
                 : <LoginButton />
             }
             </div>
