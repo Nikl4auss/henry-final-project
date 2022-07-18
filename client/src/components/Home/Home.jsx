@@ -13,9 +13,6 @@ export default function Home(){
     
     return (
         <div className={styles.homeGrid}>
-            <div>
-                <Paginado/>
-            </div>
             <div className={styles.filtersContainer}>
                 <Filters />
             </div>
