@@ -22,7 +22,7 @@ function Paginado() {
     const currentProducts = allProducts.slice(indexOfFirstOfProduct, indexOfLastOfProduct);
 
     const pageNumbers = [];
-    const [active, setActive] = useState(1)
+    const [active, setActive] = useState(0)
     let allPage = Math.ceil(allProducts?.length / productsPerPage)
 
     for (let i = 0; i <= allPage-1; i++) {
