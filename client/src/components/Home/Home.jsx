@@ -13,7 +13,6 @@ export default function Home(){
     
     return (
         <div className={styles.homeGrid}>
-
             <div className={styles.filtersContainer}>
                 <Filters />
             </div>
