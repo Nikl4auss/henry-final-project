@@ -8,6 +8,7 @@ import styles from './ProductDetail.module.css'
 import { BiCart } from "react-icons/bi";
 import { IoMdHeartEmpty, IoMdHeart, IoMdStar, IoMdStarOutline, IoMdClose } from "react-icons/io";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
+import ProductOptions from '../Modal/ProductOptions'
 
 
 
@@ -29,6 +30,7 @@ function ProductDetail() {
     })
   }, [id])
 
+  const [active, setActive] = useState(false)
 
 
   return (
@@ -64,7 +66,7 @@ function ProductDetail() {
                 <p className={styles.price}>${productDetail.price}</p>
               </div>
               <div className={styles.divStars}><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStarOutline/></div>
-              <div className={styles.divColorTitle}>Color</div>
+              {/* <div className={styles.divColorTitle}>Color</div>
               <div  className={styles.divColor} name="" id="">
                 {productDetail.Stocks?.map(({MainColor}, inx) => {
                   if(MainColor?.name){
@@ -74,8 +76,8 @@ function ProductDetail() {
                   }
                   return null
                 })}
-              </div>
-              <div className={styles.divSizeTitle}>Talle</div>
+              </div> */}
+              {/* <div className={styles.divSizeTitle}>Talle</div>
               <div className={styles.divSize} name="" id="">
                 {productDetail.Stocks?.sort((a, b)=> a.Size.name-b.Size.name).map(({Size}, inx) => {
                   if(Size?.name){
@@ -83,12 +85,17 @@ function ProductDetail() {
                   }
                   return null
                 })}
-              </div>
+              </div> */}
                 {/* <button className={`${styles.divBuy} ${styles.buy} `}>Comprar</button> */}
               
               <div className={styles.divAdd}>
-                <button className={styles.add}>Agregar al carrito</button>
+                <button className={styles.add} onClick={()=>setActive(!active)}>Elegí las opciones</button>
               </div>
+              <ProductOptions
+                active={active}
+                setActive={setActive}
+                stock={productDetail.Stocks}
+              />
               <div className={styles.divDescriptionTitle}>Descripción</div>
               <div className={styles.divDescription}>
                 <p className={styles.description}>{productDetail.description}</p>
