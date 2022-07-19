@@ -6,7 +6,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import styles from './NewProduct.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { createProduct } from '../../services/productsServices'
 
 
 
@@ -165,7 +165,7 @@ export default function NewProduct() {
         }
         else if (input.name) {
             const token = await getAccessTokenSilently()
-            dispatch(postProduct(input, token))
+            await createProduct(input, token)
             setInput({
                 name: "",
                 description: "",
