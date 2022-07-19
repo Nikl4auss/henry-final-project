@@ -67,7 +67,6 @@ export default function NewProduct() {
             var value = await swal({
                 title: "Otra marca",
                 text: "Escribe un nombre para tu marca.",
-                icon: "info",
                 content: { element: "input", attributes: { type: "text", placeholder: "Escribí la marca" } }
             })
             if (value !== null) {
@@ -119,7 +118,6 @@ export default function NewProduct() {
             var value = await swal({
                 title: "Otra categoría",
                 text: "Escribe un nombre para la categoría.",
-                icon: "info",
                 content: { element: "input", attributes: { type: "text", placeholder: "Escribí la categoría" } }
             })
             if (value !== null) {

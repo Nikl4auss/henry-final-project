@@ -14,7 +14,7 @@ export default function Card({ id, name, price, image, brand, stock }) {
     console.log(cart)
 
     function productInCart(){
-        if(cart.length === 0) return false
+        if(cart?.length === 0) return false
         cart?.forEach(el => {
             stock.forEach(st => {
                 if(st.id === el) return true;

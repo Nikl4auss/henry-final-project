@@ -1,6 +1,6 @@
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
-const {ACCESS_TOKEN} = require('../utils/config.js')
+const {ACCESS_TOKEN, CLIENT_URL} = require('../utils/config.js')
 // Agrega credenciales
 mercadopago.configure({
   access_token: ACCESS_TOKEN,
@@ -26,9 +26,9 @@ const checkoutCart = (req, res) => {
      };
     }),
     back_urls: {
-      success: "http://localhost:3000/pago/feedback",
-      failure: "http://localhost:3000/pago/feedback",
-      pending: "http://localhost:3000/pago/feedback",
+      success: `${CLIENT_URL}/pago/success`,
+      failure: `${CLIENT_URL}/pago/failure`,
+      pending: `${CLIENT_URL}/pago/pending`,
     },
     //notification_url: "http://localhost:3001/payment/feedback", //tiene que ser una ruta https
     auto_return: "approved",

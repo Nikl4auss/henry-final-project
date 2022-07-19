@@ -65,13 +65,17 @@
 }
 
 .noStockSize {
-    grid-column: 5 / 7;
-    grid-row: 3 / 4;
+    margin: 5px;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
-    align-items: flex-start;
     justify-content: center;
-    margin-right: 40px;
+    align-items: center;
+    border: 1px solid;
+    border-color: #5A5A5A;
+    color: #5A5A5A;
+    border-radius: 10px;
+    padding: 0px 14px;
+    text-align: center;
+    transition-duration: 0.4s;
     background-color: rgb(0 0 0 / 20%);
 }
