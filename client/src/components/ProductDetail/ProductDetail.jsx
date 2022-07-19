@@ -91,6 +91,7 @@ function ProductDetail() {
               <div className={styles.divAdd}>
                 <button className={styles.add} onClick={()=>setActive(!active)}>Elegí las opciones</button>
               </div>
+
               <ProductOptions className={styles.ModalBox}
                 active={active}
                 setActive={setActive}
