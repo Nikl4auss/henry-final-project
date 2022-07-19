@@ -1,0 +1,81 @@
+
+
+.stockSize{
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-color: #5A5A5A;
+    color: #5A5A5A;
+    border-radius: 10px;
+    padding: 0px 14px;
+    text-align: center;
+    transition-duration: 0.4s;
+}
+.stockSize:hover {
+    background-color: #5A5A5A; 
+    color: white;
+}
+
+.buttonColor{
+    height: 30px;
+    width: 30px;
+    border-color: #5A5A5A;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+}
+.stockColor{
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.divSize{
+    grid-column: 5 / 7;
+    grid-row: 3 / 4;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 40px;
+}
+
+.divColor{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-right: 40px;
+}
+
+.noStockColor {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0 0 0 / 20%);
+}
+
+.noStockSize {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-color: #5A5A5A;
+    color: #5A5A5A;
+    border-radius: 10px;
+    padding: 0px 14px;
+    text-align: center;
+    transition-duration: 0.4s;
+    background-color: rgb(0 0 0 / 20%);
+}

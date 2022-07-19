@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { BRANDS, CATEGORIES } from '../AuxiliaryVariables/Auxiliar';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR  } from './actions_types';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR , ADD_PAGE, SET_ORDER } from './actions_types';
 
 export function getProducts(filters = {}, name){
     let queryName = ''
@@ -62,6 +61,19 @@ export function getBrands (){
     }
 }
 
+export function addPage(payload){
+    return {
+     type: ADD_PAGE,
+     payload: payload
+    }
+}
+
+export function setOrder(payload) {
+    return {
+        type: SET_ORDER,
+        payload: payload
+    }
+}
 // export function getProductsName(name){
 //     return async function (dispatch){
 //         try{

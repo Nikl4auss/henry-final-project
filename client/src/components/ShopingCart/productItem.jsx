@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getProducts } from "../../actions"
 import axios from "axios"
-import { GET_STOCK } from "../../actions/actions_types"
 import { useLocalStorage } from "../../services/useStorage"
 import styles from "./productItem.module.css"
+import { setOrder } from "../../redux/actions"
 
-export function ProductItem ({id, color, size, quantity, stock}) {
+function ProductItem ({id, color, size, quantity, stock}) {
 //me llega un array de objetos, así: [0: {id: 225, stock_product: 5, SizeId: 12, MainColorId: 11, StoreId: 1, ProductId: 15}  
 const [product, setProduct] = useState({})
 const [cantidad, setCantidad] = useState(quantity)
+
 
     const getStock = async function (id) {
         try{
@@ -23,18 +23,21 @@ const [cantidad, setCantidad] = useState(quantity)
 
     useEffect(() => {
         getStock(id).then(data => setProduct(data))
-    },[id])
-    
-    console.log(product)
+        setOrder({
+            title: product?.Product.name,
+            unit_price: product?.Product.price * cantidad,
+            quantity: cantidad,
+        })
+    },[id,cantidad])
   
     function oneMore (e) {
         e.preventDefault()
-        setCantidad = cantidad + 1
+        if(cantidad < stock) setCantidad(cantidad + 1)
     }
 
     function oneLess (e) {
         e.preventDefault()
-        setCantidad = cantidad - 1
+        if(cantidad > 1) setCantidad(cantidad - 1)
     }
 
     function clearCart () {
@@ -46,15 +49,17 @@ const [cantidad, setCantidad] = useState(quantity)
                 <h3>{product?.Product.name}</h3>
                 <h3>${product?.Product.price}.00</h3>
                 <div className={styles.conteinerQuantity}>
-                    <h3>Cantidad: {quantity}</h3>
+                    <h3>Cantidad: {cantidad}</h3>
                     <div className={styles.containerBttn}>
                         <button className={styles.button} onClick={oneMore}>+</button>
                         <button className={styles.button} onClick={oneLess}>-</button>
                     </div>
                 </div>
-                <div>Total: ${product?.Product.price * quantity}.00</div>
+                <div>Subtotal: ${product?.Product.price * cantidad}.00</div>
             </div>
          : <div>loading</div>
     }</div>
     )
 }
+
+export default React.memo(ProductItem)

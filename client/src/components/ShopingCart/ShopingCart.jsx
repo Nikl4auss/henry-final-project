@@ -1,5 +1,8 @@
+import axios from "axios";
+import { useSelector } from "react-redux";
 import { useLocalStorage } from "../../services/useStorage";
-import { ProductItem } from "./productItem";
+import { API_URL } from "../../utils/config";
+import ProductItem from "./productItem";
 
 const producto = [{
     id: 234,
@@ -24,8 +27,15 @@ const producto = [{
 }]
 
 export function ShopingCart () {
+
+const order = useSelector(state => state.order)
+console.log(order)
+
+function redirectToPay (e) {
+    axios.post(`http://localhost:3001/payment`,)
+}
+
     const [cart] = useLocalStorage("cart")
-// (conidicion) ? (valor true) : (valor false)
     return (
         <div>
             <div>
@@ -38,7 +48,7 @@ export function ShopingCart () {
                                             />)
                 }
             </div>
-            <button>Pagar</button>
+            <button onClick={redirectToPay}>Pagar</button>
         </div>
     )
 }

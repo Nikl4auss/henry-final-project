@@ -5,6 +5,12 @@ import { useParams, Link } from 'react-router-dom'
 import {product} from '../../AuxiliaryVariables/Auxiliar'
 import { getProduct } from '../../services/productsServices'
 import styles from './ProductDetail.module.css'
+import { BiCart } from "react-icons/bi";
+import { IoMdHeartEmpty, IoMdHeart, IoMdStar, IoMdStarOutline, IoMdClose } from "react-icons/io";
+import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
+import ProductOptions from '../Modal/ProductOptions'
+
+
 
 function ProductDetail() {
   const { id } = useParams()
@@ -24,62 +30,89 @@ function ProductDetail() {
     })
   }, [id])
 
+  const [active, setActive] = useState(false)
 
 
   return (
     <>
-    <Link to= '/home'>
-                <button className={styles.button}>Inicio</button>
-            </Link>
-    {/* <div className='buttonHome' >
-      <Link to='/Home' className='btn'>◀ Volver a Inicio</Link>
-    </div> */}
-    
-    <div>
-    {productDetail.name ? (
-      <div className={styles.divContainer}>
-      <div>
-      
-        <div>
-          {/* <ul>
-            {productDetail.images?.map(({image, main}, inx) => {
-              return <img key={inx} src={image} alt={productDetail.name} />
-            })}
-          </ul> */}
-          <img className={styles.img} src={mainImage} alt="" />
-        </div>        
+      <div className={styles.grid}>
+        <div className={styles.divClose}>
+          <Link to= '/home'>
+            <button className={styles.buttonClose}><IoMdClose/></button>
+          </Link>
+        </div>
+        {/* <div className='buttonHome' >
+          <Link to='/Home' className='btn'>◀ Volver a Inicio</Link>
+        </div> */}
+        <div className={styles.divHeart}>
+            <button className={styles.buttonHeart}><IoMdHeartEmpty/></button>
+        </div>
+        {productDetail.name ? (
+          <>
+              <div className={styles.divImg}>
+                {/* <ul>
+                  {productDetail.images?.map(({image, main}, inx) => {
+                    return <img key={inx} src={image} alt={productDetail.name} />
+                  })}
+                </ul> */}
+                <button className={styles.arrowButtons}><TiChevronLeft/></button>
+                <img className={styles.img} src={mainImage} alt="" />
+                <button><TiChevronRight/></button>
+              </div>        
+              <div className={styles.divName}>
+                <h1 className={styles.name}>{productDetail.name}</h1>
+              </div>
+              <div className={styles.divPrice}>
+                <p className={styles.price}>${productDetail.price}</p>
+              </div>
+              <div className={styles.divStars}><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStarOutline/></div>
+              {/* <div className={styles.divColorTitle}>Color</div>
+              <div  className={styles.divColor} name="" id="">
+                {productDetail.Stocks?.map(({MainColor}, inx) => {
+                  if(MainColor?.name){
+                    return <button  className={styles.stockColor} key={inx} value={MainColor.name}>
+                      <span className= {styles.spanColor} style={{background:MainColor.code}}></span>
+                      </button>
+                  }
+                  return null
+                })}
+              </div> */}
+              {/* <div className={styles.divSizeTitle}>Talle</div>
+              <div className={styles.divSize} name="" id="">
+                {productDetail.Stocks?.sort((a, b)=> a.Size.name-b.Size.name).map(({Size}, inx) => {
+                  if(Size?.name){
+                    return <button className={styles.stockSize} key={inx} value={Size.name}>{Size.name}</button>
+                  }
+                  return null
+                })}
+              </div> */}
+                {/* <button className={`${styles.divBuy} ${styles.buy} `}>Comprar</button> */}
+              
+              <div className={styles.divAdd}>
+                <button className={styles.add} onClick={()=>setActive(!active)}>Elegí las opciones</button>
+              </div>
+              <ProductOptions
+                active={active}
+                setActive={setActive}
+                stock={productDetail.Stocks}
+              />
+              <div className={styles.divDescriptionTitle}>Descripción</div>
+              <div className={styles.divDescription}>
+                <p className={styles.description}>{productDetail.description}</p>
+              </div>
+              <div className={styles.divModelTitle}>Modelo n°</div>
+              <div className={styles.divModel}>
+                <p className={styles.model}>{productDetail.model}</p>
+              </div>
+              <div className={styles.divCommentsTitle}>Reseñas</div>
+              <div className={styles.divComments} datacol={5} datarow={7}>
+                <button className={styles.buttonComment}>Escribí tu reseña</button>
+              </div>
+            
+          </>):<div>Cargando</div>}
+          
+        
       </div>
-
-      <div className={styles.general}>
-        <h1 className={styles.name}>{productDetail.name}</h1>
-        <p className={styles.price}>${productDetail.price}</p>
-        <select className={styles.stock} name="" id="">
-          {productDetail.Stocks?.map(({MainColor}, inx) => {
-            if(MainColor?.name){
-              return <option  key={inx} value={MainColor.name}>{/*MainColor.code*/}{MainColor.name}</option>
-            }
-            return null
-          })}
-        </select>
-        <select className={styles.stock} name="" id="">
-          {productDetail.Stocks?.map(({Size}, inx) => {
-            if(Size?.name){
-              return <option  key={inx} value={Size.name}>{Size.name}</option>
-            }
-            return null
-          })}
-        </select>
-
-        <button className={styles.buy} type='button'>Comprar</button>
-        <button className={styles.add} type='button'>Agregar al Carrito</button>
-      </div>
-      <div className={styles.general}>
-        <p className={styles.description}>{productDetail.description}</p>
-        <p className={styles.model}>{productDetail.model}</p>
-      </div>
-      </div>):<div>Cargando</div>}
-      
-    </div>
     </>
   )
   

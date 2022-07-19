@@ -46,7 +46,7 @@ const router = Router();
     conditions.include = [
         {
             model: Stock,
-            attributes: ['stock_product'],
+            attributes: ['stock_product', 'id'],
             include: [
                 {
                     model: MainColor,
