@@ -1,9 +1,4 @@
-import axios from 'axios'
-import {API_URL} from '../utils/config'
-
-const apiInstance = axios.create({
-    baseURL: API_URL
-})
+import apiInstance from './apiAxios'
 
 export async function getProducts(filters = {}, name = ''){
     let queryName = ''

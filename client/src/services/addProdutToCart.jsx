@@ -1,8 +1,8 @@
-import axios from 'axios'
+import apiInstance from './apiAxios'
 
 export async function addProductToCart (id){
     try {
-        await axios.post(`localhost:3001/line_cart/${id}`)
+        await apiInstance.post(`/line_cart/${id}`)
     } catch (error) {
         console.log(error)
     }
@@ -10,7 +10,7 @@ export async function addProductToCart (id){
 
 export async function addQuantity (id, quantity) {
     try {
-        await axios.put(`localhost:3001/line_cart/${id}?quantity=${quantity}`)
+        await apiInstance.put(`/line_cart/${id}?quantity=${quantity}`)
     } catch (error) {
         console.log(error)
     }
