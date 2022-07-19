@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPage } from '../../redux/actions';
 
 // import { getProducts } from '../../actions';
 import styles from './Paginado.module.css';
@@ -8,11 +9,12 @@ import styles from './Paginado.module.css';
 
 
 function Paginado() {
+    let dispatch = useDispatch();
     // eslint-disable-next-line no-unused-vars
     const [products, setProducts] = useState();
     // const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.products);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
     // eslint-disable-next-line no-unused-vars
     const [productsPerPage, setProductsPerPage] = useState(12);
     const indexOfLastOfProduct = currentPage * productsPerPage;
@@ -21,7 +23,7 @@ function Paginado() {
 
     const pageNumbers = [];
     const [active, setActive] = useState(1)
-    let allPage = Math.ceil(80 / productsPerPage)
+    let allPage = Math.ceil(allProducts?.length / productsPerPage)
 
     for (let i = 1; i <= allPage; i++) {
         pageNumbers.push(i)
@@ -45,24 +47,12 @@ function Paginado() {
         }
     };
 
-    // useEffect(() => {      
-    // // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [allProducts]);
+    useEffect(() => {  
+        dispatch(addPage({firstValue:currentPage*productsPerPage, lastValue:currentPage*productsPerPage+productsPerPage}))
+    }, [dispatch, currentPage]);
 
     return (
         <div className= {styles.containerpagination} >
-            {/* hola
-            {currentProducts.length ? 
-                <Paginado
-                    productsPerPage={productsPerPage}
-                    allProducts={allProducts.length}
-                    // paginado={paginado}
-                    previous={previous}
-                    next={next}>
-                </Paginado> :
-                <div></div>
-                } */}
-
             <div className={styles.pagination}>
                 {console.log(allPage)}
                 <button className={styles.btnpage} onClick={() => previous(setActive)}>Prev</button>
