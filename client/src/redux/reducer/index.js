@@ -11,7 +11,6 @@ const initialState = {
         brand: []
     },
     name: '',
-
     cart: [],
     pages: {firstValue:0, lastValue:11},
     order: []
@@ -55,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
             case SET_ORDER:
                 return {
                     ...state,
-                    order: [...state.order, action.payload]
+                    order: action.payload
                 }
         default: return state;
     }

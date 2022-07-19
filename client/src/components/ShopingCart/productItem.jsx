@@ -5,46 +5,57 @@ import { useLocalStorage } from "../../services/useStorage"
 import styles from "./productItem.module.css"
 import { setOrder } from "../../redux/actions"
 
-function ProductItem ({id, color, size, quantity, stock}) {
-//me llega un array de objetos, así: [0: {id: 225, stock_product: 5, SizeId: 12, MainColorId: 11, StoreId: 1, ProductId: 15}  
-const [product, setProduct] = useState({})
-const [cantidad, setCantidad] = useState(quantity)
-
+function ProductItem({ id, price, quantity, stock, name }) {
+    //me llega un array de objetos, así: [0: {id: 225, stock_product: 5, SizeId: 12, MainColorId: 11, StoreId: 1, ProductId: 15}  
+    let dispatch = useDispatch()
+    const [product, setProduct] = useState({})
+    const [cantidad, setCantidad] = useState(quantity)
+    const order = useSelector(state => state.order)
+    const [cart, setCart] = useLocalStorage('cart')
 
     const getStock = async function (id) {
-        try{
+        try {
             const stockBD = await axios.get(`http://localhost:3001/stock/${id}`)
             let allStock = stockBD.data
-            return allStock 
-        } catch(error) {
-            console.log("este es el error "+error)
+            return allStock
+        } catch (error) {
+            console.log("este es el error " + error)
         }
     }
 
     useEffect(() => {
         getStock(id).then(data => setProduct(data))
-        setOrder({
-            title: product?.Product.name,
-            unit_price: product?.Product.price * cantidad,
-            quantity: cantidad,
-        })
-    },[id,cantidad])
-  
-    function oneMore (e) {
+    }, [id])
+
+    function oneMore(e) {
         e.preventDefault()
-        if(cantidad < stock) setCantidad(cantidad + 1)
+        if (cantidad < stock) {
+            let orderFiltered = order.filter(el => el.id !== id)
+            let NewOrder = [...orderFiltered, { id: id, title: name, unit_price: price, quantity: cantidad + 1, stock_product: stock }]
+            dispatch(setOrder(NewOrder))
+            setCantidad(cantidad + 1)
+        }
     }
 
-    function oneLess (e) {
+    function oneLess(e) {
         e.preventDefault()
-        if(cantidad > 1) setCantidad(cantidad - 1)
+        if (cantidad > 1) {
+            let orderFiltered = order.filter(el => el.id !== id)
+            let NewOrder = [...orderFiltered, { id: id, title: name, unit_price: price, quantity: cantidad - 1,  stock_product: stock  }]
+            dispatch(setOrder(NewOrder))
+            setCantidad(cantidad - 1)
+        }
     }
 
-    function clearCart () {
+    function productDeleted(e){
+        let cartFilter = cart.filter(prod => prod.id !== id)
+        let orderFilter = order.filter(prod => prod.id !== id)
+        setCart(cartFilter)
+        dispatch(setOrder(orderFilter))
     }
 
     return (<div>{
-        product.id ? 
+        product?.id ?
             <div className={styles.cardCart}>
                 <h3>{product?.Product.name}</h3>
                 <h3>${product?.Product.price}.00</h3>
@@ -56,8 +67,10 @@ const [cantidad, setCantidad] = useState(quantity)
                     </div>
                 </div>
                 <div>Subtotal: ${product?.Product.price * cantidad}.00</div>
+                <button 
+                onClick={(e) => productDeleted(e)}>Elminiar producto</button>
             </div>
-         : <div>loading</div>
+            : <div>loading</div>
     }</div>
     )
 }

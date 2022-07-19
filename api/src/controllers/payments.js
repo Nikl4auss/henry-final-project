@@ -9,6 +9,7 @@ mercadopago.configure({
 
 const checkoutCart = (req, res) => {
    let {itemsCart} = req.body;
+   console.log(req.body)
    let {idOrder} = req.body;
   let preference = {
     //   items: [
@@ -21,7 +22,7 @@ const checkoutCart = (req, res) => {
     items: itemsCart.map((i) => {
       return {
         title: i.name,
-        unit_price: parseInt(i.price),
+        unit_price: parseInt(i.unit_price),
         quantity: i.quantity,
      };
     }),
@@ -39,6 +40,7 @@ const checkoutCart = (req, res) => {
     .then(function (respuesta) {
         // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
       const preferenceId = respuesta.body.init_point;
+      console.log(preferenceId)
       res.send(preferenceId);//devuelve el enlace de mercadopago
    })
     .catch(function (error) {

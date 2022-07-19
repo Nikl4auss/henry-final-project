@@ -5,7 +5,7 @@ import { useLocalStorage } from "../../services/useStorage";
 import styles from './ProductOptions.module.css'
 
 
-export default function ProductOptions({ active, setActive, stock}) {
+export default function ProductOptions({ active, setActive, stock, name, price}) {
     const { isAuthenticated } = useAuth0();
     const [ cartLS, setCartLS ] = useLocalStorage('cart', [])
     const [ colorSelected, setColorSelected ] = useState('')
@@ -13,8 +13,6 @@ export default function ProductOptions({ active, setActive, stock}) {
     const [ filterByColor, setFilterByColor ] = useState([])
     const [ filterBySize, setFilterBySize ] = useState([])
     const [ quantity, setQuantity ] = useState(1)
-
-    console.log(colorSelected)
 
     let colors = []
     let sizes = []
@@ -82,7 +80,6 @@ export default function ProductOptions({ active, setActive, stock}) {
     }
 
     async function addProductToCart() {
-        console.log('enviando')
         if(isAuthenticated){
             try {
                 await axios.post(`http://localhost:3001/line_cart/${idStockSelected.id}?quantity=${quantity}`)
@@ -91,13 +88,18 @@ export default function ProductOptions({ active, setActive, stock}) {
                 console.log(err)
             }
         } else {
-            // let validateCart = cartLS.find(el => el.id === idStockSelected.id) 
-            // if(validateCart.id) return;
+            let validateCart = cartLS.find(el => el.id === idStockSelected.id) 
+            console.log(validateCart)
+            if(validateCart) return;
+            else {
             setCartLS([...cartLS, {
                 ...idStockSelected,
-                quantity: quantity
+                quantity: quantity,
+                name: name,
+                price: price
             }])
             setActive(!active)
+            }
         }
     }
 
