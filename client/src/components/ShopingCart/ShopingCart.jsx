@@ -7,6 +7,8 @@ import { useLocalStorage } from "../../services/useStorage";
 import { API_URL } from "../../utils/config";
 import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
+import { payCart } from "../../services/shopingCart";
+
 
 const producto = [{
     id: 234,
@@ -57,15 +59,17 @@ export function ShopingCart() {
         dispatch(setOrder(arrayOrder))
     }, [dispatch])
 
-    function redirectToPay(e) {
+    async function redirectToPay(e) {
         if(isAuthenticated) {
-            axios.post(`http://localhost:3001/payment`, {
-                itemsCart: order,
-                idOrder: 15
-            })
-            .then(response =>  {
-                window.location.href = response.data
-            })
+            const data = await payCart(order, 15)
+            window.location.href = data
+            // axios.post(`http://localhost:3001/payment`, {
+            //     itemsCart: order,
+            //     idOrder: 15
+            // })
+            // .then(response =>  {
+            //     window.location.href = response.data
+            // })
         }   else {
             loginWithRedirect()
         }
