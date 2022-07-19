@@ -1,10 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
-
+import {DOMAIN, CLIENT_ID, AUDIENCE, REDIRECT_URI} from '../../utils/config'
 const Auth0ProviderWithHistory = ({ children }) => {
-    const domain = 'dev-a6gv3ggc.us.auth0.com';
-    const clientId = 'lYYnCzrqH2clZw5C6FiRsJA6jAPInZmG';
     const history = useNavigate();
 
     const onRedirectCallback = (appState) => {
@@ -13,11 +11,12 @@ const Auth0ProviderWithHistory = ({ children }) => {
 
     return (
         <Auth0Provider
-        domain={domain}
-        clientId={clientId}
-        redirectUri='http://localhost:3000/home'
+        domain={DOMAIN}
+        clientId={CLIENT_ID}
+        redirectUri={REDIRECT_URI}
         cacheLocation="localstorage"
         onRedirectCallback={onRedirectCallback}
+        audience={AUDIENCE}
         >
             {children}
         </Auth0Provider>

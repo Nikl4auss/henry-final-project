@@ -7,6 +7,7 @@ import styles from './cards.module.css'
 
 function Cards () {
     const products = useSelector(state => state.products)
+    const pages = useSelector(state => state.pages)
     const filters = useSelector(state => state.filters)
     const name = useSelector(state => state.name)
     const error = useSelector(state => state.error)
@@ -17,11 +18,15 @@ function Cards () {
         else dispatch(getProducts(filters, name))
     }, [dispatch, filters, name, products])
 
+    const arrayPage= useMemo(()=>{
+        return products.slice(pages.firstValue, pages.lastValue)
+    }, [pages]
+    )
     return(
         <div className={styles.divCards}>
             {error.length ? <div>{error}</div> : undefined}
             <div className={styles.divProducts}>
-                {products?.map(product => {
+                {arrayPage?.map(product => {
                     if(product.Stocks.length === 0) return undefined;
                     return <Card 
                         key={product.id}
