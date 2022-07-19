@@ -7,6 +7,8 @@ const DB_NAME = process.env.DB_NAME
 const PORT = process.env.PORT || 3001
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 const CLIENT_URL = process.env.CLIENT_URL
+const AUDIENCE = process.env.AUDIENCE
+const ISSUER_BASE_URL = process.env.ISSUER_BASE_URL
 module.exports = {
     DB_USER,
     DB_PASSWORD,
@@ -14,5 +16,7 @@ module.exports = {
     DB_NAME,
     PORT,
     ACCESS_TOKEN,
-    CLIENT_URL
+    CLIENT_URL,
+    AUDIENCE,
+    ISSUER_BASE_URL
 }
