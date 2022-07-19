@@ -66,7 +66,7 @@ function ProductDetail() {
                 <p className={styles.price}>${productDetail.price}</p>
               </div>
               <div className={styles.divStars}><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStarOutline/></div>
-              <div className={styles.divColorTitle}>Color</div>
+              {/* <div className={styles.divColorTitle}>Color</div>
               <div  className={styles.divColor} name="" id="">
                 {productDetail.Stocks?.map(({MainColor}, inx) => {
                   if(MainColor?.name){
@@ -76,7 +76,7 @@ function ProductDetail() {
                   }
                   return null
                 })}
-              </div>
+              </div> */}
               {/* <div className={styles.divSizeTitle}>Talle</div>
               <div className={styles.divSize} name="" id="">
                 {productDetail.Stocks?.sort((a, b)=> a.Size.name-b.Size.name).map(({Size}, inx) => {
