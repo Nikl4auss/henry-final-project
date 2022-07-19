@@ -10,9 +10,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 
-function postProduct(payload) {
+function postProduct(payload, token) {
     return async function (dispatch) {
-        var json = await axios.post("http://localhost:3001/product", payload);
+        var json = await axios.post("http://localhost:3001/product", payload, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
         return json;
     }
 }
@@ -46,7 +51,7 @@ function validate(input) {
     return errors;
 };
 export default function NewProduct() {
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, getAccessTokenSilently } = useAuth0();
     const dispatch = useDispatch()
     const brands = useSelector((state) => state.brands)
     const categories = useSelector((state) => state.categories)
@@ -149,7 +154,7 @@ export default function NewProduct() {
         })
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         if (errors.nombre || errors.descripción || errors.precio || errors.modelo || errors.imagen || errors.marca || errors.categoría) {
             let sendErrors = [];
@@ -159,7 +164,8 @@ export default function NewProduct() {
             return alert(sendErrors.join(" "))
         }
         else if (input.name) {
-            dispatch(postProduct(input))
+            const token = await getAccessTokenSilently()
+            dispatch(postProduct(input, token))
             setInput({
                 name: "",
                 description: "",
