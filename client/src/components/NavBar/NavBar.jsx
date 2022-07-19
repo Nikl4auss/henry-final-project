@@ -24,32 +24,37 @@ export default function NavBar() {
         navigate("/carrito")
     }
 
-    function clickToHome() {
+    function clickToShopingCart () {
+        navigate("/carrito")
+    }
+
+    function clickToHome () {
         navigate("/home")
     }
-    return (
+    return(
         <div>
-            <nav className={styles.navbarContainer}>
-                <div className={styles.divTop}>
-                    <div className={styles.logo}>
-                        <button onClick={clickToHome}>Davo Shoes</button>
-                    </div>
-                    <SearchBar />
-                    <button className={styles.btnNav} onClick={clickToShopingCart}>Mi carrito</button>
-                    {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
-                    {isAuthenticated && <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>}
-                    {isAuthenticated
-                        ? (
-                            <div>
-                                <img src={user.picture} alt="profile" />
-                                <p>{user.name}</p>
-                                <LogoutButton />
-                            </div>
-                        )
-                        : <LoginButton />
-                    }
+        <nav className={styles.navbarContainer}>
+            <div className={styles.divTop}>
+                <div className={styles.logo}>
+                    <button onClick={clickToHome}>Davo Shoes</button>
                 </div>
-                {/* <div className= {styles.menuGral}>
+                <SearchBar/>
+                <button className={styles.btnNav} onClick={clickToShopingCart}>Mi carrito</button>
+                {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
+            {isAuthenticated && <button className={styles.btnNav} onClick={onClickbutton}>Cargar Productos</button>}
+            {isAuthenticated 
+                ? (<div className={styles.userLoginLogout}>
+                    <div className={styles.userLogin}>
+                        <img src={user.picture} alt="profile" className={styles.pictureUser}/>
+                        <p>{user.name}</p>
+                    </div>
+                        <LogoutButton />
+                    </div>
+                )  
+                : <LoginButton />
+            }
+            </div>
+            {/* <div className= {styles.menuGral}>
             <ul className= {styles.menu}>
                 <li><button>Categorías</button></li>
                 <li><button>Género</button></li>
