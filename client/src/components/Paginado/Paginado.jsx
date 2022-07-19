@@ -25,7 +25,7 @@ function Paginado() {
     const [active, setActive] = useState(1)
     let allPage = Math.ceil(allProducts?.length / productsPerPage)
 
-    for (let i = 1; i <= allPage; i++) {
+    for (let i = 0; i <= allPage-1; i++) {
         pageNumbers.push(i)
     };
 
@@ -62,7 +62,7 @@ function Paginado() {
                         onClick={() => {
                             setActive(number)
                             paginado(number)
-                        }} key={number} >{number}</button>
+                        }} key={number} >{number+1}</button>
                 ))}
                 <button className={styles.btnpage} onClick={() => next(setActive, allPage)}>Next</button>
             </div>
