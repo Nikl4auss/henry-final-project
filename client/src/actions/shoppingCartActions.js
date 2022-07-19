@@ -1,5 +1,0 @@
-export const ADD_TO_CART ="ADD_TO_CART";
-export const REMOVE_ONE_TO_CART ="REMOVE_ONE_TO_CART";
-export const REMOVE_ALL_TO_CART ="REMOVE_ALL_TO_CART";
-export const CLEAR_CART ="CLEAR_CART";
-export const TOTAL_AMOUNT_CART ="TOTAL_AMOUNT_CART";
