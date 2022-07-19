@@ -1,8 +1,8 @@
 const { auth } = require('express-oauth2-jwt-bearer')
-
+const {AUDIENCE, ISSUER_BASE_URL} = require('../utils/config')
 const checkJwt = auth({
-    audience: 'http://localhost:3001',
-    issuerBaseURL: 'https://dev-a6gv3ggc.us.auth0.com/'
+    audience: AUDIENCE,
+    issuerBaseURL: ISSUER_BASE_URL,
 })
 
 module.exports = checkJwt
