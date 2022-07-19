@@ -3,6 +3,7 @@ import axios from "axios";
 import { useMemo, useState } from "react";
 import { useLocalStorage } from "../../services/useStorage";
 import styles from './ProductOptions.module.css'
+import { CgChevronDoubleLeft, CgChevronDoubleRight } from "react-icons/cg";
 
 
 export default function ProductOptions({ active, setActive, stock, name, price}) {
@@ -113,7 +114,7 @@ export default function ProductOptions({ active, setActive, stock, name, price})
         <> 
             {
                 active &&
-                <div>
+                <div className={styles.modalContainer}>
                     <div className={styles.divColor}>
                         {colors?.map(color => {
                             let codeColor = stock.find(el => el.MainColor.name === color)
@@ -151,11 +152,11 @@ export default function ProductOptions({ active, setActive, stock, name, price})
                         })}
                     </div>
                     <div>
+                        <button className={styles.btnQuantity} onClick={deleteQuantity}><CgChevronDoubleLeft/></button>
                         {spanQuantity}
-                        <button onClick={addQuantity}>^</button>
-                        <button onClick={deleteQuantity}>v</button>
+                        <button className={styles.btnQuantity} onClick={addQuantity}><CgChevronDoubleRight/></button>
                     </div>
-                    <button
+                    <button className={styles.addButton}
                     onClick={idStockSelected.id ? addProductToCart : undefined}
                     >Añadir al carrito</button>
                 </div>

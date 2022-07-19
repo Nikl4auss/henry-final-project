@@ -65,8 +65,10 @@ function ProductDetail() {
               <div className={styles.divAdd}>
                 <button className={styles.add} onClick={() => setActive(!active)}>Añadir al carrito</button>
               </div>
-              <ProductOptions 
+
+              <ProductOptions className={styles.ModalBox}
                 stock={productDetail.Stocks}
+
                 active={active}
                 setActive={setActive}
                 name={productDetail.name}
