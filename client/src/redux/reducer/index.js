@@ -1,4 +1,4 @@
-import {ERROR, GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_NAME, ADD_PAGE} from '../actions/actions_types'
+import {ERROR, GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_NAME, ADD_PAGE, SET_ORDER} from '../actions/actions_types'
 
 
 const initialState = {
@@ -11,9 +11,9 @@ const initialState = {
         brand: []
     },
     name: '',
-
     cart: [],
-    pages: {firstValue:0, lastValue:11}
+    pages: {firstValue:0, lastValue:11},
+    order: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -50,6 +50,11 @@ const rootReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     pages: action.payload
+                }
+            case SET_ORDER:
+                return {
+                    ...state,
+                    order: action.payload
                 }
         default: return state;
     }

@@ -21,7 +21,7 @@ function ProductDetail() {
     model: '',
     images: []
   })
-
+  const [active, setActive ] = useState(false)
 
   const mainImage = productDetail.images[0]?.image || ''
   useEffect(() => {
@@ -30,7 +30,7 @@ function ProductDetail() {
     })
   }, [id])
 
-  const [active, setActive] = useState(false)
+
 
 
   return (
@@ -50,11 +50,6 @@ function ProductDetail() {
         {productDetail.name ? (
           <>
               <div className={styles.divImg}>
-                {/* <ul>
-                  {productDetail.images?.map(({image, main}, inx) => {
-                    return <img key={inx} src={image} alt={productDetail.name} />
-                  })}
-                </ul> */}
                 <button className={styles.arrowButtons}><TiChevronLeft/></button>
                 <img className={styles.img} src={mainImage} alt="" />
                 <button><TiChevronRight/></button>
@@ -66,36 +61,18 @@ function ProductDetail() {
                 <p className={styles.price}>${productDetail.price}</p>
               </div>
               <div className={styles.divStars}><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStarOutline/></div>
-              {/* <div className={styles.divColorTitle}>Color</div>
-              <div  className={styles.divColor} name="" id="">
-                {productDetail.Stocks?.map(({MainColor}, inx) => {
-                  if(MainColor?.name){
-                    return <button  className={styles.stockColor} key={inx} value={MainColor.name}>
-                      <span className= {styles.spanColor} style={{background:MainColor.code}}></span>
-                      </button>
-                  }
-                  return null
-                })}
-              </div> */}
-              {/* <div className={styles.divSizeTitle}>Talle</div>
-              <div className={styles.divSize} name="" id="">
-                {productDetail.Stocks?.sort((a, b)=> a.Size.name-b.Size.name).map(({Size}, inx) => {
-                  if(Size?.name){
-                    return <button className={styles.stockSize} key={inx} value={Size.name}>{Size.name}</button>
-                  }
-                  return null
-                })}
-              </div> */}
-                {/* <button className={`${styles.divBuy} ${styles.buy} `}>Comprar</button> */}
-              
+              <div className={styles.divColorTitle}>Color</div>
               <div className={styles.divAdd}>
-                <button className={styles.add} onClick={()=>setActive(!active)}>Elegí las opciones</button>
+                <button className={styles.add} onClick={() => setActive(!active)}>Añadir al carrito</button>
               </div>
 
               <ProductOptions className={styles.ModalBox}
+                stock={productDetail.Stocks}
+
                 active={active}
                 setActive={setActive}
-                stock={productDetail.Stocks}
+                name={productDetail.name}
+                price={productDetail.price}
               />
               <div className={styles.divDescriptionTitle}>Descripción</div>
               <div className={styles.divDescription}>
@@ -109,14 +86,10 @@ function ProductDetail() {
               <div className={styles.divComments} datacol={5} datarow={7}>
                 <button className={styles.buttonComment}>Escribí tu reseña</button>
               </div>
-            
           </>):<div>Cargando</div>}
-          
-        
       </div>
     </>
   )
-  
 }
 
 export default ProductDetail
