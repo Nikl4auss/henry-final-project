@@ -60,7 +60,11 @@ router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
             price,
             brand,
             category,
-            image
+            image,
+            stock_product, 
+            size, 
+            mainColor, 
+            store
         } = req.body
         const newProduct = await Product.create({
             name,
@@ -92,6 +96,38 @@ router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
 
             res.send(newProduct)
         }
+
+        //*******Crea Instancia de Stock**** */
+        const newStock = await Stock.create({
+            stock_product: parseInt(stock_product, 10),
+          });
+      
+          const dbProduct = await Product.findOne({
+            where: { name: name },
+          });
+          newStock.setProduct(dbProduct);
+      
+          if (mainColor) {
+            const [dbMainColor] = await MainColor.findOrCreate({
+              where: { name: mainColor },
+            });
+            newStock.setMainColor(dbMainColor);
+          }
+      
+          if (size) {
+            const [dbsize] = await Size.findOrCreate({
+              where: { name: size.toString() },
+            });
+            newStock.setSize(dbsize);
+          }
+      
+          if (store) {
+            const [dbStore] = await Store.findOrCreate({
+              where: { name: store },
+            });
+            newStock.setStore(dbStore);
+          }
+
     } catch (error) {
         next(error)
     }
