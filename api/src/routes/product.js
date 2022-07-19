@@ -29,7 +29,7 @@ router.get('/', async (req, res, next) => {
             },
             {
                 model: Stock,
-                attributes: ['stock_product'],
+                attributes: ['id', 'stock_product'],
                 include: [
                     {
                         model: MainColor,
