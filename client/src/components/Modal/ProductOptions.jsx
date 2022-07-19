@@ -81,14 +81,12 @@ export default function ProductOptions({ active, setActive, stock, name, price})
     }
 
     async function addProductToCart() {
-        if(isAuthenticated){
-            try {
-                await axios.post(`http://localhost:3001/line_cart/${idStockSelected.id}?quantity=${quantity}`)
-                setActive(!active)
-            } catch(err){
-                console.log(err)
-            }
-        } else {
+            // try {
+            //     await axios.post(`http://localhost:3001/line_cart/${idStockSelected.id}?quantity=${quantity}`)
+            //     setActive(!active)
+            // } catch(err){
+            //     console.log(err)
+            // }
             let validateCart = cartLS.find(el => el.id === idStockSelected.id) 
             console.log(validateCart)
             if(validateCart) return;
@@ -100,9 +98,9 @@ export default function ProductOptions({ active, setActive, stock, name, price})
                 price: price
             }])
             setActive(!active)
-            }
-        }
+            }    
     }
+
 
     let spanQuantity = useMemo(() => {
         return <span>{quantity}</span>
