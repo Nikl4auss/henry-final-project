@@ -67,12 +67,13 @@ export default function Card({ id, name, price, image, brand, stock }) {
                         </div>
                         </Link>
                     </div>
-                
+                <div className={styles.OptionsModal}>
                 <ProductOptions 
                     stock={stock}
                     active={active}
                     setActive={setActive}
                 />
+                </div>
             </>
         );
     }
