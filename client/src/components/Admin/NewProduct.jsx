@@ -64,7 +64,11 @@ export default function NewProduct() {
         model: "",
         image: [],
         brand: "",
-        category: []
+        category: [],
+        stock_product: "",
+        size: "",
+        mainColor: "",
+        store: ""
     })
 
     async function handleChange(e) {
@@ -154,6 +158,17 @@ export default function NewProduct() {
         })
     }
 
+    function handleChange3(e){
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value
+        })
+        setErrors(validate({
+            ...input,
+            [e.target.name] : e.target.value
+        }))
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         if (errors.nombre || errors.descripción || errors.precio || errors.modelo || errors.imagen || errors.marca || errors.categoría) {
@@ -173,7 +188,11 @@ export default function NewProduct() {
                 model: "",
                 image: [],
                 brand: "",
-                category: []
+                category: [],
+                stock_product: "",
+                size: "",
+                mainColor: "",
+                store: ""
             })
             return alert("Producto creado!")
         }
@@ -262,6 +281,43 @@ export default function NewProduct() {
                                         <button onClick={() => handleDelete2(d)}>x</button>
                                     </div>
                                 )}
+                            </div>
+                            <div>
+                                <label>Stock:</label>
+                                <input
+                                    type='text'
+                                    value={input.stock_product}
+                                    name='stock_product'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Talle:</label>
+                                <input
+                                    type='text'
+                                    value={input.size}
+                                    name='size'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Color:</label>
+                                <input
+                                    type='text'
+                                    value={input.mainColor}
+                                    name='mainColor'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Tienda:</label>
+                                <input
+                                    type='text'
+                                    value={input.store}
+                                    name='store'
+                                    placeholder='default'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
                             </div>
                             <button type='submit'>Crear</button>
                         </form>

@@ -9,6 +9,7 @@ export function getProducts(filters = {}, name){
     return async function(dispatch){
         try {
             const data = await apiGetProducts(filters, name) 
+
             dispatch({
                 type: GET_PRODUCTS,
                 payload: data,
@@ -52,6 +53,12 @@ export function addPage(payload){
     }
 }
 
+export function setOrder(payload) {
+    return {
+        type: SET_ORDER,
+        payload: payload
+    }
+}
 // export function getProductsName(name){
 //     return async function (dispatch){
 //         try{
