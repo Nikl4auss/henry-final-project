@@ -18,6 +18,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
         redirectUri='http://localhost:3000/home'
         cacheLocation="localstorage"
         onRedirectCallback={onRedirectCallback}
+        audience='http://localhost:3001'
         >
             {children}
         </Auth0Provider>
