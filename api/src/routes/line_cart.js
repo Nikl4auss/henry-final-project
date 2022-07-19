@@ -21,6 +21,7 @@ router.post('/:id', async(req, res, next) => {
         })
 
         idStock.addLine_cart(product)
+        cart.addProduct(product)
 
         res.status(200).send('Se agregó el producto al carrito')
     }catch(err){

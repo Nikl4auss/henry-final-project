@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Address } = require("../db")
-
+const checkJwt = require('../middleware/checkJwt')
+const checkPermissions = require('../middleware/checkPermissions')
 const router = Router();
 
 router.get('/', async (req, res, next) => {
@@ -50,7 +51,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
     try {
         const {
             name,
