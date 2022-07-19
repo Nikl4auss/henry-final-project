@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR , ADD_PAGE } from './actions_types';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR , ADD_PAGE, SET_ORDER } from './actions_types';
 import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands } from '../../services/productsServices';
 
 export function getProducts(filters = {}, name){
