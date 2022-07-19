@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR , ADD_PAGE } from './actions_types';
-import { getProducts as apiGetProducts } from '../../services/productsServices';
+import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands } from '../../services/productsServices';
 
 export function getProducts(filters = {}, name){
     
@@ -27,20 +27,20 @@ export function getProducts(filters = {}, name){
 
 export function getCategories (){
     return async function(dispatch){
-        const response = await axios.get(`http://localhost:3001/categories`) 
+        const data = await apiGetCategories()
         dispatch({
             type: GET_CATEGORIES,
-            payload: response.data,
+            payload: data,
         })
     }
 }
 
 export function getBrands (){
     return async function(dispatch){
-        const response = await axios.get(`http://localhost:3001/brands`) 
+        const data = await apiGetBrands()
         dispatch({
             type: GET_BRANDS,
-            payload: response.data,
+            payload: data,
         })
     }
 }

@@ -43,3 +43,13 @@ export async function createProduct(product, token){
 
     return data
 }
+
+export async function getBrands() {
+    const { data } = await apiInstance.get('/brands')
+    return data
+}
+
+export async function getCategories() {
+    const { data } = await apiInstance.get('/categories')
+    return data
+}
