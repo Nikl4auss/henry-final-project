@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR , ADD_PAGE } from './actions_types';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR , ADD_PAGE, SET_ORDER } from './actions_types';
 
 export function getProducts(filters = {}, name){
     let queryName = ''
@@ -24,7 +24,7 @@ export function getProducts(filters = {}, name){
     return async function(dispatch){
         try {
             const response = await axios.get(`http://localhost:3001/products${queryName}${queryFilter}`) 
-            console.log(response.data)
+            //console.log(response.data)
             dispatch({
                 type: GET_PRODUCTS,
                 payload: response.data,
@@ -68,6 +68,12 @@ export function addPage(payload){
     }
 }
 
+export function setOrder(payload) {
+    return {
+        type: SET_ORDER,
+        payload: payload
+    }
+}
 // export function getProductsName(name){
 //     return async function (dispatch){
 //         try{

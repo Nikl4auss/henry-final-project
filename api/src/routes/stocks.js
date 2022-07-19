@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const {Product, Size, MainColor, Store, Address, Stock} = require("../db")
+const {Product, Size, MainColor, Store, Address, Stock, Op} = require("../db");
+const Image_Product = require('../models/Image_Product');
 
 const router = Router();
 
@@ -46,6 +47,22 @@ if(store){
 
     res.send(newStock)
     } catch (error){
+        next(error)
+    }
+})
+
+router.get('/:id', async (req, res, next)=>{
+    let {id} = req.params
+    try{
+        return await Stock.findOne({
+            where: {id: id},
+            include: [{model: Product}]
+        })
+        .then((stock)=>{
+            res.send(stock)
+        })
+    }
+    catch(error){
         next(error)
     }
 })
