@@ -6,7 +6,6 @@ import styles from "./productItem.module.css"
 import { setOrder } from "../../redux/actions"
 
 function ProductItem({ id, price, quantity, stock, name }) {
-    //me llega un array de objetos, así: [0: {id: 225, stock_product: 5, SizeId: 12, MainColorId: 11, StoreId: 1, ProductId: 15}  
     let dispatch = useDispatch()
     const [product, setProduct] = useState({})
     const [cantidad, setCantidad] = useState(quantity)
@@ -30,9 +29,21 @@ function ProductItem({ id, price, quantity, stock, name }) {
     function oneMore(e) {
         e.preventDefault()
         if (cantidad < stock) {
-            let orderFiltered = order.filter(el => el.id !== id)
-            let NewOrder = [...orderFiltered, { id: id, title: name, unit_price: price, quantity: cantidad + 1, stock_product: stock }]
-            dispatch(setOrder(NewOrder))
+            let orderFiltered = []
+            order.forEach(prod => {
+                if (prod.id === id) {
+                    orderFiltered.push({
+                        id: id,
+                        title: name,
+                        unit_price: price,
+                        quantity: cantidad + 1,
+                        stock_product: stock
+                    })
+                } else {
+                    orderFiltered.push(prod)
+                }
+            })
+            dispatch(setOrder(orderFiltered))
             setCantidad(cantidad + 1)
         }
     }
@@ -40,14 +51,26 @@ function ProductItem({ id, price, quantity, stock, name }) {
     function oneLess(e) {
         e.preventDefault()
         if (cantidad > 1) {
-            let orderFiltered = order.filter(el => el.id !== id)
-            let NewOrder = [...orderFiltered, { id: id, title: name, unit_price: price, quantity: cantidad - 1,  stock_product: stock  }]
-            dispatch(setOrder(NewOrder))
-            setCantidad(cantidad - 1)
+            let orderFiltered = []
+            order.forEach(prod => {
+                if (prod.id === id) {
+                    orderFiltered.push({
+                        id: id,
+                        title: name,
+                        unit_price: price,
+                        quantity: cantidad - 1,
+                        stock_product: stock
+                    })
+                } else {
+                    orderFiltered.push(prod)
+                }
+                dispatch(setOrder(orderFiltered))
+                setCantidad(cantidad - 1)
+            })
         }
     }
 
-    function productDeleted(e){
+    function productDeleted() {
         let cartFilter = cart.filter(prod => prod.id !== id)
         let orderFilter = order.filter(prod => prod.id !== id)
         setCart(cartFilter)
@@ -67,8 +90,8 @@ function ProductItem({ id, price, quantity, stock, name }) {
                     </div>
                 </div>
                 <div>Subtotal: ${product?.Product.price * cantidad}.00</div>
-                <button 
-                onClick={(e) => productDeleted(e)}>Elminiar producto</button>
+                <button
+                    onClick={(e) => productDeleted(e)}>Eliminar producto</button>
             </div>
             : <div>loading</div>
     }</div>
