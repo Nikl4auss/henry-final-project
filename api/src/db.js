@@ -1,4 +1,4 @@
-const {DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DATABASE_URL} = require('./utils/config');
+const { DATABASE_URL, DB_SSL } = require('./utils/config');
 const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
@@ -6,7 +6,7 @@ const path = require('path');
 const sequelize = new Sequelize(DATABASE_URL, {
     logging: false,
     dialectOptions: {
-        ssl:{
+        ssl: DB_SSL && {
             rejectUnauthorized: false
         }
     }
