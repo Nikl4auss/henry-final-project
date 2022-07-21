@@ -20,6 +20,7 @@ function Paginado() {
 
     const pageNumbers = [];
     const [active, setActive] = useState(currentPage)
+
     let allPage = Math.ceil(allProducts?.length / productsPerPage)
 
     for (let i = 0; i <= allPage-1; i++) {
