@@ -17,12 +17,10 @@ function Paginado() {
     const [currentPage, setCurrentPage] = useState(0);
     // eslint-disable-next-line no-unused-vars
     const [productsPerPage, setProductsPerPage] = useState(12);
-    const indexOfLastOfProduct = currentPage * productsPerPage;
-    const indexOfFirstOfProduct = indexOfLastOfProduct - productsPerPage;
-    const currentProducts = allProducts.slice(indexOfFirstOfProduct, indexOfLastOfProduct);
 
     const pageNumbers = [];
-    const [active, setActive] = useState(1)
+    const [active, setActive] = useState(currentPage)
+
     let allPage = Math.ceil(allProducts?.length / productsPerPage)
 
     for (let i = 0; i <= allPage-1; i++) {
@@ -34,14 +32,14 @@ function Paginado() {
     }
 
     const previous = function (setActive) {
-        if (currentPage > 1) {
+        if (currentPage >= 1) {
             setCurrentPage(currentPage - 1);
             setActive(currentPage - 1)
         }
     };
 
     const next = function (setActive, allPage) {
-        if (currentPage < allPage) {
+        if (currentPage < allPage-1) {
             setCurrentPage(currentPage + 1);
             setActive(currentPage + 1)
         }

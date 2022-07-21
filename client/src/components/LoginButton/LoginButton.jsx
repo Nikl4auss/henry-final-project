@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './LoginButton.module.css'
 
 function LoginButton() {
-    const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect } = useAuth0()
   return (
     <button type='button' className={styles.loginButton} onClick={() => loginWithRedirect()}>Log In</button>
   )
