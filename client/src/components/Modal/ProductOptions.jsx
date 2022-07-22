@@ -3,10 +3,11 @@ import axios from "axios";
 import { useMemo, useState } from "react";
 import { useLocalStorage } from "../../services/useStorage";
 import styles from './ProductOptions.module.css'
-import { CgChevronDoubleLeft, CgChevronDoubleRight } from "react-icons/cg";
+import { BsChevronUp, BsChevronDown } from "react-icons/bs";
+import { IoMdClose } from "react-icons/io";
 
 
-export default function ProductOptions({ active, setActive, stock, name, price}) {
+export default function ProductOptions({ active, setActive, stock, name, price, image}) {
     const { isAuthenticated } = useAuth0();
     const [ cartLS, setCartLS ] = useLocalStorage('cart', [])
     const [ colorSelected, setColorSelected ] = useState('')
@@ -47,7 +48,6 @@ export default function ProductOptions({ active, setActive, stock, name, price})
     sizes.sort((a, b) => a - b)
 
     function colorOptions(e, color){
-        console.log(e.target.value)
         e.preventDefault()
         if(colorSelected !== color){ 
         setColorSelected(color)
@@ -114,51 +114,67 @@ export default function ProductOptions({ active, setActive, stock, name, price})
         <> 
             {
                 active &&
-                <div className={styles.modalContainer}>
-                    <div className={styles.divColor}>
-                        {colors?.map(color => {
-                            let codeColor = stock.find(el => el.MainColor.name === color)
-                            return (
-                                <button 
-                                className={
-                                    colorsFiltered.length === 0 ? styles.stockColor :
-                                    colorsFiltered?.includes(color) ? styles.stockColor : styles.noStockColor}
-                                onClick={
-                                    colorsFiltered.length === 0 ? (e) => colorOptions(e, color) :
-                                    colorsFiltered?.includes(color) ? (e) => colorOptions(e, color) : undefined}
-                                value={color}
-                                >
-                                    <span
-                                    className={styles.buttonColor}
-                                    style={{background: codeColor.MainColor.code}}
+                <div className={styles.container}>
+                    <div className={styles.modalContainer}>
+                        <button 
+                        onClick={() => setActive(!active)}
+                        className={styles.close}><IoMdClose/></button>
+                        <div className={styles.divName}>
+                            <img 
+                            className={styles.image}
+                            src={image} alt="Product" />
+                            <h3 className={styles.title}>{name}</h3>
+                        </div>
+                        <div className={styles.divColor}>
+                            {colors?.map(color => {
+                                let codeColor = stock.find(el => el.MainColor.name === color)
+                                return (
+                                    <button 
+                                    className={
+                                        styles.stockColor }
+                                    onClick={
+                                        colorsFiltered.length === 0 ? (e) => colorOptions(e, color) :
+                                        colorsFiltered?.includes(color) ? (e) => colorOptions(e, color) : undefined}
                                     value={color}
-                                    ></span>
-                                </button>
-                            )
-                        })}
+                                    >
+                                        <span
+                                        className={ colorSelected === color ? styles.colorSelected : styles.buttonColor }
+                                        style={{background: codeColor.MainColor.code}}
+                                        value={color}
+                                        ></span>
+                                        <span className={colorsFiltered.length === 0 ? undefined :
+                                            colorsFiltered?.includes(color) ? undefined : styles.noStockColor}>
+                                        </span>
+                                    </button>
+                                )
+                            })}
+                        </div>
+                        <div className={styles.divSize}>
+                            {sizes?.map(size => {
+                                return (
+                                    <button
+                                    className={ sizeSelected === size ? styles.sizeIsSelected :
+                                        sizesFiltered.length === 0 ? styles.stockSize :
+                                        sizesFiltered?.includes(size) ? styles.stockSize : styles.noStockSize}
+                                    value={size}
+                                    onClick={ 
+                                        sizesFiltered.length === 0 ? sizeOptions :
+                                        sizesFiltered?.includes(size) ? sizeOptions : undefined }
+                                    >{size}</button>
+                                )
+                            })}
+                        </div>
+                        <div className={styles.divQuantity}>
+                            <div className={styles.quantity}>{spanQuantity}</div>
+                            <div className={styles.divButtonQuantity}>
+                                <button className={styles.btnQuantity} onClick={addQuantity}><BsChevronUp/></button>
+                                <button className={styles.btnQuantity} onClick={deleteQuantity}><BsChevronDown/></button>
+                            </div>
+                        </div>
+                        <button className={styles.addButton}
+                        onClick={idStockSelected.id ? addProductToCart : undefined}
+                        >Añadir al carrito</button>
                     </div>
-                    <div className={styles.divSize}>
-                        {sizes?.map(size => {
-                            return (
-                                <button
-                                className={sizesFiltered.length === 0 ? styles.stockSize :
-                                    sizesFiltered?.includes(size) ? styles.stockSize : styles.noStockSize}
-                                value={size}
-                                onClick={
-                                    sizesFiltered.length === 0 ? sizeOptions :
-                                    sizesFiltered?.includes(size) ? sizeOptions : undefined }
-                                >{size}</button>
-                            )
-                        })}
-                    </div>
-                    <div>
-                        <button className={styles.btnQuantity} onClick={deleteQuantity}><CgChevronDoubleLeft/></button>
-                        {spanQuantity}
-                        <button className={styles.btnQuantity} onClick={addQuantity}><CgChevronDoubleRight/></button>
-                    </div>
-                    <button className={styles.addButton}
-                    onClick={idStockSelected.id ? addProductToCart : undefined}
-                    >Añadir al carrito</button>
                 </div>
                 }
             </>
