@@ -9,24 +9,21 @@
 }
 
 .logo{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 3rem;
-    font-weight: bolder;
-    color: rgb(255, 255, 255);
-    text-shadow: 3px 5px 14px black;
-    text-align: right;
-    margin: 20px;
+display: flex;
+justify-content: right;
+margin-right: 5%;
+margin-top:8%;
 }
 
 .navHome {
     padding: 0.6em 2em;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1rem;
-    color: rgba(255, 255, 255);
-    background: rgb(29, 29, 29);
+    color: rgb(91, 53, 53);
+    background: white;
     cursor: pointer;
     border-radius: 10px;
     position: absolute;
-    top: 70%;
-    left: 85%;
+    top: 40%;
+    left: 77%;
 }

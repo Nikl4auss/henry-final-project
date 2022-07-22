@@ -36,7 +36,9 @@ export default function NavBar() {
         <nav className={styles.navbarContainer}>
             <div className={styles.divTop}>
                 <div className={styles.logo}>
-                    <button onClick={clickToHome}>Davo Shoes</button>
+                <a href="http://localhost:3000/home">
+                    <img width="200" height="70" src="https://res.cloudinary.com/davoshoes/image/upload/v1658524699/LOGO/davo_shoes_1000_500_px_rxlpz2.png"/>
+                </a>
                 </div>
                 <SearchBar/>
                 <button className={styles.btnNav} onClick={clickToShopingCart}>Mi carrito</button>
