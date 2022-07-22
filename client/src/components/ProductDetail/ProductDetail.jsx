@@ -68,7 +68,7 @@ function ProductDetail() {
 
               <ProductOptions className={styles.ModalBox}
                 stock={productDetail.Stocks}
-
+                image={mainImage}
                 active={active}
                 setActive={setActive}
                 name={productDetail.name}

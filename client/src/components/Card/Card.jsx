@@ -74,6 +74,7 @@ export default function Card({ id, name, price, image, brand, stock }) {
                     setActive={setActive}
                     name={name}
                     price={price}
+                    image={image}
                 />
                 </div>
             </>
