@@ -3,7 +3,7 @@ const router = Router();
 const checkoutCart = require("../controllers/payments");
 
 
-router.post("/",checkoutCart)
+router.post("/", checkoutCart)
 
 router.post('/feedback', (req,res)=>{
 try {

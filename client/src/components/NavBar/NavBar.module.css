@@ -27,13 +27,11 @@
 }
 
 .logo{
-    color: rgb(15, 15, 15);
-    justify-self: start;
-    margin-left: 20px;
-    font-size: large;
+    justify-self:auto;
+    margin-left:50px;
     /* cursor: pointer; */
-    background-color: #dad6d6;
-    text-decoration: bisque;
+    background-color: none;
+    margin-top: 6px;
 }
 
 .envío{
