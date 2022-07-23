@@ -57,6 +57,7 @@
     letter-spacing: 1px;
     font-family: 'Montserrat', sans-serif;
     margin-top: -10px;
+    margin-bottom: 1rem;
 }
 
 .stockSize{
@@ -72,7 +73,7 @@
     box-shadow: .1rem .1rem .5rem rgb(0 0 0 / 30%);
     padding: 0 .8rem;
     text-align: center;
-    transition-duration: 0.4s;
+    transition: 0.1s;
 }
 .stockSize:hover {
     background-color: #5A5A5A; 
@@ -101,7 +102,7 @@
     border-radius: 50%;
     border: 1px solid black;
     box-shadow: .1rem .1rem .5rem rgb(0 0 0 / 30%);
-    transition: .5s;
+    transition: .1s;
 }
 
 .stockColor{
@@ -118,7 +119,7 @@
     border-radius: 50%;
     border: 1px solid rgb(25, 10, 243);
     box-shadow: .1rem .1rem .5rem rgb(0 0 0 / 30%);
-    transition: .5s;
+    transition: .1s;
 }
 
 .divSize{
@@ -175,7 +176,7 @@
     border-radius: 10px;
     padding: 0px 14px;
     text-align: center;
-    transition-duration: 0.4s;
+    transition-duration: 0.1s;
     background-color: rgb(0 0 0 / 20%);
     text-decoration:line-through;
 }
@@ -198,6 +199,14 @@
 .btnQuantity:hover {
     background-color: #5A5A5A;
     color: white;
+}
+
+.notTouch {
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: default;
 }
 
 .divQuantity {
