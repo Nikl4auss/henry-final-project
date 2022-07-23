@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
+    "start": "cross-env NODE_ENV=PRODUCTION node index.js",
     "dev": "cross-env NODE_ENV=DEVELOPMENT nodemon index.js"
   },
   "dependencies": {
