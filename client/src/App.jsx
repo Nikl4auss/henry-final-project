@@ -10,6 +10,7 @@ import Success from './components/Payment/Success';
 import Pending from './components/Payment/Pending';
 import Failure from './components/Payment/Failure';
 import { ProtectedRoute } from './components/Admin/ProtectedRoute';
+import Sucursales from './components/Sucursales/Sucursales';
 
 function App() {
   return (
@@ -25,9 +26,9 @@ function App() {
           <Route path = '/pago/failure' element= {<Failure/>}/>
           <Route path = '/pago/pending' element= {<Pending/>}/>
           <Route path='/product'>
-            <Route path=':id' element= {<ProductDetail />}/>
-    
+          <Route path=':id' element= {<ProductDetail />}/>
           </Route>
+          <Route path='/sucursales' element={<Sucursales />}/>
         </Route>
       </Routes>
     </div>
