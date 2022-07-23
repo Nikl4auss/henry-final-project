@@ -55,7 +55,7 @@ function Paginado() {
                 {console.log(allPage)}
                 <button className={styles.btnpage} onClick={() => previous(setActive)}>Prev</button>
                 {pageNumbers && pageNumbers.map((number) => (
-                    <button className={number === active ? `${styles.active}` : ''}
+                    <button className={number === active ? `${styles.active}` : '' }
 
                         onClick={() => {
                             setActive(number)
