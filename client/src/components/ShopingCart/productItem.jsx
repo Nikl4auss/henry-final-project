@@ -81,7 +81,7 @@ function ProductItem({ id, price, quantity, stock, name }) {
         product?.id ?
             <div className={styles.cardCart}>
                 <h3>{product?.Product.name}</h3>
-                <h3>${product?.Product.price}.00</h3>
+                <h3>${product?.Product.price}</h3>
                 <div className={styles.conteinerQuantity}>
                     <h3>Cantidad: {cantidad}</h3>
                     <div className={styles.containerBttn}>
