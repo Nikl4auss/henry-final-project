@@ -6,7 +6,8 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import styles from './NewProduct.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
-import { createProduct } from '../../services/productsServices'
+import { createProduct } from '../../services/productsServices';
+import ImageUploader from './Uploader.jsx';
 
 
 
@@ -40,7 +41,7 @@ function validate(input) {
         errors.modelo = "Se necesita definir el modelo.";
     }
     if (!/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/.test(input.image)) {
-        errors.imagen = "La URL es inválida.";
+        errors.imagen = "Se requiere una imagen al menos.";
     }
     if (input.brand === "empty") {
         errors.marca = "Se requiere la marca del producto.";
@@ -56,6 +57,8 @@ export default function NewProduct() {
     const brands = useSelector((state) => state.brands)
     const categories = useSelector((state) => state.categories)
     const [errors, setErrors] = useState({})
+
+    const [images, setImages] = useState([]);
 
     const [input, setInput] = useState({
         name: "",
@@ -100,27 +103,34 @@ export default function NewProduct() {
         }))
     }
 
-    async function handleSelect(e) {
-        e.preventDefault()
-        if (e.target.value === "Image") {
-            var value = await swal({
-                title: "Agregar imagen",
-                text: "Copia la URL de la imagen",
-                content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
-            })
-            if (value !== null) {
-                setInput({
-                    ...input,
-                    image: [...input.image, value]
-                })
-                setErrors(validate({
-                    ...input,
-                    image: [...input.image, value]
-                }))
-            }
-            return
-        }
-    }
+    // async function handleSelect(e) {
+    //     e.preventDefault()
+    //     if (e.target.value === "Image") {
+    //         var value = await swal({
+    //             title: "Agregar imagen",
+    //             text: "Copia la URL de la imagen",
+    //             content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
+    //         })
+    //         if (value !== null) {
+    //             setInput({
+    //                 ...input,
+    //                 image: [...input.image, value]
+    //             })
+    //             setErrors(validate({
+    //                 ...input,
+    //                 image: [...input.image, value]
+    //             }))
+    //         }
+    //         return
+    //     }
+    // }
+    
+    useEffect(()=>{
+        setInput({
+            ...input,
+            image: images
+        })
+    },[images])
 
     async function handleSelect2(e) {
         if (e.target.value === "Otra") {
@@ -198,7 +208,7 @@ export default function NewProduct() {
         }
         return alert("Hace falta información!")
     }
-
+console.log(input)
     useEffect(() => {
         dispatch(getBrands())
         dispatch(getCategories())
@@ -208,7 +218,8 @@ export default function NewProduct() {
             isAuthenticated ? (
 
                 <div>
-                    <div >
+                    <div>
+                        {console.log(input)}
                         <h1>Crear producto</h1>
                         <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
 
@@ -250,11 +261,12 @@ export default function NewProduct() {
                             </div>
                             <div>
                                 <label>Imagen:</label>
-                                <button
+                                {/* <button
                                     value={"Image"}
                                     name='image'
                                     onClick={(e) => handleSelect(e)}
-                                >Agregar</button>
+                                >Agregar</button> */}
+                                <ImageUploader images={images} setImages={setImages} />
                             </div>
                             <div>Marca:
                                 <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
