@@ -6,6 +6,7 @@ import { useLocalStorage } from "../../services/useStorage";
 import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
 import { payCart } from "../../services/shopingCart";
+import Shipping from "../Payment/Shipping";
 
 export function ShopingCart() {
     const { loginWithRedirect, isAuthenticated } = useAuth0()
@@ -74,6 +75,8 @@ export function ShopingCart() {
                 <h1>Total:</h1>
                 <h1>{total}</h1>
             </div>
+            {order.length>0 && 
+            <Shipping/>}
             <button onClick={redirectToPay}>Pagar</button>
             <br />
 

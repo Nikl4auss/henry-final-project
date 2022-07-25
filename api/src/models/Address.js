@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
           primaryKey: true,
           autoIncrement: true,
         },
-        name_street: {
+        street: {
           type: DataTypes.STRING,
           allowNull: false,
         },
@@ -17,11 +17,34 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        city:{
+        apartment:{
           type: DataTypes.STRING,
           allowNull: true,
-        }
-        ,
+        },
+        country:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        state:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        city:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        postalCode:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        phone:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        comment:{
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
         primary : {
             type: DataTypes.BOOLEAN,
             default: true
