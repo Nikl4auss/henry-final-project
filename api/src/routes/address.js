@@ -7,7 +7,7 @@ const router = Router();
 
 
 
-router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const {
             name,

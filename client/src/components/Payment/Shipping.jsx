@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-function postAddress(payload, token) {
+function postAddress(payload) {
     return async function (dispatch) {
         var json = await axios.post("http://localhost:3001/address", payload, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     'Authorization': `Bearer ${token}`
+            // }
         });
         return json;
     }
@@ -23,7 +23,7 @@ function validate(input) {
         errors.lastName = "Apellido es requerido.";
     } else if (!input.dni) {
         errors.dni = "Número de DNI es requerido.";
-    } else if (input.street) {
+    } else if (!input.street) {
         errors.street = "Calle para entrega es requerida.";
     } else if (!input.number) {
         errors.number = "Altura de la calle es requerida.";
@@ -51,7 +51,7 @@ export default function Shipping() {
         dni: "",
         street: "",
         number: "",
-        aparment: "",
+        apartment: "",
         country: "",
         state: "",
         city: "",
@@ -152,7 +152,7 @@ console.log(input)
                     ></input>
                 </div>
                 <div>
-                    <label>Departamento:</label>
+                    <label>Piso/Departamento/Lote:</label>
                     <input
                         type='text'
                         value={input.apartment}
