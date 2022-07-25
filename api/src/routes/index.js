@@ -10,7 +10,7 @@ const colors = require('./colors')
 const stock = require('./stocks')
 const line_cart = require('./line_cart')
 const payment = require('./payment')
-const address = require('./address.js')
+const address = require('./address')
 
 const router = Router();
 

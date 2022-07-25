@@ -47,3 +47,5 @@ router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
         next(error)
     }
 })
+
+module.exports = router;
