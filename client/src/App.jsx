@@ -13,6 +13,7 @@ import { ProtectedRoute } from './components/Admin/ProtectedRoute';
 import Sucursales from './components/Sucursales/Sucursales';
 import ModifyProduct from './components/Admin/Modified Product/ModifyProduct';
 
+
 function App() {
   return (
     <div className="App">
