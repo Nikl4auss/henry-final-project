@@ -11,6 +11,7 @@ import Pending from './components/Payment/Pending';
 import Failure from './components/Payment/Failure';
 import { ProtectedRoute } from './components/Admin/ProtectedRoute';
 import Sucursales from './components/Sucursales/Sucursales';
+import ModifyProduct from './components/Admin/Modified Product/ModifyProduct';
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
           <Route path='/product'>
           <Route path=':id' element= {<ProductDetail />}/>
           </Route>
-          <Route path='/sucursales' element={<Sucursales />}/>
+          <Route exact path='/sucursales' element={<Sucursales />}/>
+          <Route exact path='/admin/editarProducto/:id' element={<ModifyProduct />} />
         </Route>
       </Routes>
     </div>
