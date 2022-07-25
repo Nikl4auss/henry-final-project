@@ -34,7 +34,7 @@ router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
             phone,
             comment
         })
-        const [dbUser] = await Brand.findOrCreate({
+        const [dbUser] = await User.findOrCreate({
             where: { name: name,
                      lastName: lastName,
                      dni: dni }
