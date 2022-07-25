@@ -39,7 +39,7 @@ router.post('/', async (req, res, next) => {
                      lastName: lastName,
                      dni: dni }
         })
-        dbUser.addUser(newAddress)
+        dbUser.addAddress(newAddress)
 
         res.send(newAddress)
 

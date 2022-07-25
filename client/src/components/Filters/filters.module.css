@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+
 .divFilters {
     grid-column: 1/2;
     grid-row: 2/3;
     position: fixed;
     width: 20vw;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #4E4E4E;
 }
 
@@ -32,6 +34,8 @@
     flex-direction: column;
     overflow: auto;
     height: 30vh;
+    align-items: flex-start;
+    font-weight: 300;
 }
 
 .filtersEach::-webkit-scrollbar {
@@ -62,14 +66,14 @@
 
 
 .title{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
-    font-weight:normal;
+    font-weight:500;
     color: #4E4E4E;
 }
 
 .btnFilters{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight:lighter;
+    font-family: 'Montserrat', sans-serif;    
+    font-weight: 300;
     color: #4E4E4E;
 }
