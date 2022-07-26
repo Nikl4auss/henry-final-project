@@ -6,6 +6,9 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import styles from './NewProduct.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { createProduct } from '../../services/productsServices'
+import validate from '../../services/validate';
+import ImageUploader from './Uploader.jsx';
 
 
 
@@ -22,40 +25,14 @@ function postProduct(payload, token) {
     }
 }
 
-function validate(input) {
-    let errors = {};
-    if (!input.name) {
-        errors.nombre = "Se necesita un nombre.";
-    }
-    if (!input.description) {
-        errors.descripción = "Se necesita una descripción del producto.";
-    }
-    if (!input.price) {
-        errors.precio = "Se necesita asignarle un precio al producto.";
-    }
-    if (input.price < 0) {
-        errors.precio = "No está permitido un número negativo.";
-    }
-    if (!input.model) {
-        errors.modelo = "Se necesita definir el modelo.";
-    }
-    if (!/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/.test(input.image)) {
-        errors.imagen = "La URL es inválida.";
-    }
-    if (input.brand === "empty") {
-        errors.marca = "Se requiere la marca del producto.";
-    }
-    if (!input.category[0]) {
-        errors.categorías = "Una categoría es requerida.";
-    }
-    return errors;
-};
 export default function NewProduct() {
     const { isAuthenticated, getAccessTokenSilently } = useAuth0();
     const dispatch = useDispatch()
     const brands = useSelector((state) => state.brands)
     const categories = useSelector((state) => state.categories)
     const [errors, setErrors] = useState({})
+
+    const [images, setImages] = useState([]);
 
     const [input, setInput] = useState({
         name: "",
@@ -64,7 +41,11 @@ export default function NewProduct() {
         model: "",
         image: [],
         brand: "",
-        category: []
+        category: [],
+        stock_product: "",
+        size: "",
+        mainColor: "",
+        store: ""
     })
 
     async function handleChange(e) {
@@ -96,27 +77,34 @@ export default function NewProduct() {
         }))
     }
 
-    async function handleSelect(e) {
-        e.preventDefault()
-        if (e.target.value === "Image") {
-            var value = await swal({
-                title: "Agregar imagen",
-                text: "Copia la URL de la imagen",
-                content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
-            })
-            if (value !== null) {
-                setInput({
-                    ...input,
-                    image: [...input.image, value]
-                })
-                setErrors(validate({
-                    ...input,
-                    image: [...input.image, value]
-                }))
-            }
-            return
-        }
-    }
+    // async function handleSelect(e) {
+    //     e.preventDefault()
+    //     if (e.target.value === "Image") {
+    //         var value = await swal({
+    //             title: "Agregar imagen",
+    //             text: "Copia la URL de la imagen",
+    //             content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
+    //         })
+    //         if (value !== null) {
+    //             setInput({
+    //                 ...input,
+    //                 image: [...input.image, value]
+    //             })
+    //             setErrors(validate({
+    //                 ...input,
+    //                 image: [...input.image, value]
+    //             }))
+    //         }
+    //         return
+    //     }
+    // }
+    
+    useEffect(()=>{
+        setInput({
+            ...input,
+            image: images
+        })
+    },[images])
 
     async function handleSelect2(e) {
         if (e.target.value === "Otra") {
@@ -154,6 +142,17 @@ export default function NewProduct() {
         })
     }
 
+    function handleChange3(e){
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value
+        })
+        setErrors(validate({
+            ...input,
+            [e.target.name] : e.target.value
+        }))
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         if (errors.nombre || errors.descripción || errors.precio || errors.modelo || errors.imagen || errors.marca || errors.categoría) {
@@ -165,7 +164,7 @@ export default function NewProduct() {
         }
         else if (input.name) {
             const token = await getAccessTokenSilently()
-            dispatch(postProduct(input, token))
+            await createProduct(input, token)
             setInput({
                 name: "",
                 description: "",
@@ -173,13 +172,17 @@ export default function NewProduct() {
                 model: "",
                 image: [],
                 brand: "",
-                category: []
+                category: [],
+                stock_product: "",
+                size: "",
+                mainColor: "",
+                store: ""
             })
             return alert("Producto creado!")
         }
         return alert("Hace falta información!")
     }
-
+console.log(input)
     useEffect(() => {
         dispatch(getBrands())
         dispatch(getCategories())
@@ -189,7 +192,8 @@ export default function NewProduct() {
             isAuthenticated ? (
 
                 <div>
-                    <div >
+                    <div>
+                        {console.log(input)}
                         <h1>Crear producto</h1>
                         <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
 
@@ -231,11 +235,12 @@ export default function NewProduct() {
                             </div>
                             <div>
                                 <label>Imagen:</label>
-                                <button
+                                {/* <button
                                     value={"Image"}
                                     name='image'
                                     onClick={(e) => handleSelect(e)}
-                                >Agregar</button>
+                                >Agregar</button> */}
+                                <ImageUploader images={images} setImages={setImages} />
                             </div>
                             <div>Marca:
                                 <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
@@ -262,6 +267,43 @@ export default function NewProduct() {
                                         <button onClick={() => handleDelete2(d)}>x</button>
                                     </div>
                                 )}
+                            </div>
+                            <div>
+                                <label>Stock:</label>
+                                <input
+                                    type='text'
+                                    value={input.stock_product}
+                                    name='stock_product'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Talle:</label>
+                                <input
+                                    type='text'
+                                    value={input.size}
+                                    name='size'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Color:</label>
+                                <input
+                                    type='text'
+                                    value={input.mainColor}
+                                    name='mainColor'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label>Tienda:</label>
+                                <input
+                                    type='text'
+                                    value={input.store}
+                                    name='store'
+                                    placeholder='default'
+                                    onChange={(e) => handleChange3(e)}
+                                ></input>
                             </div>
                             <button type='submit'>Crear</button>
                         </form>

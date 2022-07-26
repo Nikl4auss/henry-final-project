@@ -1,39 +1,24 @@
 import axios from 'axios';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR , ADD_PAGE } from './actions_types';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER } from './actions_types';
+import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands } from '../../services/productsServices';
 
-export function getProducts(filters = {}, name){
-    let queryName = ''
-    let queryFilter = ''
+export function getProducts(filters = {}, name) {
 
-    if(name.length) {
-        queryName = '?name=' + name
-    }
 
-    if (filters.category || filters.brand){
-        if(filters.category.length > 0) {
-            queryFilter.length === 0 && queryName.length === 0 ? queryFilter = '?' : queryFilter = queryFilter + '&'
-            queryFilter = queryFilter + 'categories=' + filters.category.join('-')
-        }
-        if(filters.brand.length > 0) {
-            queryFilter.length === 0 && queryName.length === 0 ? queryFilter = '?' : queryFilter = queryFilter + '&'
-            queryFilter = queryFilter + 'brands=' + filters.brand.join('-')
-        }
-    }
 
-    
-    return async function(dispatch){
+    return async function (dispatch) {
         try {
-            const response = await axios.get(`http://localhost:3001/products${queryName}${queryFilter}`) 
-            console.log(response.data)
+            const data = await apiGetProducts(filters, name)
+
             dispatch({
                 type: GET_PRODUCTS,
-                payload: response.data,
+                payload: data,
                 filters: filters,
                 name: name
             })
-            
+
         } catch (error) {
-            dispatch( {
+            dispatch({
                 type: ERROR,
                 MessageError: error
             })
@@ -41,43 +26,36 @@ export function getProducts(filters = {}, name){
     }
 }
 
-export function getCategories (){
-    return async function(dispatch){
-        const response = await axios.get(`http://localhost:3001/categories`) 
+export function getCategories() {
+    return async function (dispatch) {
+        const data = await apiGetCategories()
         dispatch({
             type: GET_CATEGORIES,
-            payload: response.data,
+            payload: data,
         })
     }
 }
 
-export function getBrands (){
-    return async function(dispatch){
-        const response = await axios.get(`http://localhost:3001/brands`) 
+export function getBrands() {
+    return async function (dispatch) {
+        const data = await apiGetBrands()
         dispatch({
             type: GET_BRANDS,
-            payload: response.data,
+            payload: data,
         })
     }
 }
 
-export function addPage(payload){
+export function addPage(payload) {
     return {
-     type: ADD_PAGE,
-     payload: payload
+        type: ADD_PAGE,
+        payload: payload
     }
 }
 
-// export function getProductsName(name){
-//     return async function (dispatch){
-//         try{
-//         const json = await axios.get(`http://localhost:3001/products?name=${name}`); //acá va la ruta de los productos
-//         return dispatch({
-//             type: GET_PRODUCTS_NAME,
-//             payload: json.data //me devuelve lo que me devuela la ruta
-//         })
-//         } catch (error) {
-//             console.log(error)
-//         }
-//     }
-// }
+export function setOrder(payload) {
+    return {
+        type: SET_ORDER,
+        payload: payload
+    }
+}

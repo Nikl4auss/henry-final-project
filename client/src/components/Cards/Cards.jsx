@@ -18,9 +18,9 @@ function Cards () {
         else dispatch(getProducts(filters, name))
     }, [dispatch, filters, name, products])
 
-    const arrayPage= useMemo(()=>{
+    const arrayPage = useMemo(()=>{
         return products.slice(pages.firstValue, pages.lastValue)
-    }, [pages]
+    }, [pages, products]
     )
     return(
         <div className={styles.divCards}>

@@ -33,12 +33,8 @@ legend {
 
 label {
     display: block;
-    margin-block: 1rem .5rem;
+    margin: 1rem 0 .5rem 0;
     font-weight: 600;
-}
-
-label:first-of-type {
-    margin-top: 0;
 }
 
   /* Inputs and textarea */

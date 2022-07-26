@@ -1,11 +1,15 @@
-const {DB_USER, DB_PASSWORD, DB_HOST, DB_NAME} = require('./utils/config');
+const { DATABASE_URL, DB_SSL } = require('./utils/config');
 const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+const sequelize = new Sequelize(DATABASE_URL, {
     logging: false,
-    native: false, 
+    dialectOptions: {
+        ssl: DB_SSL && {
+            rejectUnauthorized: false
+        }
+    }
 })
 
 const basename = path.basename(__filename);

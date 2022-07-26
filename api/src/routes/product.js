@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
             },
             {
                 model: Stock,
-                attributes: ['stock_product'],
+                attributes: ['id', 'stock_product'],
                 include: [
                     {
                         model: MainColor,
@@ -51,7 +51,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
+router.post('/', checkJwt, checkPermissions, async (req, res, next) => {
     try {
         const {
             name,
@@ -60,7 +60,11 @@ router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
             price,
             brand,
             category,
-            image
+            image,
+            stock_product,
+            size,
+            mainColor,
+            store
         } = req.body
         const newProduct = await Product.create({
             name,
@@ -89,12 +93,154 @@ router.post('/', checkJwt, checkPermissions ,async (req, res, next) => {
                 })
                 newProduct.addImages(dbImage)
             }
-
             res.send(newProduct)
         }
+
+        //*******Crea Instancia de Stock**** */
+        const newStock = await Stock.create({
+            stock_product: parseInt(stock_product, 10),
+        });
+
+        const dbProduct = await Product.findOne({
+            where: { name: name },
+        });
+        newStock.setProduct(dbProduct);
+
+        if (mainColor) {
+            const [dbMainColor] = await MainColor.findOrCreate({
+                where: { name: mainColor },
+            });
+            newStock.setMainColor(dbMainColor);
+        }
+
+        if (size) {
+            const [dbsize] = await Size.findOrCreate({
+                where: { name: size.toString() },
+            });
+            newStock.setSize(dbsize);
+        }
+
+        if (store) {
+            const [dbStore] = await Store.findOrCreate({
+                where: { name: store },
+            });
+            newStock.setStore(dbStore);
+        }
+
     } catch (error) {
         next(error)
     }
 })
+
+router.put('/', async (req, res, next) => {
+    const {
+        id,
+        name,
+        model,
+        description,
+        images,
+        price,
+        Stocks,
+        Gender,
+        Categories
+    } = req.body
+
+    const brandOfFront = req.body.Brand
+
+    try {
+        const product = await Product.findOne({
+            where: {
+                id: id
+            },
+            include: [
+                {
+                    model: Brand,
+                    attributes: ['name']
+                },
+                {
+                    model: Category,
+                    attributes: ['name']
+                }
+            ]
+        })
+
+        const categoriesOfProducts = product?.Categories.map(el => el.name)
+
+        if (name !== product.name) {
+            await product.update({
+                name: name
+            })
+        }
+        if (price !== product.price) {
+            await product.update({
+                price: price
+            })
+        }
+        if (model !== product.model) {
+            await product.update({
+                model: model
+            })
+        }
+        if (description !== product.description) {
+            await product.update({
+                description: description
+            })
+        }
+
+
+        Stocks.forEach(async st => {
+            const [stock, created] = await Stock.findOrCreate({
+                where: {
+                    id: st.id
+                }
+            })
+            if (created) {
+                stock.addProduct(product)
+            } else {
+                if (stock.stock_product !== st.stock_product) {
+                    await stock.update({
+                        stock_product: st.stock_product
+                    })
+                }
+            }
+        })
+
+        const [brandDb] = await Brand.findOrCreate({
+            where: {
+                name: brandOfFront.name
+            }
+        })
+
+        if (brandDb.name !== product.Brand.name) {
+            product.setBrand(brandDb)
+        }
+
+        Categories?.forEach(async cat => {
+            if (!categoriesOfProducts.includes(cat)) {
+                const [category] = await Category.findOrCreate({
+                    where: {
+                        name: cat
+                    }
+                })
+                product.addCategory(category)
+            }
+        })
+
+        categoriesOfProducts?.forEach(async cat => {
+            if (!Categories?.includes(cat)) {
+                const categ = await Category.findOne({
+                    where: {
+                        name: cat
+                    }
+                })
+                product.removeCategory(categ)
+            }
+        })
+        res.send('El productio fue modificado con éxito')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 module.exports = router;

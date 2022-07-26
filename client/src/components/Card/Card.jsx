@@ -66,14 +66,21 @@ export default function Card({ id, name, price, image, brand, stock }) {
                             </div> */}
                         </div>
                         </Link>
+                    <Link to={`/admin/editarProducto/${id}`}>Editar</Link>
                     </div>
-                
+                <div className={styles.OptionsModal}>
                 <ProductOptions 
                     stock={stock}
                     active={active}
                     setActive={setActive}
+                    name={name}
+                    price={price}
+                    image={image}
                 />
+                
+                </div>
             </>
         );
     }
+
 }
