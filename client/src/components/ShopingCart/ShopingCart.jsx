@@ -1,4 +1,4 @@
-import axios from "axios";
+//import axios from "axios";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrder } from "../../redux/actions";
@@ -61,7 +61,8 @@ export function ShopingCart() {
     return (
         <div>
             <div>
-                {order?.map((element) => <ProductItem
+                {order?.map((element, i) => <ProductItem
+                    key={i}
                     id={element.id}
                     quantity={element.quantity}
                     stock={element.stock_product}
