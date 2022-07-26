@@ -10,9 +10,7 @@ const router = Router();
 router.post('/', async (req, res, next) => {
     try {
         const {
-            name,
-            lastName,
-            dni,
+            addressee,
             street,
             number,
             apartment,
@@ -24,6 +22,7 @@ router.post('/', async (req, res, next) => {
             comment
         } = req.body
         const newAddress = await Address.create({
+            addressee,
             street,
             number,
             apartment,
@@ -34,12 +33,6 @@ router.post('/', async (req, res, next) => {
             phone,
             comment
         })
-        const [dbUser] = await User.findOrCreate({
-            where: { name: name,
-                     lastName: lastName,
-                     dni: dni }
-        })
-        dbUser.addAddress(newAddress)
 
         res.send(newAddress)
 

@@ -17,12 +17,8 @@ function postAddress(payload) {
 
 function validate(input) {
     let errors = {};
-    if (!input.name) {
-        errors.name = "Nombre es requerido.";
-    } else if (!input.lastName) {
-        errors.lastName = "Apellido es requerido.";
-    } else if (!input.dni) {
-        errors.dni = "Número de DNI es requerido.";
+    if (!input.addressee) {
+        errors.addressee = "Destinatario es requerido.";
     } else if (!input.street) {
         errors.street = "Calle para entrega es requerida.";
     } else if (!input.number) {
@@ -46,9 +42,7 @@ export default function Shipping() {
     const [errors, setErrors] = useState({})
 
     const [input, setInput] = useState({
-        name: "",
-        lastName: "",
-        dni: "",
+        addressee: "",
         street: "",
         number: "",
         apartment: "",
@@ -73,19 +67,17 @@ export default function Shipping() {
 
     function handleSubmit(e){
         e.preventDefault();
-        if(errors.name || errors.lastName || errors.dni || errors.street || errors.number || errors.country || errors.state || errors.city || errors.postalCode || errors.phone){
+        if(errors.addressee || errors.street || errors.number || errors.country || errors.state || errors.city || errors.postalCode || errors.phone){
             let sendErrors = [];
             for (const key in errors) {
             sendErrors.push(`${key[0].toUpperCase()+key.slice(1)}: ${errors[key]}`)
             }
             return alert(sendErrors) 
         }
-        else if (input.name){
+        else if (input.addressee){
             dispatch(postAddress(input))
             setInput({
-                name: "",
-                lastName: "",
-                dni: "",
+                addressee: "",
                 street: "",
                 number: "",
                 aparment: "",
@@ -107,29 +99,11 @@ console.log(input)
             <h2>Datos de envío</h2>
             <form onSubmit={(e)=>handleSubmit(e)}>
                 <div>
-                    <label>Nombre:</label>
+                    <label>Nombre y apellido de quien recibe:</label>
                     <input
                         type='text'
-                        value={input.name}
-                        name='name'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>Apellido:</label>
-                    <input
-                        type='text'
-                        value={input.lastName}
-                        name='lastName'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>DNI:</label>
-                    <input
-                        type='text'
-                        value={input.dni}
-                        name='dni'
+                        value={input.addressee}
+                        name='addressee'
                         onChange={(e) => handleChange(e)}
                     ></input>
                 </div>

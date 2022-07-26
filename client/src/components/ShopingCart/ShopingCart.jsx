@@ -75,8 +75,6 @@ export function ShopingCart() {
                 <h1>Total:</h1>
                 <h1>{total}</h1>
             </div>
-            {order.length>0 && 
-            <Shipping/>}
             <button onClick={redirectToPay}>Pagar</button>
             <br />
 
