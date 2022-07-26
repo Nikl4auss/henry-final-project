@@ -12,8 +12,8 @@ const line_cart = require('./line_cart')
 const payment = require('./payment')
 const address = require('./address')
 const email = require('./email')
+const user = require('./users')
 const order = require('./order')
-
 const router = Router();
 
 router.use('/products', products);
@@ -28,6 +28,7 @@ router.use('/line_cart', line_cart)
 router.use('/payment', payment);
 router.use('/address', address)
 router.use('/email', email)
+router.use('/users', user)
 router.use('/order', order)
 
 
