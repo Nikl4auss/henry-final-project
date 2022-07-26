@@ -19,7 +19,7 @@ export function ShopingCart() {
         return count
     }, [order])
 
-    cart.forEach(product => {
+    cart?.forEach(product => {
         arrayOrder.push({
             stock_product: product.stock_product,
             id: product.id,
