@@ -8,12 +8,13 @@ import styles from './NewProduct.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { createProduct } from '../../services/productsServices';
 import ImageUploader from './Uploader.jsx';
+import { API_URL } from '../../utils/config';
 
 
 
 function postProduct(payload, token) {
     return async function (dispatch) {
-        var json = await axios.post("http://localhost:3001/product", payload, {
+        var json = await axios.post(`${API_URL}/product`, payload, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
