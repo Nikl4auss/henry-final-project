@@ -6,16 +6,20 @@ module.exports = (sequelize) => {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
-            allowNull: true,
         },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
+            unique: false,
             validate: {
                 len: [3, 30],
                 is: /^[a-zA-Z0-9]+$/,
             }
+        },
+        surname: {
+            type: DataTypes.STRING,
+            allowNull: true,
+
         },
         email: {
             type: DataTypes.STRING,
@@ -25,11 +29,11 @@ module.exports = (sequelize) => {
                 is: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
 
             }
-
         },
-        Password: {
+        auth0_id: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
         }
     })
 }
