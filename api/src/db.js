@@ -50,6 +50,9 @@ Stock.belongsTo(Product)
 Address.hasOne(Store)
 Store.belongsTo(Address)
 
+User.hasMany(Address)
+Address.belongsTo(User)
+
 Product.hasMany(Image_Product, {as: 'images'});
 Image_Product.belongsTo(Product, {as: 'product'});
 

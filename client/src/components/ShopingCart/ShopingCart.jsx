@@ -6,6 +6,7 @@ import { useLocalStorage } from "../../services/useStorage";
 import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
 import { payCart } from "../../services/shopingCart";
+import Shipping from "../Payment/Shipping";
 
 export function ShopingCart() {
     const { loginWithRedirect, isAuthenticated } = useAuth0()
