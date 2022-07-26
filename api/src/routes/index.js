@@ -11,6 +11,7 @@ const stock = require('./stocks')
 const line_cart = require('./line_cart')
 const payment = require('./payment')
 const email = require('./email')
+const user = require('./users')
 
 const router = Router();
 
@@ -25,6 +26,6 @@ router.use('/stock', stock)
 router.use('/line_cart', line_cart)
 router.use('/payment', payment);
 router.use('/email', email)
-
+router.use('/users', user)
 
 module.exports = router;
