@@ -48,8 +48,8 @@ export function getBrands (){
 
 export function addPage(payload){
     return {
-     type: ADD_PAGE,
-     payload: payload
+    type: ADD_PAGE,
+    payload: payload
     }
 }
 

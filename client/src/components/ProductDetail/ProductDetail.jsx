@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import Reviews from '../Reviews/Reviews'
 
 import {product} from '../../AuxiliaryVariables/Auxiliar'
 import { getProduct } from '../../services/productsServices'
@@ -61,7 +62,7 @@ function ProductDetail() {
                 <p className={styles.price}>${productDetail.price}</p>
               </div>
               <div className={styles.divStars}><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStar/><IoMdStarOutline/></div>
-              <div className={styles.divColorTitle}>Color</div>
+              {/* <div className={styles.divColorTitle}>Color</div> */}
               <div className={styles.divAdd}>
                 <button className={styles.add} onClick={() => setActive(!active)}>Añadir al carrito</button>
               </div>
@@ -82,10 +83,17 @@ function ProductDetail() {
               <div className={styles.divModel}>
                 <p className={styles.model}>{productDetail.model}</p>
               </div>
-              <div className={styles.divCommentsTitle}>Reseñas</div>
-              <div className={styles.divComments} datacol={5} datarow={7}>
-                <button className={styles.buttonComment}>Escribí tu reseña</button>
+              
+                <div className={styles.divCommentsTitle}>Reseñas</div>
+              
+              <div className={styles.divReviewForm}>
+              <Reviews currentUserId="1" />
               </div>
+
+              
+              {/* <div className={styles.divComments} datacol={5} datarow={7}>
+                <button className={styles.buttonComment}>Escribí tu reseña</button>
+              </div> */}
           </>):<div>Cargando</div>}
       </div>
     </>
