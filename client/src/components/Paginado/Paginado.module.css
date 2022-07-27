@@ -8,6 +8,7 @@
     align-items: center;
     align-content: center;
     justify-content: center;
+    width: 100%;
 }
 
 .btnpage{
@@ -16,23 +17,12 @@
     margin: 5px;
 }
 
-.pagination {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 20px;
-    margin-bottom: 20px;    
-}
 .pagination  {
     border-radius: 10px;
-    width: fit-content;
-    height: fit-content;
+    width: 20rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     align-content: center;
     margin-top: 20px;
@@ -48,7 +38,6 @@
 .pagination :hover{
     box-shadow: 5px 5px 4px #a5a5a5;
     border-radius: 5px;
-    margin: 4px;
     height: 35px;
     padding: 2px;
     width: fit-content;

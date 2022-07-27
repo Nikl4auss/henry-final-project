@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { Outlet, NavLink, Link } from "react-router-dom";
+import SearchBar from '../../SearchBar/SearchBar'
+import styles from './dashboard.module.css'
 
 function Dashboard() {
   const menuRef = useRef(null);
@@ -11,12 +13,18 @@ function Dashboard() {
     menuRef.current.classList.toggle("-translate-x-full");
   }
   return (
-    <div className="grid md:grid-cols-[1fr_3fr] grid-rows-[15%_85%] min-h-full overflow-hidden relative">
-      <nav className="w-full flex items-center justify-end md:col-start-2 shadow-lg relative">
+    <div className="grid md:grid-cols-[1fr_3fr] grid-rows-[5%_100%] min-h-full relative">
+      <nav className="w-full flex items-center justify-end md:col-start-2 shadow-lg  relative">
+
         <button className="absolute left-0 md:hidden" onClick={handleClick}>
           Show Menu
         </button>
-        <Link to="/home">Volver a la tienda</Link>
+        <div className={styles.searchbar}>
+        <SearchBar />
+        </div>
+        <div className={styles.btnBack}>
+          <Link to="/home">Volver a la tienda</Link>
+        </div>
       </nav>
       <main className="col-span-full md:col-start-2 p-3 bg-blue-100">
         <Outlet />
@@ -58,10 +66,10 @@ function Dashboard() {
           Sucursales
         </NavLink>
         <NavLink
-          to="/admin/orders"
-          className={({ active }) => activeClassName(active)}
+          to="/admin/ordenes"
+          className={({ isActive }) => activeClassName(isActive)}
         >
-          Orders
+          Órdenes
         </NavLink>
       </aside>
     </div>

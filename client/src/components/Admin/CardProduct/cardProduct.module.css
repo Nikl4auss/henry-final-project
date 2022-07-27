@@ -1,0 +1,53 @@
+.container {
+    width: 100%;
+    border: 1px solid #767676;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    box-shadow: .1rem .1rem .5rem rgb(0, 0, 0, 0.5);
+    padding: .5rem
+}
+
+.image {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 1rem;
+}
+
+.divInfoProduct {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dates{
+    width: 50%;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.finalDiv {
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.link {
+    border: 1px solid #767676;
+    border-radius: .5rem;
+    padding: 0 1rem 0 1rem;
+}
+
+.link:hover {
+    box-shadow: .1rem .1rem .1rem rgb(0, 0, 0, 0.2);
+
+}
