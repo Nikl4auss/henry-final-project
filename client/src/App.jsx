@@ -11,6 +11,9 @@ import Pending from "./components/Payment/Pending";
 import Failure from "./components/Payment/Failure";
 import { ProtectedRoute } from "./components/Admin/ProtectedRoute";
 import Sucursales from './components/Sucursales/Sucursales';
+import UserDashboard from "./components/UserDashboard/UserDashboard";
+import UserOrders from "./components/UserOrders/UserOrders";
+
 
 function App() {
   return (
@@ -33,6 +36,8 @@ function App() {
             />
           </Route>
           <Route path='/sucursales' element={<Sucursales />}/>
+          <Route exact path="/userDasboard" element={<UserDashboard />} />
+          <Route exact path="/userOrders" element={<UserOrders />} />
         </Route>
       </Routes>
     </div>
