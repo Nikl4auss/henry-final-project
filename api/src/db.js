@@ -20,7 +20,7 @@ const modelDefiners = [];
 fs.readdirSync(path.join(__dirname, '/models'))
     .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
     .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+        modelDefiners.push(require(path.join(__dirname, '/models', file)));
     });
 
 // Injectamos la conexion (sequelize) a todos los modelos
@@ -30,7 +30,24 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Product, Category, Brand, Image_Product, Gender, Size, Stock, Store, Address, MainColor, CustomerReview, User, Cart, Line_cart, Order, Line_Order } = sequelize.models
+const {
+    Product,
+    Category,
+    Brand,
+    Image_Product,
+    Gender,
+    Size,
+    Stock,
+    Store,
+    Address,
+    MainColor,
+    CustomerReview,
+    User,
+    Cart,
+    Line_cart,
+    Line_order,
+    Order
+} = sequelize.models
 
 Brand.hasMany(Product)
 Product.belongsTo(Brand)
@@ -59,14 +76,14 @@ Image_Product.belongsTo(Product, {as: 'product'});
 Gender.hasMany(Product)
 Product.belongsTo(Gender)
 
-Category.belongsToMany(Product, { through: 'Category_Products'})
-Product.belongsToMany(Category, { through: 'Category_Products'})
+Category.belongsToMany(Product, { through: 'Category_Products' })
+Product.belongsToMany(Category, { through: 'Category_Products' })
 
-Product.hasMany(CustomerReview, {as: 'reviews'})
-CustomerReview.belongsTo(Product, {as: 'product'})
+Product.hasMany(CustomerReview, { as: 'reviews' })
+CustomerReview.belongsTo(Product, { as: 'product' })
 
-User.hasMany(CustomerReview, {as: 'reviews'})
-CustomerReview.belongsTo(User, {as: 'user'})
+User.hasMany(CustomerReview, { as: 'reviews' })
+CustomerReview.belongsTo(User, { as: 'user' })
 
 User.hasOne(Cart)
 Cart.belongsTo(User)
@@ -77,11 +94,14 @@ Line_cart.belongsTo(Cart)
 Stock.hasMany(Line_cart)
 Line_cart.belongsTo(Stock)
 
-Order.hasMany(Line_Order)
-Line_Order.belongsTo(Order)
-
 User.hasMany(Order)
 Order.belongsTo(User)
+
+Order.hasMany(Line_order)
+Line_order.belongsTo(Order)
+
+Stock.hasOne(Line_order)
+Line_order.belongsTo(Stock)
 
 module.exports = {
     db: sequelize,

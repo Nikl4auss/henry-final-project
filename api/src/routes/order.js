@@ -1,30 +1,47 @@
-const { Router } = require('express');
-const { Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Address, Order } = require("../db")
-const checkJwt = require('../middleware/checkJwt')
-const checkPermissions = require('../middleware/checkPermissions')
+const { Router } = require ('express')
+const {Order, User, Line_order, Stock, MainColor, Size, Image_Product, Product} = require("../db.js");
+
 const router = Router();
 
+router.get('/:id', async(req, res, next) => {
+    const { id } = req.params
+    try{
+            const response = await Order.findOne({
+                where: {
+                    id: id
+                }, 
+                include: [
+                    {
+                        model: Line_order,
+                        include: [{
+                            model: Stock,
+                            include: [
+                                {
+                                    model: MainColor,
+                                    attributes: ['name', 'code']
+                                },
+                                {
+                                    model: Size,
+                                    attributes: ['name']
+                                },
+                                {
+                                    model: Product,
+                                    include: [{
+                                        model: Image_Product,
+                                        as: 'images'
+                                    }]
+                                },
+                            ]
+                        }]
+                    }
+                ]
+            })
+            res.json(response)
 
-
-
-router.post('/', async (req, res, next) => {
-    try {
-        const {
-            totalPrice,
-            status,
-            paymentStatus
-        } = req.body
-        const newOrder = await Order.create({
-            totalPrice,
-            status,
-            paymentStatus
-        })
-
-        res.send(newOrder)
-
-    } catch (error) {
-        next(error)
+    }catch(err){
+        next(err)
     }
-})
+});
+
 
 module.exports = router;
