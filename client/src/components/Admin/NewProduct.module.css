@@ -85,3 +85,34 @@ filter-row-search > input {
     font-size: 20px;
 }
 
+@media screen and (max-width: 992px) {
+    .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    /* fieldset {
+    border: 1px solid #333;
+    border-radius: 6px;
+    min-width: 200px;
+    padding-inline: 2rem;
+    } */
+
+    .h1 {
+        font-size: 40px;
+        margin-top: 0;
+    }
+
+    input[type='text'] {
+    width: 100%;
+    color: #000;
+    }
+
+    /* .select {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+    } */
+}
+
