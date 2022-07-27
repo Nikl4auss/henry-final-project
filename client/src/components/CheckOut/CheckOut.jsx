@@ -1,49 +1,71 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './CheckOut.module.css';
-import {Link}from 'react-router-dom'
 import Map from "../Map/Map";
 import Shipping from '../Payment/Shipping';
+import { payCart } from '../../services/shopingCart';
 // import { IoMdClose } from "react-icons/io";
 
 
-export default function CheckOut() {
+export function CheckOut() {
 
-const [estadoEnvio, setEstadoEnvio] = useState();
-const [estadoSucursal, setEstadoSucursal] = useState();
-// const [active, setActive] = useState()
+    const [estadoEnvio, setEstadoEnvio] = useState();
+    const [estadoSucursal, setEstadoSucursal] = useState();
+    const order = useSelector(state => state.order)
+    // const [active, setActive] = useState()
 
-return (
-            <>
-        {
-            estadoEnvio &&
-            <div className={styles.container}>
-                <div className={styles.modalContainer}>
-                    {/* <button
+    async function redirectPay(e) {
+        console.log(order)
+        const data = await payCart(order, 15)
+        console.log(data)
+        window.location.href = data
+
+
+    }
+
+    return (
+        <>
+            {
+                <div className={styles.container}>
+                    <div className={styles.Encabezado}>
+                        <h3>Elige como quieres obtener tu producto</h3>
+                    </div>
+                    <div className={styles.subContainer}>
+                        {/* <button
                         onClick={() => setActive(!active)}
                         className={styles.close}><IoMdClose /></button> */}
-                <div className={styles.EncabezadoModal}>                    
-                        <h3>Datos de envío</h3>
-                </div> 
-                <button
-                        onClick={() => setEstadoEnvio(!estadoEnvio)}  
-                        className={styles.envio} > Direccion de envio </button>
-                <div className={styles.containerMap}>
-                    <Shipping />
-                </div> 
 
+                        <button
+                            onClick={() => {
+                                setEstadoEnvio(true)
+                                setEstadoSucursal(false)
+                            }}
+                            className={styles.envio} > Envío a domicilio </button>
+                        <button
+                            onClick={() => {
+                                setEstadoEnvio(false)
+                                setEstadoSucursal(true)
+                            }}
+                            className={styles.sucursal} > Retiro por sucursal </button>
 
-                <button
-                        onClick={() => setEstadoSucursal(!estadoSucursal)}  
-                        className={styles.sucursal} > Retiro por sucursal </button>
-                <div className={styles.containerMap}>
-                    <Map />
-                </div>              
-                </div>
-                    <div className={styles.btnPago}>
-                        <Link to='/Pago'>Continuar con el pago</Link>
+                        {estadoEnvio ?
+                        <div className={styles.containerShipping}>
+                            <Shipping />
+                        </div> : <div></div>
+                        }
+                        {estadoSucursal ?
+                        <div className={styles.containerMap}>
+                            <Map />
+                        </div> : <div></div>
+                        }
                     </div>
+                    {estadoEnvio || estadoSucursal ?
+                    <div className={styles.btnPago}>
+                        <button onClick={redirectPay}>Pagar</button>
+                    </div> : <div></div>
+                    }
                 </div>
-        }
-            </>
-)
+            }
+        </>
+    )
 }
