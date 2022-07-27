@@ -49,6 +49,7 @@ const {
     Order
 } = sequelize.models
 
+
 Brand.hasMany(Product)
 Product.belongsTo(Brand)
 
@@ -67,8 +68,12 @@ Stock.belongsTo(Product)
 Address.hasOne(Store)
 Store.belongsTo(Address)
 
-Product.hasMany(Image_Product, { as: 'images' });
-Image_Product.belongsTo(Product, { as: 'product' });
+
+User.hasMany(Address)
+Address.belongsTo(User)
+
+Product.hasMany(Image_Product, {as: 'images'});
+Image_Product.belongsTo(Product, {as: 'product'});
 
 Gender.hasMany(Product)
 Product.belongsTo(Gender)
@@ -99,6 +104,7 @@ Line_order.belongsTo(Order)
 
 Stock.hasOne(Line_order)
 Line_order.belongsTo(Stock)
+
 
 module.exports = {
     db: sequelize,

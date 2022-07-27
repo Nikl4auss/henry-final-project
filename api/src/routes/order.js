@@ -1,5 +1,7 @@
 const { Router } = require ('express')
 const {Order, User, Line_order, Stock, MainColor, Size, Image_Product, Product} = require("../db.js");
+const checkJwt = require('../middleware/checkJwt')
+const checkPermissions = require('../middleware/checkPermissions')
 
 const router = Router();
 

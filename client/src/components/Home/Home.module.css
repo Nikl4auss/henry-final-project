@@ -24,3 +24,60 @@
     margin-right: 20px;
     width: 20vw;
 }
+
+
+@media screen and (max-width: 600px) {
+    .recipes-list > .container {
+    flex-direction: row;
+    justify-content: space-around;
+    }
+
+    .filter-row-search {
+    width: 73%;
+    }
+
+    .recipe-item {
+    width: 45%;
+    min-height: 360px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .cardsContainer {
+        display: block;
+        flex-direction: row;
+        width: 30%;
+        min-height: 360px;
+    }
+    .filtersContainer {
+    margin-block: 1.5rem;
+    width: 0.5rem;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    }
+
+    /* svg {
+    width: 21px;
+    height: 21px;
+    } */
+
+    /* button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray;
+    background: gray;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 10px;
+    } */
+}
+
+@media screen and (max-width: 1200px) {
+
+    .cardsContainer {
+    min-height: 50px;
+    }
+}
