@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar/NavBar";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import NewProduct from "./components/Admin/NewProduct";
 import { ShopingCart } from "./components/ShopingCart/ShopingCart";
+import { CheckOut } from "./components/CheckOut/CheckOut";
 import Success from "./components/Payment/Success";
 import Pending from "./components/Payment/Pending";
 import Failure from "./components/Payment/Failure";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<NavBar />}>
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
+          < Route path="/checkout" element={<CheckOut/>} />
           <Route path="/pago">
             <Route path="success" element={<Success />} />
             <Route path="failure" element={<Failure />} />

@@ -188,7 +188,7 @@ console.log(input)
                         onChange={(e) => handleChange(e)}
                     ></input>
                 </div>
-                <button type='submit'>Continuar con el Pago</button>
+                {/* <button type='submit'>Continuar con el Pago</button> */}
             </form>
         </div>
     )
