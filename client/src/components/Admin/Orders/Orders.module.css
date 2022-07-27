@@ -1,0 +1,27 @@
+.container {
+    height: 5rem;
+    width: 100%;
+    border: 1px solid #767676;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    box-shadow: .1rem .1rem .5rem rgb(0, 0, 0, 0.5);
+    padding: .5rem
+}
+
+.interContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.divPrice {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.link {
+    text-decoration: underline;
+}

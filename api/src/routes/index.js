@@ -12,8 +12,11 @@ const line_cart = require('./line_cart')
 const payment = require('./payment')
 const address = require('./address')
 const email = require('./email')
+const orders = require('./orders')
+const line_order = require('./line_order')
 const user = require('./users')
 const order = require('./order')
+
 const router = Router();
 
 router.use('/products', products);
@@ -30,6 +33,8 @@ router.use('/address', address)
 router.use('/email', email)
 router.use('/users', user)
 router.use('/order', order)
+router.use('/orders', orders)
+router.use('/line_order', line_order)
 
 
 

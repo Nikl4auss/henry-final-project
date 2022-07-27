@@ -11,7 +11,7 @@ function Dashboard() {
     menuRef.current.classList.toggle("-translate-x-full");
   }
   return (
-    <div className="grid md:grid-cols-[1fr_3fr] grid-rows-[15%_85%] min-h-full overflow-hidden relative">
+    <div className="grid md:grid-cols-[1fr_3fr] grid-rows-[15%_100%] min-h-full relative">
       <nav className="w-full flex items-center justify-end md:col-start-2 shadow-lg relative">
         <button className="absolute left-0 md:hidden" onClick={handleClick}>
           Show Menu
@@ -58,10 +58,10 @@ function Dashboard() {
           Sucursales
         </NavLink>
         <NavLink
-          to="/admin/orders"
-          className={({ active }) => activeClassName(active)}
+          to="/admin/ordenes"
+          className={({ isActive }) => activeClassName(isActive)}
         >
-          Orders
+          Órdenes
         </NavLink>
       </aside>
     </div>
