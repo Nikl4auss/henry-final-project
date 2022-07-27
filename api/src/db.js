@@ -49,6 +49,7 @@ const {
     Order
 } = sequelize.models
 
+
 Brand.hasMany(Product)
 Product.belongsTo(Brand)
 
@@ -66,6 +67,7 @@ Stock.belongsTo(Product)
 
 Address.hasOne(Store)
 Store.belongsTo(Address)
+
 
 User.hasMany(Address)
 Address.belongsTo(User)
