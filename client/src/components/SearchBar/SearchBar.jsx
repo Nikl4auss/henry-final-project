@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
+import { BsSearch } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { getProducts } from '../../redux/actions';
 
@@ -26,12 +27,13 @@ export default function SearchBar (){
     return (
         <form className={styles.busqueda} onSubmit={handleSubmit}>
             <input
+            className={styles.input}
             type = 'text'
             value= {name}
             placeholder = "Buscar..."
             onChange = {(e) => handleInputChange(e)}
             />
-            <button className={styles.btnSearch} type='submit'>Buscar</button>
+            <button className={styles.btnSearch} type='submit'><BsSearch/></button>
         </form>
     )
 }

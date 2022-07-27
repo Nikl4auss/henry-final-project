@@ -105,7 +105,6 @@ Line_order.belongsTo(Order)
 Stock.hasOne(Line_order)
 Line_order.belongsTo(Stock)
 
-
 module.exports = {
     db: sequelize,
     ...sequelize.models,

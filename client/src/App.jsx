@@ -17,6 +17,7 @@ import Overview from "./components/Admin/Overview/Overview";
 import ModifyProduct from "./components/Admin/Modified Product/ModifyProduct";
 import Orders from "./components/Admin/Orders/Orders";
 import LineOrder from "./components/Admin/LineOrder/LineOrder";
+import Products from "./components/Admin/Products/Products";
 
 function App() {
   return (
@@ -41,7 +42,8 @@ function App() {
           path="/admin"
           element={<ProtectedRoute component={Dashboard} role="Admin" />}
         >
-          <Route index element={<Overview />} />
+          {/* <Route index element={<Overview />} /> */}
+          <Route index element={<Products />} />
           <Route path="nuevoproducto" element={<NewProduct />} />
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
           <Route path='ordenes' >
