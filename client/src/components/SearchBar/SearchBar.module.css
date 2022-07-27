@@ -10,14 +10,15 @@
     font-weight: 100; */
 }
 
-.btnSearch{
-    color: #ffffff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
+.input {
+    width: 15rem;
+    height: 2rem;
+    border-radius: 1rem;
+    box-shadow: .1rem .1rem .1rem rgb(0, 0, 0, 0.2);
+    outline: none;
 }
 
-.btnSearch:hover{
-    background-color: #b0b0b0;
-    border-radius: 4px;
-    transition: all 0.2s ease-out
+.btnSearch{
+    text-decoration: none;
+    transform: translate(-1.8rem, .15rem);
 }

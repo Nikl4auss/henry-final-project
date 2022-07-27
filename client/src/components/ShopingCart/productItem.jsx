@@ -4,6 +4,7 @@ import axios from "axios"
 import { useLocalStorage } from "../../services/useStorage"
 import styles from "./productItem.module.css"
 import { setOrder } from "../../redux/actions"
+import {API_URL} from '../../utils/config.js'
 
 function ProductItem({ id, price, quantity, stock, name }) {
     let dispatch = useDispatch()
@@ -13,8 +14,8 @@ function ProductItem({ id, price, quantity, stock, name }) {
     const [cart, setCart] = useLocalStorage('cart')
 
     const getStock = async function (id) {
-        try {
-            const stockBD = await axios.get(`http://localhost:3001/stock/${id}`)
+        try { 
+            const stockBD = await axios.get(`${API_URL}/stock/${id}`)
             let allStock = stockBD.data
             return allStock
         } catch (error) {
@@ -81,7 +82,7 @@ function ProductItem({ id, price, quantity, stock, name }) {
         product?.id ?
             <div className={styles.cardCart}>
                 <h3>{product?.Product.name}</h3>
-                <h3>${product?.Product.price}.00</h3>
+                <h3>${product?.Product.price}</h3>
                 <div className={styles.conteinerQuantity}>
                     <h3>Cantidad: {cantidad}</h3>
                     <div className={styles.containerBttn}>

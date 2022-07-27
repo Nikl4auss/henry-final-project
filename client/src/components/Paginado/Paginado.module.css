@@ -1,33 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+
+
 .containerpagination {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    font-family: 'Montserrat', sans-serif;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.pagination {
-    display: inline-block;
-    margin-top: 20px;
-    margin-bottom: 20px;    
+.btnpage{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    margin: 5px;
 }
+
 .pagination  {
-    color: black;
+    border-radius: 10px;
+    width: 20rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(72, 72, 72);
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 0 4px;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    font-family: 'Ubuntu-Bold';
+    /* border: 1px solid #ddd; */
+    margin: 5px;
 }
 .pagination :hover{
-    box-shadow: 5px 5px 4px #888888;
+    box-shadow: 5px 5px 4px #a5a5a5;
+    border-radius: 5px;
+    height: 35px;
+    padding: 2px;
+    width: fit-content;
     /* background-color: mediumturquoise; */
-    background-color:rgb(163, 175, 175);
+    background-color:#d4d4d4;
 }
 
 .pagination .active {
-    background-color: #00b4cc;
-    color: white;
-    border: 1px solid #00b4cc;
-    font-weight:bold;
+    background-color: #d4d4d4;
+    color: rgb(72, 72, 72);
+    border: 4px solid #d4d4d4;
+    border-radius: 5px;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    margin: 4px;
+    padding: 2px;
 }

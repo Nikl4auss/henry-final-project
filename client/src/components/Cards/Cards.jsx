@@ -20,8 +20,7 @@ function Cards () {
 
     const arrayPage = useMemo(()=>{
         return products.slice(pages.firstValue, pages.lastValue)
-    }, [pages, products]
-    )
+    }, [pages, products])
     return(
         <div className={styles.divCards}>
             {error.length ? <div>{error}</div> : undefined}

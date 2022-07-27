@@ -12,6 +12,9 @@ const AUDIENCE = process.env.AUDIENCE
 const ISSUER_BASE_URL = process.env.ISSUER_BASE_URL
 const NODE_ENV = process.env.NODE_ENV
 const DB_SSL = NODE_ENV === 'PRODUCTION' ? true : false
+const USER_MAILGUN= process.env.USER_MAILGUN
+const PASS_MAILGUN= process.env.PASS_MAILGUN
+const API_URL=process.env.API_URL
 
 module.exports = {
     DB_USER,
@@ -25,5 +28,8 @@ module.exports = {
     AUDIENCE,
     ISSUER_BASE_URL,
     NODE_ENV,
-    DB_SSL
+    DB_SSL,
+    USER_MAILGUN,
+    PASS_MAILGUN,
+    API_URL
 }
