@@ -1,10 +1,17 @@
-import apiInstance from './apiAxios'
+import apiInstance from "./apiAxios";
 
-export async function payCart(itemsCart, idOrder){
-    const response = await apiInstance.post('/payment', {
-        itemsCart,
-        idOrder
-    })
+export async function getStatusOrder(payment_id, external_reference) {
+  const { data } = await apiInstance.post("/payment/feedback", {
+    payment_id,
+    external_reference,
+  });
+  return data;
+}
 
-    return response.data
+export async function payCart(itemsCart, idOrder) {
+  const response = await apiInstance.post("/payment", {
+    itemsCart,
+    idOrder,
+  });
+  return response.data;
 }

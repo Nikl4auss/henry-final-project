@@ -76,6 +76,7 @@ export default function Card({ id, name, price, image, brand, stock }) {
                     price={price}
                     image={image}
                 />
+                
                 </div>
             </>
         );

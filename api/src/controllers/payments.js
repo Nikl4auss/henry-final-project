@@ -1,12 +1,28 @@
 // SDK de Mercado Pago
+const { json } = require("body-parser");
 const mercadopago = require("mercadopago");
-const {ACCESS_TOKEN, CLIENT_URL} = require('../utils/config.js')
+const EmailCtrl = require('../controllers/mailController.js');
+const {ACCESS_TOKEN, CLIENT_URL, API_URL} = require('../utils/config.js')
 // Agrega credenciales
 mercadopago.configure({
   access_token: ACCESS_TOKEN,
 });
 
-
+const statusOrder = (req, res) => {
+  
+  let  { payment_id, external_reference }  = req.body;
+  
+  mercadopago.payment
+  .get(payment_id)
+  .then(function (respuesta){
+  
+    console.log(respuesta.body)
+    res.send(respuesta.body)
+  })
+  .catch(function (error){
+    res.status(500).send(error)
+  })
+}
 const checkoutCart = (req, res) => {
    let {itemsCart} = req.body;
    console.log(req.body)
@@ -31,7 +47,7 @@ const checkoutCart = (req, res) => {
       failure: `${CLIENT_URL}/pago/failure`,
       pending: `${CLIENT_URL}/pago/pending`,
     },
-    //notification_url: "http://localhost:3001/payment/feedback", //tiene que ser una ruta https
+   // notification_url: `HTTPS://localhost:3001/payment/feedback`,  //tiene que ser una ruta https
     auto_return: "approved",
     external_reference: idOrder.toString(),
   };
@@ -46,8 +62,13 @@ const checkoutCart = (req, res) => {
     .catch(function (error) {
       error;
     });
-   
+    
+
 };
 
-module.exports = checkoutCart;
+
+module.exports = {
+  statusOrder,
+  checkoutCart
+};
 
