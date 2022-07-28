@@ -1,9 +1,8 @@
-const {PORT} = require('./src/utils/config')
+const { PORT , NODE_ENV} = require('./src/utils/config')
 const server = require('./src/app.js');
 const {db, Product} = require('./src/db');
 const { populateProducts, populateProductsDos } = require('./src/utils/products');
 const loadDefaultValues = require('./src/utils/loadDefaultValues');
-const { NODE_ENV } = require('./src/utils/config')
 
 
 if(NODE_ENV === 'PRODUCTION'){
@@ -17,8 +16,6 @@ if(NODE_ENV === 'PRODUCTION'){
                     populateProductsDos();
                     loadDefaultValues();
                 }    
-
-            
         })
     })
 }
