@@ -2,11 +2,13 @@ import { useRef } from "react";
 import { Outlet, NavLink, Link } from "react-router-dom";
 import SearchBar from '../../SearchBar/SearchBar'
 import styles from './dashboard.module.css'
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoMdClose } from "react-icons/io";
 
 function Dashboard() {
   const menuRef = useRef(null);
   function activeClassName(active) {
-    return active ? "bg-slate-300 border-" : null;
+    return active ? "text-zink-800 bg-neutral-100 border-" : "text-white";
   }
 
   function handleClick(e) {
@@ -14,10 +16,10 @@ function Dashboard() {
   }
   return (
     <div className="grid md:grid-cols-[1fr_3fr] grid-rows-[5%_100%] min-h-full relative">
-      <nav className="w-full flex items-center justify-end md:col-start-2 shadow-lg  relative">
+      <nav className="w-full flex items-center justify-end md:col-start-2 shadow-lg  relative bg-neutral-900">
 
-        <button className="absolute left-0 md:hidden" onClick={handleClick}>
-          Show Menu
+        <button className="absolute left-4 md:hidden text-white text-2xl" onClick={handleClick}>
+          <GiHamburgerMenu />
         </button>
         <div className={styles.searchbar}>
         <SearchBar />
@@ -26,24 +28,24 @@ function Dashboard() {
           <Link to="/home">Volver a la tienda</Link>
         </div>
       </nav>
-      <main className="col-span-full md:col-start-2 p-3 bg-blue-100">
+      <main className="col-span-full md:col-start-2 p-3 bg-neutral-100">
         <Outlet />
       </main>
       <aside
         ref={menuRef}
-        className="absolute w-2/5 h-full -translate-x-full transition-transform duration-500 md:translate-x-0 md:static md:w-full flex flex-col justify-start gap-3 px-2 bg-blue-600 row-span-full"
+        className="absolute w-2/5 h-full -translate-x-full transition-transform duration-500 md:translate-x-0 md:static md:w-full flex flex-col justify-start gap-3 px-2 bg-neutral-300 row-span-full"
       >
         <button
-          className="z-10 absolute right-4 md:hidden"
+          className="z-10 absolute mt-1 right-4 text-zink-800 bg-zinc-50 rounded-full md:hidden"
           onClick={handleClick}
         >
-          X
+          <IoMdClose/>
         </button>
         <div>
           <img
             src="https://res.cloudinary.com/davoshoes/image/upload/v1658524699/LOGO/davo_shoes_1000_500_px_rxlpz2.png"
             alt="logo"
-            className="max-w-full"
+            className="w-52"
           />
         </div>
         <NavLink
@@ -51,13 +53,13 @@ function Dashboard() {
           className={({ isActive }) => activeClassName(isActive)}
           end
         >
-          Vista General
+          Lista de productos
         </NavLink>
         <NavLink
           to="/admin/nuevoproducto"
           className={({ isActive }) => activeClassName(isActive)}
         >
-          Productos
+          Crear Producto
         </NavLink>
         <NavLink
           to="/admin/sucursales"
