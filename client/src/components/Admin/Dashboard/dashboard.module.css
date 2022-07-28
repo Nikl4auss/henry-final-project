@@ -3,6 +3,7 @@
     padding: 0 .5rem 0 .5rem;
     border-radius: .5rem;
     margin-right: 1.5rem;
+    color: #fafafa;
 }
 
 .btnBack:hover {
@@ -10,5 +11,7 @@
 }
 
 .searchbar {
+    display: flex;
+    width: fit-content;
     margin-right: 20%;
 }
