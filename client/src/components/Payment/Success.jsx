@@ -14,8 +14,8 @@ export default function Success() {
 
   async function sendMail() {
     const { data } = await apiInstance.post("/email", {
-      name: "Luis",
-      email: "lrverges@gmail.com",
+      name: "Estefi Bologna",
+      email: "estefibologna@gmail.com",
       subject: "recibimos tu pago",
       delivery: true,
     });

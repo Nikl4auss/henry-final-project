@@ -124,7 +124,7 @@ export default function ModifyProduct() {
 
     return (
         <div className={styles.divContainer}>
-            <NavLink className={styles.back} to='/home'><IoArrowBackOutline /> Inicio</NavLink>
+            <NavLink className={styles.back} to='/admin'><IoArrowBackOutline /> Inicio</NavLink>
             <h1 className={styles.titlePage}>Editar producto</h1>
             <div className={styles.container}>
                 <div>
