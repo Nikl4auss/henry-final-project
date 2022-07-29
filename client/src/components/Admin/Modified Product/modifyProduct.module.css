@@ -1,0 +1,233 @@
+.divContainer {
+    padding: 2rem .5rem 2rem .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    top: 30rem;
+    align-items: flex-start;
+    width: 90%;
+}
+
+.back {
+    width: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: .5rem;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+    position: fixed;
+    left: 30%;
+
+}
+
+.titlePage{
+    font-size: 2rem;
+    margin: 1rem 0 1rem 0;
+    font-weight: 600;
+}
+
+.labelInputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.spanNames {
+    margin-left: 1rem;
+    font-weight: 600;
+}
+
+textarea {
+    resize: none;
+    border: 1px solid #767676;
+    border-radius: 1rem;
+    padding: .5rem;
+}
+
+.selectBrand {
+    width: 10rem;
+    border: 1px solid #767676;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.marginDivCategories{
+    margin: 1rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 6rem;
+}
+
+.spanCategories {
+    text-decoration: underline;
+    margin-left: 1rem;
+}
+
+.btnCategory {
+    background-color: #E84242;
+    border-radius: 1rem;
+    border: none;
+    color: white;
+    padding: 0 1rem 0 1rem;
+    margin: 1rem 0 1rem 0;
+}
+
+.divContainerCategories {
+    position: fixed;
+    z-index: 500;
+    background: rgb(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalCategories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    padding: 2rem;
+    height: 80%;
+    position: relative;
+}
+
+
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid black;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+    position: absolute;
+    top: .8rem;
+    left: .8rem;
+}
+
+.divCheckboxs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    height: 45vh;
+    align-content: space-between;
+    width: 80%;
+    margin: 1rem;
+}
+
+.labelCategory {
+    width: 15rem;
+}
+
+.addNewCategory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputAddNewCategory{
+    margin-bottom: 1rem;
+}
+
+.divStock {
+    border: 1px solid #767676;
+    border-radius: .5rem;
+    display: flex;
+    width: 25rem;
+    flex-direction: column;
+    overflow: auto;
+    height: 30vh;
+    align-items: flex-start;
+    font-weight: 300;
+    padding: .5rem;
+}
+
+.divStock::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.divStock::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.divStock::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.divStock::-webkit-scrollbar:horizontal {
+    height: 5px;
+}
+
+.divStock::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 10px;
+    border: 2px solid #f1f2f3;
+}
+
+.divStock::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
+.spanStock {
+    margin: .5rem 1rem 0 0;
+}
+
+.inputStock{
+    width: 4rem;
+    margin-left: .5rem;
+}
+
+.labelColorStock {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.inputNameColor {
+    margin-left: .5rem;
+}
+
+.inputColor {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    cursor: pointer;
+    margin:.5rem;
+}
+
+.inputColor::-webkit-color-swatch {
+    border-radius: 10px;
+    border: none;
+}
+
+.inputColor::-moz-color-swatch {
+    border-radius: 10px;
+    border: none;
+}
+
+.positionCard {
+   
+    top: 30%;
+    left: 55%;
+}

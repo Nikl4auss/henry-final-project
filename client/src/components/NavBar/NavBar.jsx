@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, Link } from "react-router-dom";
+import { Outlet, useNavigate, Link, NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 // import { ShopingCart } from '../ShopingCart/ShopingCart';
 import styles from "./NavBar.module.css";
@@ -42,6 +42,7 @@ export default function NavBar() {
           <button className={styles.btnNav} onClick={clickToShopingCart}>
             Mi carrito
           </button>
+          {isAuthenticated ? <NavLink className={styles.btnNav} to='/admin' >Admin</NavLink> : undefined}
           {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
           {isAuthenticated ? (
             <div className={styles.userLoginLogout}>

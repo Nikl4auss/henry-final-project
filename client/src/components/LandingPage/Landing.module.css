@@ -27,3 +27,20 @@ margin-top:8%;
     top: 40%;
     left: 77%;
 }
+
+@media screen and (max-width: 992px) {
+    .NavHome {
+        font-size: 1.5 rem;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .logo {
+        font-size: 3rem;
+    }
+
+    .landingImg {
+        padding-inline: 200px;
+        line-height: 33px;
+        font-size: 22px;
+    }
+}

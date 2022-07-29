@@ -1,4 +1,4 @@
-import axios from "axios";
+//import axios from "axios";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrder } from "../../redux/actions";
@@ -6,8 +6,11 @@ import { useLocalStorage } from "../../services/useStorage";
 import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
 import { payCart } from "../../services/shopingCart";
+import Shipping from "../Payment/Shipping";
+import { useNavigate } from "react-router-dom";
 
 export function ShopingCart() {
+    const navigate = useNavigate();
     const { loginWithRedirect, isAuthenticated } = useAuth0()
     let dispatch = useDispatch()
     const [cart, setCart] = useLocalStorage("cart")
@@ -36,9 +39,11 @@ export function ShopingCart() {
     async function redirectToPay(e) {
         if (total > 0) {
             if (isAuthenticated) {
-                const data = await payCart(order, 15)
-                console.log(data)
-                window.location.href = data
+
+                navigate('/checkout')
+                // const data = await payCart(order, 15)
+                // console.log(data)
+                // window.location.href = data
                 // axios.post(`http://localhost:3001/payment`, {
                 //     itemsCart: order,
                 //     idOrder: 15
@@ -61,7 +66,8 @@ export function ShopingCart() {
     return (
         <div>
             <div>
-                {order?.map((element) => <ProductItem
+                {order?.map((element, i) => <ProductItem
+                    key={i}
                     id={element.id}
                     quantity={element.quantity}
                     stock={element.stock_product}

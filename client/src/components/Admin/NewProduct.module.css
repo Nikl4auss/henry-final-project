@@ -33,12 +33,8 @@ legend {
 
 label {
     display: block;
-    margin-block: 1rem .5rem;
+    margin: 1rem 0 .5rem 0;
     font-weight: 600;
-}
-
-label:first-of-type {
-    margin-top: 0;
 }
 
   /* Inputs and textarea */
@@ -87,5 +83,36 @@ filter-row-search > input {
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    /* fieldset {
+    border: 1px solid #333;
+    border-radius: 6px;
+    min-width: 200px;
+    padding-inline: 2rem;
+    } */
+
+    .h1 {
+        font-size: 40px;
+        margin-top: 0;
+    }
+
+    input[type='text'] {
+    width: 100%;
+    color: #000;
+    }
+
+    /* .select {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+    } */
 }
 
