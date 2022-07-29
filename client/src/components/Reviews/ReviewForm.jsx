@@ -1,95 +1,70 @@
 import { useState } from "react";
-import styles from './Reviews.module.css'
-import { FaStar } from "react-icons/fa";
+import { createReview } from "../../services/reviewsServices";
+import styles from "./Reviews.module.css";
+import Stars from "../Stars/Stars";
 
+const ReviewForm = ({ productId }) => {
+  const [review, setReview] = useState({
+    title: "",
+    body: "",
+    score: 0,
+  });
 
-const ReviewForm = ({
-    handleSubmit, 
-    submitLabel, 
-    hasCancelButton = false, 
-    initialStars= "",
-    initialTitle= "",
-    initialText = "", 
-    handleCancel, 
-    }) => {
-    
-    const [title, setTitle] = useState(initialTitle);
-    const [text, setText] = useState(initialText);
-    //para las stars
-    const [currentValue, setCurrentValue] = useState(0);
-    const [hoverValue, setHoverValue] = useState(undefined);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createReview(review, productId).then(() => {
+      setReview({
+        title: "",
+        body: "",
+        score: 0,
+      });
+    });
+  };
 
-    const isTexareaDisabled = text.length === 0 || title.length === 0;
+  function handleChange(e) {
+    setReview({
+      ...review,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-    const onSubmit = e => {
-        e.preventDefault()
-        handleSubmit(currentValue, title, text)
-        setCurrentValue(0)
-        setTitle("")
-        setText("")
-    }
-
-    const colors = {
-        orange: "#FFBA5A",
-        grey: "#a9a9a9"
-        
-    };
-    const stars = Array(5).fill(0)
-    const handleClick = value => {
-        setCurrentValue(value)
-    }
-    const handleMouseOver = newHoverValue => {
-        setHoverValue(newHoverValue)
-    };
-    const handleMouseLeave = () => {
-        setHoverValue(undefined)
-    }
-    
-    return (
-    <form onSubmit={onSubmit}>
-        <div className={styles.stars}>
-        {stars.map((_, index) => {
-            return (
-                <FaStar
-                    key={index}
-                    size={14}
-                    onClick={() => handleClick(index + 1)}
-                    onMouseOver={() => handleMouseOver(index + 1)}
-                    onMouseLeave={handleMouseLeave}
-                    color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                    style={{
-                        marginRight: 10,
-                        cursor: "pointer"
-                    }}
-                />
-            )
-        })}
-        </div>
+  return (
+    <>
+      <p>Escribi tu reseña</p>
+      <form onSubmit={onSubmit}>
+        <Stars
+          score={review.score}
+          setScore={(score) => setReview({ ...review, score })}
+          starstype={"dynamic"}
+        />
         <div>
-        <input 
-        className={styles.commentFormInput}
-        placeholder="Título..."
-        value={title}
-        onChange={(e)=>setTitle(e.target.value)}
-        />
+          <input
+            className={styles.commentFormInput}
+            placeholder="Título..."
+            value={review.title}
+            name="title"
+            onChange={handleChange}
+          />
         </div>
-        <textarea 
-        className={styles.commentFormTextarea}
-        placeholder="Descripción.."
-        value={text}
-        onChange={(e)=>setText(e.target.value)}
+        <textarea
+          className={styles.commentFormTextarea}
+          placeholder="Descripción.."
+          value={review.body}
+          name="body"
+          onChange={handleChange}
         />
-        <button className={styles.commentFormButton} disabled={isTexareaDisabled}>{submitLabel}</button>
+        <button className={styles.commentFormButton}>Enviar reseña</button>
         {/* {hasCancelButton &&
-            <button
-                type="button"
-                onClick={handleCancel}
-            > 
-            Cancelar
-            </button>
-        } */}
-    </form>
-    )
+              <button
+                  type="button"
+                  onClick={handleCancel}
+              > 
+              Cancelar
+              </button>
+          } */}
+      </form>
+    </>
+  );
 };
 
 export default ReviewForm;
