@@ -2,3 +2,7 @@
     color:white;
     margin-right: 20px;
 }
+
+.logoutButton:hover{
+    text-decoration: underline;
+}

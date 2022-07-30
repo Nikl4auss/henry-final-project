@@ -3,14 +3,18 @@ import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 import { useLocalStorage } from "../../services/useStorage"
 import styles from "./productItem.module.css"
-import { setOrder } from "../../redux/actions"
+import { getCart, setOrder } from "../../redux/actions"
 import {API_URL} from '../../utils/config.js'
+import { useAuth0 } from "@auth0/auth0-react"
+import apiInstance from "../../services/apiAxios"
 
 function ProductItem({ id, price, quantity, stock, name }) {
     let dispatch = useDispatch()
+    const { loginWithRedirect, isAuthenticated } = useAuth0()
     const [product, setProduct] = useState({})
     const [cantidad, setCantidad] = useState(quantity)
     const order = useSelector(state => state.order)
+    const cartDB = useSelector(state => state.cart)
     const [cart, setCart] = useLocalStorage('cart')
 
     const getStock = async function (id) {
@@ -22,60 +26,108 @@ function ProductItem({ id, price, quantity, stock, name }) {
             console.log("este es el error " + error)
         }
     }
-
+    
+    
     useEffect(() => {
         getStock(id).then(data => setProduct(data))
     }, [id])
-
-    function oneMore(e) {
+    
+    async function oneMore(e) {
         e.preventDefault()
-        if (cantidad < stock) {
-            let orderFiltered = []
-            order.forEach(prod => {
-                if (prod.id === id) {
-                    orderFiltered.push({
-                        id: id,
-                        title: name,
-                        unit_price: price,
-                        quantity: cantidad + 1,
-                        stock_product: stock
-                    })
-                } else {
-                    orderFiltered.push(prod)
-                }
-            })
-            dispatch(setOrder(orderFiltered))
+        if(isAuthenticated){
+            if(cantidad + 1 > product.stock_product) return;
+            const response = await apiInstance.put(`/line_cart/${e.target.value}?quantity=${cantidad + 1}`)
             setCantidad(cantidad + 1)
-        }
-    }
-
-    function oneLess(e) {
-        e.preventDefault()
-        if (cantidad > 1) {
-            let orderFiltered = []
-            order.forEach(prod => {
-                if (prod.id === id) {
-                    orderFiltered.push({
-                        id: id,
-                        title: name,
-                        unit_price: price,
-                        quantity: cantidad - 1,
-                        stock_product: stock
-                    })
-                } else {
-                    orderFiltered.push(prod)
-                }
+            if(response.data) {
+                let orderFiltered = []
+                order.forEach(prod => {
+                    if (prod.id === id) {
+                        orderFiltered.push({
+                            ...prod,
+                            quantity: cantidad + 1,
+                        })
+                    } else {
+                        orderFiltered.push(prod)
+                    }
+                })
                 dispatch(setOrder(orderFiltered))
-                setCantidad(cantidad - 1)
-            })
+            }
+        } else {
+            if (cantidad < stock) {
+                let orderFiltered = []
+                cart.forEach(prod => {
+                    if (prod.id === id) {
+                        orderFiltered.push({
+                            ...prod,
+                            quantity: cantidad + 1,
+                        })
+                    } else {
+                        orderFiltered.push(prod)
+                    }
+                })
+                dispatch(setOrder(orderFiltered))
+                setCart(orderFiltered)
+                setCantidad(cantidad + 1)
+            }
         }
     }
 
-    function productDeleted() {
-        let cartFilter = cart.filter(prod => prod.id !== id)
-        let orderFilter = order.filter(prod => prod.id !== id)
-        setCart(cartFilter)
-        dispatch(setOrder(orderFilter))
+    async function oneLess(e) {
+        e.preventDefault()
+        if(isAuthenticated){
+            if(cantidad - 1 < 1) return;
+            const response = await apiInstance.put(`/line_cart/${e.target.value}?quantity=${cantidad - 1}`)
+            setCantidad(cantidad - 1)
+            if(response.data) {
+                let orderFiltered = []
+                order.forEach(prod => {
+                    if (prod.id === id) {
+                        orderFiltered.push({
+                            ...prod,
+                            quantity: cantidad - 1,
+                        })
+                    } else {
+                        orderFiltered.push(prod)
+                    }
+                })
+                dispatch(setOrder(orderFiltered))
+            }
+        } else {
+            if (cantidad > 1) {
+                let orderFiltered = []
+                order.forEach(prod => {
+                    if (prod.id === id) {
+                        orderFiltered.push({
+                            ...prod,
+                            quantity: cantidad - 1,
+                        })
+                    } else {
+                        orderFiltered.push(prod)
+                    }
+                    dispatch(setOrder(orderFiltered))
+                    setCart(orderFiltered)
+                    setCantidad(cantidad - 1)
+                })
+            }
+        }
+    }
+
+    async function productDeleted() {
+        if(isAuthenticated){
+            try {
+                const response = await apiInstance.delete(`/line_cart/${id}?idCart=5s5f5s5s`)
+                if(response.data) {
+                    dispatch(getCart('5s5f5s5s'))
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            let cartFilter = cart.filter(prod => prod.id !== id)
+            let orderFilter = order.filter(prod => prod.id !== id)
+            setCart(cartFilter)
+            dispatch(setOrder(orderFilter))
+        }
     }
 
     return (<div>{
@@ -86,8 +138,8 @@ function ProductItem({ id, price, quantity, stock, name }) {
                 <div className={styles.conteinerQuantity}>
                     <h3>Cantidad: {cantidad}</h3>
                     <div className={styles.containerBttn}>
-                        <button className={styles.button} onClick={oneMore}>+</button>
-                        <button className={styles.button} onClick={oneLess}>-</button>
+                        <button value={id} className={styles.button} onClick={oneMore}>+</button>
+                        <button value={id} className={styles.button} onClick={oneLess}>-</button>
                     </div>
                 </div>
                 <div>Subtotal: ${product?.Product.price * cantidad}.00</div>
