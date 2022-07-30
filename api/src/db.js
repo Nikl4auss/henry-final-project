@@ -82,13 +82,13 @@ Category.belongsToMany(Product, { through: 'Category_Products' })
 Product.belongsToMany(Category, { through: 'Category_Products' })
 
 
-User.hasOne(Cart)
-Cart.belongsTo(User)
+Cart.hasOne(User)
+User.belongsTo(Cart)
 
 Cart.hasMany(Line_cart)
 Line_cart.belongsTo(Cart)
 
-Stock.hasMany(Line_cart)
+Stock.hasOne(Line_cart)
 Line_cart.belongsTo(Stock)
 
 User.hasMany(Order)
