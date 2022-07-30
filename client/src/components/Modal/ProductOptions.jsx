@@ -109,6 +109,7 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
     }, [quantity])
 
     console.log(idStockSelected)
+    console.log(stock)
 
     return (
         <>
@@ -179,9 +180,14 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
                                 </button>
                             </div>
                         </div>
+                       {stock.length > 0 ?
                         <button className={styles.addButton}
                             onClick={idStockSelected.id ? addProductToCart : undefined}
                         >Añadir al carrito</button>
+                        : <button className={styles.buttonNone}
+                            
+                        >Sin Stock</button>
+                       }
                     </div>
                 </div>
             }
