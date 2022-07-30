@@ -41,12 +41,12 @@ const {
     Store,
     Address,
     MainColor,
-    CustomerReview,
     User,
     Cart,
     Line_cart,
     Line_order,
-    Order
+    Order,
+    Review
 } = sequelize.models
 
 
@@ -81,11 +81,6 @@ Product.belongsTo(Gender)
 Category.belongsToMany(Product, { through: 'Category_Products' })
 Product.belongsToMany(Category, { through: 'Category_Products' })
 
-Product.hasMany(CustomerReview, { as: 'reviews' })
-CustomerReview.belongsTo(Product, { as: 'product' })
-
-User.hasMany(CustomerReview, { as: 'reviews' })
-CustomerReview.belongsTo(User, { as: 'user' })
 
 Cart.hasOne(User)
 User.belongsTo(Cart)
@@ -104,6 +99,12 @@ Line_order.belongsTo(Order)
 
 Stock.hasOne(Line_order)
 Line_order.belongsTo(Stock)
+
+Product.hasMany(Review, {as: 'reviews'});
+Review.belongsTo(Product, {as: 'product'});
+
+User.hasMany(Review, {as: 'reviews'});
+Review.belongsTo(User, {as: 'user'});
 
 module.exports = {
     db: sequelize,
