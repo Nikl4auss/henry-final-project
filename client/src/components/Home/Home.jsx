@@ -22,6 +22,8 @@ export default function Home() {
         dispatch(getCart('5s5f5s5s'))
     }, [dispatch])
 
+    console.log(products)
+
     return (
         <div className={styles.homeGrid}>
             <div className={styles.filtersContainer}>

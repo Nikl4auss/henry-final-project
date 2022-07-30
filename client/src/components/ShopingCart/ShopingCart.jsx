@@ -21,9 +21,7 @@ export function ShopingCart() {
         order?.forEach(pr => count = count + (parseFloat(pr.price) * pr.quantity))
         return count
     }, [order])
-    
-    console.log(order)
-    
+
     useEffect(() => {
         if(isAuthenticated) {
             dispatch(getCart('5s5f5s5s'))

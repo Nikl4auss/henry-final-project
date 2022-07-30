@@ -1,20 +1,19 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
-    sequelize.define(
-        "Line_order",
-        {
-            id: {
-                type: DataTypes.INTEGER,
-                autoIncrement: true,
-                allownull: false,
-                primaryKey: true,
-            },
-            quantity: {
-                type: DataTypes.INTEGER,
-                defaultValue: 1
-            }
-        }
-    )
-};
 
+    sequelize.define('Line_order', {
+
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
+    },
+    { timestamps: false }
+    )
+}
