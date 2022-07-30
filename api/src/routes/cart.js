@@ -1,14 +1,40 @@
 const { Router } = require ('express')
-const {Line_cart, Stock, Cart} = require("../db")
+const {Line_cart, Stock, Cart, Product, Image_Product} = require("../db")
 
 const router = Router();
 
-router.get('/', async(req, res, next) => {
-    const id = req.params;
+router.get('/:id', async(req, res, next) => {
+    const { id } = req.params;
     try{
-
-
-        res.status(200).send('Se agregó el producto al carrito')
+        const cartUser = await Cart.findOne({
+            where: {
+                id: id
+            },
+            include: [
+                {
+                    model: Line_cart,
+                    include: [
+                        {
+                            model: Stock,
+                            include: [
+                                {
+                                    model: Product,
+                                    include: [
+                                        {
+                                            model: Image_Product,
+                                            as: 'images',
+                                            attributes: ['image']
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            order: [['createdAt', 'DESC']]
+        })
+        res.status(200).json(cartUser)
     }catch(err){
         next(err)
     }
