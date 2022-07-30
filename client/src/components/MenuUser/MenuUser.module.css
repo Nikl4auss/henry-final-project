@@ -1,0 +1,32 @@
+
+.showMenu {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    background-color: black;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-right: 3rem;
+}
+
+.item:hover {
+    
+    text-decoration: underline;
+}
+
+.hideMenu {
+    display: none;
+}
+
+.btnNav{
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-right: 3rem;
+}
+
+.btnNav:hover{
+    background-color: #b0b0b0;
+    border-radius: 4px;
+    transition: all 0.2s ease-out
+}
