@@ -79,9 +79,14 @@ function ProductDetail() {
             </div>
             {/* <div className={styles.divColorTitle}>Color</div> */}
             <div className={styles.divAdd}>
+              {productDetail?.Stocks.length>0?
               <button className={styles.add} onClick={() => setActive(!active)}>
                 Añadir al carrito
               </button>
+              : <button className={styles.soldOut}>
+              Sin Stock
+            </button>
+            }
             </div>
 
             <ProductOptions
