@@ -2,7 +2,6 @@ const { Router } = require('express');
 const { Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Review } = require("../db")
 const checkJwt = require('../middleware/checkJwt')
 const checkPermissions = require('../middleware/checkPermissions')
-const  passUserID  = require('../middleware/extractUserId.JS')
 const router = Router();
 
 router.get('/', async (req, res, next) => {
