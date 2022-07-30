@@ -3,7 +3,8 @@ const server = require('./src/app.js');
 const {db, Product} = require('./src/db');
 const { populateProducts, populateProductsDos } = require('./src/utils/products');
 const loadDefaultValues = require('./src/utils/loadDefaultValues');
-const { NODE_ENV } = require('./src/utils/config')
+const { NODE_ENV } = require('./src/utils/config');
+const populateUsers = require('./src/utils/populateUsers');
 
 
 if(NODE_ENV === 'PRODUCTION'){
@@ -16,9 +17,10 @@ if(NODE_ENV === 'PRODUCTION'){
                     populateProducts();
                     populateProductsDos();
                     loadDefaultValues();
+                    populateUsers()
                 }    
 
-            
+                
         })
     })
 }
@@ -30,6 +32,7 @@ else {
             populateProducts()
             populateProductsDos()
             loadDefaultValues()
+            populateUsers()
         });
     })  
 }
