@@ -1,4 +1,4 @@
-import {ERROR, GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_NAME, ADD_PAGE, SET_ORDER} from '../actions/actions_types'
+import {ERROR, GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_NAME, ADD_PAGE, SET_ORDER, GET_CART} from '../actions/actions_types'
 
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
         brand: []
     },
     name: '',
-    cart: [],
+    cart: {},
     pages: {firstValue:0, lastValue:11},
     order: []
 };
@@ -55,6 +55,23 @@ const rootReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     order: action.payload
+                }
+            case GET_CART:
+
+                const cartToOrder = action.payload.Line_carts?.map((prod) => {
+                            return {
+                                id: prod.Stock.id,
+                                name: prod.Stock.Product.name,
+                                price: prod.Stock.Product.price,
+                                quantity: prod.quantity,
+                                stock_product: prod.Stock.stock_product,
+                                id_lineCart: prod.id
+                            }
+                        })
+                return {
+                    ...state,
+                    cart: action.payload,
+                    order: cartToOrder
                 }
         default: return state;
     }
