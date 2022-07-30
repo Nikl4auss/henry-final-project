@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER, GET_USERS } from './actions_types';
-import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands } from '../../services/productsServices';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS } from './actions_types';
+import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands, getCart as apiGetCart } from '../../services/productsServices';
 
 export function getProducts(filters = {}, name) {
 
@@ -58,6 +58,16 @@ export function setOrder(payload) {
     }
 }
 
+export function getCart(id){
+    return async function (dispatch) {
+        const data = await apiGetCart(id)
+        dispatch({
+            type: GET_CART,
+            payload: data,
+        })
+    }
+}
+
 export function getUsers() {
     return async function (dispatch) {
         try {
@@ -72,3 +82,4 @@ export function getUsers() {
         }
     }
 }
+

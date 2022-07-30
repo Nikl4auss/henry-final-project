@@ -1,7 +1,7 @@
 //import axios from "axios";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrder } from "../../redux/actions";
+import { getCart, setOrder } from "../../redux/actions";
 import { useLocalStorage } from "../../services/useStorage";
 import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -15,31 +15,24 @@ export function ShopingCart() {
     let dispatch = useDispatch()
     const [cart, setCart] = useLocalStorage("cart")
     const order = useSelector(state => state.order)
-    let arrayOrder = []
+    const cartDB = useSelector(state => state.cart)
     let total = useMemo(() => {
         let count = 0
-        order.forEach(pr => count = count + (pr.unit_price * pr.quantity))
+        order?.forEach(pr => count = count + (parseFloat(pr.price) * pr.quantity))
         return count
     }, [order])
 
-    cart?.forEach(product => {
-        arrayOrder.push({
-            stock_product: product.stock_product,
-            id: product.id,
-            title: product.name,
-            unit_price: product.price,
-            quantity: product.quantity,
-        })
-    });
-
     useEffect(() => {
-        dispatch(setOrder(arrayOrder))
-    }, [dispatch])
+        if(isAuthenticated) {
+            dispatch(getCart('5s5f5s5s'))
+        } else {
+            dispatch(setOrder([...cart]))
+        }
+    }, [ dispatch ])
 
     async function redirectToPay(e) {
         if (total > 0) {
             if (isAuthenticated) {
-
                 navigate('/checkout')
                 // const data = await payCart(order, 15)
                 // console.log(data)
@@ -52,11 +45,17 @@ export function ShopingCart() {
                 //     window.location.href = response.data
                 // })
             } else {
-                loginWithRedirect()
+                // var pathname = 'http://localhost:3000/checkout'
+                loginWithRedirect({
+                    // appState: {
+                    //     redirectTo: pathname
+                    // }
+                })
             }
         }
     }
 
+    console.log(order)
     function clearCart(e) {
         e.preventDefault()
         dispatch(setOrder([]))
