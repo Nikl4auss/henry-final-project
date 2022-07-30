@@ -15,6 +15,8 @@ const DB_SSL = NODE_ENV === 'PRODUCTION' ? true : false
 const USER_MAILGUN= process.env.USER_MAILGUN
 const PASS_MAILGUN= process.env.PASS_MAILGUN
 const API_URL=process.env.API_URL
+const AUTH0_TOKEN= process.env.AUTH0_TEST_TOKEN
+
 
 module.exports = {
     DB_USER,
@@ -31,5 +33,6 @@ module.exports = {
     DB_SSL,
     USER_MAILGUN,
     PASS_MAILGUN,
-    API_URL
+    API_URL,
+    AUTH0_TOKEN
 }
