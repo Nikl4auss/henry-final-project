@@ -3,6 +3,7 @@ const server = require('./src/app.js');
 const {db, Product} = require('./src/db');
 const { populateProducts, populateProductsDos } = require('./src/utils/products');
 const loadDefaultValues = require('./src/utils/loadDefaultValues');
+const { createUsers } = require("./src/utils/createUsers")
 
 
 if(NODE_ENV === 'PRODUCTION'){
@@ -15,6 +16,7 @@ if(NODE_ENV === 'PRODUCTION'){
                     populateProducts();
                     populateProductsDos();
                     loadDefaultValues();
+                    createUsers()
                 }    
         })
     })
@@ -27,6 +29,7 @@ else {
             populateProducts()
             populateProductsDos()
             loadDefaultValues()
+            createUsers()
         });
     })  
 }

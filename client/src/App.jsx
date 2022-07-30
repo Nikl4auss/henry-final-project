@@ -46,7 +46,7 @@ function App() {
             />
           </Route>
           <Route path='/sucursales' element={<Sucursales />}/>
-          <Route exact path="/userDasboard" element={<UserDashboard />} />
+          <Route exact path="/userDashboard" element={<UserDashboard />} />
           <Route exact path="/userOrders" element={<UserOrders />} />
         </Route>
         <Route

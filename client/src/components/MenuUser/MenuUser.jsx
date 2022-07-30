@@ -16,7 +16,7 @@ function MenuUser () {
     }
 
     function goToUserDashboard () {
-        navigate("/userDasboard")
+        navigate("/userDashboard")
         setVisible(!visible)
     }
 

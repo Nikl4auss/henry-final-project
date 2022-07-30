@@ -12,6 +12,8 @@ import Paginado from "../Paginado/Paginado";
 export default function Home() {
     let products = useSelector(state => state.products)
 
+    console.log(products)
+
     return (
         <div className={styles.homeGrid}>
             <div className={styles.filtersContainer}>

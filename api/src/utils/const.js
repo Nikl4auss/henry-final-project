@@ -161,10 +161,79 @@ const MAINCOLOR =[
     {name:'Verde Oliva',code:'#808000'}
 ]
 
+const USERS = [
+    {name:"Andres",
+     surname:"Medina",
+     email:"andres@gmail.com",
+     auth0_id:"chanchitofeliz"
+    },
+    {name:"Maria",
+    surname:"Galvez",
+    email:"maria@gmail.com",
+    auth0_id:"chanchitoContento"
+    },
+    {name:"Mario",
+    surname:"Alfonzo",
+    email:"mario@gmail.com",
+    auth0_id:"chanchitoArtista"
+    },
+    {name:"Cata",
+    surname:"Lina",
+    email:"cata@gmail.com",
+    auth0_id:"chanchitoFrontEnd"
+    },
+    {name:"Gaby",
+    surname:"Weint",
+    email:"gabriel@gmail.com",
+    auth0_id:"chanchitoCoder"
+    },
+    {name:"Nico",
+    surname:"Las",
+    email:"nicolas@gmail.com",
+    auth0_id:"chanchitoCapo"
+    },
+    {name:"Lui",
+    surname:"SinS",
+    email:"luisito@gmail.com",
+    auth0_id:"chanchitoFullStack"
+    },
+    {name:"Stefa",
+    surname:"Nia",
+    email:"stefi@gmail.com",
+    auth0_id:"chanchitoFront"
+    },
+    {name:"Rosario",
+    surname:"Medina",
+    email:"rosario@gmail.com",
+    auth0_id:"chanchitoflaco"
+    },
+    {name:"Jose",
+    surname:"Fina",
+    email:"jose@gmail.com",
+    auth0_id:"chanchitoRompebola"
+    },
+    {name:"Tincho",
+    surname:"Medina",
+    email:"tincho@gmail.com",
+    auth0_id:"chanchitoVago"
+    },
+    {name:"Nico",
+    surname:"Merky",
+    email:"nicolino@gmail.com",
+    auth0_id:"chanchitoGruñon"
+    },
+    {name:"Anselmo",
+    surname:"Nito",
+    email:"mono@gmail.com",
+    auth0_id:"chanchitoMono"
+    },
+]
+
 module.exports = {
     BRANDS,
     CATEGORIES,
     GENDERS,
     SIZE,
-    MAINCOLOR
+    MAINCOLOR,
+    USERS
 }
