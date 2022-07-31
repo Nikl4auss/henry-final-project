@@ -57,7 +57,6 @@ const rootReducer = (state = initialState, action) => {
                     order: action.payload
                 }
             case GET_CART:
-
                 const cartToOrder = action.payload.Line_carts?.map((prod) => {
                             return {
                                 id: prod.Stock.id,
