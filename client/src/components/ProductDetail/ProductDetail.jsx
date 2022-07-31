@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React  from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReviewForm from "../Reviews/ReviewForm";
 import Reviews from "../Reviews/Reviews";
@@ -16,6 +16,7 @@ import {
 } from "react-icons/io";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import ProductOptions from "../Modal/ProductOptions";
+import verifyStock from "../../services/verifyStock";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -25,15 +26,19 @@ function ProductDetail() {
     description: "",
     model: "",
     images: [],
+    Stocks:[]
   });
   const [active, setActive] = useState(false);
-
   const mainImage = productDetail.images[0]?.image || "";
   useEffect(() => {
     getProduct(id).then((data) => {
       setProductDetail(data);
     });
   }, [id]);
+  
+let withStock = useMemo(()=>{
+  return verifyStock(productDetail.Stocks)
+}, [productDetail])
 
   return (
     <>
@@ -45,9 +50,7 @@ function ProductDetail() {
             </button>
           </Link>
         </div>
-        {/* <div className='buttonHome' >
-          <Link to='/Home' className='btn'>◀ Volver a Inicio</Link>
-        </div> */}
+     
         <div className={styles.divHeart}>
           <button className={styles.buttonHeart}>
             <IoMdHeartEmpty />
@@ -79,9 +82,14 @@ function ProductDetail() {
             </div>
             {/* <div className={styles.divColorTitle}>Color</div> */}
             <div className={styles.divAdd}>
+              {productDetail.Stocks && withStock ?
               <button className={styles.add} onClick={() => setActive(!active)}>
                 Añadir al carrito
               </button>
+              : <button className={styles.soldOut}>
+              Sin Stock
+            </button>
+            }
             </div>
 
             <ProductOptions

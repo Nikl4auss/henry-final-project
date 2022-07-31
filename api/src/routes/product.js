@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Address } = require("../db")
+const { Product, Brand, Category, Image_Product, Gender, MainColor, Size, User, Stock, Store, Review } = require("../db")
 const checkJwt = require('../middleware/checkJwt')
 const checkPermissions = require('../middleware/checkPermissions')
 const router = Router();
@@ -39,10 +39,10 @@ router.get('/', async (req, res, next) => {
                     {
                         model: Size,
                         attributes: ['name']
-                    },
-
+                    },                    
                 ]
-            }]
+            },
+            ]
         })
         res.status(200).send(productById)
 
@@ -236,11 +236,76 @@ router.put('/', async (req, res, next) => {
                 product.removeCategory(categ)
             }
         })
+
         res.send('El productio fue modificado con éxito')
     } catch (error) {
         console.log(error)
     }
 })
 
+
+router.get('/:id/reviews', async (req, res) => {
+    const productId = req.params.id
+    try {
+        const reviews = await Review.findAll({
+            where: {
+                productId
+            },
+            include: [
+                {
+                    model: User,
+                    as: 'user',
+                    attributes: ['name']
+                }
+            ]
+        })
+
+        res.status(200).send(reviews)
+    } catch (error) {
+        console.log(error)
+    }
+        
+})
+
+router.post('/:id/reviews', checkJwt, async (req, res) => {
+    const productId = req.params.id
+    const { payload } = req.auth
+    const { sub: user_id} = payload
+
+    const {
+        title,
+        body,
+        score
+    } = req.body
+    try {
+        const product = await Product.findOne({
+            where: {
+                id: productId
+            }
+        })
+        const user = await User.findOne({
+            where: {
+                id: user_id
+            }
+        })
+        if(user && product) {
+        const review = await Review.create({
+            title,
+            body,
+            score,
+        })
+            user.addReview(review)
+            product.addReview(review)
+            return res.status(200).send(review)
+        }
+        return res.status(400).send('No se pudo crear la reseña, usuario o producto inexistente')
+    } catch (error) {
+        console.log(error)
+        return res.send(500).json({
+            msg: "No se pudo crear la reseña",
+            error
+        })
+    }
+})
 
 module.exports = router;

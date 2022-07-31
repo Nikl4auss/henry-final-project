@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER, GET_CART } from './actions_types';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS } from './actions_types';
 import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands, getCart as apiGetCart } from '../../services/productsServices';
 
+
 export function getProducts(filters = {}, name) {
-
-
 
     return async function (dispatch) {
         try {
@@ -15,6 +14,7 @@ export function getProducts(filters = {}, name) {
                 payload: data,
                 filters: filters,
                 name: name
+               
             })
 
         } catch (error) {
@@ -60,7 +60,6 @@ export function setOrder(payload) {
     }
 }
 
-
 export function getCart(id){
     return async function (dispatch) {
         const data = await apiGetCart(id)
@@ -68,5 +67,20 @@ export function getCart(id){
             type: GET_CART,
             payload: data,
         })
+    }
+}
+
+export function getUsers() {
+    return async function (dispatch) {
+        try {
+        const data = await axios.get("http://localhost:3001/users")
+        dispatch({
+            type: GET_USERS,
+            payload: data.data
+        })
+    }
+        catch (error) {
+            console.log(error)
+        }
     }
 }

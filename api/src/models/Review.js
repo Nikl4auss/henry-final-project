@@ -1,17 +1,27 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('CustomerReview', {
+    return sequelize.define('Review', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        comment: {
-            type: DataTypes.TEXT,
-            allowNull: false,
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false
+            
         },
-        rating: {
+        body: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+            defaultValue: '',
+            validate: {
+                len: [0,255]
+            },
+            
+        },
+        score: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
@@ -19,9 +29,5 @@ module.exports = (sequelize) => {
                 max: 5
             }
         },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        }
     })
 }
