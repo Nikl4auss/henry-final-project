@@ -5,7 +5,14 @@ export async function getReviews(productId) {
     return data
 }
 
-export async function createReview(review, productId) {
-  const { data } = await apiInstance.post(`/producto/${productId}/reviews`, review);
+
+export async function createReview(review, productId, token) {
+
+  const { data } = await apiInstance.post(`/product/${productId}/reviews`, review, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+  });
+
   return data
 }

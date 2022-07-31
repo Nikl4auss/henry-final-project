@@ -11,7 +11,6 @@ export default function Card({ id, name, price, image, brand, stock }) {
     const { isAuthenticated } = useAuth0();
     const [ cart ] = useLocalStorage('cart')
     const [ active, setActive ] = useState(false)
-    console.log(cart)
 
     function productInCart(){
         if(cart?.length === 0) return false

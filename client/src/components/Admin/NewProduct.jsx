@@ -195,46 +195,40 @@ console.log(input)
                 <div>
                     <div>
                         {console.log(input)}
-                        <h1>Crear producto</h1>
+                        <h1 className={styles.title}>Crear producto</h1>
                         <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
 
-                            <div>
-                                <label>Nombre:</label>
+                            <div className={styles.inputBox} >
                                 <input
                                     type='text'
                                     value={input.name}
                                     name='name'
                                     onChange={(e) => handleChange(e)}
+                                    required
                                 ></input>
+                                    <label>Nombre:</label>
                             </div>
-                            <div>
-                                <label>Descripción:</label>
+                            <div className={styles.inputBox}>
                                 <input
                                     type='text'
                                     value={input.description}
                                     name='description'
                                     onChange={(e) => handleChange(e)}
-                                ></input>
+                                    required
+                                    ></input>
+                                    <label>Descripción:</label>
                             </div>
-                            <div>
-                                <label>Precio:</label>
+                            <div className={styles.inputBox}>
                                 <input
                                     type='number'
                                     value={input.price}
                                     name='price'
                                     onChange={(e) => handleChange(e)}
-                                ></input>
+                                    required
+                                    ></input>
+                                    <label>Precio:</label>
                             </div>
-                            <div>
-                                <label>Modelo:</label>
-                                <input
-                                    type='text'
-                                    value={input.model}
-                                    name='model'
-                                    onChange={(e) => handleChange(e)}
-                                ></input>
-                            </div>
-                            <div>
+                            <div className={styles.divImages}>
                                 <label>Imagen:</label>
                                 {/* <button
                                     value={"Image"}
@@ -243,7 +237,17 @@ console.log(input)
                                 >Agregar</button> */}
                                 <ImageUploader images={images} setImages={setImages} />
                             </div>
-                            <div>Marca:
+                            <div className={styles.inputBox}>
+                                <input
+                                    type='text'
+                                    value={input.model}
+                                    name='model'
+                                    onChange={(e) => handleChange(e)}
+                                    required
+                                    ></input>
+                                    <label>Modelo:</label>
+                            </div>
+                            <div className={styles.divSelect}>Marca:
                                 <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
                                     <option value="empty" disabled hidden>Seleccione aquí:</option>
                                     {brands.map((m, i) => (
@@ -252,7 +256,7 @@ console.log(input)
                                     <option value="Otra">Otra</option>
                                 </select>
                             </div>
-                            <div>Categoría:
+                            <div className={styles.divSelect} >Categoría:
                                 <select defaultValue="empty" onChange={(e) => handleSelect2(e)}>
                                     <option value="empty" disabled hidden>Seleccione aquí:</option>
                                     {categories?.map((c, i) => (
@@ -269,47 +273,56 @@ console.log(input)
                                     </div>
                                 )}
                             </div>
-                            <div>
-                                <label>Stock:</label>
+                            <div className={styles.inputBox}>
                                 <input
                                     type='text'
                                     value={input.stock_product}
                                     name='stock_product'
                                     onChange={(e) => handleChange3(e)}
-                                ></input>
+                                    required
+                                    ></input>
+                                    <label>Stock:</label>
                             </div>
-                            <div>
-                                <label>Talle:</label>
+                            <div className={styles.inputBox}>
                                 <input
                                     type='text'
                                     value={input.size}
                                     name='size'
                                     onChange={(e) => handleChange3(e)}
-                                ></input>
+                                    required
+                                    ></input>
+                                    <label>Talle:</label>
                             </div>
-                            <div>
-                                <label>Color:</label>
+                            <div className={styles.inputBox}>
                                 <input
                                     type='text'
                                     value={input.mainColor}
                                     name='mainColor'
                                     onChange={(e) => handleChange3(e)}
-                                ></input>
+                                    required
+                                    ></input>
+                                    <label>Color:</label>
                             </div>
-                            <div>
-                                <label>Tienda:</label>
+                            <div className={styles.inputBox}>
                                 <input
                                     type='text'
                                     value={input.store}
                                     name='store'
                                     placeholder='default'
                                     onChange={(e) => handleChange3(e)}
-                                ></input>
+                                    
+                                    ></input>
+                                    <label>Tienda:</label>
                             </div>
-                            <button type='submit'>Crear</button>
                         </form>
+                        <div className={styles.buttons}>
+                            <button className={styles.btnCreate} type='submit'>Crear</button>
+                            <Link to='/home'><button className={styles.btnBack}>Volver</button></Link>
+                        </div>
                     </div>
+
                     <Link to='/inicio'><button>Volver</button></Link>
+
                 </div>
             ) : <p>Necesitás iniciar sesión.</p>
         )

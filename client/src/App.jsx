@@ -11,6 +11,8 @@ import Success from "./components/Payment/Success";
 import Pending from "./components/Payment/Pending";
 import Failure from "./components/Payment/Failure";
 import { ProtectedRoute } from "./components/Admin/ProtectedRoute";
+import UserDashboard from "./components/UserDashboard/UserDashboard";
+import UserOrders from "./components/UserOrders/UserOrders";
 import Sucursales from "./components/Sucursales/Sucursales";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import NotAuthorized from "./components/NotAuthorized/NotAuthorized";
@@ -37,7 +39,15 @@ function App() {
           <Route path="/producto">
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-          <Route path="/sucursales" element={<Sucursales />} />
+          <Route exact path="/admin">
+            <Route
+              path="nuevoproducto"
+              element={<ProtectedRoute component={NewProduct} role="Admin" />}
+            />
+          </Route>
+          <Route path='/sucursales' element={<Sucursales />}/>
+          <Route exact path="/userDashboard" element={<UserDashboard />} />
+          <Route exact path="/userOrders" element={<UserOrders />} />
         </Route>
         <Route
           exact

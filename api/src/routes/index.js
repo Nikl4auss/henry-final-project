@@ -16,6 +16,7 @@ const user = require('./users')
 const order = require('./order')
 const orders = require('./orders')
 const line_order = require('./line_order')
+const cart = require('./cart')
 
 const router = Router();
 
@@ -35,7 +36,6 @@ router.use('/users', user)
 router.use('/order', order)
 router.use('/orders', orders)
 router.use('/line_order', line_order)
-
-
+router.use('/cart', cart)
 
 module.exports = router;

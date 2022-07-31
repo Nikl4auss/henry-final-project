@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { createReview } from "../../services/reviewsServices";
 import styles from "./Reviews.module.css";
 import Stars from "../Stars/Stars";
@@ -10,13 +11,18 @@ const ReviewForm = ({ productId }) => {
     score: 0,
   });
 
+  const { getAccessTokenSilently } = useAuth0();
+
   const onSubmit = (e) => {
     e.preventDefault();
-    createReview(review, productId).then(() => {
-      setReview({
-        title: "",
-        body: "",
-        score: 0,
+    getAccessTokenSilently().then((token) => {
+      console.log(token);
+      createReview(review, productId, token).then(() => {
+        setReview({
+          title: "",
+          body: "",
+          score: 0,
+        });
       });
     });
   };
