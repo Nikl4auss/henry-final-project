@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { payCart } from "../../services/shopingCart";
 import Shipping from "../Payment/Shipping";
 import { useNavigate } from "react-router-dom";
+import apiInstance from "../../services/apiAxios";
 
 export function ShopingCart() {
     const navigate = useNavigate();
@@ -28,7 +29,9 @@ export function ShopingCart() {
         if(isAuthenticated) {
             dispatch(getCart('5s5f5s5s'))
         } else {
-            dispatch(setOrder([...cart]))
+            if(cart){
+                dispatch(setOrder([...cart]))
+            }
         }
     }, [ dispatch ])
 
@@ -57,7 +60,6 @@ export function ShopingCart() {
         }
     }
 
-    console.log(order)
     function clearCart(e) {
         e.preventDefault()
         dispatch(setOrder([]))
