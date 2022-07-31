@@ -1,9 +1,10 @@
 import apiInstance from "./apiAxios";
 
 export async function getReviews(productId) {
-    const { data } = await apiInstance.get(`/product/${productId}/reviews`)
+    const { data } = await apiInstance.get(`/producto/${productId}/reviews`)
     return data
 }
+
 
 export async function createReview(review, productId, token) {
 
@@ -12,5 +13,6 @@ export async function createReview(review, productId, token) {
         Authorization: `Bearer ${token}`
     }
   });
+
   return data
 }

@@ -21,7 +21,7 @@ const cart = require('./cart')
 const router = Router();
 
 router.use('/products', products);
-router.use('/product', product);
+router.use('/producto', product);
 router.use('/categories', categories);
 router.use('/brands', brands);
 router.use('/genders', genders);

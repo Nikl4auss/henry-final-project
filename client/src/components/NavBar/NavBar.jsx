@@ -49,7 +49,7 @@ export default function NavBar() {
   }
 
   function clickToHome() {
-    navigate("/home");
+    navigate("/inicio");
   }
 
   return (
@@ -57,7 +57,7 @@ export default function NavBar() {
       <nav className={styles.navbarContainer}>
         <div className={styles.divTop}>
           <div className={styles.logo}>
-            <Link to="/home">
+            <Link to="/inicio">
               <img
                 width="200"
                 height="70"

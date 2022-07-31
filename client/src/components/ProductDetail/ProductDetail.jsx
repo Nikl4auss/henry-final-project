@@ -44,13 +44,17 @@ let withStock = useMemo(()=>{
     <>
       <div className={styles.grid}>
         <div className={styles.divClose}>
-          <Link to="/home">
+          <Link to="/inicio">
             <button className={styles.buttonClose}>
               <IoMdClose />
             </button>
           </Link>
         </div>
-     
+
+        {/* <div className='buttonHome' >
+          <Link to='/inicio' className='btn'>◀ Volver a Inicio</Link>
+        </div> */}
+
         <div className={styles.divHeart}>
           <button className={styles.buttonHeart}>
             <IoMdHeartEmpty />
