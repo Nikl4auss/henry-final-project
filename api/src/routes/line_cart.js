@@ -1,4 +1,5 @@
-const { Router } = require ('express')
+const { Router } = require ('express');
+//const { EmptyResultError } = require('sequelize/types');
 const {Line_cart, Stock, Cart, Op} = require("../db")
 
 const router = Router();
@@ -98,26 +99,41 @@ router.put('/:id', async(req, res, next) => {
     }
 })
 
+
 router.delete('/:idStock', async (req, res, next) => {
     console.log(req.body)
     const { idStock } = req.params;
     const { idCart } = req.query
-
+    
     await Line_cart.destroy({
         where: {
             [ Op.and ]: [
-                    {
-                        CartId: idCart
-                    },
-                    {
-                        StockId: idStock
-                    }
-                ]
+                {
+                    CartId: idCart
+                },
+                {
+                    StockId: idStock
+                }
+            ]
         }
     })
-
+    
     res.send('El producto fue borrado con éxito')
+    
+})
 
+router.delete('/all/:idCart', async (req, res, next) => {
+    const { idCart } = req.params
+    try {
+        await Line_cart.destroy({
+            where:{
+                CartId: idCart
+            }
+        })
+        res.send('El carrito fue vaciado con éxito')
+    } catch (error) {
+        next(error)
+    }
 })
 
 module.exports = router;

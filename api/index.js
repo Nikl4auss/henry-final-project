@@ -18,7 +18,7 @@ if(NODE_ENV === 'PRODUCTION'){
                     populateProductsDos();
                     loadDefaultValues();
                     populateUsers()
-                    createUsers()
+                    // createUsers()
                 }    
 
         })
@@ -33,7 +33,7 @@ else {
             populateProductsDos()
             loadDefaultValues()
             populateUsers()
-            createUsers()
+            // createUsers()
         });
     })  
 }

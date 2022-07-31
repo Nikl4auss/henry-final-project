@@ -16,13 +16,13 @@ export default function Home() {
     const [ cart ] = useLocalStorage('cart')
     
     let dispatch = useDispatch()
-    const { loginWithRedirect, isAuthenticated } = useAuth0()
+    const { user, loginWithRedirect, isAuthenticated } = useAuth0()
 
     useEffect(() => {
-        dispatch(getCart('5s5f5s5s'))
-    }, [dispatch])
-
-    console.log(products)
+        if(isAuthenticated) {
+            dispatch(getCart(user.sub))
+        }
+    }, [dispatch, isAuthenticated])
 
     return (
         <div className={styles.homeGrid}>
