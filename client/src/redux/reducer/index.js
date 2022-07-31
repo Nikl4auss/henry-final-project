@@ -21,7 +21,7 @@ const rootReducer = (state = initialState, action) => {
         case ERROR:
             return {
                 ...state,
-                error: action.MessageError.response.data
+                error: action.MessageError.response
             }
         case GET_PRODUCTS:
             return{
@@ -56,6 +56,7 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     order: action.payload
                 }
+              
         default: return state;
     }
 }
