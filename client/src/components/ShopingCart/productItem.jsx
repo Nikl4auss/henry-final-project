@@ -5,8 +5,10 @@ import { useLocalStorage } from "../../services/useStorage"
 import styles from "./productItem.module.css"
 import { getCart, setOrder } from "../../redux/actions"
 import {API_URL} from '../../utils/config.js'
+import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react"
 import apiInstance from "../../services/apiAxios"
+
 
 function ProductItem({ id, price, quantity, stock, name }) {
     let dispatch = useDispatch()
@@ -130,24 +132,48 @@ function ProductItem({ id, price, quantity, stock, name }) {
         }
     }
 
-    return (<div>{
-        product?.id ?
-            <div className={styles.cardCart}>
-                <h3>{product?.Product.name}</h3>
-                <h3>${product?.Product.price}</h3>
-                <div className={styles.conteinerQuantity}>
-                    <h3>Cantidad: {cantidad}</h3>
-                    <div className={styles.containerBttn}>
-                        <button value={id} className={styles.button} onClick={oneMore}>+</button>
-                        <button value={id} className={styles.button} onClick={oneLess}>-</button>
+
+    return (
+    <div className={styles.cardGrid}>
+        {
+            product?.id ?
+                <div className={styles.cardCart}>
+                    <div className={styles.line1}>
+                        <h3 className={styles.cardName}>{product?.Product.name}</h3>
+                        {/* <div>{product?.Image_Product.image}</div> */}
+                        <h3 className={styles.cardPrice}>${product?.Product.price}</h3>
+                    </div>
+                    
+                    <div className={styles.line2}>
+                        <div className={styles.conteinerQuantity}>
+                            <h3>Cantidad: {cantidad}</h3>
+                            <div className={styles.containerBttn}>
+                            <button className={styles.button} onClick={oneMore}><BsChevronUp /></button>
+                            <button className={styles.button} onClick={oneLess}><BsChevronDown /></button>
+                        </div>
+                    </div>
+                    <div className={styles.cardSubtotal}>Subtotal:  ${product?.Product.price * cantidad}.00</div>
+                    </div>
+                    <div className={styles.cardDeleteCont}>
+                        <button className={styles.cardDelete}
+                        onClick={(e) => productDeleted(e)}>Eliminar producto</button>
+
+ //   return (<div>{
+ //       product?.id ?
+ //           <div className={styles.cardCart}>
+ //               <h3>{product?.Product.name}</h3>
+ //               <h3>${product?.Product.price}</h3>
+ //               <div className={styles.conteinerQuantity}>
+ //                   <h3>Cantidad: {cantidad}</h3>
+ //                   <div className={styles.containerBttn}>
+ //                       <button value={id} className={styles.button} onClick={oneMore}>+</button>
+ //                       <button value={id} className={styles.button} onClick={oneLess}>-</button>
+
                     </div>
                 </div>
-                <div>Subtotal: ${product?.Product.price * cantidad}.00</div>
-                <button
-                    onClick={(e) => productDeleted(e)}>Eliminar producto</button>
-            </div>
-            : <div>loading</div>
-    }</div>
+                : <div>loading</div>
+        }
+    </div>
     )
 }
 
