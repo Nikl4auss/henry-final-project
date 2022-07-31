@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../db')
+const { User, Cart } = require('../db')
 
 router.get('/', async (req, res) => {
     try{    
@@ -27,8 +27,14 @@ router.post('/', async (req, res) => {
             name,
             surname,
             email,
-            auth0_id: user_id
+            id: user_id
         })
+
+        const newCart = await Cart.create({
+            id: user_id
+        })
+
+        newCart.setUser(newUser)
 
         return res.status(200).json(newUser)
     }
