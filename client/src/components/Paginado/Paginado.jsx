@@ -52,7 +52,6 @@ function Paginado() {
     return (
         <div className= {styles.containerpagination} >
             <div className={styles.pagination}>
-                {console.log(allPage)}
                 <button className={styles.btnpage} onClick={() => previous(setActive)}>Prev</button>
                 {pageNumbers && pageNumbers.map((number) => (
                     <button className={number === active ? `${styles.active}` : '' }
