@@ -18,6 +18,7 @@ function ProductItem({ id, price, quantity, stock, name }) {
   const cartDB = useSelector((state) => state.cart);
   const [cart, setCart] = useLocalStorage("cart");
 
+
   const getStock = async function (id) {
     try {
       const stockBD = await axios.get(`${API_URL}/stock/${id}`);

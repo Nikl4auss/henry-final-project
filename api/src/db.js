@@ -81,6 +81,8 @@ Product.belongsTo(Gender)
 Category.belongsToMany(Product, { through: 'Category_Products' })
 Product.belongsToMany(Category, { through: 'Category_Products' })
 
+User.hasMany(CustomerReview, { as: 'reviews' })
+CustomerReview.belongsTo(User, { as: 'user' })
 
 Cart.hasOne(User)
 User.belongsTo(Cart)

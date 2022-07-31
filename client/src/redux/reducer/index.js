@@ -1,5 +1,6 @@
 import {ERROR, GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_NAME, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS } from '../actions/actions_types'
 
+
 const initialState = {
     error: '',
     products: [],
@@ -56,9 +57,7 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     order: action.payload
                 }
-
             case GET_CART:
-
                 const cartToOrder = action.payload.Line_carts?.map((prod) => {
                             return {
                                 id: prod.Stock.id,
@@ -79,7 +78,6 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     allUser: action.payload
                }
-
         default: return state;
     }
 }

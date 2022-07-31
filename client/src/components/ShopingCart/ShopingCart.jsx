@@ -7,10 +7,10 @@ import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
 import { payCart } from "../../services/shopingCart";
 import Shipping from "../Payment/Shipping";
+import apiInstance from "../../services/apiAxios";
 import { useNavigate, Link } from "react-router-dom";
 import styles from './ShoppingCart.module.css';
 import { IoMdClose } from "react-icons/io";
-
 
 export function ShopingCart() {
     const navigate = useNavigate();
@@ -42,12 +42,13 @@ export function ShopingCart() {
         // })
     });
 
-
     useEffect(() => {
         if(isAuthenticated) {
             dispatch(getCart('5s5f5s5s'))
         } else {
-            dispatch(setOrder([...cart]))
+            if(cart){
+                dispatch(setOrder([...cart]))
+            }
         }
     }, [ dispatch ])
 
