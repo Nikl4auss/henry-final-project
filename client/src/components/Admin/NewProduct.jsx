@@ -309,7 +309,7 @@ console.log(input)
                             <button type='submit'>Crear</button>
                         </form>
                     </div>
-                    <Link to='/home'><button>Volver</button></Link>
+                    <Link to='/inicio'><button>Volver</button></Link>
                 </div>
             ) : <p>Necesitás iniciar sesión.</p>
         )

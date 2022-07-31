@@ -26,15 +26,15 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/inicio" element={<Home />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
           < Route path="/checkout" element={<CheckOut/>} />
           <Route path="/pago">
-            <Route path="success" element={<Success />} />
-            <Route path="failure" element={<Failure />} />
-            <Route path="pending" element={<Pending />} />
+            <Route path="exitoso" element={<Success />} />
+            <Route path="fallido" element={<Failure />} />
+            <Route path="pendiente" element={<Pending />} />
           </Route>
-          <Route path="/product">
+          <Route path="/producto">
             <Route path=":id" element={<ProductDetail />} />
           </Route>
           <Route path="/sucursales" element={<Sucursales />} />
@@ -53,7 +53,7 @@ function App() {
             <Route exact path=":id" element={<LineOrder />}/>
           </Route>
         </Route>
-        <Route path="/not-authorized" element={<NotAuthorized />} />
+        <Route path="/sin-autorizacion" element={<NotAuthorized />} />
       </Routes>
     </div>
   );

@@ -38,7 +38,7 @@ export default function Card({ id, name, price, image, brand, stock }) {
                                 { productInCart() ? <IoCartSharp/> : <IoCartOutline /> }
                             </button>
                         </div>
-                        <Link to={`/product/${id}`}>
+                        <Link to={`/producto/${id}`}>
                         <div className={`${styles.card__header} ${styles.card__header19}`}>
                             <div
                                 className={styles.card__watermark}

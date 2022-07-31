@@ -25,12 +25,12 @@ export async function getProducts(filters = {}, name = '') {
 
 export async function getProduct(id) {
     // const {data} = await axios.get(`${baseUrl}product?id=${id}`)
-    const { data } = await apiInstance.get(`/product?id=${id}`)
+    const { data } = await apiInstance.get(`/producto?id=${id}`)
     return data
 }
 
 export async function createProduct(product, token) {
-    const { data } = await apiInstance.post('/product', product, {
+    const { data } = await apiInstance.post('/producto', product, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -40,7 +40,7 @@ export async function createProduct(product, token) {
 }
 
 export async function putProduct(product, token) {
-    const { data } = await apiInstance.put('/product', product, {
+    const { data } = await apiInstance.put('/producto', product, {
         headers: {
             Authorization: `Bearer ${token}`
         }

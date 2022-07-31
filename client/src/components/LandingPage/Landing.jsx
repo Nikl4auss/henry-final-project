@@ -12,16 +12,16 @@ export default function Landing() {
     return (
         <div className={styles.landingImg}>
             <div className={styles.logo}>
-                <a href="http://localhost:3000/home">
+                <a href="http://localhost:3000/inicio">
                     <img width="400" height="140" src="https://res.cloudinary.com/davoshoes/image/upload/v1658524699/LOGO/davo_shoes_1000_500_px_rxlpz2.png" />
                 </a>
             </div>
             {isAuthenticated ? 
             (<><button type='button' className={styles.ingresa} onClick={() => logout()}>CERRAR SESIÓN</button>
-            <NavLink className={styles.invitado} to='/home'>INICIO</NavLink></>)
+            <NavLink className={styles.invitado} to='/inicio'>INICIO</NavLink></>)
            : 
            (<><button type='button' className={styles.ingresa} onClick={() => loginWithRedirect()}>INICIAR SESIÓN</button>
-           <NavLink className={styles.invitado} to='/home'>INVITADO</NavLink></>)
+           <NavLink className={styles.invitado} to='/inicio'>INVITADO</NavLink></>)
             }
         </div>
     )

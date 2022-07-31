@@ -25,7 +25,7 @@ function Dashboard() {
         <SearchBar />
         </div>
         <div className={styles.btnBack}>
-          <Link to="/home">Volver a la tienda</Link>
+          <Link to="/inicio">Volver a la tienda</Link>
         </div>
       </nav>
       <main className="col-span-full md:col-start-2 p-3 bg-neutral-100">

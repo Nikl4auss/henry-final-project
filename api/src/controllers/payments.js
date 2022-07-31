@@ -43,9 +43,9 @@ const checkoutCart = (req, res) => {
      };
     }),
     back_urls: {
-      success: `${CLIENT_URL}/pago/success`,
-      failure: `${CLIENT_URL}/pago/failure`,
-      pending: `${CLIENT_URL}/pago/pending`,
+      success: `${CLIENT_URL}/pago/exitoso`,
+      failure: `${CLIENT_URL}/pago/fallido`,
+      pending: `${CLIENT_URL}/pago/pendiente`,
     },
    // notification_url: `HTTPS://localhost:3001/payment/feedback`,  //tiene que ser una ruta https
     auto_return: "approved",
