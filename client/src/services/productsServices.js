@@ -79,7 +79,13 @@ export async function getOrders() {
     return data
 }
 
+
 export async function getCart(id){
     const { data } = await apiInstance.get(`/cart/${id}`)
+    return data
+}
+
+export async function getOrdersByUser(userId) {
+    const { data } = await apiInstance.get(`/orders/${userId}`)
     return data
 }

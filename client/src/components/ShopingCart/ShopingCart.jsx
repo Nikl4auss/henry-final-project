@@ -11,10 +11,12 @@ import apiInstance from "../../services/apiAxios";
 import { useNavigate, Link } from "react-router-dom";
 import styles from './ShoppingCart.module.css';
 import { IoMdClose } from "react-icons/io";
+import { IoFolder } from "react-icons/io5";
+import productItem from "./productItem";
 
 export function ShopingCart() {
     const navigate = useNavigate();
-    const { loginWithRedirect, isAuthenticated } = useAuth0()
+    const { user, loginWithRedirect, isAuthenticated } = useAuth0()
     let dispatch = useDispatch()
     const [cart, setCart] = useLocalStorage("cart")
     const order = useSelector(state => state.order)
@@ -28,7 +30,8 @@ export function ShopingCart() {
 
     let articulos = useMemo(() => {
         let count = 0
-        order.forEach(pr => count = count + pr.quantity)
+        if(order.length === 0) return 0
+        order?.forEach(pr => count = count + pr.quantity)
         return count
     }, [order])
 
@@ -44,7 +47,7 @@ export function ShopingCart() {
 
     useEffect(() => {
         if(isAuthenticated) {
-            dispatch(getCart('5s5f5s5s'))
+            dispatch(getCart(user.sub))
         } else {
             if(cart){
                 dispatch(setOrder([...cart]))
@@ -53,9 +56,25 @@ export function ShopingCart() {
     }, [ dispatch ])
 
     async function redirectToPay(e) {
-        if (total > 0) {
+        if (order.length > 0) {
             if (isAuthenticated) {
-                navigate('/checkout')
+                const orderCreated = await apiInstance.post('line_order', {
+                    totalPrice: total,
+                    status: 'Pendiente',
+                    payment_status: 'Pendiente',
+                    idUser: user.sub,
+                    products: order.map(prod => {
+                        return {
+                            id_stock: prod.id,
+                            quantity: prod.quantity
+                        }
+                    })
+                })
+                if(orderCreated.data){
+                    navigate('/checkout')
+                }
+
+
                 // const data = await payCart(order, 15)
                 // console.log(data)
                 // window.location.href = data
@@ -78,17 +97,25 @@ export function ShopingCart() {
     }
 
     console.log(order)
-    function clearCart(e) {
+    async function clearCart(e) {
         e.preventDefault()
+        if(isAuthenticated) {
+            try {
+                await apiInstance.delete(`/line_cart/all/${user.sub}`)
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            setCart([])
+        }
         dispatch(setOrder([]))
-        setCart([])
     }
 
     return (
         <div className={styles.grid}>
             <div className={styles.cartTitle}>
                 <h1 className={styles.title}>Tu carrito</h1>
-                <h1 className={styles.quantity}>({articulos} productos)</h1>
+                <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
             </div>
             <div className={styles.divClose}>
                 <Link to= '/home'>

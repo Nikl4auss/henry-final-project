@@ -11,7 +11,7 @@ import apiInstance from "../../services/apiAxios";
 
 function ProductItem({ id, price, quantity, stock, name }) {
   let dispatch = useDispatch();
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0();
   const [product, setProduct] = useState({});
   const [cantidad, setCantidad] = useState(quantity);
   const order = useSelector((state) => state.order);
@@ -38,7 +38,7 @@ function ProductItem({ id, price, quantity, stock, name }) {
     if (isAuthenticated) {
       if (cantidad + 1 > product.stock_product) return;
       const response = await apiInstance.put(
-        `/line_cart/${e.target.value}?quantity=${cantidad + 1}`
+        `/line_cart/${id}?quantity=${cantidad + 1}`
       );
       setCantidad(cantidad + 1);
       if (response.data) {
@@ -80,7 +80,7 @@ function ProductItem({ id, price, quantity, stock, name }) {
     if (isAuthenticated) {
       if (cantidad - 1 < 1) return;
       const response = await apiInstance.put(
-        `/line_cart/${e.target.value}?quantity=${cantidad - 1}`
+        `/line_cart/${id}?quantity=${cantidad - 1}`
       );
       setCantidad(cantidad - 1);
       if (response.data) {
@@ -121,10 +121,10 @@ function ProductItem({ id, price, quantity, stock, name }) {
     if (isAuthenticated) {
       try {
         const response = await apiInstance.delete(
-          `/line_cart/${id}?idCart=5s5f5s5s`
+          `/line_cart/${id}?idCart=${user.sub}`
         );
         if (response.data) {
-          dispatch(getCart("5s5f5s5s"));
+          dispatch(getCart(user.sub));
         }
       } catch (error) {
         console.log(error);
@@ -151,10 +151,10 @@ function ProductItem({ id, price, quantity, stock, name }) {
             <div className={styles.conteinerQuantity}>
               <h3>Cantidad: {cantidad}</h3>
               <div className={styles.containerBttn}>
-                <button className={styles.button} onClick={oneMore}>
+                <button value={id} className={styles.button} onClick={oneMore}>
                   <BsChevronUp />
                 </button>
-                <button className={styles.button} onClick={oneLess}>
+                <button value={id} className={styles.button} onClick={oneLess}>
                   <BsChevronDown />
                 </button>
               </div>
