@@ -236,6 +236,7 @@ router.put('/', async (req, res, next) => {
                 product.removeCategory(categ)
             }
         })
+
         res.send('El productio fue modificado con éxito')
     } catch (error) {
         console.log(error)

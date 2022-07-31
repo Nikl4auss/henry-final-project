@@ -193,7 +193,16 @@
     align-content: space-between;
     align-items: center;
 }
-
+.soldOut{
+    width: 12rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    background-color: #a19b9b;
+    color: white;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
 .add{
     width: 12rem;
     height: 1.5rem;
@@ -204,6 +213,8 @@
     border-radius: 10px;
     transition-duration: 0.4s;
 }
+
+
 .add:hover {
     background-color: white; 
     color: #E84242;
