@@ -10,7 +10,7 @@ const createUsers = function () {
                 name,
                 surname,
                 email,
-                auth0_id
+                id: auth0_id
             })
         })
     } catch (error) {
