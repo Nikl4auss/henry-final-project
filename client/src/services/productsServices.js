@@ -78,3 +78,8 @@ export async function getOrders() {
     const { data } = await apiInstance.get('/orders')
     return data
 }
+
+export async function getCart(id){
+    const { data } = await apiInstance.get(`/cart/${id}`)
+    return data
+}
