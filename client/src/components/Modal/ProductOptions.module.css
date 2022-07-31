@@ -243,3 +243,16 @@
     border: none;
     border: 1px solid #E84242;
 }
+
+.buttonNone{
+    background-color: darkslategray;
+    margin-top: 1rem;
+    width: 12rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+
+}

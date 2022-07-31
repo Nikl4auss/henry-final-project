@@ -5,16 +5,22 @@ import { useLocalStorage } from "../../services/useStorage";
 import styles from './ProductOptions.module.css'
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
+import { useEffect } from "react";
+import { setOrder, getCart } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import apiInstance from '../../services/apiAxios.js'
 
 
 export default function ProductOptions({ active, setActive, stock, name, price, image }) {
     const { isAuthenticated } = useAuth0();
-    const [cartLS, setCartLS] = useLocalStorage('cart', [])
+    const order = useSelector(state => state.order)
+    const [cartLS, setCartLS] = useLocalStorage('cart', order)
     const [colorSelected, setColorSelected] = useState('')
     const [sizeSelected, setSizeSelected] = useState('')
     const [filterByColor, setFilterByColor] = useState([])
     const [filterBySize, setFilterBySize] = useState([])
     const [quantity, setQuantity] = useState(1)
+    let dispatch = useDispatch()
 
     let colors = []
     let sizes = []
@@ -81,34 +87,66 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
     }
 
     async function addProductToCart() {
-        // if(isAuthenticated){
-        //     try {
-        //         await axios.post(`http://localhost:3001/line_cart/${idStockSelected.id}?quantity=${quantity}`)
-        //         setActive(!active)
-        //     } catch(err){
-        //         console.log(err)
-        //     }
-        // } else {
-        let validateCart = cartLS.find(el => el.id === idStockSelected.id)
-        console.log(validateCart)
-        if (validateCart) return;
-        else {
-            setCartLS([...cartLS, {
-                ...idStockSelected,
-                quantity: quantity,
-                name: name,
-                price: price
-            }])
-            setActive(!active)
+        if (isAuthenticated) {
+            try {
+                const response = await apiInstance.post(`/line_cart/${idStockSelected.id}`, {
+                    id_Cart: '5s5f5s5s',
+                    quantity
+                })
+                if(response.data){
+                    dispatch(getCart('5s5f5s5s'))
+                    setActive(!active)
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            let validateCart = cartLS.find(el => el.id === idStockSelected.id)
+            if (validateCart) {
+                
+                let newCart = []
+                cartLS?.forEach(el => {
+                    if( el.id === idStockSelected.id) {
+                        if(el.quantity + quantity > idStockSelected.stock_product){
+                            newCart.push({
+                                ...el,
+                                quantity: idStockSelected.stock_product
+                            })
+                        } else {
+                            newCart.push({...el,
+                                quantity: el.quantity + quantity
+                            })
+                        }
+                    } else {
+                        newCart.push({
+                            ...el
+                        })
+                    }
+                })
+                setCartLS([...newCart])
+                dispatch(setOrder([...newCart]))
+                setActive(!active)
+            } else {
+                setCartLS([...order, {
+                    ...idStockSelected,
+                    quantity: quantity,
+                    name: name,
+                    price: price
+                }])
+                dispatch(setOrder([...order, {
+                    ...idStockSelected,
+                    quantity: quantity,
+                    name: name,
+                    price: price
+                }]))
+                setActive(!active)
+            }
         }
     }
-
 
     let spanQuantity = useMemo(() => {
         return <span>{quantity}</span>
     }, [quantity])
-
-    console.log(idStockSelected)
 
     return (
         <>
@@ -179,9 +217,14 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
                                 </button>
                             </div>
                         </div>
+                       {stock.length > 0 ?
                         <button className={styles.addButton}
                             onClick={idStockSelected.id ? addProductToCart : undefined}
                         >Añadir al carrito</button>
+                        : <button className={styles.buttonNone}
+                            
+                        >Sin Stock</button>
+                       }
                     </div>
                 </div>
             }

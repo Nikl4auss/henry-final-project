@@ -5,13 +5,12 @@ module.exports = (sequelize) => {
         "Cart",
         {
             id: {
-                type: DataTypes.INTEGER,
-                primaryKey: true,
-                autoIncrement: true,
+                type: DataTypes.STRING,
+                primaryKey: true
             },
             status: {
-                type: DataTypes.ENUM(['Vacío', 'Pending', 'Comprado']),
-                defaultValue: 'Vacío'
+                type: DataTypes.ENUM(['Vacio', 'Pending']),
+                defaultValue: 'Vacio'
             }
         }
     )
