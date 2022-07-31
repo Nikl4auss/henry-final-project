@@ -7,4 +7,3 @@ export const ADD_PAGE= 'ADD_PAGE'
 export const SET_ORDER = "SET_ORDER"
 export const GET_CART = "GET_CART"
 export const GET_USERS  = "GET_USERS"
-

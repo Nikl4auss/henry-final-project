@@ -12,7 +12,7 @@ function NotAuthorized() {
   }, []);
 
   if (timer === 0) {
-    navigate("/home");
+    navigate("/inicio");
   }
   return (
     <div>

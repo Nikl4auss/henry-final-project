@@ -320,6 +320,9 @@ console.log(input)
                             <Link to='/home'><button className={styles.btnBack}>Volver</button></Link>
                         </div>
                     </div>
+
+                    <Link to='/inicio'><button>Volver</button></Link>
+
                 </div>
             ) : <p>Necesitás iniciar sesión.</p>
         )

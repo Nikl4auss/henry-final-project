@@ -5,7 +5,7 @@ export default function CardToEdit({ id, name, price, image, brand }) {
     return (
         <>
             <div className={`${styles.card} ${styles.Card19}`} key={id}>
-                <Link to={`/product/${id}`}>
+                <Link to={`/producto/${id}`}>
                     <div className={`${styles.card__header} ${styles.card__header19}`}>
                         <div
                             className={styles.card__watermark}

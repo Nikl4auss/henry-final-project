@@ -1,15 +1,18 @@
 const { Router } = require ('express')
-const {Line_cart, Stock, Cart, Product, Image_Product} = require("../db")
+const {Line_cart, Stock, Cart, Product, Image_Product, User} = require("../db");
 
 const router = Router();
 
 router.get('/:id', async(req, res, next) => {
     const { id } = req.params;
     try{
-        const cartUser = await Cart.findOne({
+        const [ cartUser, created] = await Cart.findOrCreate({
             where: {
                 id: id
             },
+            defaults: {
+                id: id
+            },  
             include: [
                 {
                     model: Line_cart,
@@ -34,7 +37,18 @@ router.get('/:id', async(req, res, next) => {
             ],
             order: [['createdAt', 'DESC']]
         })
-        res.status(200).json(cartUser)
+
+        if(created){
+            const userLog = await User.findOne({
+                where: {
+                    id: id
+                }
+            })
+            userLog.setCart(cartUser)
+            res.send('El carrito fue creado con éxito')
+        } else {
+            res.status(200).json(cartUser)
+        }
     }catch(err){
         next(err)
     }

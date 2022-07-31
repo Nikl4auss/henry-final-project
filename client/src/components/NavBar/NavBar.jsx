@@ -4,6 +4,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import styles from "./NavBar.module.css";
 import LoginButton from "../LoginButton/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import LogoutButton from "../LogoutButton/LogoutButton";
+import { useLocalStorage } from "../../services/useStorage";
+import apiInstance from "../../services/apiAxios";
 import MenuUser from "../MenuUser/MenuUser"
 
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -11,10 +14,42 @@ import MenuUser from "../MenuUser/MenuUser"
 
 export default function NavBar() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
+  const [ cart, setCart ] = useLocalStorage('cart')
+
 
   function clickToShopingCart() {
+    if (isAuthenticated) {
+      if (cart) {
+        cart.forEach(async pr => {
+          await apiInstance.post(`/line_cart/${pr.id}`, {
+            id_Cart: user.sub,
+            quantity: pr.quantity
+          })
+        })
+        setCart([])
+      }
+    }
     navigate("/carrito");
+  }
+
+  function clickToShopingCart() {
+    if(isAuthenticated){
+      if(cart) {
+        cart.forEach( async pr => {
+            await apiInstance.post(`/line_cart/${pr.id}`, {
+                id_Cart: '5s5f5s5s', 
+                quantity: pr.quantity
+            })
+        })
+        setCart([])
+    }
+    }
+    navigate("/carrito");
+  }
+
+  function clickToHome() {
+    navigate("/inicio");
   }
 
   return (
@@ -22,7 +57,7 @@ export default function NavBar() {
       <nav className={styles.navbarContainer}>
         <div className={styles.divTop}>
           <div className={styles.logo}>
-            <Link to="/home">
+            <Link to="/inicio">
               <img
                 width="200"
                 height="70"

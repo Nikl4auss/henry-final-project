@@ -12,7 +12,7 @@ import apiInstance from '../../services/apiAxios.js'
 
 
 export default function ProductOptions({ active, setActive, stock, name, price, image }) {
-    const { isAuthenticated } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
     const order = useSelector(state => state.order)
     const [cartLS, setCartLS] = useLocalStorage('cart', order)
     const [colorSelected, setColorSelected] = useState('')
@@ -90,11 +90,11 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
         if (isAuthenticated) {
             try {
                 const response = await apiInstance.post(`/line_cart/${idStockSelected.id}`, {
-                    id_Cart: '5s5f5s5s',
+                    id_Cart: user.sub,
                     quantity
                 })
                 if(response.data){
-                    dispatch(getCart('5s5f5s5s'))
+                    dispatch(getCart(user.sub))
                     setActive(!active)
                 }
             } catch (err) {

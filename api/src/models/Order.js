@@ -19,8 +19,10 @@ module.exports = (sequelize) => {
                 defaultValue: 'Pendiente'
             },
             payment_status: {
+
                 type: DataTypes.ENUM(['approved', 'pending','failure', 'paymentLinkGenerated']),
                 defaultValue: 'paymentLinkGenerated'
+
             }
         }
     )
