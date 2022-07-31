@@ -67,7 +67,7 @@ function ImageUploader({ images, setImages }) {
 
         <label  className={images.length < 6 ? styles.cardFooter : styles.cardDooterDisabled} 
         >
-          <div>
+          <div className={styles.divIcon}>
             <BiImageAdd size="2em" />
           </div>
           <input
