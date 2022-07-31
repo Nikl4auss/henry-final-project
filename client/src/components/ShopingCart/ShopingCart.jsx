@@ -33,13 +33,13 @@ export function ShopingCart() {
     }, [order])
 
     cart.forEach(product => {
-        arrayOrder.push({
-            stock_product: product.stock_product,
-            id: product.id,
-            title: product.name,
-            unit_price: product.price,
-            quantity: product.quantity,
-        })
+        //     arrayOrder.push({
+        //     stock_product: product.stock_product,
+        //     id: product.id,
+        //     title: product.name,
+        //     unit_price: product.price,
+        //     quantity: product.quantity,
+        // })
     });
 
 
