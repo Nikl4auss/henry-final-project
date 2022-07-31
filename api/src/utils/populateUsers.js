@@ -12,6 +12,7 @@ async function populateUsers(){
         
         await Promise.all(users.map(async user => {
             const {given_name, family_name, email, user_id, name} = user
+            console.log(user_id)
             console.log('creating user ')
             if(given_name){
 

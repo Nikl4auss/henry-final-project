@@ -3,7 +3,6 @@ const server = require('./src/app.js');
 const {db, Product} = require('./src/db');
 const { populateProducts, populateProductsDos } = require('./src/utils/products');
 const loadDefaultValues = require('./src/utils/loadDefaultValues');
-const { NODE_ENV } = require('./src/utils/config');
 const populateUsers = require('./src/utils/populateUsers');
 const { createUsers } = require("./src/utils/createUsers")
 

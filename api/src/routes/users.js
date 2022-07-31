@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
             name,
             surname,
             email,
-            auth0_id: user_id
+            id: user_id
         })
 
         const newCart = await Cart.create({
