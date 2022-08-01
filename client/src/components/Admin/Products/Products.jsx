@@ -23,6 +23,7 @@ export default function Products (){
 
     return (
         <div>
+            <div className=''>Lista de productos</div>
             {arrayPage?.map(prod => {
                 return <CardProduct 
                 image={prod.images[0].image}

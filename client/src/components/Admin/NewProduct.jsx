@@ -235,7 +235,6 @@ export default function NewProduct() {
                                     name='image'
                                     onClick={(e) => handleSelect(e)}
                                 >Agregar</button> */}
-                            <ImageUploader images={images} setImages={setImages} />
                         </div>
                         <div className={styles.inputBox}>
                             <input
