@@ -4,6 +4,7 @@ import SearchBar from '../../SearchBar/SearchBar'
 import styles from './dashboard.module.css'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
+import UserDashboard from "../UserDashboard/UserDashboard";
 
 function Dashboard() {
   const menuRef = useRef(null);
@@ -72,6 +73,12 @@ function Dashboard() {
           className={({ isActive }) => activeClassName(isActive)}
         >
           Órdenes
+        </NavLink>
+        <NavLink
+          to="usuarios"
+          className={({ isActive }) => activeClassName(isActive)}
+        >
+          Usuarios
         </NavLink>
       </aside>
     </div>

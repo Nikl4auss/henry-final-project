@@ -4,10 +4,9 @@ import LoginButton from "../LoginButton/LoginButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUsers } from "../../redux/actions"
-import OneUser from "./oneUser";
 
 
-function UserDashboard () {
+function MyProfile () {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const usuario = useSelector((state) => state.allUser)
@@ -15,26 +14,33 @@ function UserDashboard () {
     useEffect(()=> {
         dispatch(getUsers())
     },[dispatch])
-
-  //  console.log("este ",usuario)
-    
+ 
     const { user,  isAuthenticated } = useAuth0();
 
-
-    console.log (user)
-  //  console.log("aqui",user)
+    // console.log(user)
+    // console.log(usuario)
 
     function returnHome () {
-        navigate("/home")
+        navigate("/inicio")
     }
 
+    let render_user = usuario.filter((us) => us.id === user.sub)
+    console.log (render_user[0])
     return (    
         <div>
             <fieldset>
                 <legend>Información de mi cuenta</legend>
                     {isAuthenticated && usuario?.length > 0 ? (
                         <div>
-                            <OneUser prop={usuario} />
+                            <label> Nombre:
+                               <p>{render_user[0].name}</p>
+                            </label>
+                            <label> Apellido:
+                               <p>{render_user[0].surname}</p>
+                            </label>
+                            <label> email:
+                               <p>{render_user[0].email}</p>
+                            </label>
                             <button onClick={returnHome}>Volver</button>
                             <button onClick={returnHome}>Editar mi perfil</button>
                         </div>
@@ -46,4 +52,4 @@ function UserDashboard () {
     )
 }
 
-export default UserDashboard;
+export default MyProfile;
