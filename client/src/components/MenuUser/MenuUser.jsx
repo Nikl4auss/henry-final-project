@@ -16,12 +16,12 @@ function MenuUser () {
     }
 
     function goToUserDashboard () {
-        navigate("/userDashboard")
+        navigate("/miperfil")
         setVisible(!visible)
     }
 
     function goToUserOrders () {
-        navigate("/userOrders")
+        navigate("/misordenes")
         setVisible(!visible)
     }
 
