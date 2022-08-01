@@ -11,8 +11,7 @@ import Success from "./components/Payment/Success";
 import Pending from "./components/Payment/Pending";
 import Failure from "./components/Payment/Failure";
 import { ProtectedRoute } from "./components/Admin/ProtectedRoute";
-import UserDashboard from "./components/UserDashboard/UserDashboard";
-import UserOrders from "./components/UserOrders/UserOrders";
+import MyProfile from "./components/MyProfile/MyProfile";
 import Sucursales from "./components/Sucursales/Sucursales";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import NotAuthorized from "./components/NotAuthorized/NotAuthorized";
@@ -21,6 +20,9 @@ import ModifyProduct from "./components/Admin/Modified Product/ModifyProduct";
 import Orders from "./components/Admin/Orders/Orders";
 import LineOrder from "./components/Admin/LineOrder/LineOrder";
 import Products from "./components/Admin/Products/Products";
+import MyOrders from "./components/MyOrders/MyOrders";
+import UserDashboard from "./components/Admin/UserDashboard/UserDashboard";
+
 
 function App() {
   return (
@@ -40,8 +42,8 @@ function App() {
             <Route path=":id" element={<ProductDetail />} />
           </Route>
           <Route path='/sucursales' element={<Sucursales />}/>
-          <Route exact path="/userDashboard" element={<UserDashboard />} />
-          <Route exact path="/userOrders" element={<UserOrders />} />
+          <Route exact path="/miperfil" element={<MyProfile />} />
+          <Route exact path="/misordenes" element={<MyOrders />} />
         </Route>
         <Route
           exact
@@ -56,6 +58,7 @@ function App() {
             <Route index element={<Orders />} />
             <Route exact path=":id" element={<LineOrder />}/>
           </Route>
+          <Route exact path="usuarios" element={<UserDashboard />} />
         </Route>
         <Route path="/sin-autorizacion" element={<NotAuthorized />} />
       </Routes>
