@@ -16,8 +16,7 @@ router.post('/', async (req, res, next) => {
     try{
         const newOrder = await Order.create({
             totalPrice,
-            status,
-            payment_status
+            status
         })
 
         const userOrder = await User.findOne({
