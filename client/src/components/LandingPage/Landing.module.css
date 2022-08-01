@@ -28,6 +28,11 @@ margin-top:8%;
     left: 77%;
 }
 
+.navHome :hover {
+    background-color: rgb(91, 53, 53);
+    color: #fff;
+}
+
 @media screen and (max-width: 992px) {
     .NavHome {
         font-size: 1.5 rem;
