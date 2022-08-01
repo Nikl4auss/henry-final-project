@@ -38,6 +38,9 @@ function UserDashboard () {
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>email</th>
+                                        <th>Cambiar rol</th>
+                                        <th>Eliminar usuario</th>
+                                        <th>Resetear contraseña</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,6 +49,15 @@ function UserDashboard () {
                                             <td>{item.name}</td>
                                             <td>{item.surname}</td>
                                             <td>{item.email}</td>
+                                            <td>
+                                                <button onClick={() => alert("Nico! cambiame el rol!!")}>X</button>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => alert("Nico! eliminame si tenes huevo!!")}>Y</button>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => alert("Nico! reseteame y te mato! jajaja")}>Z</button>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
