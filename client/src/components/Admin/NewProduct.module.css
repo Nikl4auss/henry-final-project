@@ -1,48 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+.title{
+    font-size:x-large;
+    font-weight: 800;
+    color: #323232;
+    margin-left: 2rem;
+}
 .container{
     margin-top: 1rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 8rem;
+
 }
 
-.formcontainer {
+/* .formcontainer {
     box-shadow: 1px 1px 4px 2px rgb(0 0 0 / 20%);
     background: #fff;
     border-radius: 10px;
-    margin: 1rem;
+    margin: rem;
 }
 
 .formcontainer h1 {
-    color: #333;
+    color: #5A5A5A;
     font-size: 33px;
     margin-top: 1.2rem;
     display: block
-}
+} */
 
-fieldset {
+/* fieldset {
     margin: 2rem 0;
     padding: 1rem 1rem;
     border: none;
-} 
+}  */
 
-  /* labels */
 
-legend {
+/* legend {
     font-size: 1.25rem;
     padding: 0 .25rem;
     color: #999;
     margin-block: 0.5rem;
-}
+} */
 
-label {
-    display: block;
-    margin: 1rem 0 .5rem 0;
-    font-weight: 600;
-}
+  /* Inputs & labels animations */
 
-  /* Inputs and textarea */
-
-input {
-    padding: .5rem;
+.container .inputBox{
+    position: relative;
+    width: 25rem;
+    height: 46px;
+    margin-bottom: 25px;
     border: 1px solid #767676;
-    border-radius: 15px;    
+    border-radius: 8px;
+    font-weight: 400;    
+    
+    /* padding: .5rem; */
+}
+
+.container .inputBox:last-child{
+    margin-bottom: 0;
+}
+
+.container .inputBox input{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    /* border: 1px solid #767676; */
+    background: transparent;
+    padding: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.container .inputBox label{
+    position: absolute;
+    left: 1px;
+    padding: 10px;
+    display: inline-block;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.container .inputBox input:focus ~ label,
+.container .inputBox input:valid ~ label
+{
+    transform: translateX(15px) translateY(-20px);
+    background-color: white;
+    font-size: 12px;
+}
+
+.divSelect{
+    margin-bottom: 1.2rem;
 }
 
 filter-row-search > input {
@@ -52,9 +106,56 @@ filter-row-search > input {
     border-right: none;
     }
 
+.divImages{
+    
+
+}
 /* Submit button*/
 
-.submitbtn {
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+.btnCreate{
+    width: 12rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    background-color: #667ED4;
+    color: white;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+.btnCreate:hover {
+    background-color: white; 
+    color: #667ED4;
+    border: 1px solid;
+    border-color: #667ED4;
+}
+
+.btnBack{
+    width: 12rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    background-color: #E84242;
+    color: white;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+.btnBack:hover {
+    background-color: white; 
+    color: #E84242;
+    border: 1px solid;
+    border-color: #E84242;
+}
+/* .submitbtn {
     padding: .5rem 1rem;
     border-radius: 6px;
     background-color: #333;
@@ -71,9 +172,9 @@ filter-row-search > input {
     background-color: white;
     color: #333;
     border: 1px solid #333;
-}
+} */
 
-.btn {
+/* .btn {
     width: 33px;
     height: 33px;
     border: 1px solid #3e3f3f;
@@ -83,7 +184,7 @@ filter-row-search > input {
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
-}
+} */
 
 @media screen and (max-width: 992px) {
     .container {
@@ -99,14 +200,14 @@ filter-row-search > input {
     padding-inline: 2rem;
     } */
 
-    .h1 {
+    h1 {
         font-size: 40px;
         margin-top: 0;
     }
 
     input[type='text'] {
     width: 100%;
-    color: #000;
+    color: #353535;
     }
 
     /* .select {

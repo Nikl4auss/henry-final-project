@@ -20,7 +20,7 @@ export function withRoleBasedRedirect(Component, options) {
         const roles = await getRoles();
         const isAuthorized = roles.includes(role);
         if (!isAuthorized) {
-          navigate(`/not-authorized`);
+          navigate(`/sin-autorizacion`);
         }
         setIsAuthorized(true);
       }

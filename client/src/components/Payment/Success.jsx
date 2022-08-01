@@ -40,7 +40,7 @@ export default function Success() {
     <div>
       <p>Su pago se realizó con éxito, muchas gracias!</p>
       <p>{dataStatusOrder}</p>
-      <Link to="/home" className={styles.btn}>
+      <Link to="/inicio" className={styles.btn}>
         ◀ Volver
       </Link>
     </div>
