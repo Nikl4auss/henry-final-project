@@ -39,12 +39,6 @@ function App() {
           <Route path="/producto">
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-          <Route exact path="/admin">
-            <Route
-              path="nuevoproducto"
-              element={<ProtectedRoute component={NewProduct} role="Admin" />}
-            />
-          </Route>
           <Route path='/sucursales' element={<Sucursales />}/>
           <Route exact path="/userDashboard" element={<UserDashboard />} />
           <Route exact path="/userOrders" element={<UserOrders />} />
@@ -56,7 +50,7 @@ function App() {
         >
           {/* <Route index element={<Overview />} /> */}
           <Route index element={<Products />} />
-          <Route path="nuevoproducto" element={<NewProduct />} />
+          <Route exact path="nuevoproducto" element={<NewProduct />} />
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
           <Route path='ordenes' >
             <Route index element={<Orders />} />
