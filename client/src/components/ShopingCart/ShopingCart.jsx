@@ -118,7 +118,7 @@ export function ShopingCart() {
                 <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
             </div>
             <div className={styles.divClose}>
-                <Link to= '/home'>
+                <Link to= '/inicio'>
                 <button className={styles.buttonClose}><IoMdClose/></button>
                 </Link>
         </div>

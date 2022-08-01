@@ -317,7 +317,7 @@ console.log(input)
                         </form>
                         <div className={styles.buttons}>
                             <button className={styles.btnCreate} type='submit'>Crear</button>
-                            <Link to='/home'><button className={styles.btnBack}>Volver</button></Link>
+                            <Link to='/admin'><button className={styles.btnBack}>Volver</button></Link>
                         </div>
                     </div>
 
