@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react"
 import React, { useEffect } from "react"
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
@@ -7,9 +8,10 @@ import styles from './OrdersByUser.module.css'
 
 export default function Orders() {
     const [ orders, setOrders ] = useState([])
+    const { user } = useAuth0()
 
     useEffect(() => {
-        getOrdersByUser().then(data => setOrders(data))
+        getOrdersByUser(user.sub).then(data => setOrders(data))
     }, [])
 
     return (

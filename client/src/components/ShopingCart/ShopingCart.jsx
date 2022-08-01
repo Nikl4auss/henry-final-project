@@ -35,33 +35,23 @@ export function ShopingCart() {
         return count
     }, [order])
 
-    cart.forEach(product => {
-        //     arrayOrder.push({
-        //     stock_product: product.stock_product,
-        //     id: product.id,
-        //     title: product.name,
-        //     unit_price: product.price,
-        //     quantity: product.quantity,
-        // })
-    });
-
     useEffect(() => {
         if(isAuthenticated) {
             dispatch(getCart(user.sub))
         } else {
-            if(cart){
-                dispatch(setOrder([...cart]))
-            }
+            if(cart === undefined){
+                setCart([])
+            } else dispatch(setOrder([...cart]))
         }
     }, [ dispatch ])
 
     async function redirectToPay(e) {
-        if (order.length > 0) {
+        if (order?.length > 0) {
             if (isAuthenticated) {
                 const orderCreated = await apiInstance.post('line_order', {
                     totalPrice: total,
                     status: 'Pendiente',
-                    payment_status: 'Pendiente',
+                    //payment_status: 'Pendiente',
                     idUser: user.sub,
                     products: order.map(prod => {
                         return {
@@ -118,7 +108,7 @@ export function ShopingCart() {
                 <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
             </div>
             <div className={styles.divClose}>
-                <Link to= '/home'>
+                <Link to= '/inicio'>
                 <button className={styles.buttonClose}><IoMdClose/></button>
                 </Link>
         </div>

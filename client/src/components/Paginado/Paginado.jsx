@@ -29,12 +29,14 @@ function Paginado() {
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
+        window.scroll(0, 0)
     }
 
     const previous = function (setActive) {
         if (currentPage >= 1) {
             setCurrentPage(currentPage - 1);
             setActive(currentPage - 1)
+            window.scroll(0, 0)
         }
     };
 
@@ -42,6 +44,7 @@ function Paginado() {
         if (currentPage < allPage-1) {
             setCurrentPage(currentPage + 1);
             setActive(currentPage + 1)
+            window.scroll(0, 0)
         }
     };
 

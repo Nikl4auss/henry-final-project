@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, getProducts } from "../../redux/actions";
+import { getCart, getProducts, setProducts } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
 import Filters from "../Filters/Filters";
 import Cards from "../Cards/Cards";
@@ -22,6 +22,10 @@ export default function Home() {
         if(isAuthenticated) {
             dispatch(getCart(user.sub))
         }
+
+        return () => {
+            dispatch(setProducts())
+        }
     }, [dispatch, isAuthenticated])
 
     return (
@@ -30,10 +34,10 @@ export default function Home() {
                 <Filters />
             </div>
             <div>
-                <Paginado />
                 <div className={styles.cardsContainer}>
                     {products.length === 0 ? 'Cargando...' : <Cards />}
                 </div>
+                <Paginado />
             </div>
         </div>
     )
