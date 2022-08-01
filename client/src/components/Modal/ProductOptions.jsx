@@ -165,7 +165,7 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
                         </div>
                         <div className={styles.divColor}>
                             {colors?.map(color => {
-                                let codeColor = stock.find(el => el.MainColor.name === color)
+                                let codeColor = stock.find(el => el.MainColor?.name === color)
                                 return (
                                     <button
                                         className={

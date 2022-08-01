@@ -50,7 +50,7 @@ function App() {
         >
           {/* <Route index element={<Overview />} /> */}
           <Route index element={<Products />} />
-          <Route path="nuevoproducto" element={<NewProduct />} />
+          <Route exact path="nuevoproducto" element={<NewProduct />} />
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
           <Route path='ordenes' >
             <Route index element={<Orders />} />

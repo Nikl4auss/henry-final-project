@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { Order, User } = require("../db.js");
+const { Order, User, Line_order, MainColor, Size, Image_Product, Product, Stock } = require("../db.js");
 
 const router = Router();
 

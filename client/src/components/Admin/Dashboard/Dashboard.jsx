@@ -56,19 +56,19 @@ function Dashboard() {
           Lista de productos
         </NavLink>
         <NavLink
-          to="/admin/nuevoproducto"
-          className= {({ isActive }) => activeClassName(isActive)} 
+          to="nuevoproducto"
+          className={({ isActive }) => activeClassName(isActive)}
         >
           Crear Producto
         </NavLink>
         <NavLink
-          to="/admin/sucursales"
+          to="sucursales"
           className={({ isActive }) => activeClassName(isActive)}
         >
           Sucursales
         </NavLink>
         <NavLink
-          to="/admin/ordenes"
+          to="ordenes"
           className={({ isActive }) => activeClassName(isActive)}
         >
           Órdenes
