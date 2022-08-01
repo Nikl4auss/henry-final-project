@@ -1,0 +1,68 @@
+.containerFooter {
+    width: 100%;
+    padding: 40px 0;
+    background: #f7f7f7;
+    margin-top: 40px;    
+}
+
+.containerFooter Footer {
+max-width: 1200px;
+margin: auto;
+}
+
+.containerFooter Footer .logoFooter {
+    text-align: center;
+}
+
+.containerFooter Footer .logoFooter img {
+    width: 100px;
+}
+
+.containerFooter Footer .redesFooter {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.containerFooter Footer .redesFooter a {
+    font-size: 20px;
+    margin: 20px;
+    background: #efefef;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    color: #a2a2a2;
+}
+
+Footer .redesFooter fa-brands fa-facebook :hover {
+    background: #DE4C34;
+    color: #fff;
+}
+
+Footer .redesFooter fa-brands fa-facebook :hover {
+    background: #41579A;
+    color: #fff;
+}
+
+Footer .redesFooter fa-brands fa-facebook :hover {
+    background: linear-gradient(top right, #FCDE30, #E9712A, #D23138, #AE4198, #7540A1, #5443A8);
+    color: #fff;
+}
+
+.containerFooter Footer hr {
+    margin-top: 20px;
+    border: none;
+    height: 2px;
+    background: #c0c0c07a;
+}
+
+.containerFooter h4 {
+    text-align: center;
+    margin-top: 40px;
+    color: #8e8e8e;
+    font-weight: 500;
+}
+
