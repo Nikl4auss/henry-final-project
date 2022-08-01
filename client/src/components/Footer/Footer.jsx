@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaFacebook, FaInstagram, FaGooglePlusG } from 'react-icons/fa'
 import styles from './Footer.module.css'
 
 function Footer() {
@@ -10,13 +11,13 @@ return (
                 <img src="img/davoShoes.jpeg" alt=""></img>
             </div>
             <div className={styles.redesFooter}>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+                <a href="#"><FaFacebook /></a>
+                <a href="#"><FaInstagram /></a>
+                <a href="#"><FaGooglePlusG /></a>
             </div>
-            <hr>
+            <hr />
             <h4>Davo Shoes- Todos los Derechos Reservados</h4>
-            </hr>
+            <hr />
         </footer>
 
     </div>
