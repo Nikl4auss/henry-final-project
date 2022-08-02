@@ -101,6 +101,9 @@
 .divSelect{
     margin-bottom: 1.2rem;
 }
+.select{
+    background-color: rgb(245 245 245);
+}
 
 filter-row-search > input {
     border-top: 15x solid #767676;
