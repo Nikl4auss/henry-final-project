@@ -1,5 +1,4 @@
-import { Route } from "react-router-dom";
-import { Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Landing from "./components/LandingPage/Landing";
 import NavBar from "./components/NavBar/NavBar";
@@ -30,6 +29,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
+          <Route path="/home" element={<Navigate to="/inicio"/>} />
           <Route exact path="/inicio" element={<Home />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
           < Route path="/checkout" element={<CheckOut/>} />
