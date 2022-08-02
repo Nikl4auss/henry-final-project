@@ -1,10 +1,10 @@
 const { Router } = require("express");
 const router = Router();
-const {checkoutCart, statusOrder} = require("../controllers/payments");
+const {checkoutCart, statusOrder, updateOrder} = require("../controllers/payments");
 //const {statusOrder} = require ('../controllers/payments')
 //const EmailCtrl = require('../controllers/mailController.js');
 
-
+router.post("/order", updateOrder)
 //email route
 //router.post('/feedback', EmailCtrl.sendEmail);
 

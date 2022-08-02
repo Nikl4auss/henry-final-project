@@ -66,5 +66,21 @@ router.get('/:id', async (req, res, next) => {
         next(error)
     }
 })
-
+router.put('/', async (req, res, next)=>{
+    let {id, quantity} = req.body
+    try {
+        const stock = await Stock.findOne({
+            where:{ id: id}
+        })
+        if(quantity <= stock.stock_product){
+            let stockUpdate = stock.stock_product - quantity
+            await Stock.upsert({
+                id: id,
+                stock_product : stockUpdate
+            })
+        res.send('se desconto stock con exito')}
+    } catch (error) {
+        next(error)
+    }
+})
 module.exports = router;
