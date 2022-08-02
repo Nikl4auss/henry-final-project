@@ -14,7 +14,6 @@ import MyProfile from "./components/MyProfile/MyProfile";
 import Sucursales from "./components/Sucursales/Sucursales";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import NotAuthorized from "./components/NotAuthorized/NotAuthorized";
-import Overview from "./components/Admin/Overview/Overview";
 import ModifyProduct from "./components/Admin/Modified Product/ModifyProduct";
 import LineOrder from "./components/Admin/LineOrder/LineOrder";
 import Products from "./components/Admin/Products/Products";
@@ -28,10 +27,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
-          <Route path="/home" element={<Navigate to="/inicio"/>} />
           <Route exact path="/inicio" element={<Home />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
-          < Route path="/checkout" element={<CheckOut/>} />
+          < Route path="/checkout" element={<CheckOut />} />
           <Route path="/pago">
             <Route path="exitoso" element={<Success />} />
             <Route path="fallido" element={<Failure />} />
@@ -40,7 +38,7 @@ function App() {
           <Route path="/producto">
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-          <Route path='/sucursales' element={<Sucursales />}/>
+          <Route path='/sucursales' element={<Sucursales />} />
           <Route exact path="/miperfil" element={<MyProfile />} />
           <Route exact path="/misordenes" element={<OrdersByUser />} />
         </Route>
@@ -55,7 +53,7 @@ function App() {
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
           <Route path='ordenes' >
             <Route index element={<Orders />} />
-            <Route exact path=":id" element={<LineOrder />}/>
+            <Route exact path=":id" element={<LineOrder />} />
           </Route>
           <Route exact path="usuarios" element={<UserDashboard />} />
         </Route>
