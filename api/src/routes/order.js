@@ -1,18 +1,23 @@
-const { Router } = require ('express')
-const {Order, User, Line_order, Stock, MainColor, Size, Image_Product, Product} = require("../db.js");
+const { Router } = require('express')
+const { Order, User, Line_order, Stock, MainColor, Size, Image_Product, Product } = require("../db.js");
 const checkJwt = require('../middleware/checkJwt')
 const checkPermissions = require('../middleware/checkPermissions')
 
 const router = Router();
 
-router.get('/:id', async(req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     const { id } = req.params
     try{
             const response = await Order.findOne({
                 where: {
                     id: id
                 }, 
+                attributes:['payment_status','status', 'totalPrice', 'id'],
                 include: [
+                    {
+                        model: User,
+                        attributes: ['name', 'surname', 'email']
+                    },
                     {
                         model: Line_order,
                         include: [{
@@ -34,34 +39,29 @@ router.get('/:id', async(req, res, next) => {
                                     }]
                                 },
                             ]
-                        },{
-                            model: User,
-                            attributes: ['name', 'surname', 'email']
                         }
-                    ]
-                    }
-                ]
-            })
-            res.json(response)
-            
-    }catch(err){
+                    ]  
+                }
+            ]
+        })
+        res.json(response)
+
+    } catch (err) {
         next(err)
     }
 });
 
 
 router.put('/:id', async (req, res, next)=>{
-    const {status} = req.body
+    const {status,
+    } = req.body
     const idOrder = req.params.id
     try {
-        const orderById = Order.findOne({
-            where:{
-                id: idOrder
-            }
-        })
-        const orderUpdated = await orderById.update({
+        await Order.upsert({
+            id: idOrder,
             payment_status: status
-        })
+        }
+    );
         res.send({msg:'orden actualizada'})
     } catch (error) {
         next(error)

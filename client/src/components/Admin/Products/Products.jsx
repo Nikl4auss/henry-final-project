@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getProducts } from "../../../redux/actions"
 import CardProduct from "../CardProduct/CardProduct"
 import Paginado from '../../Paginado/Paginado'
+import styles from './Products.module.css'
 
 
 export default function Products (){
@@ -23,7 +24,7 @@ export default function Products (){
 
     return (
         <div>
-            <div className=''>Lista de productos</div>
+            <div className={styles.title}>Lista de productos</div>
             {arrayPage?.map(prod => {
                 return <CardProduct 
                 image={prod.images[0].image}

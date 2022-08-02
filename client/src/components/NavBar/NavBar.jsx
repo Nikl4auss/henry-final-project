@@ -15,7 +15,7 @@ import MenuUser from "../MenuUser/MenuUser"
 export default function NavBar() {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
-  const [ cart, setCart ] = useLocalStorage('cart')
+  const [cart, setCart] = useLocalStorage('cart')
 
 
   function clickToShopingCart() {
@@ -34,16 +34,16 @@ export default function NavBar() {
   }
 
   function clickToShopingCart() {
-    if(isAuthenticated){
-      if(cart.length > 0) {
-        cart.forEach( async pr => {
-            await apiInstance.post(`/line_cart/${pr.id}`, {
-                id_Cart: user.sub, 
-                quantity: pr.quantity
-            })
+    if (isAuthenticated) {
+      if (cart.length > 0) {
+        cart.forEach(async pr => {
+          await apiInstance.post(`/line_cart/${pr.id}`, {
+            id_Cart: user.sub,
+            quantity: pr.quantity
+          })
         })
         setCart([])
-    }
+      }
     }
     navigate("/carrito");
   }

@@ -78,28 +78,6 @@ export default function NewProduct() {
         }))
     }
 
-    // async function handleSelect(e) {
-    //     e.preventDefault()
-    //     if (e.target.value === "Image") {
-    //         var value = await swal({
-    //             title: "Agregar imagen",
-    //             text: "Copia la URL de la imagen",
-    //             content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
-    //         })
-    //         if (value !== null) {
-    //             setInput({
-    //                 ...input,
-    //                 image: [...input.image, value]
-    //             })
-    //             setErrors(validate({
-    //                 ...input,
-    //                 image: [...input.image, value]
-    //             }))
-    //         }
-    //         return
-    //     }
-    // }
-
     useEffect(() => {
         setInput({
             ...input,
@@ -230,11 +208,7 @@ export default function NewProduct() {
                         </div>
                         <div className={styles.divImages}>
                             <label>Imagen:</label>
-                            {/* <button
-                                    value={"Image"}
-                                    name='image'
-                                    onClick={(e) => handleSelect(e)}
-                                >Agregar</button> */}
+                            <ImageUploader images={images} setImages={setImages} />
                         </div>
                         <div className={styles.inputBox}>
                             <input

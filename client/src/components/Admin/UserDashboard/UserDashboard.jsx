@@ -4,6 +4,7 @@ import LoginButton from "../../LoginButton/LoginButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUsers } from "../../../redux/actions"
+import styles from './UserDashboard.module.css'
 
 function UserDashboard () {
     const dispatch = useDispatch()
@@ -27,9 +28,9 @@ function UserDashboard () {
     }
 
     return (    
-        <div>
+        <div className={styles.generalContainer}>
             <fieldset>
-                <legend>Información de mi cuenta</legend>
+                <legend className={styles.title}>Usuarios</legend>
                     {isAuthenticated && usuario?.length > 0 ? (
                         <div>
                               <table>

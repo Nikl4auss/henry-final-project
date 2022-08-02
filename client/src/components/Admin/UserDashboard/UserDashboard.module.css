@@ -1,0 +1,11 @@
+.generalContainer{
+    margin-top: 6rem;
+}
+
+.title{
+    font-size:x-large;
+    font-weight: 800;
+    color: #323232;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}

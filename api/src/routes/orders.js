@@ -4,8 +4,18 @@ const { Order, User, Line_order, MainColor, Size, Image_Product, Product, Stock 
 const router = Router();
 
 router.get('/', async (req, res, next) => {
+    const { filter, payment } = req.query
+    let conditions = {}
+    let where = {}
+    if(filter.length > 0) {
+        if(filter === 'Todos') conditions = {}
+        else {
+            where.status = filter;
+            conditions.where = where
+        }
+    }
     try {
-        const response = await Order.findAll()
+        const response = await Order.findAll(conditions)
         res.json(response)
     } catch (err) {
         next(err)

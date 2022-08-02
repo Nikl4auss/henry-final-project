@@ -7,7 +7,6 @@ router.post('/', async (req, res, next) => {
     const {
         totalPrice,
         status,
-        payment_status,
         products, 
         idUser
     } = req.body
@@ -16,7 +15,8 @@ router.post('/', async (req, res, next) => {
     try{
         const newOrder = await Order.create({
             totalPrice,
-            status
+            status,
+            idUser
         })
 
         const userOrder = await User.findOne({
@@ -38,9 +38,10 @@ router.post('/', async (req, res, next) => {
         })
 
         userOrder.addOrder(newOrder)
-
-        res.send('El producto fue creado con éxito')
-
+        let {id} = newOrder.dataValues
+      
+        res.send({orderId : id})
+     
     } catch (error){
     console.log(error)
     }
