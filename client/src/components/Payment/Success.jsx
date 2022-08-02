@@ -12,39 +12,30 @@ export default function Success() {
   let payment_id = urlSearchParams.get("payment_id");
   let external_reference = urlSearchParams.get("external_reference");
 
-  async function sendMail() {
-    const { data } = await apiInstance.post("/email", {
-      name: "Estefi Bologna",
-      email: "estefibologna@gmail.com",
-      subject: "recibimos tu pago",
-      delivery: true,
+  async function updateStatusOrder() {
+    const { data } = await apiInstance.post("/payment/order", {
+      payment_id,
+      external_reference
     });
     return data;
   }
   let send = false;
   useEffect(() => {
     setCart([]);
-    getStatusOrder(payment_id, external_reference).then((data) => {
-      setDataStatusOrder(data.status);
-      console.log(data.status);
-
-      if (!send && data.status === "approved") {
-        sendMail();
+      if (!send) {
+        updateStatusOrder();
         send = true;
       }
-    });
-  }, [payment_id]);
+  }, []);
 
-  console.log(dataStatusOrder);
-  return dataStatusOrder === "approved" ? (
+ 
+  return (
     <div>
       <p>Su pago se realizó con éxito, muchas gracias!</p>
-      <p>{dataStatusOrder}</p>
       <Link to="/inicio" className={styles.btn}>
         ◀ Volver
       </Link>
     </div>
-  ) : (
-    <div>Loading</div>
+  
   );
 }

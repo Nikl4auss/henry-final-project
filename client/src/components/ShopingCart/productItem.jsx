@@ -22,6 +22,7 @@ function ProductItem({ id, price, quantity, stock, name }) {
   const getStock = async function (id) {
     try {
       const stockBD = await axios.get(`${API_URL}/stock/${id}`);
+      
       let allStock = stockBD.data;
       return allStock;
     } catch (error) {
@@ -31,6 +32,7 @@ function ProductItem({ id, price, quantity, stock, name }) {
 
   useEffect(() => {
     getStock(id).then((data) => setProduct(data));
+    console.log(product?.Image_Product)
   }, [id]);
 
   async function oneMore(e) {
@@ -141,12 +143,16 @@ function ProductItem({ id, price, quantity, stock, name }) {
     <div className={styles.cardGrid}>
       {product?.id ? (
         <div className={styles.cardCart}>
+          {/* <img src={product?.Image_Product[0]} alt='' /> */}
           <div className={styles.line1}>
             <h3 className={styles.cardName}>{product?.Product.name}</h3>
             {/* <div>{product?.Image_Product.image}</div> */}
             <h3 className={styles.cardPrice}>${product?.Product.price}</h3>
           </div>
-
+          <div>
+            <h3> Color: {product?.MainColor.name}</h3>
+            <h3> Talle: {product?.Size.name}</h3>
+          </div>
           <div className={styles.line2}>
             <div className={styles.conteinerQuantity}>
               <h3>Cantidad: {cantidad}</h3>

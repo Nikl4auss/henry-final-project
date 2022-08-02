@@ -49,6 +49,8 @@ export default function Orders() {
                 </select>
             </div>
             {orders?.length > 0 ?
+            <>
+                <h1 className= {styles.title}> Órdenes </h1>
                 orders.map(order => {
                     return (
                         <div className={styles.container}>
@@ -71,6 +73,7 @@ export default function Orders() {
                         </div>
                     )
                 })
+               </>
                 : <div className={styles.loading}>Cargando...</div>}
         </div>
     )
