@@ -1,3 +1,16 @@
+.allContainer{
+    position: relative;
+    top: 5rem;
+}
+
+.title{
+    margin-top: 6rem;
+    font-size:x-large;
+    font-weight: 800;
+    color: #323232;
+    margin-left: 2rem;
+}
+
 .container {
     height: 5rem;
     width: 100%;
@@ -6,7 +19,7 @@
     margin-bottom: 1rem;
     box-shadow: .1rem .1rem .5rem rgb(0, 0, 0, 0.5);
     padding: .5rem;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 .interContainer {

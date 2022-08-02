@@ -43,7 +43,7 @@ function App() {
           </Route>
           <Route path='/sucursales' element={<Sucursales />}/>
           <Route exact path="/miperfil" element={<MyProfile />} />
-          <Route exact path="/misordenes" element={<MyOrders />} />
+          <Route exact path="/misordenes" element={<Orders />} />
         </Route>
         <Route
           exact
