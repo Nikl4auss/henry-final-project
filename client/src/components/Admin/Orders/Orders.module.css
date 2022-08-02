@@ -1,3 +1,8 @@
+.allContainer{
+    position: relative;
+    top: 5rem;
+}
+
 .title{
     margin-top: 6rem;
     font-size:x-large;
@@ -5,6 +10,7 @@
     color: #323232;
     margin-left: 2rem;
 }
+
 .container {
     height: 5rem;
     width: 100%;
