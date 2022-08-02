@@ -10,6 +10,8 @@ import styles from './Home.module.css';
 import Paginado from "../Paginado/Paginado";
 import { useLocalStorage } from "../../services/useStorage";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Loader } from "../Admin/loader";
+import Loading from "../Loading/Loading";
 
 
 export default function Home() {
@@ -37,7 +39,7 @@ export default function Home() {
 
             <div>
                 <div className={styles.cardsContainer}>
-                    {products.length === 0 ? 'Cargando...' : <Cards />}
+                    {products.length === 0 ? <Loading /> : <Cards />}
                 </div>
                 <Paginado />
             </div>

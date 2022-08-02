@@ -1,5 +1,7 @@
+import Loading from "../Loading/Loading";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+
 import Review from "./Review";
 import styles from "./Reviews.module.css";
 import { emptyReviews, getReviews } from '../../redux/actions/index'
@@ -18,10 +20,8 @@ const Reviews = ({ productId }) => {
     <div>
       <div className={styles.gralReviews}>
         {isLoading ? (
-          <div>
-            <p>Cargando...</p>
-          </div>
-        ) : reviews?.length ? (
+          <Loading />
+        ) : reviews.length ? (
           reviews.map((review) => (
             <Review key={review?.id} {...review} />
           ))

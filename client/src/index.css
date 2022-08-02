@@ -4,6 +4,8 @@
 
 html, body, div.App, div#root {
     height: 100%;
-    overflow-x: hidden;
 }
 
+html {
+    overflow-x: hidden;
+}
