@@ -16,12 +16,11 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import NotAuthorized from "./components/NotAuthorized/NotAuthorized";
 import Overview from "./components/Admin/Overview/Overview";
 import ModifyProduct from "./components/Admin/Modified Product/ModifyProduct";
-import Orders from "./components/Admin/Orders/Orders";
 import LineOrder from "./components/Admin/LineOrder/LineOrder";
 import Products from "./components/Admin/Products/Products";
-import MyOrders from "./components/MyOrders/MyOrders";
 import UserDashboard from "./components/Admin/UserDashboard/UserDashboard";
-
+import OrdersByUser from "./components/OrdersByUser/OrdersByUser";
+import Orders from './components/Admin/Orders/Orders'
 
 function App() {
   return (
@@ -43,7 +42,7 @@ function App() {
           </Route>
           <Route path='/sucursales' element={<Sucursales />}/>
           <Route exact path="/miperfil" element={<MyProfile />} />
-          <Route exact path="/misordenes" element={<Orders />} />
+          <Route exact path="/misordenes" element={<OrdersByUser />} />
         </Route>
         <Route
           exact
