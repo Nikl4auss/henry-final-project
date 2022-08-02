@@ -18,7 +18,7 @@ export default function LineOrder(){
     console.log(order)
 
     return (
-        <div>
+        <div className={styles.container}>
             <NavLink 
             className={styles.back}
             to='/admin/ordenes'><IoArrowBackOutline /> Volver</NavLink>
