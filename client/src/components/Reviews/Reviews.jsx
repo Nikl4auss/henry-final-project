@@ -1,4 +1,5 @@
 import { useFetchReviews } from "../../services/useFetchReviews";
+import Loading from "../Loading/Loading";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm";
 import styles from "./Reviews.module.css";
@@ -10,9 +11,7 @@ const Reviews = ({ productId }) => {
     <div>
       <div className={styles.gralReviews}>
         {isLoading ? (
-          <div>
-            <p>Cargando...</p>
-          </div>
+          <Loading />
         ) : reviews.length ? (
           reviews.map((review) => (
             <Review key={review.id} score={review.score} review={review} />

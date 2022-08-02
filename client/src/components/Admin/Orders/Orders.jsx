@@ -3,6 +3,7 @@ import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { getOrders } from "../../../services/productsServices"
 import { useSessionStorage } from "../../../services/useStorage"
+import Loading from "../../Loading/Loading"
 import styles from './Orders.module.css'
 
 
@@ -74,7 +75,7 @@ export default function Orders() {
                     )
                 })}
             </>
-                : <div className={styles.loading}>Cargando...</div>}
+                : <Loading/>}
 
         </div>
     )

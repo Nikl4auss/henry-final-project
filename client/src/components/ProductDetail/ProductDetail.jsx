@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReviewForm from "../Reviews/ReviewForm";
@@ -17,6 +17,8 @@ import {
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import ProductOptions from "../Modal/ProductOptions";
 import verifyStock from "../../services/verifyStock";
+import Loading from "../Loading/Loading";
+import { GiScrollUnfurled } from "react-icons/gi";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -26,19 +28,35 @@ function ProductDetail() {
     description: "",
     model: "",
     images: [],
-    Stocks:[]
+    Stocks: []
   });
   const [active, setActive] = useState(false);
-  const mainImage = productDetail.images[0]?.image || "";
+  const mainImage = productDetail?.images[0]?.image || "";
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [])
+
   useEffect(() => {
     getProduct(id).then((data) => {
       setProductDetail(data);
     });
+    
+    return () => {
+      setProductDetail({
+        name: "",
+        price: 0.0,
+        description: "",
+        model: "",
+        images: [],
+        Stocks: []
+      })
+    }
   }, [id]);
-  
-let withStock = useMemo(()=>{
-  return verifyStock(productDetail.Stocks)
-}, [productDetail])
+
+  let withStock = useMemo(() => {
+    return verifyStock(productDetail.Stocks)
+  }, [productDetail])
 
   return (
     <>
@@ -87,13 +105,13 @@ let withStock = useMemo(()=>{
             {/* <div className={styles.divColorTitle}>Color</div> */}
             <div className={styles.divAdd}>
               {productDetail.Stocks && withStock ?
-              <button className={styles.add} onClick={() => setActive(!active)}>
-                Añadir al carrito
-              </button>
-              : <button className={styles.soldOut}>
-              Sin Stock
-            </button>
-            }
+                <button className={styles.add} onClick={() => setActive(!active)}>
+                  Añadir al carrito
+                </button>
+                : <button className={styles.soldOut}>
+                  Sin Stock
+                </button>
+              }
             </div>
 
             <ProductOptions
@@ -119,7 +137,7 @@ let withStock = useMemo(()=>{
               </div> */}
           </>
         ) : (
-          <div>Cargando</div>
+          <Loading />
         )}
       </div>
       <div className="p-5 flex flex-col m-auto gap-3 sm:w-3/4 md:w-1/2">

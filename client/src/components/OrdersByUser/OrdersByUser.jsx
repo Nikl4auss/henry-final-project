@@ -3,10 +3,11 @@ import React, { useEffect } from "react"
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { getOrdersByUser } from "../../services/productsServices"
+import Loading from "../Loading/Loading"
 import styles from './OrdersByUser.module.css'
 
 
-export default function Orders() {
+export default function OrdersByUser() {
     const [ orders, setOrders ] = useState([])
     const { user } = useAuth0()
 
@@ -51,6 +52,6 @@ export default function Orders() {
                     <h1>Total: ${order.totalPrice}</h1>
                 </div>
                 )
-            }) : <div>Cargando...</div>
+            }) : <Loading />
     )
 }
