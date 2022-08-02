@@ -54,7 +54,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next)=>{
     const {status,
-      
     } = req.body
     const idOrder = req.params.id
     try {
@@ -63,7 +62,6 @@ router.put('/:id', async (req, res, next)=>{
             payment_status: status
         }
     );
-        
         res.send({msg:'orden actualizada'})
     } catch (error) {
         next(error)

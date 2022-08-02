@@ -9,7 +9,7 @@ import styles from './Orders.module.css'
 export default function Orders() {
     const [orders, setOrders] = useState([])
     const [filterOrders, setFilterOrders] = useSessionStorage('filterOrder', 'empty')
-    const [filterPayment, setFilterPayment ] = useSessionStorage('filterPayment', 'empty')
+    const [filterPayment, setFilterPayment] = useSessionStorage('filterPayment', 'empty')
 
     useEffect(() => {
         getOrders(filterOrders, filterPayment).then(data => setOrders(data))
@@ -51,30 +51,31 @@ export default function Orders() {
             {orders?.length > 0 ?
             <>
                 <h1 className= {styles.title}> Órdenes </h1>
-                orders.map(order => {
+                {orders.map(order => {
                     return (
-                        <div className={styles.container}>
-                            <div className={styles.interContainer}>
-                                <div className={styles.divPrice}>
-                                    <h2>Orden N°: {order.id}</h2>
-                                    <h4>Total: ${order.totalPrice}</h4>
+                            <div className={styles.container}>
+                                <div className={styles.interContainer}>
+                                    <div className={styles.divPrice}>
+                                        <h2>Orden N°: {order.id}</h2>
+                                        <h4>Total: ${order.totalPrice}</h4>
+                                    </div>
+                                    <div className={styles.divPrice}>
+                                        <span>Estado de entrega: {order.status}</span>
+                                        <span>Estado de pago: {order.payment_status}</span>
+                                    </div>
+                                    <NavLink
+                                        className={styles.link}
+                                        to={`${order.id}`}
+                                    >
+                                        Ver orden
+                                    </NavLink>
                                 </div>
-                                <div className={styles.divPrice}>
-                                    <span>Estado de entrega: {order.status}</span>
-                                    <span>Estado de pago: {order.payment_status}</span>
-                                </div>
-                                <NavLink
-                                    className={styles.link}
-                                    to={`${order.id}`}
-                                >
-                                    Ver orden
-                                </NavLink>
                             </div>
-                        </div>
                     )
-                })
-               </>
+                })}
+            </>
                 : <div className={styles.loading}>Cargando...</div>}
+
         </div>
     )
 }
