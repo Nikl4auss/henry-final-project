@@ -60,9 +60,9 @@ export function CheckOut() {
                         }
                     </div>
                     {estadoEnvio || estadoSucursal ?
-                    <div className={styles.btnPago}>
-                        <button onClick={redirectPay}>Pagar</button>
-                    </div> : <div></div>
+                    
+                        <button className={styles.btnPago} onClick={redirectPay}>Pagar</button>
+                    : <div></div>
                     }
                 </div>
             }
