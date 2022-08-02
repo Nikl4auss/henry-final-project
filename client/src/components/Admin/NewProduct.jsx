@@ -78,28 +78,6 @@ export default function NewProduct() {
         }))
     }
 
-    // async function handleSelect(e) {
-    //     e.preventDefault()
-    //     if (e.target.value === "Image") {
-    //         var value = await swal({
-    //             title: "Agregar imagen",
-    //             text: "Copia la URL de la imagen",
-    //             content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
-    //         })
-    //         if (value !== null) {
-    //             setInput({
-    //                 ...input,
-    //                 image: [...input.image, value]
-    //             })
-    //             setErrors(validate({
-    //                 ...input,
-    //                 image: [...input.image, value]
-    //             }))
-    //         }
-    //         return
-    //     }
-    // }
-
     useEffect(() => {
         setInput({
             ...input,
@@ -230,11 +208,7 @@ export default function NewProduct() {
                         </div>
                         <div className={styles.divImages}>
                             <label>Imagen:</label>
-                            {/* <button
-                                    value={"Image"}
-                                    name='image'
-                                    onClick={(e) => handleSelect(e)}
-                                >Agregar</button> */}
+                            <ImageUploader images={images} setImages={setImages} />
                         </div>
                         <div className={styles.inputBox}>
                             <input
@@ -247,8 +221,8 @@ export default function NewProduct() {
                             <label>Modelo:</label>
                         </div>
                         <div className={styles.divSelect}>Marca:
-                            <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
-                                <option value="empty" disabled hidden>Seleccione aquí:</option>
+                            <select className={styles.select} defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
+                                <option value="empty" disabled hidden>Seleccione aquí</option>
                                 {brands.map((m, i) => (
                                     <option key={i} value={m.name}>{m.name}</option>
                                 ))}
@@ -256,8 +230,8 @@ export default function NewProduct() {
                             </select>
                         </div>
                         <div className={styles.divSelect} >Categoría:
-                            <select defaultValue="empty" onChange={(e) => handleSelect2(e)}>
-                                <option value="empty" disabled hidden>Seleccione aquí:</option>
+                            <select className={styles.select} defaultValue="empty" onChange={(e) => handleSelect2(e)}>
+                                <option value="empty" disabled hidden>Seleccione aquí</option>
                                 {categories?.map((c, i) => (
                                     <option key={i} value={c.name}>{c.name}</option>
                                 ))}
@@ -316,12 +290,9 @@ export default function NewProduct() {
                     </form>
                     <div className={styles.buttons}>
                         <button className={styles.btnCreate} type='submit'>Crear</button>
-                        <Link to='/inicio'><button className={styles.btnBack}>Volver</button></Link>
+                        <Link to='/admin'><button className={styles.btnBack}>Volver</button></Link>
                     </div>
                 </div>
-
-                <Link to='/admin'><button>Volver</button></Link>
-
             </div>
         ) : <p>Necesitás iniciar sesión.</p>
     )

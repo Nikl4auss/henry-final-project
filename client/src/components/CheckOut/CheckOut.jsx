@@ -16,7 +16,7 @@ export function CheckOut() {
 
     async function redirectPay(e) {
         console.log(order)
-        const data = await payCart(order, 15)
+        const data = await payCart(order, 1)
         console.log(data)
         window.location.href = data
 
