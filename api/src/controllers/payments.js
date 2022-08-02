@@ -24,9 +24,9 @@ const statusOrder = (req, res) => {
   })
 }
 const checkoutCart = (req, res) => {
-   let {itemsCart} = req.body;
-   console.log(req.body)
-   let {idOrder} = req.body;
+  let {itemsCart} = req.body;
+  console.log(req.body)
+  let {idOrder} = req.body;
   let preference = {
     //   items: [
     //       {
@@ -38,9 +38,9 @@ const checkoutCart = (req, res) => {
     items: itemsCart.map((i) => {
       return {
         title: i.name,
-        unit_price: parseInt(i.unit_price),
+        unit_price: parseInt(i.price),
         quantity: i.quantity,
-     };
+      };
     }),
     back_urls: {
       success: `${CLIENT_URL}/pago/exitoso`,
@@ -58,7 +58,7 @@ const checkoutCart = (req, res) => {
       const preferenceId = respuesta.body.init_point;
       console.log(preferenceId)
       res.send(preferenceId);//devuelve el enlace de mercadopago
-   })
+  })
     .catch(function (error) {
       error;
     });
