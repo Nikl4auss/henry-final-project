@@ -1,6 +1,5 @@
 const { Router } = require('express');
-const { Product, Size, MainColor, Store, Address, Stock, Op } = require("../db");
-const Image_Product = require('../models/Image_Product');
+const { Image_Product, Product, Size, MainColor, Store, Address, Stock, Op } = require("../db");
 
 const router = Router();
 
@@ -56,7 +55,10 @@ router.get('/:id', async (req, res, next) => {
     try {
         return await Stock.findOne({
             where: { id: id },
-            include: [{ model: Product }]
+            include: [{ model: Product }, 
+                { model: MainColor },
+                { model: Size}
+            ]
         })
             .then((stock) => {
                 res.send(stock)
