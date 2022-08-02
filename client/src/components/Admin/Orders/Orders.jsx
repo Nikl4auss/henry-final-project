@@ -16,6 +16,8 @@ export default function Orders() {
         orders?.length > 0 ?
             orders.map(order => {
                 return (
+                    <>
+                    <h1 className= {styles.title}> Órdenes </h1>
                     <div className={styles.container}>
                         <div className={styles.interContainer}>
                             <div className={styles.divPrice}>
@@ -34,6 +36,7 @@ export default function Orders() {
                                 </NavLink>
                         </div>
                     </div>
+                </>
                 )
             }) : <div className={styles.loading}>Cargando...</div>
     )
