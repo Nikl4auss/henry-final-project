@@ -7,6 +7,7 @@ const { USER_MAILGUN, PASS_MAILGUN } = require("../utils/config");
 //email sender function
 exports.sendEmail = function (req, res) {
   const { name, email, subject, delivery} = req.body
+  console.log(name, email, subject, delivery)
   const typeBuy = delivery?
                     'Pronto te avisaremos cuando despacharemos tu envío'
                     :'Pronto te avisaremos cuando puedes retirar tu compra';
@@ -38,8 +39,8 @@ exports.sendEmail = function (req, res) {
     from: "info.davoshoes@davoshoesargentina.com",
     to: email,
     subject: subject,
-    html: htmlToSend,
-    //text: 'probando 123'
+    //html: htmlToSend,
+    text: 'probando 123'
   };
   // Enviamos el email
   transporter.sendMail(mailOptions, function (error, info) {

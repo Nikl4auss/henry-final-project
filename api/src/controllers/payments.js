@@ -1,12 +1,54 @@
 // SDK de Mercado Pago
 const { json } = require("body-parser");
 const mercadopago = require("mercadopago");
+const axios = require('axios')
 const EmailCtrl = require('../controllers/mailController.js');
 const {ACCESS_TOKEN, CLIENT_URL, API_URL} = require('../utils/config.js')
+const { sendEmail, getTemplateAproved } = require('../controllers/mail')
 // Agrega credenciales
 mercadopago.configure({
   access_token: ACCESS_TOKEN,
 });
+
+const updateOrder = async (req, res) =>{
+  let  { payment_id, external_reference }  = req.body;
+  let mailTemplate
+  let email =''
+    try {
+    const respuesta = await mercadopago.payment.get(payment_id)
+    const { status } = respuesta.body
+    if(status === 'approved'){
+    let { data }  = await axios.get(`${API_URL}/order/${external_reference}`)
+     
+      if(data.status === 'Pendiente'){
+    let name= data.User.name +' '+data.User.surname
+     email= data.User.email;
+     let subject= 'Recibimos tu pago';
+     mailTemplate = getTemplateAproved(name)
+     await sendEmail(email, subject, mailTemplate )
+     let statusOrder = await axios.put(`${API_URL}/order/${external_reference}`, {status}) 
+      //  console.log(statusOrder,'statusOrder')
+     data.Line_orders.forEach(async (product) => {
+        let respuesta = await axios.put(`${API_URL}/stock/`,{id: product.id, quantity: product.quantity})
+      //  console.log(respuesta.data)
+     });
+
+      }
+      
+     return res.send('approved')
+      
+    }
+
+    return res.send(respuesta)
+    
+  } catch (error) {
+    res.status(500).send(error)
+    
+  }
+}
+
+
+
 
 const statusOrder = (req, res) => {
   
@@ -69,6 +111,7 @@ const checkoutCart = (req, res) => {
 
 module.exports = {
   statusOrder,
-  checkoutCart
+  checkoutCart,
+  updateOrder
 };
 
