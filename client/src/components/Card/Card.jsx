@@ -11,7 +11,6 @@ export default function Card({ id, name, price, image, brand, stock }) {
     const { isAuthenticated } = useAuth0();
     const [ cart ] = useLocalStorage('cart')
     const [ active, setActive ] = useState(false)
-    console.log(cart)
 
     function productInCart(){
         if(cart?.length === 0) return false
@@ -38,7 +37,7 @@ export default function Card({ id, name, price, image, brand, stock }) {
                                 { productInCart() ? <IoCartSharp/> : <IoCartOutline /> }
                             </button>
                         </div>
-                        <Link to={`/product/${id}`}>
+                        <Link to={`/producto/${id}`}>
                         <div className={`${styles.card__header} ${styles.card__header19}`}>
                             <div
                                 className={styles.card__watermark}

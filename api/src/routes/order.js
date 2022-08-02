@@ -34,16 +34,38 @@ router.get('/:id', async(req, res, next) => {
                                     }]
                                 },
                             ]
-                        }]
+                        },{
+                            model: User,
+                            attributes: ['name', 'surname', 'email']
+                        }
+                    ]
                     }
                 ]
             })
             res.json(response)
-
+            
     }catch(err){
         next(err)
     }
 });
 
+
+router.put('/:id', async (req, res, next)=>{
+    const {status} = req.body
+    const idOrder = req.params.id
+    try {
+        const orderById = Order.findOne({
+            where:{
+                id: idOrder
+            }
+        })
+        const orderUpdated = await orderById.update({
+            payment_status: status
+        })
+        res.send({msg:'orden actualizada'})
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router;

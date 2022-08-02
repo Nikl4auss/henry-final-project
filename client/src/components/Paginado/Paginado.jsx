@@ -29,12 +29,14 @@ function Paginado() {
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
+        window.scroll(0, 0)
     }
 
     const previous = function (setActive) {
         if (currentPage >= 1) {
             setCurrentPage(currentPage - 1);
             setActive(currentPage - 1)
+            window.scroll(0, 0)
         }
     };
 
@@ -42,6 +44,7 @@ function Paginado() {
         if (currentPage < allPage-1) {
             setCurrentPage(currentPage + 1);
             setActive(currentPage + 1)
+            window.scroll(0, 0)
         }
     };
 
@@ -52,7 +55,6 @@ function Paginado() {
     return (
         <div className= {styles.containerpagination} >
             <div className={styles.pagination}>
-                {console.log(allPage)}
                 <button className={styles.btnpage} onClick={() => previous(setActive)}>Prev</button>
                 {pageNumbers && pageNumbers.map((number) => (
                     <button className={number === active ? `${styles.active}` : '' }

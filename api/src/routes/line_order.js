@@ -8,16 +8,21 @@ router.post('/', async (req, res, next) => {
         totalPrice,
         status,
         payment_status,
-        products
+        products, 
+        idUser
     } = req.body
-    
-    console.log(req.body)
+
 
     try{
         const newOrder = await Order.create({
             totalPrice,
-            status,
-            payment_status
+            status
+        })
+
+        const userOrder = await User.findOne({
+            where: {
+                id: idUser
+            }
         })
 
         products.forEach(async prod => {
@@ -31,6 +36,8 @@ router.post('/', async (req, res, next) => {
 
             newOrder.addLine_order(newLineOrder)
         })
+
+        userOrder.addOrder(newOrder)
 
         res.send('El producto fue creado con éxito')
 

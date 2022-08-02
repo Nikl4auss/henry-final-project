@@ -99,13 +99,13 @@ export default function NewProduct() {
     //         return
     //     }
     // }
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         setInput({
             ...input,
             image: images
         })
-    },[images])
+    }, [images])
 
     async function handleSelect2(e) {
         if (e.target.value === "Otra") {
@@ -143,14 +143,14 @@ export default function NewProduct() {
         })
     }
 
-    function handleChange3(e){
+    function handleChange3(e) {
         setInput({
             ...input,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
         setErrors(validate({
             ...input,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         }))
     }
 
@@ -183,134 +183,146 @@ export default function NewProduct() {
         }
         return alert("Hace falta información!")
     }
-console.log(input)
+    console.log(input)
     useEffect(() => {
         dispatch(getBrands())
         dispatch(getCategories())
     }, [dispatch]);
 
-        return (
-            isAuthenticated ? (
+    return (
+        isAuthenticated ? (
 
+            <div>
                 <div>
-                    <div>
-                        {console.log(input)}
-                        <h1>Crear producto</h1>
-                        <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
+                    {console.log(input)}
+                    <h1 className={styles.title}>Crear producto</h1>
+                    <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
 
-                            <div>
-                                <label>Nombre:</label>
-                                <input
-                                    type='text'
-                                    value={input.name}
-                                    name='name'
-                                    onChange={(e) => handleChange(e)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Descripción:</label>
-                                <input
-                                    type='text'
-                                    value={input.description}
-                                    name='description'
-                                    onChange={(e) => handleChange(e)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Precio:</label>
-                                <input
-                                    type='number'
-                                    value={input.price}
-                                    name='price'
-                                    onChange={(e) => handleChange(e)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Modelo:</label>
-                                <input
-                                    type='text'
-                                    value={input.model}
-                                    name='model'
-                                    onChange={(e) => handleChange(e)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Imagen:</label>
-                                {/* <button
+                        <div className={styles.inputBox} >
+                            <input
+                                type='text'
+                                value={input.name}
+                                name='name'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Nombre:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.description}
+                                name='description'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Descripción:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='number'
+                                value={input.price}
+                                name='price'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Precio:</label>
+                        </div>
+                        <div className={styles.divImages}>
+                            <label>Imagen:</label>
+                            {/* <button
                                     value={"Image"}
                                     name='image'
                                     onClick={(e) => handleSelect(e)}
                                 >Agregar</button> */}
-                                <ImageUploader images={images} setImages={setImages} />
-                            </div>
-                            <div>Marca:
-                                <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
-                                    <option value="empty" disabled hidden>Seleccione aquí:</option>
-                                    {brands.map((m, i) => (
-                                        <option key={i} value={m.name}>{m.name}</option>
-                                    ))}
-                                    <option value="Otra">Otra</option>
-                                </select>
-                            </div>
-                            <div>Categoría:
-                                <select defaultValue="empty" onChange={(e) => handleSelect2(e)}>
-                                    <option value="empty" disabled hidden>Seleccione aquí:</option>
-                                    {categories?.map((c, i) => (
-                                        <option key={i} value={c.name}>{c.name}</option>
-                                    ))}
-                                    <option value="Otra">Otra</option>
-                                </select>
-                            </div>
-                            <div>
-                                {input.category.map(d =>
-                                    <div key={d}>
-                                        <p>{d}</p>
-                                        <button onClick={() => handleDelete2(d)}>x</button>
-                                    </div>
-                                )}
-                            </div>
-                            <div>
-                                <label>Stock:</label>
-                                <input
-                                    type='text'
-                                    value={input.stock_product}
-                                    name='stock_product'
-                                    onChange={(e) => handleChange3(e)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Talle:</label>
-                                <input
-                                    type='text'
-                                    value={input.size}
-                                    name='size'
-                                    onChange={(e) => handleChange3(e)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Color:</label>
-                                <input
-                                    type='text'
-                                    value={input.mainColor}
-                                    name='mainColor'
-                                    onChange={(e) => handleChange3(e)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label>Tienda:</label>
-                                <input
-                                    type='text'
-                                    value={input.store}
-                                    name='store'
-                                    placeholder='default'
-                                    onChange={(e) => handleChange3(e)}
-                                ></input>
-                            </div>
-                            <button type='submit'>Crear</button>
-                        </form>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.model}
+                                name='model'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Modelo:</label>
+                        </div>
+                        <div className={styles.divSelect}>Marca:
+                            <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
+                                <option value="empty" disabled hidden>Seleccione aquí:</option>
+                                {brands.map((m, i) => (
+                                    <option key={i} value={m.name}>{m.name}</option>
+                                ))}
+                                <option value="Otra">Otra</option>
+                            </select>
+                        </div>
+                        <div className={styles.divSelect} >Categoría:
+                            <select defaultValue="empty" onChange={(e) => handleSelect2(e)}>
+                                <option value="empty" disabled hidden>Seleccione aquí:</option>
+                                {categories?.map((c, i) => (
+                                    <option key={i} value={c.name}>{c.name}</option>
+                                ))}
+                                <option value="Otra">Otra</option>
+                            </select>
+                        </div>
+                        <div>
+                            {input.category.map(d =>
+                                <div key={d}>
+                                    <p>{d}</p>
+                                    <button onClick={() => handleDelete2(d)}>x</button>
+                                </div>
+                            )}
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.stock_product}
+                                name='stock_product'
+                                onChange={(e) => handleChange3(e)}
+                                required
+                            ></input>
+                            <label>Stock:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.size}
+                                name='size'
+                                onChange={(e) => handleChange3(e)}
+                                required
+                            ></input>
+                            <label>Talle:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.mainColor}
+                                name='mainColor'
+                                onChange={(e) => handleChange3(e)}
+                                required
+                            ></input>
+                            <label>Color:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.store}
+                                name='store'
+                                placeholder='default'
+                                onChange={(e) => handleChange3(e)}
+
+                            ></input>
+                            <label>Tienda:</label>
+                        </div>
+                    </form>
+                    <div className={styles.buttons}>
+                        <button className={styles.btnCreate} type='submit'>Crear</button>
+                        <Link to='/inicio'><button className={styles.btnBack}>Volver</button></Link>
                     </div>
-                    <Link to='/home'><button>Volver</button></Link>
                 </div>
-            ) : <p>Necesitás iniciar sesión.</p>
-        )
-    }
+
+                <Link to='/admin'><button>Volver</button></Link>
+
+            </div>
+        ) : <p>Necesitás iniciar sesión.</p>
+    )
+}
