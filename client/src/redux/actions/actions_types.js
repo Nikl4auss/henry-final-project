@@ -5,3 +5,6 @@ export const GET_PRODUCTS_NAME = 'GET_PRODUCTS_NAME'
 export const ERROR = 'ERROR'
 export const ADD_PAGE= 'ADD_PAGE'
 export const SET_ORDER = "SET_ORDER"
+export const GET_CART = "GET_CART"
+export const GET_USERS  = "GET_USERS"
+export const SET_PRODUCT = 'SET_PRODUCT'

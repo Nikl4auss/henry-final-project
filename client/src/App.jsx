@@ -11,6 +11,7 @@ import Success from "./components/Payment/Success";
 import Pending from "./components/Payment/Pending";
 import Failure from "./components/Payment/Failure";
 import { ProtectedRoute } from "./components/Admin/ProtectedRoute";
+import MyProfile from "./components/MyProfile/MyProfile";
 import Sucursales from "./components/Sucursales/Sucursales";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import NotAuthorized from "./components/NotAuthorized/NotAuthorized";
@@ -19,6 +20,9 @@ import ModifyProduct from "./components/Admin/Modified Product/ModifyProduct";
 import Orders from "./components/Admin/Orders/Orders";
 import LineOrder from "./components/Admin/LineOrder/LineOrder";
 import Products from "./components/Admin/Products/Products";
+import MyOrders from "./components/MyOrders/MyOrders";
+import UserDashboard from "./components/Admin/UserDashboard/UserDashboard";
+
 
 function App() {
   return (
@@ -26,18 +30,20 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/inicio" element={<Home />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
           < Route path="/checkout" element={<CheckOut/>} />
           <Route path="/pago">
-            <Route path="success" element={<Success />} />
-            <Route path="failure" element={<Failure />} />
-            <Route path="pending" element={<Pending />} />
+            <Route path="exitoso" element={<Success />} />
+            <Route path="fallido" element={<Failure />} />
+            <Route path="pendiente" element={<Pending />} />
           </Route>
-          <Route path="/product">
+          <Route path="/producto">
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-          <Route path="/sucursales" element={<Sucursales />} />
+          <Route path='/sucursales' element={<Sucursales />}/>
+          <Route exact path="/miperfil" element={<MyProfile />} />
+          <Route exact path="/misordenes" element={<MyOrders />} />
         </Route>
         <Route
           exact
@@ -46,14 +52,15 @@ function App() {
         >
           {/* <Route index element={<Overview />} /> */}
           <Route index element={<Products />} />
-          <Route path="nuevoproducto" element={<NewProduct />} />
+          <Route exact path="nuevoproducto" element={<NewProduct />} />
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
           <Route path='ordenes' >
             <Route index element={<Orders />} />
             <Route exact path=":id" element={<LineOrder />}/>
           </Route>
+          <Route exact path="usuarios" element={<UserDashboard />} />
         </Route>
-        <Route path="/not-authorized" element={<NotAuthorized />} />
+        <Route path="/sin-autorizacion" element={<NotAuthorized />} />
       </Routes>
     </div>
   );

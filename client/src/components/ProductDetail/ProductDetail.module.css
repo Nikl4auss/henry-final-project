@@ -193,7 +193,16 @@
     align-content: space-between;
     align-items: center;
 }
-
+.soldOut{
+    width: 12rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    background-color: #a19b9b;
+    color: white;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
 .add{
     width: 12rem;
     height: 1.5rem;
@@ -204,6 +213,8 @@
     border-radius: 10px;
     transition-duration: 0.4s;
 }
+
+
 .add:hover {
     background-color: white; 
     color: #E84242;
@@ -226,12 +237,13 @@
 }
 
 .divDescription{
-    grid-column: 2;
+    grid-column: 2 / 4;
     grid-row: 4 / 5;
     display: flex;
     justify-content: flex-start;
     align-content: space-between;
     align-items: flex-start;
+    font-weight: 200;
 }
 
 .divModelTitle{
@@ -250,20 +262,22 @@
     justify-content: flex-start;
     align-content: space-between;
     align-items: flex-start;
+    font-weight: 200;
 }
 
 .divCommentsTitle{
-    grid-column: 1;
-    grid-row: 6;
+    grid-column: 3;
+    grid-row: 5;
     display: flex;
-    justify-content: space-around;
+    margin-left: 1rem;
+    justify-content: flex-start;
     align-content: space-between;
     align-items: flex-start;
 }
 
 .divComments{
-    grid-column: 1;
-    grid-row: 7;
+    grid-column: 3;
+    grid-row: 4 / 5;
     /* grid-column: attr(datacol);*/
     /* grid-row: attr(datarow); */
     display: flex;
@@ -271,6 +285,15 @@
     align-content: space-between;
     align-items: flex-start;
 }
+
+.divReviewForm{
+    grid-column: 3 / 6;
+    grid-row: 5;
+    margin-left: 1rem;
+    display: flex;
+    margin-top: 2rem;
+}
+
 .buttonComment{
     width: 12rem;
     height: 1.5rem;

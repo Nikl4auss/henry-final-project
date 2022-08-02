@@ -10,10 +10,11 @@ export default function Products (){
     const pages = useSelector(state => state.pages)
     const name = useSelector(state => state.name)
     let dispatch = useDispatch()
-
+  
     useEffect(() => {
         if(products.length > 0) return;
         else dispatch(getProducts({}, name))
+
     }, [dispatch,name, products])
 
     const arrayPage = useMemo(()=>{
@@ -22,6 +23,7 @@ export default function Products (){
 
     return (
         <div>
+            <div className=''>Lista de productos</div>
             {arrayPage?.map(prod => {
                 return <CardProduct 
                 image={prod.images[0].image}

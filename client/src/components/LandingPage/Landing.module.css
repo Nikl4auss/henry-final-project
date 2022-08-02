@@ -15,7 +15,7 @@ margin-right: 5%;
 margin-top:8%;
 }
 
-.navHome {
+.invitado {
     padding: 0.6em 2em;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1rem;
@@ -24,8 +24,31 @@ margin-top:8%;
     cursor: pointer;
     border-radius: 10px;
     position: absolute;
+    top: 50%;
+    left: 77%;
+    width:200px;
+    height:40px;
+    text-align: center;
+}
+.ingresa {
+    padding: 0.6em 2em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    color: white;
+    background: rgb(31, 31, 31);
+    cursor: pointer;
+    border-radius: 10px;
+    position: absolute;
     top: 40%;
     left: 77%;
+    width:200px;
+    height:40px;
+    text-align: center;
+}
+
+.navHome :hover {
+    background-color: rgb(91, 53, 53);
+    color: #fff;
 }
 
 @media screen and (max-width: 992px) {

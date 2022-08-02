@@ -35,6 +35,6 @@ export default function Orders() {
                         </div>
                     </div>
                 )
-            }) : <div>Cargando...</div>
+            }) : <div className={styles.loading}>Cargando...</div>
     )
 }
