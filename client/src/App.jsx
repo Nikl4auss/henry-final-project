@@ -1,4 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./components/Home/Home";
 import Landing from "./components/LandingPage/Landing";
 import NavBar from "./components/NavBar/NavBar";
@@ -23,6 +24,8 @@ import OrdersByUser from "./components/OrdersByUser/OrdersByUser";
 import Orders from './components/Admin/Orders/Orders'
 import DetailOrder from "./components/DetailOrder/DetailOrder";
 
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <div className="App">
@@ -43,7 +46,7 @@ function App() {
           <Route path='/sucursales' element={<Sucursales />} />
           <Route exact path="/miperfil" element={<MyProfile />} />
           <Route exact path="/misordenes" >
-            <Route index element={<OrdersByUser />}/>
+            <Route index element={<OrdersByUser />} />
             <Route exact path=":id" element={<DetailOrder />} />
           </Route>
         </Route>
@@ -64,6 +67,7 @@ function App() {
         </Route>
         <Route path="/sin-autorizacion" element={<NotAuthorized />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
