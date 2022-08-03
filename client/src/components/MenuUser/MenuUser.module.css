@@ -1,32 +1,31 @@
-
 .showMenu {
-    display: flex;
-    flex-direction: column;
-    color: #ffffff;
-    background-color: black;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  background-color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin-right: 3rem;
+  position: absolute;
 }
 
 .item:hover {
-    
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .hideMenu {
-    display: none;
+  display: none;
 }
 
-.btnNav{
-    color: #ffffff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-right: 3rem;
+.btnNav {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin-right: 3rem;
 }
 
-.btnNav:hover{
-    background-color: #b0b0b0;
-    border-radius: 4px;
-    transition: all 0.2s ease-out
+.btnNav:hover {
+  background-color: #b0b0b0;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
 }

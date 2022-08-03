@@ -21,8 +21,11 @@ import LineOrder from "./components/Admin/LineOrder/LineOrder";
 import Products from "./components/Admin/Products/Products";
 import UserDashboard from "./components/Admin/UserDashboard/UserDashboard";
 import OrdersByUser from "./components/OrdersByUser/OrdersByUser";
-import Orders from './components/Admin/Orders/Orders'
+import Orders from "./components/Admin/Orders/Orders";
 import DetailOrder from "./components/DetailOrder/DetailOrder";
+import MyInfo from "./components/MyProfile/MyInfo";
+import MyAdress from "./components/MyProfile/MyAdress";
+import Shipping from "./components/Payment/Shipping";
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -34,7 +37,7 @@ function App() {
         <Route path="/" element={<NavBar />}>
           <Route exact path="/inicio" element={<Home />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
-          < Route path="/checkout" element={<CheckOut />} />
+          <Route path="/checkout" element={<CheckOut />} />
           <Route path="/pago">
             <Route path="exitoso" element={<Success />} />
             <Route path="fallido" element={<Failure />} />
@@ -43,8 +46,11 @@ function App() {
           <Route path="/producto">
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-          <Route path='/sucursales' element={<Sucursales />} />
-          <Route exact path="/miperfil" element={<MyProfile />} />
+          <Route path="/sucursales" element={<Sucursales />} />
+          <Route exact path="/miperfil" element={<MyProfile />}>
+            <Route index element={<MyInfo />} />
+            <Route exact path="misdirecciones" element={<MyAdress />} />
+          </Route>
           <Route exact path="/misordenes" >
             <Route index element={<OrdersByUser />} />
             <Route exact path=":id" element={<DetailOrder />} />
@@ -59,7 +65,7 @@ function App() {
           <Route index element={<Products />} />
           <Route exact path="nuevoproducto" element={<NewProduct />} />
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
-          <Route path='ordenes' >
+          <Route path="ordenes">
             <Route index element={<Orders />} />
             <Route exact path=":id" element={<LineOrder />} />
           </Route>
