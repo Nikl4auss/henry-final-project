@@ -1,29 +1,35 @@
+import { useDispatch } from 'react-redux'
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { createReview } from "../../services/reviewsServices";
 import styles from "./Reviews.module.css";
 import Stars from "../Stars/Stars";
-
+import { addReview } from '../../redux/actions/index'
 const ReviewForm = ({ productId }) => {
   const [review, setReview] = useState({
     title: "",
     body: "",
     score: 0,
   });
+  const dispatch = useDispatch()
 
   const { getAccessTokenSilently } = useAuth0();
 
   const onSubmit = (e) => {
     e.preventDefault();
     getAccessTokenSilently().then((token) => {
-      console.log(token);
-      createReview(review, productId, token).then(() => {
+      createReview(review, productId, token).then((newReview) => {
+        dispatch(addReview(newReview))
         setReview({
           title: "",
           body: "",
           score: 0,
         });
-      });
+      })
+        .catch(error => {
+          window.alert('No se pudo crear la review')
+          console.log(error)
+        })
     });
   };
 

@@ -54,10 +54,23 @@ router.get('/:id', async (req, res, next) => {
     let { id } = req.params
     try {
         return await Stock.findOne({
-            where: { id: id },
-            include: [{ model: Product }, 
-                { model: MainColor },
-                { model: Size}
+            where: { 
+                id: id 
+            },
+            include: [
+                { 
+                    model: Product,
+                    include: [{
+                        model: Image_Product,
+                        as: 'images'
+                    }] 
+                }, 
+                { 
+                    model: MainColor 
+                },
+                { 
+                    model: Size
+                }
             ]
         })
             .then((stock) => {

@@ -54,5 +54,35 @@ router.get('/:id', async(req, res, next) => {
     }
 });
 
+router.delete('/:id', async (req, res, next) => {
+    const { id } = req.params
+    try {
+        const cartOfUser = await Cart.findOne({
+            where: {
+                id: id
+            },
+            include: [
+                {
+                    model: Line_cart
+                }
+            ]
+        })
+
+        cartOfUser.Line_carts.forEach(async (el) => {
+            const line = await Line_cart.findOne({
+                where: {
+                    id: el.id
+                }
+            })
+
+            await line.destroy()
+        })
+
+        res.send('El carrito fue borrado con éxito')
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = router;
 

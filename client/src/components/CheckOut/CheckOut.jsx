@@ -12,12 +12,12 @@ export function CheckOut() {
     const [estadoEnvio, setEstadoEnvio] = useState();
     const [estadoSucursal, setEstadoSucursal] = useState();
     const order = useSelector(state => state.order)
+    const idOrder = useSelector(state => state.idOrder)
     // const [active, setActive] = useState()
 
     async function redirectPay(e) {
-        console.log(order)
-        const data = await payCart(order, 1)
-        console.log(data)
+      
+        const data = await payCart(order, idOrder.orderId)
         window.location.href = data
 
 

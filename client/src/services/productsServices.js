@@ -74,8 +74,20 @@ export async function getOrder(id) {
     return data
 }
 
-export async function getOrders() {
-    const { data } = await apiInstance.get('/orders')
+export async function getOrders(filter, payment) {
+    let filterSelected = '?filter='
+    let filterPayment = 'payment'
+    if(filter.length > 0){
+        filterSelected = filterSelected + filter
+        if(payment.length > 0){
+            filterPayment = `&payment=${payment}`
+        }
+    } else {
+        if(payment.length > 0){
+            filterPayment = `?payment=${payment}`
+        }
+    }
+    const { data } = await apiInstance.get(`/orders${filterSelected}${filterPayment}`)
     return data
 }
 

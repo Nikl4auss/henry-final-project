@@ -9,6 +9,7 @@ import { IoArrowBackOutline, IoConstructOutline } from "react-icons/io5";
 import CardToEdit from "../../Card/CardToEdit";
 import styles from './modifyProduct.module.css'
 import validate from "../../../services/validate";
+import Loading from "../../Loading/Loading";
 
 export default function ModifyProduct() {
     const { id } = useParams()
@@ -182,7 +183,7 @@ export default function ModifyProduct() {
                             image={inputs?.images[0]?.image}
                             price={inputs?.price}
                             brand={inputs?.brand}
-                        /> : <div>Cargando...</div>}
+                        /> : <Loading />}
                 </div>
             </div >
             <button onClick={editProduct} className={styles.btnCategory}>Listo</button>
