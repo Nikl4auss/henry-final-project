@@ -1,10 +1,12 @@
 import { useDispatch } from 'react-redux'
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { toast } from 'react-toastify';
 import { createReview } from "../../services/reviewsServices";
 import styles from "./Reviews.module.css";
 import Stars from "../Stars/Stars";
 import { addReview } from '../../redux/actions/index'
+
 const ReviewForm = ({ productId }) => {
   const [review, setReview] = useState({
     title: "",
@@ -18,18 +20,33 @@ const ReviewForm = ({ productId }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     getAccessTokenSilently().then((token) => {
-      createReview(review, productId, token).then((newReview) => {
-        dispatch(addReview(newReview))
-        setReview({
-          title: "",
-          body: "",
-          score: 0,
-        });
-      })
-        .catch(error => {
-          window.alert('No se pudo crear la review')
-          console.log(error)
-        })
+      toast.promise(
+        createReview(review, productId, token),
+        {
+          pending: {
+            render() {
+              return 'Tu reseña se esta subiendo'
+            }
+          },
+          success: {
+            render({ data: newReview }) {
+              dispatch(addReview(newReview))
+              setReview({
+                title: "",
+                body: "",
+                score: 0
+              })
+              return "Tu reseña fue publicada"
+            }
+          },
+          error: {
+            render({ data }) {
+              console.log(data)
+              return 'Lo sentimos, hubo un error y no pudo subirse su reseña'
+            }
+          }
+        }
+      )
     });
   };
 
@@ -65,7 +82,7 @@ const ReviewForm = ({ productId }) => {
           name="body"
           onChange={handleChange}
         />
-        <button className={styles.commentFormButton}>Enviar reseña</button>
+        <button className={styles.commentFormButton} disabled={review.title.length > 0 ? false : true}>Enviar reseña</button>
         {/* {hasCancelButton &&
               <button
                   type="button"
