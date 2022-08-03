@@ -4,6 +4,7 @@ import { getProducts, setProducts } from "../../redux/actions";
 import { useLocalStorage } from "../../services/useStorage";
 import verifyStock from "../../services/verifyStock";
 import Card from "../Card/Card";
+import NotFound from "../NotFound/NotFound";
 import styles from './cards.module.css'
 
 
@@ -27,9 +28,10 @@ function Cards () {
         products = products?.filter((product) => verifyStock(product.Stocks))
         return products.slice(pages.firstValue, pages.lastValue)
     }, [pages, products])
+    console.log(error)
     return(
         <div className={styles.divCards}>
-            {error.length ? <div>{error}</div> : undefined}
+            {error.length ? <div className={styles.divError}> {error}</div> : undefined}
             <div className={styles.divProducts}>
                 {arrayPage?.map(product => {
                     
@@ -43,9 +45,10 @@ function Cards () {
                         brand={product.brand}
                         stock={product.Stocks}
                     />
-                })}
+                })} 
             </div>
         </div>
+        
     )
 }
 
