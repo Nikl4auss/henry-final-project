@@ -8,16 +8,33 @@
     font-family: 'Montserrat', sans-serif;    */
     
 }
-.line1{
+.oneCard{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: solid #d3d2d2;
+}
+.line0{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    min-width: 20rem;
+}
+.imgProduct{
+    max-width: 14rem;
+}
+.line1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
 }
 .cardCart {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    border-bottom: solid #d3d2d2;
     margin: 1rem;
     padding: 1rem;
 }
@@ -39,6 +56,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 1rem;
+    align-items: center;
 }
 
 
@@ -49,7 +67,7 @@
     grid-row: 2; */
     font-weight: 300;
     margin-right: 2rem;
-    font-size: larger;
+    font-size: large;
 }
 
 

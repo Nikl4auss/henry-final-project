@@ -127,7 +127,7 @@ export function ShopingCart() {
             </div>
             <div className={styles.orderInfo}>
                 <h1 className={styles.orderResumen}>Resumen del pedido</h1>
-                    <h1 className={styles.cartSubtotal}>Subtotal:</h1>
+                    {/* <h1 className={styles.cartSubtotal}>Subtotal:</h1> */}
                 <div className={styles.cartTotal}>
                     <h1 className={styles.cartTotalTitle}>Total:</h1>
                     <h1 className={styles.cartTotalPrice}>${total}.00</h1>
