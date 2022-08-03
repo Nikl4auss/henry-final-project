@@ -5,7 +5,9 @@ const router = Router();
 
 router.get('/', async(req, res,next) => {
     try{
-        const categoryName= await Category.findAll()
+        const categoryName= await Category.findAll({
+            order:[["name", "ASC"]]
+        })
         res.status(200).send(categoryName)
     }catch(err){
         next(err)
