@@ -46,7 +46,6 @@ const rootReducer = (state = initialState, action) => {
         products: action.payload,
         filtersSelected: action.filters,
         name: action.name,
-<<<<<<< HEAD
         error: "",
       };
     case GET_BRANDS:
@@ -104,7 +103,22 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         idOrder: action.payload,
-      };
+      }
+    case GET_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload
+      }
+    case EMPTY_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload
+      }
+    case ADD_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.concat(action.payload)
+      }
     default:
       return state;
   }
