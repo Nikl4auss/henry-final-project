@@ -13,6 +13,7 @@
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: stretch;
+        margin-left: 2rem;
 }
 
 .divError {
