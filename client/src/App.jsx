@@ -20,6 +20,7 @@ import Products from "./components/Admin/Products/Products";
 import UserDashboard from "./components/Admin/UserDashboard/UserDashboard";
 import OrdersByUser from "./components/OrdersByUser/OrdersByUser";
 import Orders from './components/Admin/Orders/Orders'
+import DetailOrder from "./components/DetailOrder/DetailOrder";
 
 function App() {
   return (
@@ -40,7 +41,10 @@ function App() {
           </Route>
           <Route path='/sucursales' element={<Sucursales />} />
           <Route exact path="/miperfil" element={<MyProfile />} />
-          <Route exact path="/misordenes" element={<OrdersByUser />} />
+          <Route exact path="/misordenes" >
+            <Route index element={<OrdersByUser />}/>
+            <Route exact path=":id" element={<DetailOrder />} />
+          </Route>
         </Route>
         <Route
           exact

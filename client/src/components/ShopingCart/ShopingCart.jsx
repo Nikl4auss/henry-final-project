@@ -61,6 +61,7 @@ export function ShopingCart() {
                     })
                 })
                 if(orderCreated.data){
+                    await apiInstance.delete(`cart/${user.sub}`)
                     dispatch(setIdOrder(orderCreated.data))
                     navigate('/checkout')
                 }
