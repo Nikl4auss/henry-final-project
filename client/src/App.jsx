@@ -15,7 +15,7 @@ import Sucursales from "./components/Sucursales/Sucursales";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import NotAuthorized from "./components/NotAuthorized/NotAuthorized";
 import Overview from "./components/Admin/Overview/Overview";
-import ModifyProduct from "./components/Admin/Modified Product/ModifyProduct";
+import ModifyProduct from "./components/Admin/ModifiedProduct/ModifyProduct";
 import Orders from "./components/Admin/Orders/Orders";
 import LineOrder from "./components/Admin/LineOrder/LineOrder";
 import Products from "./components/Admin/Products/Products";
