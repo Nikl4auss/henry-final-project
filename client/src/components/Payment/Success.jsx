@@ -21,7 +21,7 @@ export default function Success() {
   }
   let send = false;
   useEffect(() => {
-    setCart([]);
+      setCart([]);
       if (!send) {
         updateStatusOrder();
         send = true;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS, SET_PRODUCT, GET_REVIEWS, EMPTY_REVIEWS, ADD_REVIEW } from './actions_types';
+import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS, SET_PRODUCT, GET_REVIEWS, EMPTY_REVIEWS, ADD_REVIEW, SET_ID_ORDER } from './actions_types';
 import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands, getCart as apiGetCart } from '../../services/productsServices';
 import { getReviews as fetchReviews } from '../../services/reviewsServices'
 
@@ -99,6 +99,7 @@ export function getReviews(productId) {
         payload: data
       })
     }
+
     catch (error) {
       console.log(error)
     }
@@ -118,4 +119,11 @@ export function addReview(review) {
     type: ADD_REVIEW,
     payload: review
   }
+
+}
+export function setIdOrder(payload) {
+    return {
+        type: SET_ID_ORDER,
+        payload: payload
+    }
 }
