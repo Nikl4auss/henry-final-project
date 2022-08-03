@@ -3,44 +3,181 @@
     top: 5rem;
 }
 
+.firstDivContainer{
+    margin: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.divSelects {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.selects {
+    box-shadow: .1rem .1rem .1rem rgb(0, 0, 0, 0.2);
+    background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+    margin-left: 1rem;
+    outline: none;
+    border-radius: 5px;
+}
+
+.selects:hover {
+    cursor: pointer;
+}
+
 .title{
-    margin-top: 6rem;
     font-size:x-large;
     font-weight: 800;
     color: #323232;
-    margin-left: 2rem;
 }
 
 .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
     height: 5rem;
     width: 100%;
     border: 1px solid #767676;
     border-radius: .5rem;
     margin-bottom: 1rem;
     box-shadow: .1rem .1rem .5rem rgb(0, 0, 0, 0.5);
-    padding: .5rem;
+    padding: .5rem 2rem .5rem 2rem;
     margin-top: 2rem;
+
 }
 
 .interContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
+    width: 80%;
+    padding-left: 1rem;
 }
 
 .divPrice {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
+}
+
+.divStatus {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.divEdit {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+
+.spanStatus{
+    margin-left: .5rem;
 }
 
 .link {
-    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
+
+
 
 .loading{
     margin-top: 5rem;
     margin-left: 2rem;
+}
+
+.btnMenu {
+    display: flex;
+    height: 4rem;
+    width: 2rem;
+    font-size: 1.8rem;
+    color: #323232;
+    align-items: center;
+}
+
+.menuOptionsActive {
+    display: block;
+    background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid #767676;
+    border-radius: 5px;
+    transform: translate(-1.5rem, -.5rem);
+}
+
+.ulStyle {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.liContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.liContainer:hover {
+    cursor: pointer;
+}
+
+.liContainer:hover{
+    background-color: #767676;
+    color: rgb(245 245 245 / var(--tw-bg-opacity));
+}
+
+.btnDone {
+    color: #00d018c8;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+}
+
+.btnClose {
+    color: #d00000c8;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+}
+
+.btnClose:hover {
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+}
+
+.btnDone:hover {
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+}
+
+.divDone{
+    width: 2.1rem;
 }
