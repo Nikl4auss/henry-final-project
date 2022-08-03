@@ -5,7 +5,9 @@ const router = Router();
 
 router.get('/', async(req, res, next) => {
     try{
-        const brandName= await Brand.findAll()
+        const brandName= await Brand.findAll({
+            order:[["name", "ASC"]]
+        })
         res.status(200).send(brandName)
     }catch(err){
         next(err)

@@ -24,7 +24,7 @@ const initialState = {
     category: [],
     brand: [],
   },
-  name: "",
+  name: '',
   cart: {},
   pages: { firstValue: 0, lastValue: 11 },
   order: [],
@@ -46,6 +46,7 @@ const rootReducer = (state = initialState, action) => {
         products: action.payload,
         filtersSelected: action.filters,
         name: action.name,
+<<<<<<< HEAD
         error: "",
       };
     case GET_BRANDS:
