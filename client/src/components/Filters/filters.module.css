@@ -36,6 +36,7 @@
     height: 30vh;
     align-items: flex-start;
     font-weight: 300;
+    margin-right: 2rem;
 }
 
 .filtersEach::-webkit-scrollbar {

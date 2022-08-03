@@ -77,7 +77,9 @@ export default function NavBar() {
               <MenuUser />
             </div>
           ) : (
-            <LoginButton />
+            <div className={styles.btnNav} >
+               <LoginButton />
+            </div>
           )}
         </div>
       </nav>
