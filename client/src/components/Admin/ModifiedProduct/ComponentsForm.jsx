@@ -10,6 +10,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
             <label className={styles.labelInputs}>
                 <span className={styles.spanNames}>Nombre*</span>
                 <input
+                    className={styles.inputs}
                     type='text'
                     name='name'
                     value={name}
@@ -19,6 +20,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
             <label className={styles.labelInputs}>
                 <span className={styles.spanNames}>Descripción*</span>
                 <textarea
+                    className={styles.inputs}
                     spellcheck="false"
                     type="text"
                     name="description"
@@ -30,6 +32,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
             <label className={styles.labelInputs}>
                 <span className={styles.spanNames}>Precio*</span>
                 <input
+                    className={styles.inputs}
                     type="text"
                     name="price"
                     value={price}
@@ -39,6 +42,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
             <label className={styles.labelInputs}>
                 <span className={styles.spanNames}>Modelo*</span>
                 <input
+                    className={styles.inputs}
                     type="text"
                     name="modelo"
                     value={modelo}
@@ -166,7 +170,7 @@ export function ModifyCategories({ categories, categoriesSelected, handleCategor
                         />
                     <button className={styles.btnCategory} onClick={pushNewCategory}>Agregar</button>
                 </div> : undefined}
-                <button className={styles.btnCategory} onClick={addCategories}>Listo</button>
+                <button className={styles.btnReady} onClick={addCategories}>Listo</button>
             </div>
         </div>
 
@@ -223,7 +227,7 @@ export function ModifyStock({ stock, handleStockChange, handleNewStock }) {
                 {
                     stock?.map(st => {
                         return (
-                            <div>
+                            <div className={styles.divInlineStock}>
                                 <span className={styles.spanStock}>Talle: {st.Size?.name}</span>
                                 <span className={styles.spanStock}>Color: {st.MainColor?.name}</span>
                                 <label>

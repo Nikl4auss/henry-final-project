@@ -7,9 +7,8 @@ import { getBrands, getCategories } from '../../../redux/actions'
 import { FirstInputs, ModifyBrand, ModifyCategories, ModifyStock } from "./ComponentsForm";
 import { IoArrowBackOutline, IoConstructOutline } from "react-icons/io5";
 import CardToEdit from "../../Card/CardToEdit";
-import styles from './modifyProduct.module.css'
+import styles from './modifyProduct.module.css';
 import validate from "../../../services/validate";
-import Loading from "../../Loading/Loading";
 
 export default function ModifyProduct() {
     const { id } = useParams()
@@ -125,7 +124,9 @@ export default function ModifyProduct() {
 
     return (
         <div className={styles.divContainer}>
+            <div className={styles.backDiv}>
             <NavLink className={styles.back} to='/admin'><IoArrowBackOutline /> Inicio</NavLink>
+            </div>
             <h1 className={styles.titlePage}>Editar producto</h1>
             <div className={styles.container}>
                 <div>
@@ -183,10 +184,12 @@ export default function ModifyProduct() {
                             image={inputs?.images[0]?.image}
                             price={inputs?.price}
                             brand={inputs?.brand}
-                        /> : <Loading />}
+                        /> : <div>Cargando...</div>}
                 </div>
             </div >
-            <button onClick={editProduct} className={styles.btnCategory}>Listo</button>
+            <div className={styles.divBtnReady}>
+            <button onClick={editProduct} className={styles.btnReady}>Listo</button>
+            </div>
         </div>
     )
 }

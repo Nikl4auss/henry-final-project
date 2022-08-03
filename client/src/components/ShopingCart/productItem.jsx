@@ -143,8 +143,11 @@ function ProductItem({ id, price, quantity, stock }) {
   return (
     <div className={styles.cardGrid}>
       {product?.id ? (
-        <div className={styles.cardCart}>
-          <img src={product?.Product?.images[0].image} alt='Product' />
+        <div className={styles.oneCard}>
+          <div className={styles.line0}>
+          <img className={styles.imgProduct} src={product?.Product?.images[0].image} alt='Product' />
+          </div>
+          <div className={styles.cardCart}>
           <div className={styles.line1}>
             <h3 className={styles.cardName}>{product?.Product.name}</h3>
             {/* <div>{product?.Image_Product.image}</div> */}
@@ -177,6 +180,7 @@ function ProductItem({ id, price, quantity, stock }) {
             >
               Eliminar producto
             </button>
+          </div>
           </div>
 
           {/* return (<div>{
