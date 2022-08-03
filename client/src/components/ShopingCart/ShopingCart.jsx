@@ -1,7 +1,7 @@
 //import axios from "axios";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, setOrder } from "../../redux/actions";
+import { getCart, setIdOrder, setOrder } from "../../redux/actions";
 import { useLocalStorage } from "../../services/useStorage";
 import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -61,6 +61,7 @@ export function ShopingCart() {
                     })
                 })
                 if(orderCreated.data){
+                    dispatch(setIdOrder(orderCreated.data))
                     navigate('/checkout')
                 }
 

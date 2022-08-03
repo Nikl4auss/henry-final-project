@@ -1,21 +1,21 @@
-import { ERROR, GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_NAME, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS, SET_PRODUCT, GET_REVIEWS, EMPTY_REVIEWS, ADD_REVIEW } from '../actions/actions_types'
-
+import { ERROR, GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_NAME, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS, SET_PRODUCT, GET_REVIEWS, EMPTY_REVIEWS, ADD_REVIEW, SET_ID_ORDER } from '../actions/actions_types'
 
 const initialState = {
-  error: '',
-  products: [],
-  brands: [],
-  categories: [],
-  filtersSelected: {
-    category: [],
-    brand: []
-  },
-  name: '',
-  cart: {},
-  pages: { firstValue: 0, lastValue: 11 },
-  order: [],
-  allUser: [],
-  reviews: []
+    error: '',
+    products: [],
+    brands: [],
+    categories: [],
+    filtersSelected: {
+        category: [],
+        brand: []
+    },
+    name: '',
+    cart: {},
+    pages: { firstValue: 0, lastValue: 11 },
+    order: [],
+    allUser: [],
+    reviews: [],
+    idOrder: 0
 };
 const rootReducer = (state = initialState, action) => {
     //console.log(state)
@@ -83,6 +83,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: []
+            }
+        case SET_ID_ORDER:
+            return {
+                ...state,
+                idOrder: action.payload
             }
         default: return state;
     }
