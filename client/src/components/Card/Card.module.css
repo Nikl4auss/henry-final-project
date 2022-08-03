@@ -249,6 +249,7 @@ body {
     position: relative;
     top: 5.5rem;
     width: 3rem;
+    height: 5rem;
     left: 85%;
     z-index: 100;
     display: flex;
