@@ -11,25 +11,38 @@
     align-items: center;
     justify-content: center;
 }
+.header{
+    font-size: x-large;
+    font-weight: 800;
+    color: #323232;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
 
 .subContainer {
-    /* width: 500px; */
+        /* width: 500px; */
     /* min-height: 100px; */
-    background: #fff;
+    /* background: #F5F5F5; */
     position: relative;
-    border-radius: 5px;
-    box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
-    padding: 10px;
-    margin-left: 5px;
+    /* box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px; */
+    margin-left: 2rem;
+    
+}
+.btnContainer{
+    margin-bottom: 1rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #3c3c3c;
 }
 
 .Encabezado {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #E8E8E8;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
 
     /* h3 {
         font-weight: 500;
@@ -57,56 +70,69 @@ color: #1766DC;
 } */
 
 .envio {
-    background-color: antiquewhite;
-    color: #000000;
+    background-color: #3c3c3c;
+    color: white;
     padding: 1rem;
-    font-size: 1.5rem;
-    font-family: 'Raleway';
+    font-size: larger;
     font-weight: 700;
-    border: 1px solid antiquewhite;
     border-radius: 10px;
     margin-left: 5px;
+    margin-right: 1rem;
 }
 
-.envio :hover {
-    background-color: #000000;
+.envio:hover {
+    background-color: #dc5d5d;
     color: #fff;
 }
 
 .sucursal {
-    background-color: antiquewhite;
-    color: #000000;
+    background-color: #3c3c3c;
+    color: white;
     padding: 1rem;
-    font-size: 1.5rem;
-    font-family: 'Raleway';
+    font-size: larger;
     font-weight: 700;
-    border: 1px solid antiquewhite;
     border-radius: 10px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
-.sucursal :hover {
-    background-color: #000000;
+.sucursal:hover {
+    background-color: #dc5d5d;
     color: #fff;
+}
+.containerShipping{
+    margin-left: 2rem;
+}
+.containerMap{
+    display: flex;
+    justify-content: center;
 }
 
 .btnPago {
     padding: .5rem 1rem;
     border-radius: 6px;
-    background-color: #333;
-    color: #fff;
-    font-size: 1rem;
+    background-color: #3c3c3c;
+    color: white;
+    font-size: large;
+    font-weight: 600;
     cursor: pointer;
     display: block;
     margin: 0;
     /* margin-block: 2rem 1rem; */
     width: 200px;
-    margin:5px;
+    margin:2rem;
+    border: 1px solid #3c3c3c;
+
 }
 
-.btnPago :hover {
-    background-color: white;
-    color: #333;
-    border: 1px solid #333;
+.btnPago:hover {
+    background-color: #667ED4;
+    color: white;
+    border: 1px solid #667ED4;
 }
 
+.divBtnPago{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

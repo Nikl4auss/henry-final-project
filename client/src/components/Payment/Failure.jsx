@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './Failure.module.css';
 import { useEffect, useState } from 'react';
 import { getStatusOrder } from '../../services/shopingCart';
+import { BiArrowBack } from "react-icons/bi";
 
 export default function Failure() {
    
@@ -21,9 +22,11 @@ useEffect(() => {
 
     return (
         <div>
-            <p>No se pudo concretar el pago, por favor intente nuevamente</p>
+            <p className={styles.msg}>No se pudo concretar el pago, por favor intente nuevamente</p>
             <p>{dataStatusOrder}</p>
-            <Link to='/carrito' className={styles.btn}>◀ Volver</Link>
+            <div className={styles.divBtn}>
+            <Link to='/carrito' className={styles.btn}><BiArrowBack />Volver</Link>
+            </div>
         </div>
     )
 }
