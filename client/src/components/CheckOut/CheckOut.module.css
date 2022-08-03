@@ -102,6 +102,10 @@ color: #1766DC;
 .containerShipping{
     margin-left: 2rem;
 }
+.containerMap{
+    display: flex;
+    justify-content: center;
+}
 
 .btnPago {
     padding: .5rem 1rem;
