@@ -26,9 +26,7 @@ export default function Home() {
             dispatch(getCart(user.sub))
         }
 
-        return () => {
-            dispatch(setProducts())
-        }
+       
     }, [dispatch, isAuthenticated])
 
     return (
