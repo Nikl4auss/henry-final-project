@@ -227,7 +227,7 @@ export function ModifyStock({ stock, handleStockChange, handleNewStock }) {
                 {
                     stock?.map(st => {
                         return (
-                            <div>
+                            <div className={styles.divInlineStock}>
                                 <span className={styles.spanStock}>Talle: {st.Size?.name}</span>
                                 <span className={styles.spanStock}>Color: {st.MainColor?.name}</span>
                                 <label>

@@ -232,6 +232,10 @@ textarea {
     border-radius: 5px;
     font-weight: 600;
 }
+.divInlineStock{
+    border-bottom: 1px solid grey;
+    margin-bottom: 8px;
+}
 
 .labelColorStock {
     display: flex;

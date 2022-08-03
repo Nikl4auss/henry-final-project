@@ -7,7 +7,7 @@ import { getBrands, getCategories } from '../../../redux/actions'
 import { FirstInputs, ModifyBrand, ModifyCategories, ModifyStock } from "./ComponentsForm";
 import { IoArrowBackOutline, IoConstructOutline } from "react-icons/io5";
 import CardToEdit from "../../Card/CardToEdit";
-import styles from './modifyProduct.module.css'
+import styles from './modifyProduct.module.css';
 import validate from "../../../services/validate";
 
 export default function ModifyProduct() {
