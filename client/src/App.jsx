@@ -24,7 +24,8 @@ import Orders from "./components/Admin/Orders/Orders";
 import DetailOrder from "./components/DetailOrder/DetailOrder";
 import MyInfo from "./components/MyProfile/MyInfo";
 import MyAdress from "./components/MyProfile/MyAdress";
-import Shipping from "./components/Payment/Shipping";
+import Shipping from "./components/Payment/Shipping"
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -44,10 +45,14 @@ function App() {
             <Route path=":id" element={<ProductDetail />} />
           </Route>
           <Route path="/sucursales" element={<Sucursales />} />
+<<<<<<< Updated upstream
           <Route exact path="/miperfil" element={<MyProfile />}>
             <Route index element={<MyInfo />} />
             <Route exact path="misdirecciones" element={<MyAdress />} />
           </Route>
+=======
+          <Route exact path="/miperfil" element={<MyProfile />} />
+>>>>>>> Stashed changes
           <Route exact path="/misordenes">
             <Route index element={<OrdersByUser />} />
             <Route exact path=":id" element={<DetailOrder />} />
