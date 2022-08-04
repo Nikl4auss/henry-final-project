@@ -15,8 +15,6 @@ function UserDashboard() {
     dispatch(getUsers());
   }, [dispatch]);
 
-  console.log("este ", usuario);
-
   const { user, isAuthenticated } = useAuth0();
 
   return (
@@ -25,29 +23,29 @@ function UserDashboard() {
         <legend className={styles.title}>Usuarios</legend>
         {isAuthenticated && usuario?.length > 0 ? (
           <div>
-            <table>
+            <table className={styles.table}>
               <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>email</th>
-                  <th>Cambiar rol</th>
-                  <th>Eliminar usuario</th>
-                  <th>Resetear contraseña</th>
+                <tr className={styles.headRow}>
+                  <th className={styles.headCell}>Nombre</th>
+                  <th className={styles.headCell}>Apellido</th>
+                  <th className={styles.headCell}>email</th>
+                  <th className={styles.headCellBtn}>Cambiar rol</th>
+                  <th className={styles.headCellBtn}>Eliminar usuario</th>
+                  <th className={styles.headCellBtn}>Resetear contraseña</th>
                 </tr>
               </thead>
               <tbody>
                 {usuario.map((item) => (
-                  <tr>
-                    <td>{item.name}</td>
-                    <td>{item.surname}</td>
-                    <td>{item.email}</td>
-                    <td>
+                  <tr className={styles.row}>
+                    <td className={styles.cell}>{item.name}</td>
+                    <td className={styles.cell}>{item.surname}</td>
+                    <td className={styles.cell}>{item.email}</td>
+                    <td className={styles.btnCell}>
                       <button onClick={() => alert("Nico! cambiame el rol!!")}>
                         X
                       </button>
                     </td>
-                    <td>
+                    <td className={styles.btnCell}>
                       <button
                         onClick={() =>
                           alert("Nico! eliminame si tenes huevo!!")
@@ -56,7 +54,7 @@ function UserDashboard() {
                         Y
                       </button>
                     </td>
-                    <td>
+                    <td className={styles.btnCell}>
                       <button
                         onClick={() =>
                           alert("Nico! reseteame y te mato! jajaja")
