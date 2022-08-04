@@ -171,7 +171,7 @@ export default function About() {
                     <div className={styles.card__body}>
                         <img
                             className={`${styles.card__image} ${styles.card__willAnimate} ${styles.grayscale}`}
-                            src="https://res.cloudinary.com/davoshoes/image/upload/v1659581133/Perfiles/14_gteb7g.png"
+                            src="https://res.cloudinary.com/davoshoes/image/upload/v1659640382/Perfiles/davo_shoes_areyhl.png"
                         />
                         <h1 className={`${styles.card__title} ${styles.card__willAnimate}`}>
                             Tucumán
