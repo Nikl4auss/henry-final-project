@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 
 module.exports = (sequelize) => {
     sequelize.define(
@@ -15,14 +15,15 @@ module.exports = (sequelize) => {
                 allownull: false
             },
             status: {
+
                 type: DataTypes.ENUM(['Pendiente', 'Despachado', 'Entregado',"Devuelto","Cancelado"]),
+
                 defaultValue: 'Pendiente'
             },
             payment_status: {
                 type: DataTypes.ENUM(['approved', 'pending','failure']),
                 defaultValue: 'pending'
-
             }
-        }
+        }, 
     )
 };

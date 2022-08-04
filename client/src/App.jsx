@@ -28,6 +28,7 @@ import MyAdress from "./components/MyProfile/MyAdress";
 import Shipping from "./components/Payment/Shipping";
 
 import 'react-toastify/dist/ReactToastify.css';
+import About from "./components/about/About.jsx";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
           <Route exact path="/inicio" element={<Home />} />
+          <Route exact path="/quienessomos" element={<About/>} />
           <Route exact path="/carrito" element={<ShopingCart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/pago">
