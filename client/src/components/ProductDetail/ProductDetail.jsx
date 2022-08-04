@@ -114,15 +114,14 @@ function ProductDetail() {
               }
             </div>
 
-            <ProductOptions
+            {<ProductOptions
               className={styles.ModalBox}
-              stock={productDetail.Stocks}
-              image={mainImage}
+              initialState={productDetail}
               active={active}
               setActive={setActive}
-              name={productDetail.name}
-              price={productDetail.price}
-            />
+              isProdDetail={active}
+            
+            />}
             <div className={styles.divDescriptionTitle}>Descripción</div>
             <div className={styles.divDescription}>
               <p className={styles.description}>{productDetail.description}</p>

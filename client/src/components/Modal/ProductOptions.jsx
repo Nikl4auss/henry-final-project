@@ -13,7 +13,7 @@ import { getProduct } from "../../services/productsServices";
 import { useNavigate, useParams } from "react-router-dom";
 
 
-export default function ProductOptions() {
+export default function ProductOptions({ active, setActive, isProdDetail }) {
     const { id } = useParams()
     const navigate = useNavigate()
     const { user, isAuthenticated } = useAuth0();
@@ -26,15 +26,28 @@ export default function ProductOptions() {
     const [quantity, setQuantity] = useState(1)
     let dispatch = useDispatch()
     const [product, setProduct] = useState({})
+    const ubication = window.location.pathname.split('/')[1]
 
     useEffect(() => {
-        getProduct(id).then(data => setProduct(data))
-
+        if (active && ubication === 'producto') { getProduct(id).then(data => setProduct(data)) }
+        else if (ubication === 'inicio') getProduct(id).then(data => setProduct(data))
+        setColorSelected('')
+        setSizeSelected('')
+        setFilterByColor([])
+        setFilterBySize([])
+        setQuantity(1)
         return () => {
             setProduct({})
+            setColorSelected('')
+            setSizeSelected('')
+            setFilterByColor([])
+            setFilterBySize([])
+            setQuantity(1)
         }
-    }, [])
-    
+    }, [active])
+
+    console.log(product)
+
     let colors = []
     let sizes = []
 
@@ -106,9 +119,9 @@ export default function ProductOptions() {
                     id_Cart: user.sub,
                     quantity
                 })
-                if(response.data){
+                if (response.data) {
                     dispatch(getCart(user.sub))
-                    navigate('/inicio')
+                    exit()
                 }
             } catch (err) {
                 console.log(err)
@@ -116,17 +129,18 @@ export default function ProductOptions() {
         } else {
             let validateCart = cartLS.find(el => el.id === idStockSelected.id)
             if (validateCart) {
-                
+
                 let newCart = []
                 cartLS?.forEach(el => {
-                    if( el.id === idStockSelected.id) {
-                        if(el.quantity + quantity > idStockSelected.stock_product){
+                    if (el.id === idStockSelected.id) {
+                        if (el.quantity + quantity > idStockSelected.stock_product) {
                             newCart.push({
                                 ...el,
                                 quantity: idStockSelected.stock_product
                             })
                         } else {
-                            newCart.push({...el,
+                            newCart.push({
+                                ...el,
                                 quantity: el.quantity + quantity
                             })
                         }
@@ -138,7 +152,7 @@ export default function ProductOptions() {
                 })
                 setCartLS([...newCart])
                 dispatch(setOrder([...newCart]))
-                navigate('/inicio')
+                exit()
             } else {
                 setCartLS([...order, {
                     ...idStockSelected,
@@ -152,9 +166,18 @@ export default function ProductOptions() {
                     name: product.name,
                     price: product.price
                 }]))
-                navigate('/inicio')
+                exit()
             }
         }
+    }
+
+    function exit() {
+        setColorSelected('')
+        setSizeSelected('')
+        setFilterByColor([])
+        setFilterBySize([])
+        setQuantity(1)
+            (isProdDetail ? setActive(!active) : navigate('/inicio'))
     }
 
     let spanQuantity = useMemo(() => {
@@ -163,11 +186,13 @@ export default function ProductOptions() {
 
     return (
         <>
-            { product?.id &&
+            {product?.id &&
                 <div className={styles.container}>
                     <div className={styles.modalContainer}>
                         <button
-                            onClick={() => navigate('/inicio') }
+                            onClick={() => {
+                                exit()
+                            }}
                             className={styles.close}><IoMdClose /></button>
                         <div className={styles.divName}>
                             <img
@@ -229,14 +254,14 @@ export default function ProductOptions() {
                                 </button>
                             </div>
                         </div>
-                       {product?.Stocks?.length > 0 ?
-                        <button className={styles.addButton}
-                            onClick={idStockSelected.id ? addProductToCart : undefined}
-                        >Añadir al carrito</button>
-                        : <button className={styles.buttonNone}
-                            
-                        >Sin Stock</button>
-                       }
+                        {product?.Stocks?.length > 0 ?
+                            <button className={styles.addButton}
+                                onClick={idStockSelected.id ? addProductToCart : undefined}
+                            >Añadir al carrito</button>
+                            : <button className={styles.buttonNone}
+
+                            >Sin Stock</button>
+                        }
                     </div>
                 </div>
             }
