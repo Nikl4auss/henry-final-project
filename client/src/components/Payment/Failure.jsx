@@ -3,6 +3,7 @@ import styles from './Failure.module.css';
 import { useEffect, useState } from 'react';
 import { getStatusOrder } from '../../services/shopingCart';
 import { BiArrowBack } from "react-icons/bi";
+import cancelar from './Img/cancelar.png'
 
 export default function Failure() {
    
@@ -22,7 +23,10 @@ useEffect(() => {
 
     return (
         <div>
-            <p className={styles.msg}>No se pudo concretar el pago, por favor intente nuevamente</p>
+          <div className={styles.imgDiv}>
+            <img src={cancelar} alt=""/>
+          </div>
+            <p className={styles.msg}>No se pudo concretar el pago, por favor inténtelo nuevamente.</p>
             <p>{dataStatusOrder}</p>
             <div className={styles.divBtn}>
             <Link to='/carrito' className={styles.btn}><BiArrowBack />Volver</Link>

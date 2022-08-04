@@ -95,13 +95,13 @@ function ProductDetail() {
             <div className={styles.divPrice}>
               <p className={styles.price}>${productDetail.price}</p>
             </div>
-            <div className={styles.divStars}>
+            {/* <div className={styles.divStars}>
               <IoMdStar />
               <IoMdStar />
               <IoMdStar />
               <IoMdStar />
               <IoMdStarOutline />
-            </div>
+            </div> */}
             {/* <div className={styles.divColorTitle}>Color</div> */}
             <div className={styles.divAdd}>
               {productDetail.Stocks && withStock ?
