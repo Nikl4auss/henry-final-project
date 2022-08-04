@@ -12,6 +12,7 @@ import { useLocalStorage } from "../../services/useStorage";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Loader } from "../Admin/loader";
 import Loading from "../Loading/Loading";
+import { Outlet } from "react-router-dom";
 
 
 export default function Home() {
@@ -40,6 +41,7 @@ export default function Home() {
                     {products.length === 0 ? <Loading /> : <Cards />}
                 </div>
                 <Paginado />
+                <Outlet />
             </div>
             <div className={styles.footerContainer}>
                 <Footer />
