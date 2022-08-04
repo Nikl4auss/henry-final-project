@@ -1,7 +1,8 @@
 import { Link, NavLink } from 'react-router-dom'
 import styles from './cardProduct.module.css'
+import MenuCardProduct from './MenuCardProduct'
 
-export default function CardProduct ({ image, name, price, brand, id, update, model }) {
+export default function CardProduct({ image, name, price, brand, id, update, model, status }) {
 
     const date = update.split('T')
 
@@ -16,9 +17,15 @@ export default function CardProduct ({ image, name, price, brand, id, update, mo
                 </div>
                 <div className={styles.finalDiv}>
                     <h2 className={styles.price}>${price}</h2>
-                    <NavLink className={styles.link} to={`/admin/editarProducto/${id}`}>Editar Producto</NavLink>
+                    <h2>
+                        Estado del producto: 
+                        {status === 'disabled' ? <span> Deshabilitado</span> : <span> Habilitado</span>}
+                    </h2>
                     <p>Última modificación: {date[0]}</p>
                 </div>
+            </div>
+            <div className={styles.divMenuCard}>
+                <MenuCardProduct id={id} status={status}/>
             </div>
         </div>
     )

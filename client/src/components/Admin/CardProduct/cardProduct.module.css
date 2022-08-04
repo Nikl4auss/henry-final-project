@@ -4,7 +4,17 @@
     border-radius: .5rem;
     margin-bottom: 1rem;
     box-shadow: .1rem .1rem .5rem rgb(0, 0, 0, 0.5);
-    padding: .5rem
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.divMenuCard{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image {
@@ -18,6 +28,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    width: 90%;
 }
 
 .dates{
@@ -42,12 +53,54 @@
 }
 
 .link {
-    border: 1px solid #767676;
-    border-radius: .5rem;
-    padding: 0 1rem 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 100%;
 }
 
-.link:hover {
-    box-shadow: .1rem .1rem .1rem rgb(0, 0, 0, 0.2);
 
+.btnMenu {
+    display: flex;
+    height: 4rem;
+    width: 2rem;
+    font-size: 1.8rem;
+    color: #323232;
+    align-items: center;
+}
+
+.menuOptionsActive {
+    display: block;
+    background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+    position: absolute;
+    width: 9rem;
+    border: 1px solid #767676;
+    border-radius: 5px;
+    transform: translate(-4rem, -.5rem);
+}
+
+.ulStyle {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.liContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.liContainer:hover {
+    cursor: pointer;
+}
+
+.liContainer:hover{
+    background-color: #767676;
+    color: rgb(245 245 245 / var(--tw-bg-opacity));
 }

@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: 0            
         },
+        status: {
+            type: DataTypes.ENUM(['ennabled', 'disabled']),
+            defaultValue: 'ennabled'
+        },
         creationDate: {
             type: DataTypes.DATE,
             allowNull: false,

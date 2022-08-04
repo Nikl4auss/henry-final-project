@@ -132,6 +132,25 @@ router.post('/', checkJwt, checkPermissions, async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  const {id} = req.params;
+  const { status } = req.query
+  try {
+    const product = await Product.findOne({
+      where: {
+        id: id
+      }
+    })
+  
+    await product.update({
+      status: status
+    })
+    res.send('El producto fue borrado con éxito')
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/', async (req, res, next) => {
   const {
     id,
