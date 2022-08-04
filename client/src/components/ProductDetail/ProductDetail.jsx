@@ -143,13 +143,11 @@ function ProductDetail() {
           <Loading />
         )}
       </div>
-      { isAuthenticated ?
-        <div className="p-5 flex flex-col m-auto gap-3 sm:w-3/4 md:w-1/2">
-          <div className="">Reseñas</div>
-          <ReviewForm productId={id} />
-          <Reviews productId={id} />
-        </div> : null
-      }
+      <div className="p-5 flex flex-col m-auto gap-3 sm:w-3/4 md:w-1/2">
+        <div className="">Reseñas</div>
+        {isAuthenticated ? <ReviewForm productId={id} /> : null}
+        <Reviews productId={id} />
+      </div>
     </>
   );
 }
