@@ -4,6 +4,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUsers } from "../../redux/actions";
+import styles from './MyAdress.module.css';
 
 function MyAdress() {
   const dispatch = useDispatch();
@@ -27,52 +28,58 @@ function MyAdress() {
   console.log(render_user[0]);
   return (
     <div>
-      <fieldset>
-        <legend>Mi dirección</legend>
+      <fieldset className={styles.container}>
+        <div className={styles.header}>
+          <legend >Mis direcciones</legend>
+        </div>
         {isAuthenticated && usuario?.length > 0 ? (
           <div>
-            <label>
-              {" "}
-              Calle:
-              <p>holi</p>
-            </label>
-            <label>
-              {" "}
-              Altura:
-              <p>muy alto</p>
-            </label>
-            <label>
-              {" "}
-              Piso/Departamento/Lote:
-              <p>0</p>
-            </label>
-            <label>
-              {" "}
-              País:
-              <p>0</p>
-            </label>
-            <label>
-              {" "}
-              Provincia:
-              <p>0</p>
-            </label>
-            <label>
-              {" "}
-              Ciudad:
-              <p>0</p>
-            </label>
-            <label>
-              {" "}
-              Código Postal:
-              <p>0</p>
-            </label>
-            <label>
-              {" "}
-              Teléfono:
-              <p>0</p>
-            </label>
-            <button onClick={returnHome}>Volver</button>
-            <button onClick={returnHome}>Editar</button>
+            <div className={styles.infoContainer}>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Calle:
+                </label>
+                <>Pedernera</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Altura:
+                </label>
+                <>1234</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Piso/Departamento/Lote:
+                </label>
+                <>-</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Ciudad:
+                </label>
+                <>San Isidro</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Provincia:
+                </label>
+                <>Buenos Aires</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  País:
+                </label>
+                <>Argentina</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Teléfono:
+                </label>
+                <>1234567890</>
+              </div>
+            </div>
+            <button className={styles.buyBtn} onClick={returnHome}>Editar</button>
+            <button className={styles.buyBtn} onClick={returnHome}>Volver</button>
           </div>
         ) : (
           <LoginButton />
