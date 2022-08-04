@@ -33,7 +33,6 @@ router.post('/', async (req, res) => {
       email,
       auth0_id: user_id
     })
-
     const newCart = await Cart.create({
       id: user_id
     })

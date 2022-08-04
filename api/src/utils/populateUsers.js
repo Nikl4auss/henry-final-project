@@ -4,7 +4,6 @@ const managment = require('../controllers/auth0ManagmentClient')
 
 async function populateUsers() {
   try {
-
     const users = await managment.getUsers()
     console.log(users)
     await Promise.all(users.map(async user => {
