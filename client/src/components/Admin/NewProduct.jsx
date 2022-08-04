@@ -174,8 +174,8 @@ export default function NewProduct() {
                 <div>
                     {console.log(input)}
                     <h1 className={styles.title}>Crear producto</h1>
-                    <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
-
+                    <form  onSubmit={(e) => handleSubmit(e)}>
+                    <div className={styles.container}>
                         <div className={styles.inputBox} >
                             <input
                                 type='text'
@@ -183,6 +183,7 @@ export default function NewProduct() {
                                 name='name'
                                 onChange={(e) => handleChange(e)}
                                 required
+                                autocomplete="off"
                             ></input>
                             <label>Nombre:</label>
                         </div>
@@ -193,6 +194,7 @@ export default function NewProduct() {
                                 name='description'
                                 onChange={(e) => handleChange(e)}
                                 required
+                                autocomplete="off"
                             ></input>
                             <label>Descripción:</label>
                         </div>
@@ -203,6 +205,7 @@ export default function NewProduct() {
                                 name='price'
                                 onChange={(e) => handleChange(e)}
                                 required
+                                autocomplete="off"
                             ></input>
                             <label>Precio:</label>
                         </div>
@@ -217,6 +220,7 @@ export default function NewProduct() {
                                 name='model'
                                 onChange={(e) => handleChange(e)}
                                 required
+                                autocomplete="off"
                             ></input>
                             <label>Modelo:</label>
                         </div>
@@ -253,6 +257,7 @@ export default function NewProduct() {
                                 name='stock_product'
                                 onChange={(e) => handleChange3(e)}
                                 required
+                                autocomplete="off"
                             ></input>
                             <label>Stock:</label>
                         </div>
@@ -263,6 +268,7 @@ export default function NewProduct() {
                                 name='size'
                                 onChange={(e) => handleChange3(e)}
                                 required
+                                autocomplete="off"
                             ></input>
                             <label>Talle:</label>
                         </div>
@@ -273,6 +279,7 @@ export default function NewProduct() {
                                 name='mainColor'
                                 onChange={(e) => handleChange3(e)}
                                 required
+                                autocomplete="off"
                             ></input>
                             <label>Color:</label>
                         </div>
@@ -283,13 +290,16 @@ export default function NewProduct() {
                                 name='store'
                                 placeholder='default'
                                 onChange={(e) => handleChange3(e)}
-
+                                autocomplete="off"
                             ></input>
                             <label>Tienda:</label>
                         </div>
+                        </div>
+                        <div className={styles.divCreate}>
+                            <button className={styles.btnCreate} type='submit'>Crear</button>
+                        </div>
                     </form>
                     <div className={styles.buttons}>
-                        <button className={styles.btnCreate} type='submit'>Crear</button>
                         <Link to='/admin'><button className={styles.btnBack}>Volver</button></Link>
                     </div>
                 </div>

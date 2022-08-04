@@ -15,6 +15,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
                     name='name'
                     value={name}
                     onChange={handleInputsChange}
+                    autocomplete="off"
                 />
             </label>
             <label className={styles.labelInputs}>
@@ -27,6 +28,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
                     rows="5"
                     value={description}
                     onChange={handleInputsChange}
+                    autocomplete="off"
                 />
             </label>
             <label className={styles.labelInputs}>
@@ -37,6 +39,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
                     name="price"
                     value={price}
                     onChange={handleInputsChange}
+                    autocomplete="off"
                 />
             </label>
             <label className={styles.labelInputs}>
@@ -47,6 +50,7 @@ export function FirstInputs({ name, description, price, modelo, handleInputsChan
                     name="modelo"
                     value={modelo}
                     onChange={handleInputsChange}
+                    autocomplete="off"
                 />
             </label>
         </div>
@@ -167,6 +171,7 @@ export function ModifyCategories({ categories, categoriesSelected, handleCategor
                             type='text'
                             onChange={(e) => setNewCategory(e.target.value)}
                             value={newCategory}
+                            autocomplete="off"
                         />
                     <button className={styles.btnCategory} onClick={pushNewCategory}>Agregar</button>
                 </div> : undefined}
@@ -239,6 +244,7 @@ export function ModifyStock({ stock, handleStockChange, handleNewStock }) {
                                         id={st.id}
                                         value={st.stock_product}
                                         onChange={handleStockChange}
+                                        autocomplete="off"
                                     />
                                 </label>
                                 <hr />
@@ -258,6 +264,7 @@ export function ModifyStock({ stock, handleStockChange, handleNewStock }) {
                             max='51'
                             value={newStock.Size.name}
                             onChange={handleSizeChange}
+                            autocomplete="off"
                         />
                     </label>
                     <label className={styles.labelColorStock}>
@@ -268,6 +275,7 @@ export function ModifyStock({ stock, handleStockChange, handleNewStock }) {
                             name='name'
                             value={newStock.MainColor.name}
                             onChange={handleColorChange}
+                            autocomplete="off"
                         />
                         <input
                             type="color"
@@ -276,6 +284,7 @@ export function ModifyStock({ stock, handleStockChange, handleNewStock }) {
                             onChange={handleColorChange}
                             className={styles.inputColor}
                             style={{ background: `${newStock.MainColor.code}` }}
+                            autocomplete="off"
                         />
                     </label>
                     <label>
@@ -287,6 +296,7 @@ export function ModifyStock({ stock, handleStockChange, handleNewStock }) {
                             name='stock_product'
                             value={newStock.stock_product}
                             onChange={handleInputChange}
+                            autocomplete="off"
                         />
                     </label>
                     <button 

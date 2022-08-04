@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Outlet, NavLink, Link } from "react-router-dom";
-import SearchBar from '../../SearchBar/SearchBar'
-import styles from './dashboard.module.css'
+import SearchBar from "../../SearchBar/SearchBar";
+import styles from "./dashboard.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import UserDashboard from "../UserDashboard/UserDashboard";
@@ -11,19 +11,21 @@ function Dashboard() {
   function activeClassName(active) {
     return active ? "text-zink-800 bg-neutral-100 border- " : "text-white";
   }
-  
+
   function handleClick(e) {
     menuRef.current.classList.toggle("-translate-x-full");
   }
   return (
     <div className="grid md:grid-cols-[1fr_3fr] grid-rows-[4%_100%] min-h-full relative">
       <nav className="w-full flex items-center justify-end md:col-start-2 shadow-lg h-24 relative bg-neutral-900">
-
-        <button className="absolute left-4 md:hidden text-white text-2xl" onClick={handleClick}>
+        <button
+          className="absolute left-4 md:hidden text-white text-2xl"
+          onClick={handleClick}
+        >
           <GiHamburgerMenu />
         </button>
         <div className={styles.searchbar}>
-        <SearchBar />
+          <SearchBar />
         </div>
         <div className={styles.btnBack}>
           <Link to="/inicio">Volver a la tienda</Link>
@@ -40,11 +42,11 @@ function Dashboard() {
           className="z-10 absolute mt-1 right-4 text-zink-800 bg-zinc-50 rounded-full md:hidden"
           onClick={handleClick}
         >
-          <IoMdClose/>
+          <IoMdClose />
         </button>
         <div className="w-80">
           <img
-            src="https://res.cloudinary.com/davoshoes/image/upload/v1658524699/LOGO/davo_shoes_1000_500_px_rxlpz2.png"
+            src="https://res.cloudinary.com/davoshoes/image/upload/v1659573463/LOGO/davo_shoes__500___250_px_-removebg-preview_rvydd5.png"
             alt="logo"
             className="w-52"
           />
