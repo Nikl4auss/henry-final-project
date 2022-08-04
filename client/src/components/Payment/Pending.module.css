@@ -1,3 +1,9 @@
+.imgDiv{
+    display: flex;
+    justify-content: center;
+    height: 5rem;
+    margin-top: 2rem;
+}
 .msg{
     display: flex;
     align-items: center;
@@ -31,3 +37,28 @@
     color: white;
     border: 1px solid #dc5d5d;
 }
+
+.btnOtro {
+    border-radius: 14px;
+    background-color: #3c3c3c;
+    color: white;
+    font-size: large;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+    margin: 0;
+    width: 14rem;
+    height: 2rem;
+    border: 1px solid #3c3c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+.btnOtro:hover {
+    background-color: #dc5d5d;
+    color: white;
+    border: 1px solid #dc5d5d;
+}
+
