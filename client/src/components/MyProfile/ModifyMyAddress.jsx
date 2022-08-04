@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
-import styles from "./Shipping.module.css";
-import { payCart } from "../../services/shopingCart";
+import styles from "./ModifyMyAddress.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function postAddress(payload) {
@@ -15,9 +13,8 @@ function postAddress(payload) {
 
 function validate(input) {
   let errors = {};
-  if (!input.addressee) {
-    errors.addressee = "Destinatario es requerido.";
-  } else if (!input.street) {
+  if (!input.street) {
+    //console.log("calle");
     errors.street = "Calle para entrega es requerida.";
   } else if (!input.number) {
     errors.number = "Altura de la calle es requerida.";
@@ -35,17 +32,13 @@ function validate(input) {
   return errors;
 }
 
-export default function Shipping() {
+export default function ModifyMyAdress() {
   const { user } = useAuth0();
-
-  const order = useSelector((state) => state.order);
-  const idOrder = useSelector((state) => state.idOrder);
+  //console.log(user.sub);
 
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-
   const [input, setInput] = useState({
-    addressee: "",
     street: "",
     number: "",
     apartment: "",
@@ -55,7 +48,7 @@ export default function Shipping() {
     postalCode: "",
     phone: "",
     comment: "",
-    idUser: user.sub,
+    idUser: "google-oauth2|116882396145643655241",
   });
 
   function handleChange(e) {
@@ -71,18 +64,9 @@ export default function Shipping() {
     );
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    if (
-      errors.addressee ||
-      errors.street ||
-      errors.number ||
-      errors.country ||
-      errors.state ||
-      errors.city ||
-      errors.postalCode ||
-      errors.phone
-    ) {
+    if (Object.entries(errors).length !== 0) {
       let sendErrors = [];
       for (const key in errors) {
         sendErrors.push(
@@ -90,7 +74,7 @@ export default function Shipping() {
         );
       }
       return alert(sendErrors);
-    } else if (input.addressee) {
+    } else if (input.street) {
       dispatch(postAddress(input));
       setInput({
         addressee: "",
@@ -103,12 +87,12 @@ export default function Shipping() {
         postalCode: "",
         phone: "",
         comment: "",
-        idUser: user.sub,
+        idUser: "google-oauth2|116882396145643655241",
       });
-      const data = await payCart(order, idOrder.orderId);
-      window.location.href = data;
       return alert("Dirección guardada!");
     }
+    //console.log("aqui");
+    console.log(errors);
     return alert("Dirección requerida!");
   }
   console.log(input);
@@ -117,26 +101,6 @@ export default function Shipping() {
     <div>
       <h2 className={styles.title}>Dirección de envío</h2>
       <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
-        <div className={styles.inputBox}>
-          <input
-            type="text"
-            value={input.addressee}
-            name="addressee"
-            onChange={(e) => handleChange(e)}
-            required
-          ></input>
-          <label>Nombre y apellido de quien recibe:</label>
-        </div>
-        <div className={styles.inputBox}>
-          <input
-            type="text"
-            value={input.phone}
-            name="phone"
-            onChange={(e) => handleChange(e)}
-            required
-          ></input>
-          <label>Teléfono:</label>
-        </div>
         <div className={styles.inputBox}>
           <input
             type="text"
@@ -217,11 +181,19 @@ export default function Shipping() {
           ></input>
           <label>Comentarios de Entrega:</label>
         </div>
-        <div>
-          <button className={styles.btnPago} type="submit">
-            Pagar
-          </button>
+        <div className={styles.inputBox}>
+          <input
+            type="text"
+            value={input.phone}
+            name="phone"
+            onChange={(e) => handleChange(e)}
+            required
+          ></input>
+          <label>Teléfono:</label>
         </div>
+        <button onClick={handleSubmit} type="submit">
+          Guardar
+        </button>
       </form>
     </div>
   );

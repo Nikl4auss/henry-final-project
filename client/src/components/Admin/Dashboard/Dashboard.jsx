@@ -64,12 +64,12 @@ function Dashboard() {
         >
           Crear Producto
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="sucursales"
           className={({ isActive }) => activeClassName(isActive)}
         >
           Sucursales
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="ordenes"
           className={({ isActive }) => activeClassName(isActive)}

@@ -26,8 +26,9 @@ import DetailOrder from "./components/DetailOrder/DetailOrder";
 import MyInfo from "./components/MyProfile/MyInfo";
 import MyAdress from "./components/MyProfile/MyAdress";
 import Shipping from "./components/Payment/Shipping";
+import "react-toastify/dist/ReactToastify.css";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import About from "./components/about/About.jsx";
 import DeleteProduct from "./components/Admin/DeleteProduct/DeleteProduct";
 
@@ -38,9 +39,9 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
           <Route exact path="/inicio" element={<Home />}>
-            <Route exact path=':id' element={<ProductDetail />} />
+            <Route exact path=":id" element={<ProductDetail />} />
           </Route>
-          <Route exact path="/quienessomos" element={<About/>} />
+          <Route exact path="/quienessomos" element={<About />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/pago">
@@ -52,11 +53,13 @@ function App() {
             <Route path=":id" element={<ProductDetail />} />
           </Route>
           <Route path="/sucursales" element={<Sucursales />} />
+
           <Route exact path="/miperfil" element={<MyProfile />}>
             <Route index element={<MyInfo />} />
             <Route exact path="misdirecciones" element={<MyAdress />} />
           </Route>
-          <Route exact path="/misordenes" >
+          <Route exact path="/misordenes">
+            ñ
             <Route index element={<OrdersByUser />} />
             <Route exact path=":id" element={<DetailOrder />} />
           </Route>
