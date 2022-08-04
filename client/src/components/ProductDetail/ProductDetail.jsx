@@ -3,6 +3,8 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReviewForm from "../Reviews/ReviewForm";
 import Reviews from "../Reviews/Reviews";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 import { getProduct } from "../../services/productsServices";
 import styles from "./ProductDetail.module.css";
@@ -21,6 +23,7 @@ import Loading from "../Loading/Loading";
 import { GiScrollUnfurled } from "react-icons/gi";
 
 function ProductDetail() {
+  const { isAuthenticated } = useAuth0();
   const { id } = useParams();
   const [productDetail, setProductDetail] = useState({
     name: "",
@@ -41,7 +44,7 @@ function ProductDetail() {
     getProduct(id).then((data) => {
       setProductDetail(data);
     });
-    
+
     return () => {
       setProductDetail({
         name: "",
@@ -140,11 +143,13 @@ function ProductDetail() {
           <Loading />
         )}
       </div>
-      <div className="p-5 flex flex-col m-auto gap-3 sm:w-3/4 md:w-1/2">
-        <div className="">Reseñas</div>
-        <ReviewForm productId={id} />
-        <Reviews productId={id} />
-      </div>
+      { isAuthenticated ?
+        <div className="p-5 flex flex-col m-auto gap-3 sm:w-3/4 md:w-1/2">
+          <div className="">Reseñas</div>
+          <ReviewForm productId={id} />
+          <Reviews productId={id} />
+        </div> : null
+      }
     </>
   );
 }
