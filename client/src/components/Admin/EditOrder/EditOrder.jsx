@@ -27,8 +27,8 @@ export function EditOrder({ initalState, setEditarEntrega }) {
                     value='Entregado'
                 >Entregado</option>
                 <option
-                    value='Cancelado'
-                >Cancelado</option>
+                    value='Cancelada'
+                >Cancelada</option>
                 <option
                     value='Devuelto'
                 >Devuelto</option>
