@@ -278,6 +278,12 @@ router.post('/:id/reviews', checkJwt, async (req, res) => {
     body,
     score
   } = req.body
+
+  if (!title || !score) {
+    return res.status(400).json({
+      msg: "Falta titulo o mensaje"
+    })
+  }
   try {
     const product = await Product.findOne({
       where: {
