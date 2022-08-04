@@ -75,9 +75,14 @@ export function CheckOut() {
                             </div> : <div></div>
                         }
                         {estadoSucursal ?
-                            <div className={styles.containerMap}>
+                        <div className={styles.containerMap}>
+                            <div>
+                                <p><strong>Dirección de retiro:</strong> <br/>Liners 320, Provincia de Buenos Aires</p>
+                                <p><strong>Horarios:</strong> <br/>8:00 h - 18:00 h</p>
+                                <p><strong>Teléfono:</strong> <br/>1133456498</p>
+                            </div>
                                 <Map />
-                            </div> : <div></div>
+                         </div> : <div></div>
                         }
                     </div>
                     <div className={styles.divBtnPago}>
