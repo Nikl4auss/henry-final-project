@@ -14,11 +14,34 @@ const ReviewForm = ({ productId }) => {
     score: 0,
   });
   const dispatch = useDispatch()
-
   const { getAccessTokenSilently } = useAuth0();
+
+  function validator() {
+
+    const errors = {}
+
+    if (!review.title) {
+      errors.title = 'El titulo no puede estar vacio'
+    }
+    else if (review.title.length > 100) {
+      errors.title = "El titulo no puede ser mayor a 100 caracteres"
+    }
+
+    if (!review.score) {
+      errors.score = 'El puntaje no puede ser cero'
+    }
+
+
+
+    return errors
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const errors = validator()
+    if (errors.title || errors.score) {
+      return toast.error(`${errors.title ? errors.title + '\n' : ''}${errors.score ? errors.score : ''}`)
+    }
     getAccessTokenSilently().then((token) => {
       toast.promise(
         createReview(review, productId, token),
