@@ -27,7 +27,7 @@ export default function Home() {
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(getCart(user.sub))
-            if (cart.length >) {
+            if (cart.length > 0) {
                 cart.forEach(async pr => {
                     await apiInstance.post(`/line_cart/${pr.id}`, {
                         id_Cart: user.sub,
