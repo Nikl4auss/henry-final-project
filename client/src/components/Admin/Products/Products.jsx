@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getProducts } from "../../../redux/actions"
+import { getProducts, setProducts } from "../../../redux/actions"
 import CardProduct from "../CardProduct/CardProduct"
 import Paginado from '../../Paginado/Paginado'
 import styles from './Products.module.css'
+import { Outlet } from "react-router-dom"
 
 
 export default function Products (){
@@ -15,7 +16,6 @@ export default function Products (){
     useEffect(() => {
         if(products.length > 0) return;
         else dispatch(getProducts({}, name))
-
     }, [dispatch,name, products])
 
     const arrayPage = useMemo(()=>{
@@ -34,9 +34,11 @@ export default function Products (){
                 model={prod.model}
                 id={prod.id}
                 update={prod.updateDate}
+                status={prod.status}
                 />
             })}
             <Paginado />
+            <Outlet />
         </div>
     )
 }

@@ -4,7 +4,7 @@ const { USER_MAILGUN, PASS_MAILGUN, CLIENT_URL } = require("../utils/config");
 
 const transporter = nodemailer.createTransport({
         host: "smtp.mailgun.org",
-        port: 587,
+        port: 465,//587
         auth: {
           user: USER_MAILGUN,
           pass: PASS_MAILGUN,

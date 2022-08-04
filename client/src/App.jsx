@@ -30,6 +30,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import About from "./components/about/About.jsx";
+import DeleteProduct from "./components/Admin/DeleteProduct/DeleteProduct";
 
 function App() {
   return (
@@ -69,7 +70,9 @@ function App() {
           element={<ProtectedRoute component={Dashboard} role="Admin" />}
         >
           {/* <Route index element={<Overview />} /> */}
-          <Route index element={<Products />} />
+          <Route path='' element={<Products />}>
+            <Route exact path='eliminar/:id' element={<DeleteProduct />}/>
+          </Route>
           <Route exact path="nuevoproducto" element={<NewProduct />} />
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
           <Route path="ordenes">
