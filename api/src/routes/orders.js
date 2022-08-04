@@ -81,7 +81,7 @@ router.put('/:id', async (req, res, next) => {
             }
         })
 
-        if(status.length > 0 && payment_status > 0){
+        if(status.length > 0 && payment_status.length > 0){
             await order.update({
                 status: status,
                 payment_status: payment_status
