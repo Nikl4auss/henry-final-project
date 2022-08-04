@@ -19,13 +19,6 @@ function UserDashboard() {
 
   const { user, isAuthenticated } = useAuth0();
 
-  // console.log (user)
-  //  console.log("aqui",user)
-
-  // function returnHome () {
-  //     navigate("/home")
-  // }
-
   return (
     <div className={styles.generalContainer}>
       <fieldset>
