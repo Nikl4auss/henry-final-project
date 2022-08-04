@@ -12,38 +12,49 @@ import { useLocalStorage } from "../../services/useStorage";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Loader } from "../Admin/loader";
 import Loading from "../Loading/Loading";
+import { Outlet } from "react-router-dom";
+import apiInstance from "../../services/apiAxios";
 
 
 export default function Home() {
     let products = useSelector(state => state.products)
-    const [ cart ] = useLocalStorage('cart')
-    
+    const cartDB = useSelector(state => state.cart)
+    const [cart, setCart] = useLocalStorage('cart')
+
     let dispatch = useDispatch()
     const { user, loginWithRedirect, isAuthenticated } = useAuth0()
 
     useEffect(() => {
-        if(isAuthenticated) {
+        if (isAuthenticated) {
             dispatch(getCart(user.sub))
+            if (cart.length > 0 && cartDB > 0) {
+                cart.forEach(async pr => {
+                    await apiInstance.post(`/line_cart/${pr.id}`, {
+                        id_Cart: user.sub,
+                        quantity: pr.quantity
+                    })
+                })
+                setCart([])
+            }
         }
-
-       
     }, [dispatch, isAuthenticated])
 
-    return (
-        <div className={styles.homeGrid}>
-            <div className={styles.filtersContainer}>
-                <Filters />
-            </div>
-
-            <div>
-                <div className={styles.cardsContainer}>
-                    {products.length === 0 ? <Loading /> : <Cards />}
-                </div>
-                <Paginado />
-            </div>
-            <div className={styles.footerContainer}>
-                <Footer />
-            </div>
+return (
+    <div className={styles.homeGrid}>
+        <div className={styles.filtersContainer}>
+            <Filters />
         </div>
-    )
+
+        <div>
+            <div className={styles.cardsContainer}>
+                {products.length === 0 ? <Loading /> : <Cards />}
+            </div>
+            <Paginado />
+            <Outlet />
+        </div>
+        <div className={styles.footerContainer}>
+            <Footer />
+        </div>
+    </div>
+)
 }

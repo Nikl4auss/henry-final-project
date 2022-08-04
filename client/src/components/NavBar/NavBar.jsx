@@ -19,32 +19,10 @@ export default function NavBar() {
 
 
   function clickToShopingCart() {
-    if (isAuthenticated) {
-      if (cart) {
-        cart.forEach(async pr => {
-          await apiInstance.post(`/line_cart/${pr.id}`, {
-            id_Cart: user.sub,
-            quantity: pr.quantity
-          })
-        })
-        setCart([])
-      }
-    }
     navigate("/carrito");
   }
 
   function clickToShopingCart() {
-    if (isAuthenticated) {
-      if (cart.length > 0) {
-        cart.forEach(async pr => {
-          await apiInstance.post(`/line_cart/${pr.id}`, {
-            id_Cart: user.sub,
-            quantity: pr.quantity
-          })
-        })
-        setCart([])
-      }
-    }
     navigate("/carrito");
   }
 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUsers } from "../../redux/actions";
 import MyInfo from "./MyInfo";
+import styles from './MyProfile.module.css';
 
 function MyProfile() {
   const dispatch = useDispatch();
@@ -31,14 +32,17 @@ function MyProfile() {
   let render_user = usuario.filter((us) => us.id === user.sub);
   //console.log(render_user[0]);
   return (
-    <div>
+    <div className={styles.grid}>
       {/* <NavLink to="misdatos" element={<MyInfo />}>
         Mis datos
       </NavLink> */}
-
-      <button onClick={goToMyInfo}>Mis datos</button>
-      <button onClick={goToMyAdress}>Mis direcciones</button>
-      <Outlet />
+      <div className={styles.menuBtns}>
+        <button className={styles.btn} onClick={goToMyInfo}>Mis datos</button>
+        <button onClick={goToMyAdress}>Mis direcciones</button>
+      </div>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 }

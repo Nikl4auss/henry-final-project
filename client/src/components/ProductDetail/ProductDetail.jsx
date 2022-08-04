@@ -3,6 +3,8 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReviewForm from "../Reviews/ReviewForm";
 import Reviews from "../Reviews/Reviews";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 import { getProduct } from "../../services/productsServices";
 import styles from "./ProductDetail.module.css";
@@ -21,6 +23,7 @@ import Loading from "../Loading/Loading";
 import { GiScrollUnfurled } from "react-icons/gi";
 
 function ProductDetail() {
+  const { isAuthenticated } = useAuth0();
   const { id } = useParams();
   const [productDetail, setProductDetail] = useState({
     name: "",
@@ -41,7 +44,7 @@ function ProductDetail() {
     getProduct(id).then((data) => {
       setProductDetail(data);
     });
-    
+
     return () => {
       setProductDetail({
         name: "",
@@ -95,13 +98,13 @@ function ProductDetail() {
             <div className={styles.divPrice}>
               <p className={styles.price}>${productDetail.price}</p>
             </div>
-            <div className={styles.divStars}>
+            {/* <div className={styles.divStars}>
               <IoMdStar />
               <IoMdStar />
               <IoMdStar />
               <IoMdStar />
               <IoMdStarOutline />
-            </div>
+            </div> */}
             {/* <div className={styles.divColorTitle}>Color</div> */}
             <div className={styles.divAdd}>
               {productDetail.Stocks && withStock ?
@@ -114,15 +117,14 @@ function ProductDetail() {
               }
             </div>
 
-            <ProductOptions
+            {<ProductOptions
               className={styles.ModalBox}
-              stock={productDetail.Stocks}
-              image={mainImage}
+              initialState={productDetail}
               active={active}
               setActive={setActive}
-              name={productDetail.name}
-              price={productDetail.price}
-            />
+              isProdDetail={active}
+            
+            />}
             <div className={styles.divDescriptionTitle}>Descripción</div>
             <div className={styles.divDescription}>
               <p className={styles.description}>{productDetail.description}</p>
@@ -142,7 +144,10 @@ function ProductDetail() {
       </div>
       <div className="p-5 flex flex-col m-auto gap-3 sm:w-3/4 md:w-1/2">
         <div className="">Reseñas</div>
-        <ReviewForm productId={id} />
+        {isAuthenticated ?
+        <ReviewForm productId={id} /> :
+        <p style={{opacity: 0.3}}>Sólo usuarios que han iniciado sesion pueden realizar reseñas.</p>
+        }
         <Reviews productId={id} />
       </div>
     </>

@@ -30,7 +30,7 @@ export function ShopingCart() {
 
     let articulos = useMemo(() => {
         let count = 0
-        if(order.length === 0) return 0
+        if(order?.length === 0) return 0
         order?.forEach(pr => count = count + pr.quantity)
         return count
     }, [order])
@@ -88,7 +88,6 @@ export function ShopingCart() {
         }
     }
 
-    console.log(order)
     async function clearCart(e) {
         e.preventDefault()
         if(isAuthenticated) {
@@ -107,7 +106,7 @@ export function ShopingCart() {
         <div className={styles.grid}>
             <div className={styles.cartTitle}>
                 <h1 className={styles.title}>Tu carrito</h1>
-                <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
+                <h1 className={styles.quantity}>({order?.length === 0 ? 0 : articulos} productos)</h1>
             </div>
             <div className={styles.divClose}>
                 <Link to= '/inicio'>

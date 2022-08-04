@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io"
 import { MdOutlineDone } from "react-icons/md"
 import { NavLink } from "react-router-dom"
 import { getOrders, putOrder } from "../../../services/productsServices"
+import traslate from "../../../services/traslate"
 import { useSessionStorage } from "../../../services/useStorage"
 import Loading from "../../Loading/Loading"
 import { EditOrder, EditPayment } from "../EditOrder/EditOrder"
@@ -32,12 +33,6 @@ export default function Orders() {
         setFilterPayment('empty')
         getOrders(e.target.value, 'empty').then(data => setOrders(data))
         setFilterOrders(e.target.value)
-    }
-
-    function traslate(text) {
-        if (text === 'pending') return 'Pendiente'
-        if (text === 'approved') return 'Aprobado'
-        if (text === 'failure') return 'Fallado'
     }
 
     function handleSelectPayment(e) {
@@ -80,7 +75,7 @@ export default function Orders() {
                         <option value='Pendiente'>Pendiente</option>
                         <option value='Despachado'>Despachado</option>
                         <option value='Entregado'>Entregado</option>
-                        <option value='Cancelado'>Cancelado</option>
+                        <option value='Cancelada'>Cancelada</option>
                         <option value='Devuelto'>Devuelto</option>
                     </select>
                     <select

@@ -46,7 +46,7 @@ function Dashboard() {
         </button>
         <div className="w-80">
           <img
-            src="https://res.cloudinary.com/davoshoes/image/upload/v1658524699/LOGO/davo_shoes_1000_500_px_rxlpz2.png"
+            src="https://res.cloudinary.com/davoshoes/image/upload/v1659573463/LOGO/davo_shoes__500___250_px_-removebg-preview_rvydd5.png"
             alt="logo"
             className="w-52"
           />
@@ -64,12 +64,12 @@ function Dashboard() {
         >
           Crear Producto
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="sucursales"
           className={({ isActive }) => activeClassName(isActive)}
         >
           Sucursales
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="ordenes"
           className={({ isActive }) => activeClassName(isActive)}

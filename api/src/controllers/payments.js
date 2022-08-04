@@ -24,7 +24,10 @@ const updateOrder = async (req, res) =>{
     let name= data.User.name +' '+data.User.surname
      email= data.User.email;
      let subject= 'Recibimos tu pago';
-     mailTemplate = getTemplateAproved(name)
+     let id=external_reference
+     let products = data.Line_orders
+   
+     mailTemplate = getTemplateAproved(name, id, products)
      await sendEmail(email, subject, mailTemplate )
      let statusOrder = await axios.put(`${API_URL}/order/${external_reference}`, {status}) 
       //  console.log(statusOrder,'statusOrder')

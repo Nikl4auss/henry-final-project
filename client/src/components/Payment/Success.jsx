@@ -5,6 +5,7 @@ import { getStatusOrder } from "../../services/shopingCart";
 import { useLocalStorage } from "../../services/useStorage";
 import styles from "./Success.module.css";
 import { BiArrowBack } from "react-icons/bi";
+import comprobado from './Img/comprobado.png';
 
 export default function Success() {
   const [cart, setCart] = useLocalStorage("cart");
@@ -32,6 +33,9 @@ export default function Success() {
  
   return (
     <div>
+      <div className={styles.imgDiv}>
+        <img src={comprobado} alt=""/>
+      </div>
       <p className={styles.msg}>Su pago se realizó con éxito, muchas gracias!</p>
       <div className={styles.divBtn}>
       <Link to="/inicio" className={styles.btn}>

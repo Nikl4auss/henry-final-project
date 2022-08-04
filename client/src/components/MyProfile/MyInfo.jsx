@@ -4,6 +4,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUsers } from "../../redux/actions";
+import styles from './MyInfo.module.css';
 
 function MyInfo() {
   const dispatch = useDispatch();
@@ -27,23 +28,33 @@ function MyInfo() {
   console.log(render_user[0]);
   return (
     <div>
-      <fieldset>
+      <fieldset className={styles.container}>
+        <div className={styles.header}>
         <legend>Información de mi cuenta</legend>
+        </div>
         {isAuthenticated && usuario?.length > 0 ? (
           <div>
-            <label>
-              Nombre:
-              <p>{render_user[0].name}</p>
-            </label>
-            <label>
-              Apellido:
-              <p>{render_user[0].surname}</p>
-            </label>
-            <label>
-              email:
-              <p>{render_user[0].email}</p>
-            </label>
-            <button onClick={returnHome}>Volver</button>
+            <div className={styles.infoContainer}>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Nombre:
+                </label>
+                <>{render_user[0].name}</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Apellido:
+                </label>
+                <>{render_user[0].surname}</>
+              </div>
+              <div className={styles.divInfo}>
+                <label className={styles.label}>
+                  Email:
+                </label>
+                <>{render_user[0].email}</>
+              </div>
+            </div>
+            {/* <button onClick={returnHome}>Volver</button> */}
           </div>
         ) : (
           <LoginButton />
