@@ -4,12 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 const sequelize = new Sequelize(DATABASE_URL, {
-    logging: false,
-    dialectOptions: {
-        ssl: DB_SSL && {
-            rejectUnauthorized: false
-        }
+  logging: false,
+  dialectOptions: {
+    ssl: DB_SSL && {
+      require: true,
+      rejectUnauthorized: false
     }
+  }
 })
 
 const basename = path.basename(__filename);
@@ -18,10 +19,10 @@ const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
-    .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
-    .forEach((file) => {
-        modelDefiners.push(require(path.join(__dirname, '/models', file)));
-    });
+  .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+  .forEach((file) => {
+    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+  });
 
 // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach(model => model(sequelize));
@@ -31,22 +32,23 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 const {
-    Product,
-    Category,
-    Brand,
-    Image_Product,
-    Gender,
-    Size,
-    Stock,
-    Store,
-    Address,
-    MainColor,
-    User,
-    Cart,
-    Line_cart,
-    Line_order,
-    Order,
-    Review
+  Product,
+  Category,
+  Brand,
+  Image_Product,
+  Gender,
+  Size,
+  Stock,
+  Store,
+  Address,
+  MainColor,
+  User,
+  Cart,
+  Line_cart,
+  Line_order,
+  Order,
+  Review,
+  CustomerReview
 } = sequelize.models
 
 
@@ -72,8 +74,8 @@ Store.belongsTo(Address)
 User.hasMany(Address)
 Address.belongsTo(User)
 
-Product.hasMany(Image_Product, {as: 'images'});
-Image_Product.belongsTo(Product, {as: 'product'});
+Product.hasMany(Image_Product, { as: 'images' });
+Image_Product.belongsTo(Product, { as: 'product' });
 
 Gender.hasMany(Product)
 Product.belongsTo(Gender)
@@ -81,6 +83,8 @@ Product.belongsTo(Gender)
 Category.belongsToMany(Product, { through: 'Category_Products' })
 Product.belongsToMany(Category, { through: 'Category_Products' })
 
+// User.hasMany(CustomerReview, { as: 'reviews' })
+// CustomerReview.belongsTo(User, { as: 'user' })
 
 Cart.hasOne(User)
 User.belongsTo(Cart)
@@ -100,14 +104,14 @@ Line_order.belongsTo(Order)
 Stock.hasOne(Line_order)
 Line_order.belongsTo(Stock)
 
-Product.hasMany(Review, {as: 'reviews'});
-Review.belongsTo(Product, {as: 'product'});
+Product.hasMany(Review, { as: 'reviews' });
+Review.belongsTo(Product, { as: 'product' });
 
-User.hasMany(Review, {as: 'reviews'});
-Review.belongsTo(User, {as: 'user'});
+User.hasMany(Review, { as: 'reviews' });
+Review.belongsTo(User, { as: 'user' });
 
 module.exports = {
-    db: sequelize,
-    ...sequelize.models,
-    Op
+  db: sequelize,
+  ...sequelize.models,
+  Op
 }

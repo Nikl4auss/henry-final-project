@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getBrands, getCategories, getProducts } from "../../redux/actions"
+import { getBrands, getCategories, getProducts, addPage } from "../../redux/actions"
 import { BrandsComponent, CategoriesComponent } from "./FiltersComponents"
 import styles from './filters.module.css'
 import { useSessionStorage } from "../../services/useStorage"
@@ -29,6 +29,7 @@ function Filters () {
             category: [...filtersToApply.category, e.target.value]
         })
         setFiltersSelectedToRender([...filtersSelectedToRender, e.target.value])
+        dispatch(addPage( { firstValue: 0, lastValue: 12 }))
     }
 
     function handleSelectBrand(e) {
@@ -37,6 +38,7 @@ function Filters () {
             brand: [...filtersToApply.brand, e.target.value]
         })
         setFiltersSelectedToRender([...filtersSelectedToRender, e.target.value])
+        dispatch(addPage( { firstValue: 0, lastValue: 12 }))
     }
 
     const handleDeleteFilter = (e) => {

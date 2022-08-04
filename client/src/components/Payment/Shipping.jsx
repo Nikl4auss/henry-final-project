@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import styles from './Shipping.module.css';
 
 function postAddress(payload) {
     return async function (dispatch) {
@@ -96,97 +97,107 @@ console.log(input)
 
     return (
         <div>
-            <h2>Datos de envío</h2>
-            <form onSubmit={(e)=>handleSubmit(e)}>
-                <div>
-                    <label>Nombre y apellido de quien recibe:</label>
+            <h2 className={styles.title}>Dirección de envío</h2>
+            <form className={styles.container} onSubmit={(e)=>handleSubmit(e)}>
+                <div className={styles.inputBox}>
                     <input
                         type='text'
                         value={input.addressee}
                         name='addressee'
                         onChange={(e) => handleChange(e)}
-                    ></input>
+                        required
+                        ></input>
+                        <label>Nombre y apellido de quien recibe:</label>
                 </div>
-                <div>
-                    <label>Calle:</label>
-                    <input
-                        type='text'
-                        value={input.street}
-                        name='street'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>Altura:</label>
-                    <input
-                        type='text'
-                        value={input.number}
-                        name='number'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>Piso/Departamento/Lote:</label>
-                    <input
-                        type='text'
-                        value={input.apartment}
-                        name='apartment'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>País:</label>
-                    <input
-                        type='text'
-                        value={input.country}
-                        name='country'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>Provincia:</label>
-                    <input
-                        type='text'
-                        value={input.state}
-                        name='state'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>Ciudad:</label>
-                    <input
-                        type='text'
-                        value={input.city}
-                        name='city'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>Código Postal:</label>
-                    <input
-                        type='text'
-                        value={input.postalCode}
-                        name='postalCode'
-                        onChange={(e) => handleChange(e)}
-                    ></input>
-                </div>
-                <div>
-                    <label>Teléfono:</label>
+                <div className={styles.inputBox}>
                     <input
                         type='text'
                         value={input.phone}
                         name='phone'
                         onChange={(e) => handleChange(e)}
-                    ></input>
+                        required
+                        ></input>
+                        <label>Teléfono:</label>
                 </div>
-                <div>
-                    <label>Comentarios de Entrega:</label>
+                <div className={styles.inputBox}>
+                    <input
+                        type='text'
+                        value={input.street}
+                        name='street'
+                        onChange={(e) => handleChange(e)}
+                        required
+                        ></input>
+                        <label>Calle:</label>
+                </div>
+                <div className={styles.inputBox}>
+                    <input
+                        type='text'
+                        value={input.number}
+                        name='number'
+                        onChange={(e) => handleChange(e)}
+                        required
+                        ></input>
+                        <label>Altura:</label>
+                </div>
+                <div className={styles.inputBox}>
+                    <input
+                        type='text'
+                        value={input.apartment}
+                        name='apartment'
+                        onChange={(e) => handleChange(e)}
+                        placeholder='Ej: 2A, L111'
+                        ></input>
+                        <label>Piso/Departamento/Lote:</label>
+                </div>
+                <div className={styles.inputBox}>
+                    <input
+                        type='text'
+                        value={input.postalCode}
+                        name='postalCode'
+                        onChange={(e) => handleChange(e)}
+                        required
+                        ></input>
+                        <label>Código Postal:</label>
+                </div>
+                <div className={styles.inputBox}>
+                    <input
+                        type='text'
+                        value={input.city}
+                        name='city'
+                        onChange={(e) => handleChange(e)}
+                        required
+                        ></input>
+                        <label>Ciudad:</label>
+                </div>
+                <div className={styles.inputBox}>
+                    <input
+                        type='text'
+                        value={input.state}
+                        name='state'
+                        onChange={(e) => handleChange(e)}
+                        required
+                    ></input>
+                        <label>Provincia:</label>
+                </div>
+                <div className={styles.inputBox}>
+                    <input
+                        type='text'
+                        value={input.country}
+                        name='country'
+                        onChange={(e) => handleChange(e)}
+                        required
+                        ></input>
+                        <label>País:</label>
+                </div>
+                <div className={styles.inputBox}>
                     <input
                         type='text'
                         value={input.comment}
                         name='comment'
                         onChange={(e) => handleChange(e)}
-                    ></input>
+                        placeholder='Completar de ser necesario'
+                        ></input>
+                        <label>Comentarios de Entrega:</label>
                 </div>
                 {/* <button type='submit'>Continuar con el Pago</button> */}
             </form>

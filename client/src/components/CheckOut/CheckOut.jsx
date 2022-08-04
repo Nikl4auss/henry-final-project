@@ -12,12 +12,12 @@ export function CheckOut() {
     const [estadoEnvio, setEstadoEnvio] = useState();
     const [estadoSucursal, setEstadoSucursal] = useState();
     const order = useSelector(state => state.order)
+    const idOrder = useSelector(state => state.idOrder)
     // const [active, setActive] = useState()
 
     async function redirectPay(e) {
-        console.log(order)
-        const data = await payCart(order, 15)
-        console.log(data)
+      
+        const data = await payCart(order, idOrder.orderId)
         window.location.href = data
 
 
@@ -27,14 +27,15 @@ export function CheckOut() {
         <>
             {
                 <div className={styles.container}>
+                    <h1 className={styles.header}>Datos de envío</h1>
                     <div className={styles.Encabezado}>
-                        <h3>Elige como quieres obtener tu producto</h3>
+                        <h3>Elegí como querés obtener tu producto</h3>
                     </div>
                     <div className={styles.subContainer}>
                         {/* <button
                         onClick={() => setActive(!active)}
                         className={styles.close}><IoMdClose /></button> */}
-
+                        <div className={styles.btnContainer}>
                         <button
                             onClick={() => {
                                 setEstadoEnvio(true)
@@ -47,6 +48,7 @@ export function CheckOut() {
                                 setEstadoSucursal(true)
                             }}
                             className={styles.sucursal} > Retiro por sucursal </button>
+                            </div>
 
                         {estadoEnvio ?
                         <div className={styles.containerShipping}>
@@ -59,11 +61,13 @@ export function CheckOut() {
                         </div> : <div></div>
                         }
                     </div>
+                    <div className={styles.divBtnPago}>
                     {estadoEnvio || estadoSucursal ?
-                    <div className={styles.btnPago}>
-                        <button onClick={redirectPay}>Pagar</button>
-                    </div> : <div></div>
+                    
+                        <button className={styles.btnPago} onClick={redirectPay}>PAGAR</button>
+                    : <div></div>
                     }
+                    </div>
                 </div>
             }
         </>

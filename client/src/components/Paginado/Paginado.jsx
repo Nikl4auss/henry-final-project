@@ -17,7 +17,7 @@ function Paginado() {
     const [currentPage, setCurrentPage] = useState(0);
     // eslint-disable-next-line no-unused-vars
     const [productsPerPage, setProductsPerPage] = useState(12);
-
+    const firstItem = useSelector((state)=> state.pages.firstValue)
     const pageNumbers = [];
     const [active, setActive] = useState(currentPage)
 
@@ -29,12 +29,14 @@ function Paginado() {
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
+        window.scroll(0, 0)
     }
 
     const previous = function (setActive) {
         if (currentPage >= 1) {
             setCurrentPage(currentPage - 1);
             setActive(currentPage - 1)
+            window.scroll(0, 0)
         }
     };
 
@@ -42,17 +44,24 @@ function Paginado() {
         if (currentPage < allPage-1) {
             setCurrentPage(currentPage + 1);
             setActive(currentPage + 1)
+            window.scroll(0, 0)
         }
     };
 
     useEffect(() => {  
         dispatch(addPage({firstValue:currentPage*productsPerPage, lastValue:currentPage*productsPerPage+productsPerPage}))
+    
     }, [dispatch, currentPage]);
+
+
+    useEffect(()=>{
+    if(firstItem===0)
+        setActive(0)
+    },[firstItem])
 
     return (
         <div className= {styles.containerpagination} >
             <div className={styles.pagination}>
-                {console.log(allPage)}
                 <button className={styles.btnpage} onClick={() => previous(setActive)}>Prev</button>
                 {pageNumbers && pageNumbers.map((number) => (
                     <button className={number === active ? `${styles.active}` : '' }

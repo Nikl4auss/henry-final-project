@@ -1,11 +1,11 @@
 .divCards {
         margin-top: 5rem;
-        position:relative;
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    
+
 }
 
 .divProducts {
@@ -13,4 +13,15 @@
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: stretch;
+        margin-left: 2rem;
+}
+
+.divError {
+        background-color: rgba(244, 149, 149, 0.5);
+        font-size: 1.05rem;
+        border: 2px solid red;
+        color: #f00;
+        width: 400px;
+        text-align: center;
+        padding: 1rem 0 1rem 0;
 }

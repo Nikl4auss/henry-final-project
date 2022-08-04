@@ -25,12 +25,12 @@ export async function getProducts(filters = {}, name = '') {
 
 export async function getProduct(id) {
     // const {data} = await axios.get(`${baseUrl}product?id=${id}`)
-    const { data } = await apiInstance.get(`/product?id=${id}`)
+    const { data } = await apiInstance.get(`/producto?id=${id}`)
     return data
 }
 
 export async function createProduct(product, token) {
-    const { data } = await apiInstance.post('/product', product, {
+    const { data } = await apiInstance.post('/producto', product, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -40,7 +40,7 @@ export async function createProduct(product, token) {
 }
 
 export async function putProduct(product, token) {
-    const { data } = await apiInstance.put('/product', product, {
+    const { data } = await apiInstance.put('/producto', product, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -74,12 +74,40 @@ export async function getOrder(id) {
     return data
 }
 
-export async function getOrders() {
-    const { data } = await apiInstance.get('/orders')
+export async function getOrders(filter, payment) {
+    let filterSelected = '?filter='
+    let filterPayment = 'payment'
+    if(filter.length > 0){
+        filterSelected = filterSelected + filter
+        if(payment.length > 0){
+            filterPayment = `&payment=${payment}`
+        }
+    } else {
+        if(payment.length > 0){
+            filterPayment = `?payment=${payment}`
+        }
+    }
+    const { data } = await apiInstance.get(`/orders${filterSelected}${filterPayment}`)
     return data
 }
 
+export async function putOrder(id, status, payment){
+    const { data } = await apiInstance.put(`/orders/${id}`, {
+        status: status,
+        payment_status: payment
+    })
+
+    return data
+}
+
+
 export async function getCart(id){
     const { data } = await apiInstance.get(`/cart/${id}`)
+    return data
+}
+
+
+export async function getOrdersByUser(userId) {
+    const { data } = await apiInstance.get(`/orders/${userId}`)
     return data
 }

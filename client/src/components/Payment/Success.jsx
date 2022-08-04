@@ -4,6 +4,7 @@ import apiInstance from "../../services/apiAxios";
 import { getStatusOrder } from "../../services/shopingCart";
 import { useLocalStorage } from "../../services/useStorage";
 import styles from "./Success.module.css";
+import { BiArrowBack } from "react-icons/bi";
 
 export default function Success() {
   const [cart, setCart] = useLocalStorage("cart");
@@ -12,39 +13,32 @@ export default function Success() {
   let payment_id = urlSearchParams.get("payment_id");
   let external_reference = urlSearchParams.get("external_reference");
 
-  async function sendMail() {
-    const { data } = await apiInstance.post("/email", {
-      name: "Estefi Bologna",
-      email: "estefibologna@gmail.com",
-      subject: "recibimos tu pago",
-      delivery: true,
+  async function updateStatusOrder() {
+    const { data } = await apiInstance.post("/payment/order", {
+      payment_id,
+      external_reference
     });
     return data;
   }
   let send = false;
   useEffect(() => {
-    setCart([]);
-    getStatusOrder(payment_id, external_reference).then((data) => {
-      setDataStatusOrder(data.status);
-      console.log(data.status);
-
-      if (!send && data.status === "approved") {
-        sendMail();
+      setCart([]);
+      if (!send) {
+        updateStatusOrder();
         send = true;
       }
-    });
-  }, [payment_id]);
+  }, []);
 
-  console.log(dataStatusOrder);
-  return dataStatusOrder === "approved" ? (
+ 
+  return (
     <div>
-      <p>Su pago se realizó con éxito, muchas gracias!</p>
-      <p>{dataStatusOrder}</p>
-      <Link to="/home" className={styles.btn}>
-        ◀ Volver
+      <p className={styles.msg}>Su pago se realizó con éxito, muchas gracias!</p>
+      <div className={styles.divBtn}>
+      <Link to="/inicio" className={styles.btn}>
+      <BiArrowBack />Volver
       </Link>
+      </div>
     </div>
-  ) : (
-    <div>Loading</div>
+  
   );
 }

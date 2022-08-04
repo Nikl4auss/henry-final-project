@@ -78,34 +78,12 @@ export default function NewProduct() {
         }))
     }
 
-    // async function handleSelect(e) {
-    //     e.preventDefault()
-    //     if (e.target.value === "Image") {
-    //         var value = await swal({
-    //             title: "Agregar imagen",
-    //             text: "Copia la URL de la imagen",
-    //             content: { element: "input", attributes: { type: "text", placeholder: "URL" } }
-    //         })
-    //         if (value !== null) {
-    //             setInput({
-    //                 ...input,
-    //                 image: [...input.image, value]
-    //             })
-    //             setErrors(validate({
-    //                 ...input,
-    //                 image: [...input.image, value]
-    //             }))
-    //         }
-    //         return
-    //     }
-    // }
-    
-    useEffect(()=>{
+    useEffect(() => {
         setInput({
             ...input,
             image: images
         })
-    },[images])
+    }, [images])
 
     async function handleSelect2(e) {
         if (e.target.value === "Otra") {
@@ -143,14 +121,14 @@ export default function NewProduct() {
         })
     }
 
-    function handleChange3(e){
+    function handleChange3(e) {
         setInput({
             ...input,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
         setErrors(validate({
             ...input,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         }))
     }
 
@@ -183,144 +161,139 @@ export default function NewProduct() {
         }
         return alert("Hace falta información!")
     }
-console.log(input)
+    console.log(input)
     useEffect(() => {
         dispatch(getBrands())
         dispatch(getCategories())
     }, [dispatch]);
 
-        return (
-            isAuthenticated ? (
+    return (
+        isAuthenticated ? (
 
+            <div>
                 <div>
-                    <div>
-                        {console.log(input)}
-                        <h1 className={styles.title}>Crear producto</h1>
-                        <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
+                    {console.log(input)}
+                    <h1 className={styles.title}>Crear producto</h1>
+                    <form className={styles.container} onSubmit={(e) => handleSubmit(e)}>
 
-                            <div className={styles.inputBox} >
-                                <input
-                                    type='text'
-                                    value={input.name}
-                                    name='name'
-                                    onChange={(e) => handleChange(e)}
-                                    required
-                                ></input>
-                                    <label>Nombre:</label>
-                            </div>
-                            <div className={styles.inputBox}>
-                                <input
-                                    type='text'
-                                    value={input.description}
-                                    name='description'
-                                    onChange={(e) => handleChange(e)}
-                                    required
-                                    ></input>
-                                    <label>Descripción:</label>
-                            </div>
-                            <div className={styles.inputBox}>
-                                <input
-                                    type='number'
-                                    value={input.price}
-                                    name='price'
-                                    onChange={(e) => handleChange(e)}
-                                    required
-                                    ></input>
-                                    <label>Precio:</label>
-                            </div>
-                            <div className={styles.divImages}>
-                                <label>Imagen:</label>
-                                {/* <button
-                                    value={"Image"}
-                                    name='image'
-                                    onClick={(e) => handleSelect(e)}
-                                >Agregar</button> */}
-                                <ImageUploader images={images} setImages={setImages} />
-                            </div>
-                            <div className={styles.inputBox}>
-                                <input
-                                    type='text'
-                                    value={input.model}
-                                    name='model'
-                                    onChange={(e) => handleChange(e)}
-                                    required
-                                    ></input>
-                                    <label>Modelo:</label>
-                            </div>
-                            <div className={styles.divSelect}>Marca:
-                                <select defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
-                                    <option value="empty" disabled hidden>Seleccione aquí:</option>
-                                    {brands.map((m, i) => (
-                                        <option key={i} value={m.name}>{m.name}</option>
-                                    ))}
-                                    <option value="Otra">Otra</option>
-                                </select>
-                            </div>
-                            <div className={styles.divSelect} >Categoría:
-                                <select defaultValue="empty" onChange={(e) => handleSelect2(e)}>
-                                    <option value="empty" disabled hidden>Seleccione aquí:</option>
-                                    {categories?.map((c, i) => (
-                                        <option key={i} value={c.name}>{c.name}</option>
-                                    ))}
-                                    <option value="Otra">Otra</option>
-                                </select>
-                            </div>
-                            <div>
-                                {input.category.map(d =>
-                                    <div key={d}>
-                                        <p>{d}</p>
-                                        <button onClick={() => handleDelete2(d)}>x</button>
-                                    </div>
-                                )}
-                            </div>
-                            <div className={styles.inputBox}>
-                                <input
-                                    type='text'
-                                    value={input.stock_product}
-                                    name='stock_product'
-                                    onChange={(e) => handleChange3(e)}
-                                    required
-                                    ></input>
-                                    <label>Stock:</label>
-                            </div>
-                            <div className={styles.inputBox}>
-                                <input
-                                    type='text'
-                                    value={input.size}
-                                    name='size'
-                                    onChange={(e) => handleChange3(e)}
-                                    required
-                                    ></input>
-                                    <label>Talle:</label>
-                            </div>
-                            <div className={styles.inputBox}>
-                                <input
-                                    type='text'
-                                    value={input.mainColor}
-                                    name='mainColor'
-                                    onChange={(e) => handleChange3(e)}
-                                    required
-                                    ></input>
-                                    <label>Color:</label>
-                            </div>
-                            <div className={styles.inputBox}>
-                                <input
-                                    type='text'
-                                    value={input.store}
-                                    name='store'
-                                    placeholder='default'
-                                    onChange={(e) => handleChange3(e)}
-                                    
-                                    ></input>
-                                    <label>Tienda:</label>
-                            </div>
-                        </form>
-                        <div className={styles.buttons}>
-                            <button className={styles.btnCreate} type='submit'>Crear</button>
-                            <Link to='/home'><button className={styles.btnBack}>Volver</button></Link>
+                        <div className={styles.inputBox} >
+                            <input
+                                type='text'
+                                value={input.name}
+                                name='name'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Nombre:</label>
                         </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.description}
+                                name='description'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Descripción:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='number'
+                                value={input.price}
+                                name='price'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Precio:</label>
+                        </div>
+                        <div className={styles.divImages}>
+                            <label>Imagen:</label>
+                            <ImageUploader images={images} setImages={setImages} />
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.model}
+                                name='model'
+                                onChange={(e) => handleChange(e)}
+                                required
+                            ></input>
+                            <label>Modelo:</label>
+                        </div>
+                        <div className={styles.divSelect}>Marca:
+                            <select className={styles.select} defaultValue="empty" name='brand' onChange={(e) => handleChange(e)}>
+                                <option value="empty" disabled hidden>Seleccione aquí</option>
+                                {brands.map((m, i) => (
+                                    <option key={i} value={m.name}>{m.name}</option>
+                                ))}
+                                <option value="Otra">Otra</option>
+                            </select>
+                        </div>
+                        <div className={styles.divSelect} >Categoría:
+                            <select className={styles.select} defaultValue="empty" onChange={(e) => handleSelect2(e)}>
+                                <option value="empty" disabled hidden>Seleccione aquí</option>
+                                {categories?.map((c, i) => (
+                                    <option key={i} value={c.name}>{c.name}</option>
+                                ))}
+                                <option value="Otra">Otra</option>
+                            </select>
+                        </div>
+                        <div>
+                            {input.category.map(d =>
+                                <div key={d}>
+                                    <p>{d}</p>
+                                    <button onClick={() => handleDelete2(d)}>x</button>
+                                </div>
+                            )}
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.stock_product}
+                                name='stock_product'
+                                onChange={(e) => handleChange3(e)}
+                                required
+                            ></input>
+                            <label>Stock:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.size}
+                                name='size'
+                                onChange={(e) => handleChange3(e)}
+                                required
+                            ></input>
+                            <label>Talle:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.mainColor}
+                                name='mainColor'
+                                onChange={(e) => handleChange3(e)}
+                                required
+                            ></input>
+                            <label>Color:</label>
+                        </div>
+                        <div className={styles.inputBox}>
+                            <input
+                                type='text'
+                                value={input.store}
+                                name='store'
+                                placeholder='default'
+                                onChange={(e) => handleChange3(e)}
+
+                            ></input>
+                            <label>Tienda:</label>
+                        </div>
+                    </form>
+                    <div className={styles.buttons}>
+                        <button className={styles.btnCreate} type='submit'>Crear</button>
+                        <Link to='/admin'><button className={styles.btnBack}>Volver</button></Link>
                     </div>
                 </div>
-            ) : <p>Necesitás iniciar sesión.</p>
-        )
-    }
+            </div>
+        ) : <p>Necesitás iniciar sesión.</p>
+    )
+}

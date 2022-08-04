@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { AUDIENCE } from '../../utils/config'
 
-const roleCalimType = "https://henry-final-project.vercel.app/roles";
-
+const roleCalimType = AUDIENCE + "/roles";
+console.log(roleCalimType)
 export function withRoleBasedRedirect(Component, options) {
   return function WithRoleBasedRedirect(props) {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ export function withRoleBasedRedirect(Component, options) {
         const roles = await getRoles();
         const isAuthorized = roles.includes(role);
         if (!isAuthorized) {
-          navigate(`/not-authorized`);
+          navigate(`/sin-autorizacion`);
         }
         setIsAuthorized(true);
       }

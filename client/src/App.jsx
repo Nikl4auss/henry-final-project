@@ -1,5 +1,5 @@
-import { Route } from "react-router-dom";
-import { Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./components/Home/Home";
 import Landing from "./components/LandingPage/Landing";
 import NavBar from "./components/NavBar/NavBar";
@@ -11,16 +11,23 @@ import Success from "./components/Payment/Success";
 import Pending from "./components/Payment/Pending";
 import Failure from "./components/Payment/Failure";
 import { ProtectedRoute } from "./components/Admin/ProtectedRoute";
-import UserDashboard from "./components/UserDashboard/UserDashboard";
-import UserOrders from "./components/UserOrders/UserOrders";
+import MyProfile from "./components/MyProfile/MyProfile";
 import Sucursales from "./components/Sucursales/Sucursales";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import NotAuthorized from "./components/NotAuthorized/NotAuthorized";
 import Overview from "./components/Admin/Overview/Overview";
-import ModifyProduct from "./components/Admin/Modified Product/ModifyProduct";
-import Orders from "./components/Admin/Orders/Orders";
+import ModifyProduct from "./components/Admin/ModifiedProduct/ModifyProduct";
 import LineOrder from "./components/Admin/LineOrder/LineOrder";
 import Products from "./components/Admin/Products/Products";
+import UserDashboard from "./components/Admin/UserDashboard/UserDashboard";
+import OrdersByUser from "./components/OrdersByUser/OrdersByUser";
+import Orders from "./components/Admin/Orders/Orders";
+import DetailOrder from "./components/DetailOrder/DetailOrder";
+import MyInfo from "./components/MyProfile/MyInfo";
+import MyAdress from "./components/MyProfile/MyAdress";
+import Shipping from "./components/Payment/Shipping";
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -28,26 +35,26 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/inicio" element={<Home />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
-          < Route path="/checkout" element={<CheckOut/>} />
+          <Route path="/checkout" element={<CheckOut />} />
           <Route path="/pago">
-            <Route path="success" element={<Success />} />
-            <Route path="failure" element={<Failure />} />
-            <Route path="pending" element={<Pending />} />
+            <Route path="exitoso" element={<Success />} />
+            <Route path="fallido" element={<Failure />} />
+            <Route path="pendiente" element={<Pending />} />
           </Route>
-          <Route path="/product">
+          <Route path="/producto">
             <Route path=":id" element={<ProductDetail />} />
           </Route>
-          <Route exact path="/admin">
-            <Route
-              path="nuevoproducto"
-              element={<ProtectedRoute component={NewProduct} role="Admin" />}
-            />
+          <Route path="/sucursales" element={<Sucursales />} />
+          <Route exact path="/miperfil" element={<MyProfile />}>
+            <Route index element={<MyInfo />} />
+            <Route exact path="misdirecciones" element={<MyAdress />} />
           </Route>
-          <Route path='/sucursales' element={<Sucursales />}/>
-          <Route exact path="/userDashboard" element={<UserDashboard />} />
-          <Route exact path="/userOrders" element={<UserOrders />} />
+          <Route exact path="/misordenes" >
+            <Route index element={<OrdersByUser />} />
+            <Route exact path=":id" element={<DetailOrder />} />
+          </Route>
         </Route>
         <Route
           exact
@@ -56,15 +63,17 @@ function App() {
         >
           {/* <Route index element={<Overview />} /> */}
           <Route index element={<Products />} />
-          <Route path="nuevoproducto" element={<NewProduct />} />
+          <Route exact path="nuevoproducto" element={<NewProduct />} />
           <Route exact path="editarProducto/:id" element={<ModifyProduct />} />
-          <Route path='ordenes' >
+          <Route path="ordenes">
             <Route index element={<Orders />} />
-            <Route exact path=":id" element={<LineOrder />}/>
+            <Route exact path=":id" element={<LineOrder />} />
           </Route>
+          <Route exact path="usuarios" element={<UserDashboard />} />
         </Route>
-        <Route path="/not-authorized" element={<NotAuthorized />} />
+        <Route path="/sin-autorizacion" element={<NotAuthorized />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

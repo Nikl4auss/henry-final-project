@@ -1,11 +1,33 @@
+.msg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.divBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .btn {
-    width: 33px;
-    height: 33px;
-    border: 1px solid #3e3f3f;
-    background: #3e3f3f;
-    text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
+    border-radius: 14px;
+    background-color: #3c3c3c;
+    color: white;
+    font-size: large;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 20px;
+    display: block;
+    margin: 0;
+    width: 9rem;
+    height: 2rem;
+    border: 1px solid #3c3c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.btn:hover {
+    background-color: #dc5d5d;
+    color: white;
+    border: 1px solid #dc5d5d;
 }

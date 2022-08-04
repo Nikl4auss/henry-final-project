@@ -1,0 +1,41 @@
+.container {
+    padding: 3rem;
+}
+
+.back {
+    width: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: .5rem;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+    margin-bottom: 1rem;
+}
+
+.divContainerProduct {
+    width: 100%;
+    border: 1px solid #767676;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    box-shadow: .1rem .1rem .5rem rgb(0, 0, 0, 0.5);
+    padding: .5rem
+}
+
+.divInfoProduct {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.dates{
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 1rem;
+}

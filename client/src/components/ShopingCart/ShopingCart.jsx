@@ -1,17 +1,22 @@
 //import axios from "axios";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, setOrder } from "../../redux/actions";
+import { getCart, setIdOrder, setOrder } from "../../redux/actions";
 import { useLocalStorage } from "../../services/useStorage";
 import ProductItem from "./productItem";
 import { useAuth0 } from "@auth0/auth0-react";
 import { payCart } from "../../services/shopingCart";
 import Shipping from "../Payment/Shipping";
-import { useNavigate } from "react-router-dom";
+import apiInstance from "../../services/apiAxios";
+import { useNavigate, Link } from "react-router-dom";
+import styles from './ShoppingCart.module.css';
+import { IoMdClose } from "react-icons/io";
+import { IoFolder } from "react-icons/io5";
+import productItem from "./productItem";
 
 export function ShopingCart() {
     const navigate = useNavigate();
-    const { loginWithRedirect, isAuthenticated } = useAuth0()
+    const { user, loginWithRedirect, isAuthenticated } = useAuth0()
     let dispatch = useDispatch()
     const [cart, setCart] = useLocalStorage("cart")
     const order = useSelector(state => state.order)
@@ -22,18 +27,46 @@ export function ShopingCart() {
         return count
     }, [order])
 
+
+    let articulos = useMemo(() => {
+        let count = 0
+        if(order.length === 0) return 0
+        order?.forEach(pr => count = count + pr.quantity)
+        return count
+    }, [order])
+
     useEffect(() => {
         if(isAuthenticated) {
-            dispatch(getCart('5s5f5s5s'))
+            dispatch(getCart(user.sub))
         } else {
-            dispatch(setOrder([...cart]))
+            if(cart === undefined){
+                setCart([])
+            } else dispatch(setOrder([...cart]))
         }
     }, [ dispatch ])
 
     async function redirectToPay(e) {
-        if (total > 0) {
+        if (order?.length > 0) {
             if (isAuthenticated) {
-                navigate('/checkout')
+                const orderCreated = await apiInstance.post('line_order', {
+                    totalPrice: total,
+                    status: 'Pendiente',
+                    //payment_status: 'Pendiente',
+                    idUser: user.sub,
+                    products: order.map(prod => {
+                        return {
+                            id_stock: prod.id,
+                            quantity: prod.quantity
+                        }
+                    })
+                })
+                if(orderCreated.data){
+                    await apiInstance.delete(`cart/${user.sub}`)
+                    dispatch(setIdOrder(orderCreated.data))
+                    navigate('/checkout')
+                }
+
+
                 // const data = await payCart(order, 15)
                 // console.log(data)
                 // window.location.href = data
@@ -56,15 +89,32 @@ export function ShopingCart() {
     }
 
     console.log(order)
-    function clearCart(e) {
+    async function clearCart(e) {
         e.preventDefault()
+        if(isAuthenticated) {
+            try {
+                await apiInstance.delete(`/line_cart/all/${user.sub}`)
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            setCart([])
+        }
         dispatch(setOrder([]))
-        setCart([])
     }
 
     return (
-        <div>
-            <div>
+        <div className={styles.grid}>
+            <div className={styles.cartTitle}>
+                <h1 className={styles.title}>Tu carrito</h1>
+                <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
+            </div>
+            <div className={styles.divClose}>
+                <Link to= '/inicio'>
+                <button className={styles.buttonClose}><IoMdClose/></button>
+                </Link>
+        </div>
+            <div className={styles.cartProducts}>
                 {order?.map((element, i) => <ProductItem
                     key={i}
                     id={element.id}
@@ -75,14 +125,21 @@ export function ShopingCart() {
                 />)
                 }
             </div>
-            <div>
-                <h1>Total:</h1>
-                <h1>{total}</h1>
+            <div className={styles.orderInfo}>
+                <h1 className={styles.orderResumen}>Resumen del pedido</h1>
+                    {/* <h1 className={styles.cartSubtotal}>Subtotal:</h1> */}
+                <div className={styles.cartTotal}>
+                    <h1 className={styles.cartTotalTitle}>Total:</h1>
+                    <h1 className={styles.cartTotalPrice}>${total}.00</h1>
+                </div>
+                <div className={styles.btnContainer}>
+                <button onClick={redirectToPay} className={styles.buyBtn} >COMPRAR</button>
+                </div>
+                <br />
+                <div className={styles.btnContainer}>
+                    <button onClick={clearCart} className={styles.deleteCart}>Borrar el carrito</button>
+                </div>
             </div>
-            <button onClick={redirectToPay}>Pagar</button>
-            <br />
-
-            <button onClick={clearCart}>Borrar todo</button>
         </div>
     )
 }

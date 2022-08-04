@@ -3,8 +3,12 @@ export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_BRANDS = 'GET_BRANDS'
 export const GET_PRODUCTS_NAME = 'GET_PRODUCTS_NAME'
 export const ERROR = 'ERROR'
-export const ADD_PAGE= 'ADD_PAGE'
+export const ADD_PAGE = 'ADD_PAGE'
 export const SET_ORDER = "SET_ORDER"
 export const GET_CART = "GET_CART"
-export const GET_USERS  = "GET_USERS"
-
+export const GET_USERS = "GET_USERS"
+export const SET_PRODUCT = 'SET_PRODUCT'
+export const GET_REVIEWS = 'GET_REVIEWS'
+export const EMPTY_REVIEWS = 'EMPTY_REVIEWS'
+export const ADD_REVIEW = 'ADD_REVIEW'
+export const SET_ID_ORDER = 'SET_ID_ORDER'

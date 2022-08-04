@@ -81,3 +81,9 @@
     min-height: 50px;
     }
 }
+
+.footerContainer {
+    z-index: 1;
+    grid-column: 1/3;
+    width: 100%;
+}

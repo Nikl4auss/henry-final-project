@@ -15,12 +15,13 @@ module.exports = (sequelize) => {
                 allownull: false
             },
             status: {
-                type: DataTypes.ENUM(['Pendiente', 'Enviado', 'Entregado']),
+                type: DataTypes.ENUM(['Pendiente', 'Despachado', 'Entregado']),
                 defaultValue: 'Pendiente'
             },
             payment_status: {
-                type: DataTypes.ENUM(['Pagado', 'A cobrar']),
-                allownull: false
+                type: DataTypes.ENUM(['approved', 'pending','failure']),
+                defaultValue: 'pending'
+
             }
         }
     )
