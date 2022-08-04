@@ -20,6 +20,7 @@
 }
 
 .btnSearch{
+    position: absolute;
     text-decoration: none;
-    transform: translate(-1.8rem, .15rem);
+    transform: translate(-1.5rem, .50rem);
 }
