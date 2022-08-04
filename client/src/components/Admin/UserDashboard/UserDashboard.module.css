@@ -1,11 +1,47 @@
-.generalContainer{
-    margin-top: 6rem;
+.generalContainer {
+  margin-top: 6rem;
 }
 
-.title{
-    font-size:x-large;
-    font-weight: 800;
-    color: #323232;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+.title {
+  font-size: x-large;
+  font-weight: 800;
+  color: #323232;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.table {
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.headCell {
+  border: solid 1px;
+  border-bottom: solid 2px #000;
+  padding: 5px;
+}
+
+.headCellBtn {
+  border: solid 1px;
+  border-bottom: solid 2px #000;
+  padding: 5px;
+  text-align: center;
+}
+
+.cell {
+  border: solid 1px;
+  padding: 5px;
+}
+
+.btnCell {
+  border: solid 1px;
+  text-align-last: center;
+}
+
+.row:hover {
+  background: #ddd;
+}
+
+.headRow {
+  background: #999;
 }
