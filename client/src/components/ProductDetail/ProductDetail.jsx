@@ -145,7 +145,10 @@ function ProductDetail() {
       </div>
       <div className="p-5 flex flex-col m-auto gap-3 sm:w-3/4 md:w-1/2">
         <div className="">Reseñas</div>
-        {isAuthenticated ? <ReviewForm productId={id} /> : null}
+        {isAuthenticated ?
+        <ReviewForm productId={id} /> :
+        <p style={{opacity: 0.3}}>Sólo usuarios que han iniciado sesion pueden realizar reseñas.</p>
+        }
         <Reviews productId={id} />
       </div>
     </>
