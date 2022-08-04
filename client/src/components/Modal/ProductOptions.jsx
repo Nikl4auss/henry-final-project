@@ -9,9 +9,13 @@ import { useEffect } from "react";
 import { setOrder, getCart } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import apiInstance from '../../services/apiAxios.js'
+import { getProduct } from "../../services/productsServices";
+import { useNavigate, useParams } from "react-router-dom";
 
 
-export default function ProductOptions({ active, setActive, stock, name, price, image }) {
+export default function ProductOptions() {
+    const { id } = useParams()
+    const navigate = useNavigate()
     const { user, isAuthenticated } = useAuth0();
     const order = useSelector(state => state.order)
     const [cartLS, setCartLS] = useLocalStorage('cart', order)
@@ -21,6 +25,14 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
     const [filterBySize, setFilterBySize] = useState([])
     const [quantity, setQuantity] = useState(1)
     let dispatch = useDispatch()
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        getProduct(id).then(data => setProduct(data))
+    }, [])
+    
+    console.log(product)
+
 
     let colors = []
     let sizes = []
@@ -44,7 +56,7 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
     }, [sizeSelected, colorSelected])
 
 
-    stock.forEach(el => {
+    product?.Stocks?.forEach(el => {
         if (sizes.length === 0) sizes.push(el.Size?.name)
         if (colors.length === 0) colors.push(el.MainColor?.name)
         if (!colors?.includes(el.MainColor?.name)) colors.push(el.MainColor?.name)
@@ -57,7 +69,7 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
         e.preventDefault()
         if (colorSelected !== color) {
             setColorSelected(color)
-            setFilterByColor(stock.filter(el => el.MainColor.name === color))
+            setFilterByColor(product?.Stocks?.filter(el => el.MainColor.name === color))
         } else {
             setColorSelected('')
             setFilterByColor([])
@@ -68,7 +80,7 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
         e.preventDefault()
         if (sizeSelected !== e.target.value) {
             setSizeSelected(e.target.value)
-            setFilterBySize(stock.filter(el => el.Size?.name === e.target.value))
+            setFilterBySize(product?.Stocks?.filter(el => el.Size?.name === e.target.value))
         } else {
             setSizeSelected('')
             setFilterBySize([])
@@ -95,7 +107,7 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
                 })
                 if(response.data){
                     dispatch(getCart(user.sub))
-                    setActive(!active)
+                    navigate('/inicio')
                 }
             } catch (err) {
                 console.log(err)
@@ -125,21 +137,21 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
                 })
                 setCartLS([...newCart])
                 dispatch(setOrder([...newCart]))
-                setActive(!active)
+                navigate('/inicio')
             } else {
                 setCartLS([...order, {
                     ...idStockSelected,
                     quantity: quantity,
-                    name: name,
-                    price: price
+                    name: product.name,
+                    price: product.price
                 }])
                 dispatch(setOrder([...order, {
                     ...idStockSelected,
                     quantity: quantity,
-                    name: name,
-                    price: price
+                    name: product.name,
+                    price: product.price
                 }]))
-                setActive(!active)
+                navigate('/inicio')
             }
         }
     }
@@ -150,22 +162,21 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
 
     return (
         <>
-            {
-                active &&
+            { product?.id &&
                 <div className={styles.container}>
                     <div className={styles.modalContainer}>
                         <button
-                            onClick={() => setActive(!active)}
+                            onClick={() => navigate('/inicio') }
                             className={styles.close}><IoMdClose /></button>
                         <div className={styles.divName}>
                             <img
                                 className={styles.image}
-                                src={image} alt="Product" />
-                            <h3 className={styles.title}>{name}</h3>
+                                src={product?.images[0]?.image} alt="Product" />
+                            <h3 className={styles.title}>{product?.name}</h3>
                         </div>
                         <div className={styles.divColor}>
                             {colors?.map(color => {
-                                let codeColor = stock.find(el => el.MainColor?.name === color)
+                                let codeColor = product?.Stocks?.find(el => el.MainColor?.name === color)
                                 return (
                                     <button
                                         className={
@@ -217,7 +228,7 @@ export default function ProductOptions({ active, setActive, stock, name, price, 
                                 </button>
                             </div>
                         </div>
-                       {stock.length > 0 ?
+                       {product?.Stocks?.length > 0 ?
                         <button className={styles.addButton}
                             onClick={idStockSelected.id ? addProductToCart : undefined}
                         >Añadir al carrito</button>
