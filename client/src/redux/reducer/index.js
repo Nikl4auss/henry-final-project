@@ -24,7 +24,7 @@ const initialState = {
     category: [],
     brand: [],
   },
-  name: "",
+  name: '',
   cart: {},
   pages: { firstValue: 0, lastValue: 11 },
   order: [],
@@ -103,7 +103,22 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         idOrder: action.payload,
-      };
+      }
+    case GET_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload
+      }
+    case EMPTY_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload
+      }
+    case ADD_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.concat(action.payload)
+      }
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./components/Home/Home";
 import Landing from "./components/LandingPage/Landing";
 import NavBar from "./components/NavBar/NavBar";
@@ -27,6 +28,9 @@ import MyAdress from "./components/MyProfile/MyAdress";
 import Shipping from "./components/Payment/Shipping";
 import "react-toastify/dist/ReactToastify.css";
 
+import "react-toastify/dist/ReactToastify.css";
+import About from "./components/about/About.jsx";
+
 function App() {
   return (
     <div className="App">
@@ -34,6 +38,7 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route path="/" element={<NavBar />}>
           <Route exact path="/inicio" element={<Home />} />
+          <Route exact path="/quienessomos" element={<About />} />
           <Route exact path="/carrito" element={<ShopingCart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/pago">
@@ -50,7 +55,6 @@ function App() {
             <Route index element={<MyInfo />} />
             <Route exact path="misdirecciones" element={<MyAdress />} />
           </Route>
-
           <Route exact path="/misordenes">
             <Route index element={<OrdersByUser />} />
             <Route exact path=":id" element={<DetailOrder />} />
@@ -73,6 +77,7 @@ function App() {
         </Route>
         <Route path="/sin-autorizacion" element={<NotAuthorized />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -1,0 +1,11 @@
+.selects {
+    box-shadow: .1rem .1rem .1rem rgb(0, 0, 0, 0.2);
+    background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+    outline: none;
+    border-radius: 5px;
+    margin-left: .5rem;
+}
+
+.selects:hover {
+    cursor: pointer;
+}
