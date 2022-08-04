@@ -287,11 +287,11 @@ export default function NewProduct() {
                             ></input>
                             <label>Tienda:</label>
                         </div>
-                    </form>
                     <div className={styles.buttons}>
                         <button className={styles.btnCreate} type='submit'>Crear</button>
                         <Link to='/admin'><button className={styles.btnBack}>Volver</button></Link>
                     </div>
+                    </form>
                 </div>
             </div>
         ) : <p>Necesitás iniciar sesión.</p>
