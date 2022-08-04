@@ -16,7 +16,7 @@
     flex-wrap: wrap;
     justify-items: start;
     align-items: start;
-    align-content: center;
+    align-content: start;
 }
 .container .inputBox{
     position: relative;

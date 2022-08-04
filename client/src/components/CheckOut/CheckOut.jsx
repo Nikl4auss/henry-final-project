@@ -30,7 +30,7 @@ export function CheckOut() {
 
     let articulos = useMemo(() => {
         let count = 0
-        if(order.length === 0) return 0
+        if (order.length === 0) return 0
         order?.forEach(pr => count = count + pr.quantity)
         return count
     }, [order])
@@ -72,17 +72,75 @@ export function CheckOut() {
                         {estadoEnvio ?
                             <div className={styles.containerShipping}>
                                 <Shipping />
+                                <div className={styles.grid}>
+                                    <div className={styles.orderInfo}>
+                                        <h3 className={styles.orderResumen}>Resumen del pedido</h3>
+                                        <div className={styles.cartTotal}>
+                                            <h1 className={styles.cartTotalTitle}>Subtotal: ${total}.00 </h1>
+                                            {/* <h1 className={styles.cartTotalPrice}>${total}.00</h1> */}
+                                            <h1 className={styles.CardEnvio}>Envio: $0,00</h1>
+                                            <h1 className={styles.cartTotalTitle}>Total: ${total}.00 </h1>
+                                            {/* <h1 className={styles.cartTotalPrice}>${total}.00</h1> */}
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.orderInfo}>
+                                        <h3 className={styles.orderResumen}>Resumen de la orden</h3>
+                                        <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
+                                        <div className={styles.cartProducts}>
+                                            {order?.map((element, i) => <ProductItem
+                                                key={i}
+                                                id={element.id}
+                                                quantity={element.quantity}
+                                                stock={element.stock_product}
+                                                name={element.title}
+                                                price={element.unit_price}
+                                            />)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             </div> : <div></div>
                         }
                         {estadoSucursal ?
-                        <div className={styles.containerMap}>
-                            <div>
-                                <p><strong>Dirección de retiro:</strong> <br/>Liners 320, Provincia de Buenos Aires</p>
-                                <p><strong>Horarios:</strong> <br/>8:00 h - 18:00 h</p>
-                                <p><strong>Teléfono:</strong> <br/>1133456498</p>
-                            </div>
-                                <Map />
-                         </div> : <div></div>
+                            <div className={styles.bigContainerMap}>
+                                <div className={styles.containerMap}>
+                                    <div>
+                                        <p><strong>Dirección de retiro:</strong> <br />Liners 320, Provincia de Buenos Aires</p>
+                                        <p><strong>Horarios:</strong> <br />8:00 h - 18:00 h</p>
+                                        <p><strong>Teléfono:</strong> <br />1133456498</p>
+                                    </div>
+                                    <Map />
+                                </div>
+                                <div className={styles.grid}>
+                                    <div className={styles.orderInfo}>
+                                        <h3 className={styles.orderResumen}>Resumen del pedido</h3>
+                                        <div className={styles.cartTotal}>
+                                            <h1 className={styles.cartTotalTitle}>Subtotal: ${total}.00 </h1>
+                                            {/* <h1 className={styles.cartTotalPrice}>${total}.00</h1> */}
+                                            <h1 className={styles.CardEnvio}>Envio: $0,00</h1>
+                                            <h1 className={styles.cartTotalTitle}>Total: ${total}.00 </h1>
+                                            {/* <h1 className={styles.cartTotalPrice}>${total}.00</h1> */}
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.orderInfo}>
+                                        <h3 className={styles.orderResumen}>Resumen de la orden</h3>
+                                        <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
+                                        <div className={styles.cartProducts}>
+                                            {order?.map((element, i) => <ProductItem
+                                                key={i}
+                                                id={element.id}
+                                                quantity={element.quantity}
+                                                stock={element.stock_product}
+                                                name={element.title}
+                                                price={element.unit_price}
+                                            />)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> : <div></div>
                         }
                     </div>
                     <div className={styles.divBtnPago}>
@@ -91,34 +149,7 @@ export function CheckOut() {
                             <button className={styles.btnPago} onClick={redirectPay}>Pagar</button>
                             : <div></div>
                         }
-                        <div className={styles.grid}>
-                            <div className={styles.orderInfo}>
-                                <h3 className={styles.orderResumen}>Resumen del pedido</h3>
-                                <div className={styles.cartTotal}>
-                                    <h1 className={styles.cartTotalTitle}>Subtotal: ${total}.00 </h1>
-                                    {/* <h1 className={styles.cartTotalPrice}>${total}.00</h1> */}
-                                    <h1 className={styles.CardEnvio}>Envio: $0,00</h1>
-                                    <h1 className={styles.cartTotalTitle}>Total: ${total}.00 </h1>
-                                    {/* <h1 className={styles.cartTotalPrice}>${total}.00</h1> */}
-                                </div>
-                            </div>
 
-                            <div className={styles.orderInfo}>
-                                    <h3 className={styles.orderResumen}>Resumen de la orden</h3>
-                                    <h1 className={styles.quantity}>({order.length === 0 ? 0 : articulos} productos)</h1>
-                                    <div className={styles.cartProducts}>
-                                        {order?.map((element, i) => <ProductItem
-                                            key={i}
-                                            id={element.id}
-                                            quantity={element.quantity}
-                                            stock={element.stock_product}
-                                            name={element.title}
-                                            price={element.unit_price}
-                                        />)
-                                        }
-                                    </div>                                
-                            </div>
-                        </div>
                     </div>
                 </div>
             }
