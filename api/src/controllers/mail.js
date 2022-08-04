@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
-const { USER_MAILGUN, PASS_MAILGUN } = require("../utils/config");
+const { USER_MAILGUN, PASS_MAILGUN, CLIENT_URL } = require("../utils/config");
+
 
 const transporter = nodemailer.createTransport({
         host: "smtp.mailgun.org",
@@ -25,46 +26,45 @@ const sendEmail = async (email, subject, html) => {
     console.log("Algo no va bien con el email", error);
   }
 };
-const getTemplate = (name, token) => {
-  return `
-      <head>
-          <link rel="stylesheet" href="./style.css">
-      </head>
-      
-      <div id="email___content">
-          <h2>Hola ${name}</h2>
-          <p>Para confirmar tu cuenta, ingresa al siguiente enlace</p>
-          <a
-              href="https://somosolea.vercel.app/auth/confirmregister/${token}"
-              target="_blank"
-          >Confirmar Cuenta</a>
-      </div>
-    `;
-};
 
 
-const getTemplateProductStock = (
-  username,
-  productName,
-  productImage,
-  productId
-) => {
-  return `
-  <head>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<div id="email___content">
-  <h2>Hola ${username}</h2>
-  <p>Te avisamos que ya tenemos disponible el siguiente producto por el cual estas interesado/a: </p>
-  <img src=${productImage} alt='' />
-  <a
+// const getTemplateProductStock = (
+//   username,
+//   productName,
+//   productImage,
+//   productId
+// ) => {
+//   return `
+//   <head>
+//   <link rel="stylesheet" href="./style.css">
+// </head>
+// <div id="email___content">
+//   <h2>Hola ${username}</h2>
+//   <p>Te avisamos que ya tenemos disponible el siguiente producto por el cual estas interesado/a: </p>
+//   <img src=${productImage} alt='' />
+//   <a
   
-  target="_blank"
-  >${productName}</a>
-</div>`;
-};
+//   target="_blank"
+//   >${productName}</a>
+// </div>`;
+// };
+const getProduct = (products) =>{
+  
+  let htmlProducts = products.map(product =>{
+    return `<p>Producto: ${product.Stock.Product.name}</p>
+    <p>Precio: ${product.Stock.Product.price}</p>
+    <p>Cantidad: ${product.quantity}</p>
+    <a href="${CLIENT_URL}/producto/${product.Stock.Product.id}">  
+    <img width="100" height="100" src=${product.Stock.Product.images[0].image}/>
+    </a> 
+    <p>_______________________________________________________________</p>`
+})
 
-const getTemplateAproved = (name, price) => {
+  return htmlProducts.join("<p></p>")
+}
+
+const getTemplateAproved = (name, id, products) => {
+  let htmlProducts=getProduct(products)
   return `
   <head>
       <link rel="stylesheet" href="./style.css">
@@ -72,12 +72,65 @@ const getTemplateAproved = (name, price) => {
   
   <div id="email___content">
       <h2>Hola ${name}</h2>
-      <p>Queríamos avisarte que hemos recibido tu pago!</p>
+      <p>Queríamos avisarte que hemos recibido tu pago por el pedido numero: ${id}!</p>
+      <div>${htmlProducts}</div>
       <p>Muchas gracias por tu compra</p>
-  
+      <a href=${CLIENT_URL}>  
+       <img width="300" height="108" src="https://res.cloudinary.com/davoshoes/image/upload/v1659318622/LOGO/davo_shoes_500_250_px_re09ab.png"/>
+      </a>
   </div>`;
 };
-const getTemplateRejected = (name) => {
+
+const getTemplateEntregado = (name, id) => {
+  return `
+  <head>
+      <link rel="stylesheet" href="./style.css">
+  </head>
+  
+  <div id="email___content">
+      <h2>Hola ${name}</h2>
+      <p>¡Ya recibiste tu compra correspondiente al número de orden ${id}!</p>
+      <p>esperamos que la disfrutes al máximo</p>
+      <p>Muchas gracias</p>
+      <a href=${CLIENT_URL}>  
+       <img width="300" height="108" src="https://res.cloudinary.com/davoshoes/image/upload/v1659318622/LOGO/davo_shoes_500_250_px_re09ab.png"/>
+      </a>
+  </div>`;
+};
+const getTemplatePending= (name, id) => {
+  return `
+  <head>
+      <link rel="stylesheet" href="./style.css">
+  </head>
+  
+  <div id="email___content">
+      <h2>Hola ${name}</h2>
+      <p>Queríamos avisarte que tu pago por el pedido número: ${id} ha quedado pendiente!</p>
+      <p>Ponte en contacto con nosotros si quieres modificar la forma de pago</p>
+      <p>Muchas gracias</p>
+      <a href=${CLIENT_URL}>  
+       <img width="300" height="108" src="https://res.cloudinary.com/davoshoes/image/upload/v1659318622/LOGO/davo_shoes_500_250_px_re09ab.png"/>
+      </a>
+  </div>`;
+};
+
+const getTemplateCancelado = (name, id) => {
+  return `
+  <head>
+      <link rel="stylesheet" href="./style.css">
+  </head>
+  
+  <div id="email___content">
+      <h2>Hola ${name}</h2>
+      <p>te informamos que tu pedido número ${id} fue cancelado</p>
+      <p>si crees que se trata de un error ponte en contacto con nosotros</p>
+      <p>Muchas gracias</p>
+      <a href=${CLIENT_URL}>  
+       <img width="300" height="108" src="https://res.cloudinary.com/davoshoes/image/upload/v1659318622/LOGO/davo_shoes_500_250_px_re09ab.png"/>
+      </a>
+  </div>`;
+};
+const getTemplateRejected = (name, id) => {
   return `
   <head>
       <link rel="stylesheet" href="./style.css">
@@ -85,34 +138,41 @@ const getTemplateRejected = (name) => {
   <div id="email___content">
       <h2>Hola ${name}</h2>
       <p>Queríamos avisarte que hubo un problema en tu compra.. Inténtelo nuevamente!</p>
-     
-  </div>`;
+      <a href=${CLIENT_URL}>  
+       <img width="300" height="108" src="https://res.cloudinary.com/davoshoes/image/upload/v1659318622/LOGO/davo_shoes_500_250_px_re09ab.png"/>
+      </a></div>`;
 };
 
-const getTemplateEnvio = (name, price) => {
+const getTemplateDevuelto = (name, id) => {
   return `
   <div id="email___content">
       <h2>Hola ${name}</h2>
-      <p>Queriamos avisarte que tu compra por ${price} se completo exitosamente!</p>
-      <p>Te enviaremos otro email cuando tu orden este en camino!</p>
-  </div>`;
+      <p>Queríamos avisarte que hemos recibido la devolución de tu compra</p>
+      <p>Pronto nos contactaremos contigo</p>
+      <a href=${CLIENT_URL}>  
+       <img width="300" height="108" src="https://res.cloudinary.com/davoshoes/image/upload/v1659318622/LOGO/davo_shoes_500_250_px_re09ab.png"/>
+      </a>  </div>`;
 };
-const getTemplateEnCamino = (name) => {
+//listo
+const getTemplateDespachado = (name) => {
   return `
   <head>
       <link rel="stylesheet" href="./style.css">
   </head>
   <div id="email___content">
       <h2>Hola ${name}</h2>
-      <p>Tu orden esta en camino! Notificanos por la pagina cuando te llego!</p>
-  </div>`;
+      <p>Tu orden esta en camino! Pronto podrás disfrutar de tu compra!</p>
+      <a href=${CLIENT_URL}>  
+       <img width="300" height="108" src="https://res.cloudinary.com/davoshoes/image/upload/v1659318622/LOGO/davo_shoes_500_250_px_re09ab.png"/>
+      </a>  </div>`;
 };
 module.exports = {
   sendEmail,
-  getTemplate,
   getTemplateAproved,
-  getTemplateProductStock,
   getTemplateRejected,
-  getTemplateEnvio,
-  getTemplateEnCamino,
+  getTemplatePending,
+  getTemplateDespachado,
+  getTemplateEntregado,
+  getTemplateCancelado,
+  getTemplateDevuelto,
 };
