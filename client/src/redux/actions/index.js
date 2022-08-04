@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GET_BRANDS, GET_CATEGORIES, GET_PRODUCTS, ERROR, ADD_PAGE, SET_ORDER, GET_CART, GET_USERS, SET_PRODUCT, GET_REVIEWS, EMPTY_REVIEWS, ADD_REVIEW, SET_ID_ORDER } from './actions_types';
 import { getProducts as apiGetProducts, getCategories as apiGetCategories, getBrands as apiGetBrands, getCart as apiGetCart } from '../../services/productsServices';
+import { getUsers as apiGetUsers } from '../../services/usersServices'
 import { getReviews as fetchReviews } from '../../services/reviewsServices'
 
 export function getProducts(filters = {}, name) {
@@ -72,10 +73,10 @@ export function getCart(id) {
 export function getUsers() {
   return async function(dispatch) {
     try {
-      const data = await axios.get("http://localhost:3001/users")
+      const users = await apiGetUsers()
       dispatch({
         type: GET_USERS,
-        payload: data.data
+        payload: users
       })
     }
     catch (error) {
@@ -122,8 +123,8 @@ export function addReview(review) {
 
 }
 export function setIdOrder(payload) {
-    return {
-        type: SET_ID_ORDER,
-        payload: payload
-    }
+  return {
+    type: SET_ID_ORDER,
+    payload: payload
+  }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaFacebook, FaInstagram, FaGooglePlusG } from 'react-icons/fa'
 import styles from './Footer.module.css'
+import { Link } from "react-router-dom";
 
 function Footer() {
 
@@ -16,6 +17,9 @@ return (
                 <a href="#"><FaGooglePlusG /></a>
             </div>
             <hr />
+            <Link to="/quienessomos">
+            <h4>Quiénes somos</h4>
+            </Link>
             <h4>Davo Shoes- Todos los Derechos Reservados</h4>
             <hr />
         </footer>

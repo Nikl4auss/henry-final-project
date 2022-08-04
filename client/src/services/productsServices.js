@@ -91,6 +91,15 @@ export async function getOrders(filter, payment) {
     return data
 }
 
+export async function putOrder(id, status, payment){
+    const { data } = await apiInstance.put(`/orders/${id}`, {
+        status: status,
+        payment_status: payment
+    })
+
+    return data
+}
+
 
 export async function getCart(id){
     const { data } = await apiInstance.get(`/cart/${id}`)
