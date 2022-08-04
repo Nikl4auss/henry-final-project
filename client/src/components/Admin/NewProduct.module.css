@@ -121,6 +121,11 @@ filter-row-search > input {
     align-items: center;
     justify-content: center;
 }
+.divCreate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .btnCreate{
     width: 12rem;
     height: 1.5rem;
@@ -131,6 +136,8 @@ filter-row-search > input {
     color: white;
     border-radius: 10px;
     transition-duration: 0.4s;
+    font-size: larger;
+    align-items: center;
 }
 .btnCreate:hover {
     background-color: white; 
@@ -150,6 +157,8 @@ filter-row-search > input {
     color: white;
     border-radius: 10px;
     transition-duration: 0.4s;
+    font-size: larger;
+    align-items: center;
 }
 .btnBack:hover {
     background-color: white; 
