@@ -34,7 +34,6 @@ function ProductItem({ id, price, quantity, stock }) {
 
   useEffect(() => {
     getStock(id).then((data) => setProduct(data));
-    console.log(product?.Image_Product)
   }, [id]);
 
   async function oneMore(e) {
