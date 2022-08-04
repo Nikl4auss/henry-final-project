@@ -29,11 +29,12 @@ export default function ProductOptions() {
 
     useEffect(() => {
         getProduct(id).then(data => setProduct(data))
+
+        return () => {
+            setProduct({})
+        }
     }, [])
     
-    console.log(product)
-
-
     let colors = []
     let sizes = []
 
