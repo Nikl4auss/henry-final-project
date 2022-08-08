@@ -9,3 +9,14 @@ export async function getUsers() {
     return err;
   }
 }
+
+export async function blockUser(userId, blocked, token) {
+  const { data } = await apiInstance.patch(`/users/${userId}/blockUser`, { blocked }, {
+
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return data
+}
