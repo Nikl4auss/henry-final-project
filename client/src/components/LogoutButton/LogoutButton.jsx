@@ -8,7 +8,7 @@ function LogoutButton() {
   const { logout } = useAuth0()
 	
   return (
-    <button type='button' className={styles.logoutButton} onClick={() => logout({ returnTo: REDIRECT_URI })}>Salir</button>
+    <button type='button' className={styles.logoutButton} onClick={() => logout({ returnTo: REDIRECT_URI })}>Cerrar Sesion</button>
   )
 }
 

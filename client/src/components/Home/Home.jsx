@@ -27,7 +27,7 @@ export default function Home() {
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(getCart(user.sub))
-            if (cart.length > 0 && cartDB > 0) {
+            if (cart.length > 0) {
                 cart.forEach(async pr => {
                     await apiInstance.post(`/line_cart/${pr.id}`, {
                         id_Cart: user.sub,
@@ -49,8 +49,10 @@ return (
             <div className={styles.cardsContainer}>
                 {products.length === 0 ? <Loading /> : <Cards />}
             </div>
-            <Paginado />
             <Outlet />
+        </div>
+        <div className={styles.paginado}>
+            <Paginado />
         </div>
         <div className={styles.footerContainer}>
             <Footer />
