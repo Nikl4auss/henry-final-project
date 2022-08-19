@@ -2,7 +2,7 @@ import styles from './filters.module.css'
 
 export function BrandsComponent ( {brands, filtersSelectedToRender, handleSelectBrand}) {
     return (
-        <>
+        <div className={styles.container}>
             <span className={styles.title}>Marca</span>
             <div className={styles.filtersEach}>
                 {brands.map((brand) => {
@@ -17,7 +17,7 @@ export function BrandsComponent ( {brands, filtersSelectedToRender, handleSelect
                     )
                 })}
             </div>
-        </>
+        </div>
     )
 }
 

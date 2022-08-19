@@ -1,4 +1,9 @@
 .loginButton{
-    color:white;
-    margin-right: 20px;
+    color: #fff;
+    font-size: 1.5rem;
+    width: 2rem;
+}
+
+.loginButton:hover {
+    cursor: pointer;
 }

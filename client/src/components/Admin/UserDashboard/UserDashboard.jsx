@@ -41,24 +41,20 @@ function UserDashboard() {
                     <td className={styles.cell}>{item.surname}</td>
                     <td className={styles.cell}>{item.email}</td>
                     <td className={styles.btnCell}>
-                      <button onClick={() => alert("Nico! cambiame el rol!!")}>
+                      <button>
                         X
                       </button>
                     </td>
                     <td className={styles.btnCell}>
                       <button
-                        onClick={() =>
-                          alert("Nico! eliminame si tenes huevo!!")
-                        }
+                        
                       >
                         Y
                       </button>
                     </td>
                     <td className={styles.btnCell}>
                       <button
-                        onClick={() =>
-                          alert("Nico! reseteame y te mato! jajaja")
-                        }
+                        
                       >
                         Z
                       </button>

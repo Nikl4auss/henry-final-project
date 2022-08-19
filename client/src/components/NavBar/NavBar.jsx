@@ -1,33 +1,26 @@
 import { Outlet, useNavigate, Link, NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
-// import { ShopingCart } from '../ShopingCart/ShopingCart';
 import styles from "./NavBar.module.css";
 import LoginButton from "../LoginButton/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../LogoutButton/LogoutButton";
-import { useLocalStorage } from "../../services/useStorage";
-import apiInstance from "../../services/apiAxios";
 import MenuUser from "../MenuUser/MenuUser"
+import { IoCartSharp } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 //import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 //import {} from '@fortawesome/free-solid-svg-icons'
 
 export default function NavBar() {
   const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth0();
-  const [cart, setCart] = useLocalStorage('cart')
+  const { isAuthenticated } = useAuth0();
+  const order = useSelector(state => state.order)
+
+  console.log(order)
 
 
   function clickToShopingCart() {
     navigate("/carrito");
-  }
-
-  function clickToShopingCart() {
-    navigate("/carrito");
-  }
-
-  function clickToHome() {
-    navigate("/inicio");
   }
 
   return (
@@ -45,20 +38,24 @@ export default function NavBar() {
             </Link>
           </div>
           <SearchBar />
-          <button className={styles.btnNav} onClick={clickToShopingCart}>
-            Mi carrito
-          </button>
-          {isAuthenticated ? <NavLink className={styles.btnNav} to='/admin' >Admin</NavLink> : undefined}
-          {/* <p className={styles.envío}>Envío gratis en 24hs a partir de $10.000</p> */}
-          {isAuthenticated ? (
-            <div>
-              <MenuUser />
+          <div className={styles.btnContainers}>
+            <div className={styles.cartContainer}>
+              <button className={styles.btnCart} onClick={clickToShopingCart}>
+                <IoCartSharp />
+              </button>
+              {order.length ? <span className={styles.spanCart}>{order.length}</span> : undefined}
             </div>
-          ) : (
-            <div className={styles.btnNav} >
-               <LoginButton />
-            </div>
-          )}
+            <NavLink to='/favoritos' className={styles.btnHeart}>
+              <FaHeart />
+            </NavLink>
+            {isAuthenticated ? (
+              <div>
+                <MenuUser />
+              </div>
+            ) : 
+                <LoginButton />
+              }
+          </div>
         </div>
       </nav>
       <Outlet />

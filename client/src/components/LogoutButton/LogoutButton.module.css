@@ -1,8 +1,13 @@
-.logoutButton{
-    color:white;
-    margin-right: 20px;
+.logoutButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: .3rem 0 .3rem 0;
 }
 
-.logoutButton:hover{
-    text-decoration: underline;
+.logoutButton:hover {
+    background-color: #767676;
+    color: rgb(245 245 245);
 }

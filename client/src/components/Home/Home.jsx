@@ -49,8 +49,10 @@ return (
             <div className={styles.cardsContainer}>
                 {products.length === 0 ? <Loading /> : <Cards />}
             </div>
-            <Paginado />
             <Outlet />
+        </div>
+        <div className={styles.paginado}>
+            <Paginado />
         </div>
         <div className={styles.footerContainer}>
             <Footer />
