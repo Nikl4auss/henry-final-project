@@ -25,6 +25,10 @@
     width: 20vw;
 }
 
+.paginado{
+    grid-column: 1/3;
+}
+
 
 @media screen and (max-width: 600px) {
     .recipes-list > .container {
