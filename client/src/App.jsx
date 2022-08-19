@@ -59,7 +59,6 @@ function App() {
             <Route exact path="misdirecciones" element={<MyAdress />} />
           </Route>
           <Route exact path="/misordenes">
-            ñ
             <Route index element={<OrdersByUser />} />
             <Route exact path=":id" element={<DetailOrder />} />
           </Route>
