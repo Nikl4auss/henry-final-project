@@ -14,6 +14,7 @@
         justify-content: space-around;
         align-items: stretch;
         margin-left: 2rem;
+        border-top: 1px solid #d6d6d6;
 }
 
 .divError {
@@ -24,4 +25,31 @@
         width: 400px;
         text-align: center;
         padding: 1rem 0 1rem 0;
+        position: fixed;
+        top: 7rem;
+        animation: change 10.5s linear;
+}
+
+@keyframes change {
+        0% {
+                background-color: rgba(244, 149, 149, 0.5);
+                border: 2px solid red;
+                color: #f00;
+        }
+
+        70% {
+                background-color: rgba(244, 149, 149, 0.5);
+                border: 2px solid red;
+                color: #f00;
+        }
+
+        100% {
+                border: 2px solid rgb(255, 0, 0, 0.001);
+                color: rgb(255, 0, 0, 0.001);
+                background-color: rgba(244, 149, 149, 0.001);
+        }
+}
+
+.results {
+        margin-top: 3rem;
 }
