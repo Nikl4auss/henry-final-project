@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts, setProducts } from "../../redux/actions";
 import { useLocalStorage } from "../../services/useStorage";
@@ -16,13 +17,20 @@ function Cards () {
     const error = useSelector(state => state.error)
     let dispatch = useDispatch()
     const [ cart, setCart ] = useLocalStorage('cart')
+    const [ active, setActive ] = useState(false)
 
     useEffect(() => {
         if(!products.length > 0) {
             dispatch(getProducts(filters, name))
         }
         if(cart === undefined) setCart([])
-    }, [dispatch, filters, name])
+        if(error.length){
+            setActive(!active)
+            setTimeout(() => {
+                setActive(false)
+            }, 10000)
+        }
+    }, [dispatch, filters, name, error])
     
     const arrayPage = useMemo(()=>{
         products = products?.filter((product) => verifyStock(product.Stocks))
@@ -31,7 +39,8 @@ function Cards () {
     console.log(error)
     return(
         <div className={styles.divCards}>
-            {error.length ? <div className={styles.divError}> {error}</div> : undefined}
+            {active ? <div className={active ? styles.divError : undefined}> {error}</div> : undefined}
+            <p className={styles.results}>{products.length} resultados</p>
             <div className={styles.divProducts}>
                 {arrayPage?.map(product => {
                     
