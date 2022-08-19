@@ -3,23 +3,31 @@
 .divFilters {
     grid-column: 1/2;
     grid-row: 2/3;
-    position: fixed;
     width: 20vw;
     font-family: 'Montserrat', sans-serif;
     color: #4E4E4E;
+    margin-left: 2rem;
+    margin-top: 2rem;
 }
 
 .filterSelected{
     display: flex;
     flex-wrap: wrap;
-
+    width: 100%;
+    min-height: 10vh;
 }
 
 .buttonsSelected{
     margin: 0 5px 0 5px;
-    box-shadow: 0 2px 5px rgb(0 0 0 /10%);
-    border-color:rgb(0,0, 0, 80%);
-    border-radius: 2px;
+    box-shadow: 0 2px 5px rgb(0 0 0 /20%);
+    border:1px solid rgb(0,0, 0, 10%);
+    border-radius: 5px;
+    height: 1.6rem;
+    padding: 0 .3rem 0 .3rem;
+}
+
+.container{
+    margin-bottom: 1.5rem;
 }
 
 /* .filtersEach{
@@ -33,10 +41,11 @@
     display: flex;
     flex-direction: column;
     overflow: auto;
-    height: 30vh;
+    height: 25vh;
     align-items: flex-start;
     font-weight: 300;
     margin-right: 2rem;
+    border-bottom: 1px solid #cecece;
 }
 
 .filtersEach::-webkit-scrollbar {
@@ -44,7 +53,7 @@
 }
 
 .filtersEach::-webkit-scrollbar:vertical {
-    width:10px;
+    width: 10px;
 }
 
 .filtersEach::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
@@ -56,25 +65,28 @@
 }
 
 .filtersEach::-webkit-scrollbar-thumb {
-    background-color: #797979;
+    background-color: #c7c7c7;
     border-radius: 10px;
     border: 2px solid #f1f2f3;
 }
 
 .filtersEach::-webkit-scrollbar-track {
     border-radius: 10px;  
+    border: 2px solid #f1f2f3;
+    background-color: #ededed;
 }
 
 
 .title{
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    font-weight:500;
-    color: #4E4E4E;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #262626;
 }
 
 .btnFilters{
     font-family: 'Montserrat', sans-serif;    
-    font-weight: 300;
-    color: #4E4E4E;
+    font-weight: 500;
+    color: #1f1f1f;
+    margin: .2rem .1rem .2rem;
 }

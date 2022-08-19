@@ -1,16 +1,34 @@
 .showMenu {
   display: flex;
   flex-direction: column;
-  color: #ffffff;
-  background-color: black;
+  /* color: #ffffff;
+  background-color: rgb(31, 31, 31);
   text-decoration: none;
   padding: 0.5rem 1rem;
   margin-right: 3rem;
   position: absolute;
+  width: 10rem;
+  transform: translate(-4rem, 0); */
+  background-color: rgb(255 255 255);
+  position: absolute;
+  width: 10rem;
+  border: 1px solid #767676;
+  border-radius: 5px;
+  transform: translate(-4rem, 1rem);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: .3rem 0 .3rem 0;
 }
 
 .item:hover {
-  text-decoration: underline;
+  background-color: #767676;
+  color: rgb(245 245 245);
 }
 
 .hideMenu {
@@ -19,13 +37,15 @@
 
 .btnNav {
   color: #ffffff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  margin-right: 3rem;
+  font-size: 1.5rem;
+  width: 2rem;
 }
 
 .btnNav:hover {
-  background-color: #b0b0b0;
-  border-radius: 4px;
-  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.name {
+  border-bottom: 1px solid #767676;
+  padding: .3rem 0 .3rem 0;
 }
